@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-  <title>멍뭉별</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>멍뭉별</title>
     <style>
       body,
       html {
@@ -67,15 +68,15 @@
   <body>
     <div class="header">
       <div class="logo">
-        <img src="image/logo.png" alt="Logo" width="90px" />
+        <img src="<%=request.getContextPath()%>/image/logo.png" alt="Logo" width="90px" />
       </div>
       <div class="center-logo">
-        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
+        <img src="<%=request.getContextPath()%>/image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
-        <img src="image/profile.png" alt="Profile" width="50px" />
+        <img src="<%=request.getContextPath()%>/image/profile.png" alt="Profile" width="50px" />
       </div>
     </div>
     <div class="header-line"></div>
