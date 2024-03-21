@@ -22,6 +22,7 @@
         justify-content: space-between;
         color: white;
         padding: 0 20px;
+        position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
       }
 
       .logo {
@@ -41,6 +42,7 @@
 
       .user-info a {
         margin-right: 10px;
+        margin-top: 30px;
       }
 
       .user-info img {
@@ -53,6 +55,13 @@
         border-top: 2px solid rgb(221, 224, 224);
         margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
+
+      /* 중앙 로고 스타일 */
+      .center-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     </style>
   </head>
   <body>
@@ -60,10 +69,13 @@
       <div class="logo">
         <img src="image/logo.png" alt="Logo" width="90px" />
       </div>
+      <div class="center-logo">
+        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
+      </div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
-        <img src="image/profile.png" alt="Profile" width="45px" />
+        <img src="image/profile.png" alt="Profile" width="50px" />
       </div>
     </div>
     <div class="header-line"></div>
