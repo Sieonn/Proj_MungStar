@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\SE\moongstar\Test\.metadata\.plugins\org.eclipse.jdt.core
+575426343.index
+1657330681.index
