@@ -4,21 +4,8 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>멍뭉별</title>
+   <title>멍뭉별</title>
     <style>
-     @font-face {
-        font-family: "JalnanGothic";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
-          format("woff");
-        font-weight: normal;
-        font-style: normal;
-      }
-      @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
       body {
         margin: 0 16.6%;
       }
@@ -143,9 +130,15 @@ pageEncoding="UTF-8"%>
         font-weight: 700;
         color: #ffffff;
       }
-    
+      @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
       .place {
-        margin-top: 40px;
+        margin-top: 52px;
       }
       .text_h {
         font-size: 40px;
@@ -153,6 +146,24 @@ pageEncoding="UTF-8"%>
         text-align: center;
 
         color: #0155b7;
+      }
+      .loc {
+        margin: 20px 30px 40px 30px;
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* plac 사이의 간격 설정 */
+      }
+      .plac {
+        width: 277px; /* plac의 고정 너비 */
+        height: 307px; /* plac의 고정 높이 */
+        border-radius: 10px;
+        background-color: #e9eff6;
+        text-align: center;
+        font-weight: 500;
+        overflow: hidden;
+      }
+      .plac:hover {
+        transform: scale(1.1);
       }
     </style>
   </head>
@@ -207,7 +218,7 @@ pageEncoding="UTF-8"%>
       <div class="menu">임시보호</div>
     </div>
 
-    <div class="place" style="margin-top: 40px">
+    <div class="place">
       <div class="text_h">이번주말 함께하개?</div>
       <div
         class="text_h"
@@ -221,6 +232,12 @@ pageEncoding="UTF-8"%>
       >
         따뜻한 봄이왔어요~🌸
       </div>
+    </div>
+    <div class="loc">
+      <div class="plac"></div>
+      <div class="plac"></div>
+      <div class="plac"></div>
+      <div class="plac"></div>
     </div>
     <script>
       let currentSlide = 0;
@@ -252,5 +269,4 @@ pageEncoding="UTF-8"%>
     </script>
   </body>
 </html>
-
 
