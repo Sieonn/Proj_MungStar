@@ -191,7 +191,7 @@ pageEncoding="UTF-8"%>
           <img src="image/banner2.png" alt="이미지 2" />
         </div>
         <div class="img">
-          <img src="image/cat.jpg" alt="이미지 3" />
+          <img src="image/banner3.png" alt="이미지 3" />
         </div>
       </div>
     </div>
