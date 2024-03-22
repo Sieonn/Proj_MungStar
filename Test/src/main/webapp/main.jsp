@@ -73,7 +73,7 @@ pageEncoding="EUC-KR"%>
         border-radius: 40px;
         overflow: hidden;
         position: relative;
-        margin: 10px 16.6%;
+        margin: 15px 16.6% 0 16.6%;
       }
 
       .slider img {
@@ -86,6 +86,7 @@ pageEncoding="EUC-KR"%>
 
       .dots-container {
         text-align: center;
+        margin-top: 5px;
       }
 
       .dot {
@@ -94,11 +95,31 @@ pageEncoding="EUC-KR"%>
         height: 11px;
         background-color: #c5c5c5;
         border-radius: 50%;
-        margin: 0 5px;
+        margin: 5px;
         cursor: pointer;
       }
 
       .dot.active {
+        background-color: #fed74b;
+      }
+
+      .menu_container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        height: 100%;
+        padding: 0 16.6%;
+      }
+
+      .menu {
+        width: 235px;
+        height: 100px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px #c5c5c5;
+        margin-left: 10px;
+      }
+      .menu:hover {
         background-color: #fed74b;
       }
     </style>
@@ -145,6 +166,14 @@ pageEncoding="EUC-KR"%>
         onclick="currentSlide = 2; showSlide(currentSlide);"
       ></span>
     </div>
+
+    <div class="menu_container">
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+    </div>
     <script>
       let currentSlide = 0;
       const slides = document.querySelectorAll(".img");
@@ -175,3 +204,4 @@ pageEncoding="EUC-KR"%>
     </script>
   </body>
 </html>
+
