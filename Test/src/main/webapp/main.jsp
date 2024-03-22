@@ -194,6 +194,26 @@ pageEncoding="UTF-8"%>
       .plac:hover {
         transform: scale(1.1);
       }
+      .free {
+        gap: 20px;
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .free_b {
+        width: 50%; /* .free_b를 반씩 차지하도록 설정 */
+        box-sizing: border-box; /* padding, border를 요소의 크기에 포함 */
+        padding: 0 10px; /* 좌우 여백 추가 */
+      }
+      .free_box {
+        width: 100%;
+        height: 128px;
+        background-color: #f0f0f0;
+      }
+      .text {
+        font-size: 20px;
+        font-family: "JalnanGothic";
+        margin: 10px 0;
+      }
     </style>
   </head>
   <body>
@@ -286,6 +306,17 @@ pageEncoding="UTF-8"%>
               <div  style="font-size: 14px; font-family: 'Pretendard-Regular';">전북 임실군 오수면 금암리</div></div>
         </div>
     </div>
+      <div class="free">
+        <div class="free_b">
+          <div class="text">자유게시판</div>
+          <div class="free_box"></div>
+        </div>
+        <div class="free_b">
+          <div class="text">자유게시판</div>
+          <div class="free_box"></div>
+        </div>
+      </div>
+
     <script>
       let currentSlide = 0;
       const slides = document.querySelectorAll(".img");
