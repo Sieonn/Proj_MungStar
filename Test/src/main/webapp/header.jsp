@@ -7,17 +7,18 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>멍뭉별</title>
     <style>
-      body,
+       body {
+        margin: 0 16.6%;
+      }
       html {
         margin: 0;
         padding: 0;
-        height: 100%;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
 
       .header {
         height: 10%;
-        margin: 0 16.6%;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -43,12 +44,13 @@
 
       .user-info a {
         margin-right: 10px;
-        margin-top: 30px;
+        margin-top: 50px;
       }
 
       .user-info img {
         height: 100%;
         border-radius: 100%;
+        margin-top: 10px;
       }
 
       /* 하단 선 스타일 */
@@ -62,21 +64,26 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        margin-top: 20px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
       }
     </style>
   </head>
   <body>
     <div class="header">
       <div class="logo">
-        <img src="<%=request.getContextPath()%>/image/logo.png" alt="Logo" width="90px" />
+        <img src="image/logo.png" alt="Logo" width="90px" />
       </div>
       <div class="center-logo">
-        <img src="<%=request.getContextPath()%>/image/cen_logo.png" alt="Cen Logo" width="90px" />
+        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
-        <img src="<%=request.getContextPath()%>/image/profile.png" alt="Profile" width="50px" />
+        <img src="image/profile.png" alt="Profile" width="50px" />
       </div>
     </div>
     <div class="header-line"></div>
