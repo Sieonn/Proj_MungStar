@@ -6,6 +6,19 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>멍뭉별</title>
     <style>
+     @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
       body {
         margin: 0 16.6%;
       }
@@ -130,13 +143,7 @@ pageEncoding="UTF-8"%>
         font-weight: 700;
         color: #ffffff;
       }
-      @font-face {
-        font-family: "JalnanGothic";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
-          format("woff");
-        font-weight: normal;
-        font-style: normal;
-      }
+    
       .place {
         margin-top: 40px;
       }
