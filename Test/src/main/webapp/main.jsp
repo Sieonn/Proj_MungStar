@@ -107,20 +107,25 @@ pageEncoding="EUC-KR"%>
         display: flex;
         justify-content: center;
         margin-top: 20px;
-        height: 100%;
+        height: 110px;
         padding: 0 16.6%;
       }
 
       .menu {
         width: 235px;
-        height: 100px;
+        height: 110px;
         border-radius: 20px;
         background-color: #ffffff;
         box-shadow: 0px 4px 8px #c5c5c5;
         margin-left: 10px;
+        text-align: center;
+        line-height: 110px;
+        font-weight: 700;
+        overflow: hidden;
       }
       .menu:hover {
         background-color: #fed74b;
+        color: #ffffff;
       }
     </style>
   </head>
@@ -168,11 +173,11 @@ pageEncoding="EUC-KR"%>
     </div>
 
     <div class="menu_container">
-      <div class="menu"></div>
-      <div class="menu"></div>
-      <div class="menu"></div>
-      <div class="menu"></div>
-      <div class="menu"></div>
+      <div class="menu">산책로 추천</div>
+      <div class="menu">24시 동물병원</div>
+      <div class="menu" style="font-size: 13px">애견 동반 시설 추천</div>
+      <div class="menu">미멍보호소</div>
+      <div class="menu">임시보호</div>
     </div>
     <script>
       let currentSlide = 0;
@@ -204,4 +209,5 @@ pageEncoding="EUC-KR"%>
     </script>
   </body>
 </html>
+
 
