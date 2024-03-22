@@ -312,7 +312,7 @@ pageEncoding="UTF-8"%>
           <div class="free_box"></div>
         </div>
         <div class="free_b">
-          <div class="text">자유게시판</div>
+          <div class="text">걸어보개</div>
           <div class="free_box"></div>
         </div>
       </div>
