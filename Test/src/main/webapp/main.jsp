@@ -4,25 +4,26 @@ pageEncoding="EUC-KR"%>
 <html>
   <head>
     <meta charset="EUC-KR" />
-    <title>¸Û¹¶º°</title>
+    <title>ë©ë­‰ë³„</title>
     <style>
-      body,
+      body {
+        margin: 0 16.6%;
+      }
       html {
         margin: 0;
         padding: 0;
-        height: 100%;
-        font-family: "Pretendard-Regular", sans-serif; /* ÀüÃ¼ ±Û²Ã º¯°æ */
+        font-family: "Pretendard-Regular", sans-serif; /* ì „ì²´ ê¸€ê¼´ ë³€ê²½ */
       }
 
       .header {
         height: 10%;
-        margin: 0 16.6%;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
         color: white;
         padding: 0 20px;
-        position: relative; /* ·Î°í Áß¾Ó Á¤·ÄÀ» À§ÇØ position ¼³Á¤ */
+        position: relative; /* ë¡œê³  ì¤‘ì•™ ì •ë ¬ì„ ìœ„í•´ position ì„¤ì • */
       }
 
       .logo {
@@ -42,25 +43,27 @@ pageEncoding="EUC-KR"%>
 
       .user-info a {
         margin-right: 10px;
-        margin-top: 30px;
+        margin-top: 50px;
       }
 
       .user-info img {
         height: 100%;
         border-radius: 100%;
+        margin-top: 10px;
       }
 
-      /* ÇÏ´Ü ¼± ½ºÅ¸ÀÏ */
+      /* í•˜ë‹¨ ì„  ìŠ¤íƒ€ì¼ */
       .header-line {
         border-top: 2px solid rgb(221, 224, 224);
-        margin-top: 10px; /* ¼±°ú Çì´õ »çÀÌÀÇ ¿©¹é Á¶Á¤ */
+        margin-top: 10px; /* ì„ ê³¼ í—¤ë” ì‚¬ì´ì˜ ì—¬ë°± ì¡°ì • */
       }
 
-      /* Áß¾Ó ·Î°í ½ºÅ¸ÀÏ */
+      /* ì¤‘ì•™ ë¡œê³  ìŠ¤íƒ€ì¼ */
       .center-logo {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        margin-top: 20px;
       }
       .container {
         display: flex;
@@ -68,12 +71,12 @@ pageEncoding="EUC-KR"%>
       }
 
       .slider {
-        width: 1280px;
+        width: 100%;
         height: 250px;
         border-radius: 40px;
         overflow: hidden;
         position: relative;
-        margin: 15px 16.6% 0 16.6%;
+        margin-top: 15px;
       }
 
       .slider img {
@@ -81,7 +84,7 @@ pageEncoding="EUC-KR"%>
         height: 250px;
         position: absolute;
         transition: left 3s ease-in-out;
-        border-radius: 10px; /* ¿ŞÂÊ¿¡µµ border-radius Àû¿ë */
+        border-radius: 10px; /* ì™¼ìª½ì—ë„ border-radius ì ìš© */
       }
 
       .dots-container {
@@ -107,25 +110,42 @@ pageEncoding="EUC-KR"%>
         display: flex;
         justify-content: center;
         margin-top: 20px;
-        height: 110px;
-        padding: 0 16.6%;
+        height: 100px;
       }
 
       .menu {
         width: 235px;
-        height: 110px;
+        height: 100px;
         border-radius: 20px;
         background-color: #ffffff;
         box-shadow: 0px 4px 8px #c5c5c5;
         margin-left: 10px;
         text-align: center;
-        line-height: 110px;
-        font-weight: 700;
+        line-height: 105px;
+        font-weight: 500;
         overflow: hidden;
       }
       .menu:hover {
         background-color: #fed74b;
+        font-weight: 700;
         color: #ffffff;
+      }
+      @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      .place {
+        margin-top: 40px;
+      }
+      .text_h {
+        font-size: 40px;
+        font-family: "JalnanGothic";
+        text-align: center;
+
+        color: #0155b7;
       }
     </style>
   </head>
@@ -138,8 +158,8 @@ pageEncoding="EUC-KR"%>
         <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
       <div class="user-info">
-        <a href="#">·Î±×ÀÎ</a>
-        <a href="#">È¸¿ø°¡ÀÔ</a>
+        <a href="#">ë¡œê·¸ì¸</a>
+        <a href="#">íšŒì›ê°€ì…</a>
         <img src="image/profile.png" alt="Profile" width="50px" />
       </div>
     </div>
@@ -147,13 +167,13 @@ pageEncoding="EUC-KR"%>
     <div class="container">
       <div class="slider">
         <div class="img">
-          <img src="image/banner1.png" alt="ÀÌ¹ÌÁö 1" />
+          <img src="image/banner1.png" alt="ì´ë¯¸ì§€ 1" />
         </div>
         <div class="img">
-          <img src="image/banner2.png" alt="ÀÌ¹ÌÁö 2" />
+          <img src="image/banner2.png" alt="ì´ë¯¸ì§€ 2" />
         </div>
         <div class="img">
-          <img src="image/cat.jpg" alt="ÀÌ¹ÌÁö 3" />
+          <img src="image/cat.jpg" alt="ì´ë¯¸ì§€ 3" />
         </div>
       </div>
     </div>
@@ -173,11 +193,27 @@ pageEncoding="EUC-KR"%>
     </div>
 
     <div class="menu_container">
-      <div class="menu">»êÃ¥·Î ÃßÃµ</div>
-      <div class="menu">24½Ã µ¿¹°º´¿ø</div>
-      <div class="menu" style="font-size: 13px">¾Ö°ß µ¿¹İ ½Ã¼³ ÃßÃµ</div>
-      <div class="menu">¹Ì¸Ûº¸È£¼Ò</div>
-      <div class="menu">ÀÓ½Ãº¸È£</div>
+      <div class="menu">ì‚°ì±…ë¡œ ì¶”ì²œ</div>
+      <div class="menu">24ì‹œ ë™ë¬¼ë³‘ì›</div>
+      <div class="menu">ì• ê²¬ ë™ë°˜ ì‹œì„¤</div>
+      <div class="menu">ë¯¸ë©ë³´í˜¸ì†Œ</div>
+      <div class="menu">ì„ì‹œë³´í˜¸</div>
+    </div>
+
+    <div class="place" style="margin-top: 40px">
+      <div class="text_h">ì´ë²ˆì£¼ë§ í•¨ê»˜í•˜ê°œ?</div>
+      <div
+        class="text_h"
+        style="
+          font-size: 14px;
+          font-family: 'Pretendard-Regular';
+          font-weight: 700;
+          color: rgb(80, 80, 80);
+          line-height: 1.13;
+        "
+      >
+        ë”°ëœ»í•œ ë´„ì´ì™”ì–´ìš”~ğŸŒ¸
+      </div>
     </div>
     <script>
       let currentSlide = 0;
@@ -204,7 +240,7 @@ pageEncoding="EUC-KR"%>
 
       document.addEventListener("DOMContentLoaded", () => {
         showSlide(currentSlide);
-        setInterval(nextSlide, 5000); // 3ÃÊ¸¶´Ù ÀÚµ¿ ½½¶óÀÌµå
+        setInterval(nextSlide, 5000); // 3ì´ˆë§ˆë‹¤ ìë™ ìŠ¬ë¼ì´ë“œ
       });
     </script>
   </body>
