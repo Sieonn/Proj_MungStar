@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>멍뭉별</title>
+      <title>멍뭉별</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -14,11 +14,12 @@ pageEncoding="UTF-8"%>
         font-style: normal;
       }
       @font-face {
-        font-family: 'Pretendard-Regular';
-        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-family: "Pretendard-Regular";
+        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
         font-weight: 400;
         font-style: normal;
-    }
+      }
       body,
       html {
         margin: 0;
@@ -130,13 +131,13 @@ pageEncoding="UTF-8"%>
 
       .menu {
         width: 235px;
-        height: 100px;
+        height: 90px;
         border-radius: 20px;
         background-color: #ffffff;
         box-shadow: 0px 4px 8px #c5c5c5;
         margin-left: 10px;
         text-align: center;
-        line-height: 105px;
+        line-height: 95px;
         font-weight: 500;
         overflow: hidden;
       }
@@ -163,7 +164,7 @@ pageEncoding="UTF-8"%>
       }
       .plac {
         width: 277px; /* plac의 고정 너비 */
-        height: 307px; /* plac의 고정 높이 */
+        height: 270px; /* plac의 고정 높이 */
         border-radius: 10px;
         background-color: #e9eff6;
         text-align: center;
@@ -179,7 +180,7 @@ pageEncoding="UTF-8"%>
         height: 66.67%; /* 이미지가 보더의 3분의 2에 맞춰지도록 설정 */
       }
       .plac .text {
-        font-family: 'JalnanGothic';
+        font-family: "JalnanGothic";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -197,12 +198,12 @@ pageEncoding="UTF-8"%>
       .free {
         gap: 20px;
         display: flex;
-        margin-bottom: 20px;
+        margin: 10px 0 10px 0;
       }
       .free_b {
         width: 50%; /* .free_b를 반씩 차지하도록 설정 */
         box-sizing: border-box; /* padding, border를 요소의 크기에 포함 */
-        padding: 0 10px; /* 좌우 여백 추가 */
+        /* 좌우 여백 추가 */
       }
       .free_box {
         width: 100%;
@@ -213,6 +214,40 @@ pageEncoding="UTF-8"%>
         font-size: 20px;
         font-family: "JalnanGothic";
         margin: 10px 0;
+      }
+      .more {
+        float: right;
+        margin: 10px 10px 0 0;
+      }
+      .archive {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+      }
+      .photo {
+        margin: 20px 0 40px 0;
+        width: 200px; /* plac의 고정 너비 */
+        height: 230px; /* plac의 고정 높이 */
+        border-radius: 10px;
+        background-color: #ffffff;
+        border: 1px solid #969090;
+      }
+      .inner_photo {
+        margin: 10px 10px 0 10px;
+      }
+      .inner_photo img {
+        width: 180px;
+        height: 160px;
+        border-radius: 10px;
+      }
+      .inner_title {
+        margin: 7px 10px 0 10px;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .inner_text {
+        margin: 0 10px 10px 10px;
+        font-size: 12px;
       }
     </style>
   </head>
@@ -273,7 +308,7 @@ pageEncoding="UTF-8"%>
         <div
           class="text_h"
           style="
-          margin-top: 10px;
+            margin-top: 10px;
             font-size: 18px;
             font-family: 'Pretendard-Regular';
             font-weight: bold;
@@ -286,36 +321,103 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="loc">
         <div class="plac">
-            <img src="image/loc_1.jpg" alt="Image 1"/>
-            <div class="text">경북 의성 펫월드<br>
-            <div style="font-size: 14px; font-family: 'Pretendard-Regular';">경북 의성 단북면 안계길</div></div>
+          <img src="image/loc_1.jpg" alt="Image 1" />
+          <div class="text">
+            경북 의성 펫월드<br />
+            <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
+              경북 의성 단북면 안계길
+            </div>
+          </div>
         </div>
         <div class="plac">
-            <img src="image/loc_2.jpg" alt="Image 2"/>
-            <div class="text" style="font-size: 18px;">인천 반려동물 놀이터
-              <div style="font-size: 14px; font-family: 'Pretendard-Regular';">인천 남동구 무네미로</div></div>
+          <img src="image/loc_2.jpg" alt="Image 2" />
+          <div class="text" style="font-size: 18px">
+            인천 반려동물 놀이터
+            <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
+              인천 남동구 무네미로
+            </div>
+          </div>
         </div>
         <div class="plac">
-            <img src="image/loc_3.jpg" alt="Image 3"/>
-            <div class="text" style="font-size: 18px;">반려동물 테마파크
-              <div style="font-size: 14px; font-family: 'Pretendard-Regular';">경기 오산시 오산로</div></div>
+          <img src="image/loc_3.jpg" alt="Image 3" />
+          <div class="text" style="font-size: 18px">
+            반려동물 테마파크
+            <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
+              경기 오산시 오산로
+            </div>
+          </div>
         </div>
         <div class="plac">
-            <img src="image/loc_4.jpg" alt="Image 4"/>
-            <div class="text"  style="font-size: 18px;">임실 오수의경관광지
-              <div  style="font-size: 14px; font-family: 'Pretendard-Regular';">전북 임실군 오수면 금암리</div></div>
+          <img src="image/loc_4.jpg" alt="Image 4" />
+          <div class="text" style="font-size: 18px">
+            임실 오수의경관광지
+            <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
+              전북 임실군 오수면 금암리
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
       <div class="free">
         <div class="free_b">
           <div class="text">자유게시판</div>
           <div class="free_box"></div>
         </div>
         <div class="free_b">
-          <div class="text">걸어보개</div>
+          <div class="text">자유게시판</div>
           <div class="free_box"></div>
         </div>
       </div>
+
+      <span
+        class="headline"
+        style="font-family: 'JalnanGothic'; font-size: 20px"
+      >
+        임시보호해요
+      </span>
+      <span class="more"> <a href="#" style="font-size: 12px">더보기</a></span>
+      <div class="header-line"></div>
+      <div class="archive">
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp1.jpg" />
+            <div class="inner_title">영희</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp2.jpg" />
+            <div class="inner_title">철수</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp3.jpg" />
+            <div class="inner_title">뽀삐</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp4.jpg" />
+            <div class="inner_title">쪼롱</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp5.jpg" />
+            <div class="inner_title">초코</div>
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       let currentSlide = 0;
@@ -347,4 +449,3 @@ pageEncoding="UTF-8"%>
     </script>
   </body>
 </html>
-
