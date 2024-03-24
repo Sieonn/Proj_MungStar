@@ -67,6 +67,7 @@
     	border: none;
     }
     .album{
+    	margin-left: 252.712px; margin-right: 252.712px;
     	margin-top: 50px;
       	border-color: black;
     }
@@ -127,7 +128,7 @@
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="temp_container" style="margin-top: 40px; height: 100px;">
+<div class="temp_container" style="margin-top: 40px; margin-left: 252.712px; margin-right: 252.712px; height: 100px;">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1" style="">
