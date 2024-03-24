@@ -7,9 +7,21 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>멍뭉별</title>
     <style>
-       body {
-        margin: 0 16.6%;
+      @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
       }
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-weight: 400;
+        font-style: normal;
+      }
+      body,
       html {
         margin: 0;
         padding: 0;
@@ -17,6 +29,7 @@
       }
 
       .header {
+        margin: 0 16.6%;
         height: 10%;
 
         display: flex;
@@ -65,6 +78,9 @@
         left: 50%;
         transform: translateX(-50%);
         margin-top: 20px;
+      }
+      .content {
+        margin: 0 16.6%;
       }
       .container {
         display: flex;
