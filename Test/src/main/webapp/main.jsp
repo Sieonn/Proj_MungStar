@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-      <title>멍뭉별</title>
+   <title>멍뭉별</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -215,39 +215,58 @@ pageEncoding="UTF-8"%>
         font-family: "JalnanGothic";
         margin: 10px 0;
       }
+
       .more {
         float: right;
         margin: 10px 10px 0 0;
       }
+      .headline {
+        margin-top: 40px;
+      }
+
       .archive {
         display: flex;
-        justify-content: center;
-        gap: 30px;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+        margin-top: 20px;
       }
+
       .photo {
-        margin: 20px 0 40px 0;
-        width: 200px; /* plac의 고정 너비 */
-        height: 230px; /* plac의 고정 높이 */
+        width: calc((100% - 80px) / 5);
+        height: 230px;
         border-radius: 10px;
         background-color: #ffffff;
         border: 1px solid #969090;
       }
+
       .inner_photo {
-        margin: 10px 10px 0 10px;
-      }
-      .inner_photo img {
-        width: 180px;
+        width: 100%;
         height: 160px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .inner_photo img {
+        width: 100%;
+        height: 100%;
         border-radius: 10px;
       }
+
       .inner_title {
-        margin: 7px 10px 0 10px;
+        margin-top: 7px;
         font-weight: 700;
         font-size: 16px;
       }
+
       .inner_text {
-        margin: 0 10px 10px 10px;
+        margin-top: 5px;
         font-size: 12px;
+      }
+      .headline {
+        margin-top: 40px; /* headline 위로 40px의 간격을 줌 */
+        font-family: "JalnanGothic";
+        font-size: 20px;
       }
     </style>
   </head>
@@ -368,13 +387,62 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
 
-      <span
-        class="headline"
-        style="font-family: 'JalnanGothic'; font-size: 20px"
-      >
-        임시보호해요
-      </span>
-      <span class="more"> <a href="#" style="font-size: 12px">더보기</a></span>
+      <div class="headline-container" style="margin-top: 40px">
+        <span class="headline"> 임시보호해요 </span>
+
+        <span class="more">
+          <a href="#" style="font-size: 12px">더보기</a></span
+        >
+      </div>
+      <div class="header-line"></div>
+      <div class="archive">
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp1.jpg" />
+            <div class="inner_title">영희</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp2.jpg" />
+            <div class="inner_title">철수</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp3.jpg" />
+            <div class="inner_title">뽀삐</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp4.jpg" />
+            <div class="inner_title">쪼롱</div>
+
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+        <div class="photo">
+          <div class="inner_photo">
+            <img src="image/temp5.jpg" />
+            <div class="inner_title">초코</div>
+            <div class="inner_text">가산디지털단지</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="headline-container" style="margin-top: 40px">
+        <span class="headline"> 미멍보호소 </span>
+        <span class="more">
+          <a href="#" style="font-size: 12px">더보기</a></span
+        >
+      </div>
       <div class="header-line"></div>
       <div class="archive">
         <div class="photo">
@@ -449,3 +517,4 @@ pageEncoding="UTF-8"%>
     </script>
   </body>
 </html>
+    
