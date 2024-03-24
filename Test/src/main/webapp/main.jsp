@@ -4,7 +4,13 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-   <title>멍뭉별</title>
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>멍뭉별</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -210,10 +216,8 @@ pageEncoding="UTF-8"%>
         height: 128px;
         background-color: #f0f0f0;
       }
-      .text {
-        font-size: 20px;
-        font-family: "JalnanGothic";
-        margin: 10px 0;
+      .headline-container {
+        margin-bottom: 10px;
       }
 
       .more {
@@ -267,6 +271,9 @@ pageEncoding="UTF-8"%>
         margin-top: 40px; /* headline 위로 40px의 간격을 줌 */
         font-family: "JalnanGothic";
         font-size: 20px;
+      }
+      .footer {
+        margin-bottom: 110px;
       }
     </style>
   </head>
@@ -378,16 +385,34 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="free">
         <div class="free_b">
-          <div class="text">자유게시판</div>
+          <div class="headline-container" style="margin-top: 40px">
+            <span class="headline"> 자유게시판 </span>
+
+            <span class="more">
+              <a href="#" style="font-size: 12px">더보기</a></span
+            >
+          </div>
           <div class="free_box"></div>
         </div>
         <div class="free_b">
-          <div class="text">자유게시판</div>
+          <div
+            class="headline-container"
+            style="margin-top: 40px; margin-button: 10px"
+          >
+            <span class="headline"> 같이걷개 </span>
+
+            <span class="more">
+              <a href="#" style="font-size: 12px">더보기</a></span
+            >
+          </div>
           <div class="free_box"></div>
         </div>
       </div>
 
-      <div class="headline-container" style="margin-top: 40px">
+      <div
+        class="headline-container"
+        style="margin-top: 40px; margin-button: 10px"
+      >
         <span class="headline"> 임시보호해요 </span>
 
         <span class="more">
@@ -485,6 +510,7 @@ pageEncoding="UTF-8"%>
           </div>
         </div>
       </div>
+      <div class="footer"></div>
     </div>
 
     <script>
@@ -517,4 +543,4 @@ pageEncoding="UTF-8"%>
     </script>
   </body>
 </html>
-    
+      
