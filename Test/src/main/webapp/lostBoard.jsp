@@ -22,6 +22,7 @@
     body,
     html {
         margin: 0;
+        width: 1920px;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
