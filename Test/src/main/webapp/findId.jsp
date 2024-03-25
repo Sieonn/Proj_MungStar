@@ -137,6 +137,14 @@
       .text2 {
         color: #0155b7;
       }
+      a:link {
+        color: rgb(117, 117, 117);
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        font-weight: 700;
+      }
     </style>
   </head>
 
