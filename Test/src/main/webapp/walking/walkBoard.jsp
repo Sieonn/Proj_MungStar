@@ -61,7 +61,9 @@ box-shadow: 0 3px 1px gray;
 position: relative;
 top: 5px;
 left: 580px;
-width:960px;
+width:1000px;
+height:40px;
+overflow:hidden;
 }
 </style>
 </head>
