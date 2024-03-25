@@ -4,8 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>멍뭉별</title>
+  <title>멍뭉별</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -85,6 +84,14 @@
       .container {
         display: flex;
         justify-content: center;
+      }
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+            a:hover {
+        color: black;
+        font-weight: 700;
       }
     </style>
   </head>

@@ -275,6 +275,14 @@ pageEncoding="UTF-8"%>
       .footer {
         margin-bottom: 110px;
       }
+            a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
