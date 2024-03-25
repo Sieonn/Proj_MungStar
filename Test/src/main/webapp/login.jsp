@@ -151,7 +151,6 @@
         border-top: 2px solid rgb(221, 224, 224);
         margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
-
       a:link {
         color: black;
         text-decoration: none;
@@ -159,6 +158,10 @@
       a:hover {
         color: black;
         font-weight: 700;
+      }
+      .links {
+        margin-top: 5px;
+        text-align: center;
       }
 
 
@@ -212,6 +215,11 @@
           </label>
           <input type="submit" value="로그인" />
         </form>
+                <div class="links">
+          <a href="memberId">아이디 찾기</a> |
+          <a href="memberPw">비밀번호 찾기</a> |
+          <a href="memberRegist">회원가입</a>
+        </div>
       </div>
     </div>
   </body>
