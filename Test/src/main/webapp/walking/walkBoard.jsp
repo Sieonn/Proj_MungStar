@@ -58,10 +58,10 @@ text-align:center;
 box-shadow: 0 3px 1px gray;
 }
 .walkBtn{
-width:1920px;
-float:left;
-margin-left:570px;
-margin-top:5px;
+position: relative;
+top: 5px;
+left: 580px;
+width:960px;
 }
 </style>
 </head>
@@ -73,10 +73,11 @@ margin-top:5px;
 <img id="helpMessage" src="./image/help.png"/>
 </div>
 </div>
+<br><br>
 <div class="walkBtn">
 		<button id="walkList">LIST</button>
 		<button id="walkWrite">WRITE</button>
-</div>
+		</div>
 
 
 
