@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>멍뭉별 | 로그인</title>
     <style>
       * {
         padding: 0;
@@ -25,7 +25,7 @@
       }
 
       .login-wrapper > h2 {
-      font-family:'JalnanGothic';
+        font-family: "JalnanGothic";
         font-size: 24px;
         color: #0155b7;
         margin-bottom: 10px;
@@ -69,14 +69,13 @@
         background-repeat: no-repeat;
         background-size: contain;
       }
- @font-face {
+      @font-face {
         font-family: "JalnanGothic";
         src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
           format("woff");
         font-weight: normal;
         font-style: normal;
       }
-
       @font-face {
         font-family: "Pretendard-Regular";
         src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -84,7 +83,6 @@
         font-weight: 400;
         font-style: normal;
       }
-
       body,
       html {
         margin: 0;
@@ -95,6 +93,7 @@
       .header {
         margin: 0 16.6%;
         height: 10%;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -108,18 +107,6 @@
         max-height: 100%;
         width: auto;
         margin-top: 20px;
-      }
-
-      .nav_menu {
-        display: flex;
-        font-size: 18px;
-        margin-top: 10px;
-        margin-left: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
-      }
-
-      .nav_menu a {
-        margin-right: 20px; /* 각 메뉴 간의 오른쪽 여백 설정 */
-        margin-top: 50px;
       }
 
       .user-info {
@@ -141,30 +128,19 @@
         margin-top: 10px;
       }
 
-      .welcome-message {
-        font-size: 12px;
-        margin-right: 20px;
-      }
-
       /* 하단 선 스타일 */
       .header-line {
         border-top: 2px solid rgb(221, 224, 224);
         margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
-      a:link {
-        color: black;
-        text-decoration: none;
-      }
-      a:hover {
-        color: black;
-        font-weight: 700;
-      }
-      .links {
-        margin-top: 5px;
-        text-align: center;
-      }
 
-
+      /* 중앙 로고 스타일 */
+      .center-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+      }
       .content {
         margin: 0 16.6%;
       }
@@ -182,6 +158,18 @@
         font-size: 48px;
         font-weight: 900;
       }
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        font-weight: 700;
+      }
+      .links {
+        margin-top: 5px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -189,14 +177,9 @@
       <div class="logo">
         <img src="image/logo.png" alt="Logo" width="90px" />
       </div>
-      <div class="nav_menu">
-        <a href="#">산책로</a>
-        <a href="#">24시 동물병원</a>
-        <a href="#">동반 시설</a>
-        <a href="#">미멍보호소</a>
-        <a href="#">임시 보호해요</a>
+      <div class="center-logo">
+        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
-      <div class="welcome-message">회원님 안녕하세요!</div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
@@ -208,14 +191,22 @@
       <div class="login-wrapper">
         <h2>LOGIN</h2>
         <form method="post" action="#" id="login-form">
-          <input type="text" name="userName" placeholder="Email" />
+          <input
+            type="text"
+            name="userName"
+            placeholder="ID"
+            autofocus
+            required
+          />
           <input type="password" name="userPassword" placeholder="Password" />
+
           <label for="remember-check">
             <input type="checkbox" id="remember-check" />아이디 저장하기
           </label>
-          <input type="submit" value="로그인" />
+
+          <input type="submit" value="Login" required />
         </form>
-                <div class="links">
+        <div class="links">
           <a href="memberId">아이디 찾기</a> |
           <a href="memberPw">비밀번호 찾기</a> |
           <a href="memberRegist">회원가입</a>
@@ -224,4 +215,3 @@
     </div>
   </body>
 </html>
-    
