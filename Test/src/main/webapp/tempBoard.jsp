@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Temp Board</title>
+<title>멍뭉별 임시보호소 게시판</title>
 <style>
 	@font-face {
         font-family: "JalnanGothic";

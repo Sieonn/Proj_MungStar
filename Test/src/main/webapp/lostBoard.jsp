@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>멍뭉별 미아보호소 게시판</title>
 <style>
 	@font-face {
         font-family: "JalnanGothic";
