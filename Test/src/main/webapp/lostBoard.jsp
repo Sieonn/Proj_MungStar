@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Temp Board</title>
+<title>Insert title here</title>
 <style>
 	@font-face {
         font-family: "JalnanGothic";
@@ -23,8 +23,8 @@
     }
     body,
     html {
-        width: 1920px;
         margin: 0;
+        width: 1920px;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
@@ -38,7 +38,7 @@
     	margin-top: 40px; margin-left: 318.719px; 
     	margin-right: 318.719px; height: 100px;
     	padding-left: 20px; padding-right: 20px;
-    }
+    }  
     .category{
     	float: right; margin-top: 50px;
     	margin-bottom: 5px;
@@ -58,7 +58,6 @@
   		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
   		border: none;
         font-family: "JalnanGothic";
-
     }
     .searchBtn{
 		padding-bottom: 8px; padding-top: 8px;    
@@ -67,7 +66,6 @@
     	color: white;
     	border: none;
         font-family: "JalnanGothic";
-
     }
     .writeBtn{
 		padding-bottom: 8px; padding-top: 8px;
@@ -155,17 +153,18 @@
     	text-decoration: none;
     	color: black;
     }
+
 </style>
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="temp_container" style="">
+<div class="temp_container">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1" style="">
-			<option value="">찾습니다 / 발견했습니다</option>
-			<option value="찾습니다">찾습니다</option>
-			<option value="발견했습니다">발견했습니다</option>
+			<option value="">데리고있어요 / 데리고갔어요</option>
+			<option value="찾습니다">데리고있어요</option>
+			<option value="발견했습니다">데리고갔어요</option>
 		</select>
     	<form action="">
     		<input type="text" class="searchInput" id="comment" name="text" placeholder="검색"/>

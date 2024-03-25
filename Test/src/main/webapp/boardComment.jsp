@@ -5,8 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>댓글 JSP</title>
-   <!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
   <style type="text/css">
   	.wrap{
   		background-color: #f5f5f5;
@@ -44,6 +42,7 @@
   		background-color: white;
   		border-style : solid;
   		border-color: gold;
+  		border-width: 4px;
   		border-radius: 14px;
   		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   	}
