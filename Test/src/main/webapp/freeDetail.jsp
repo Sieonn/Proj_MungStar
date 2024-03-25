@@ -9,6 +9,7 @@
  <style type="text/css">
  	.freeContainer {
 		width : 1280px;
+		margin : 0 auto;
  	}
  	#freeCategory{
  		width :1000px;
@@ -95,6 +96,11 @@
 
 </style>
 </head>
+
+
+
+
+
 <body>
 <script>
 // 스크롤 상자의 스크롤 이벤트를 처리하는 함수
@@ -125,10 +131,14 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 <div class="wrap">
 	<div class="ContentBackground scroll-box">
 		<div class = "contextImg">
-		<img src="image/dog1.jpg" alt="자유게시판 사진첨부 예시">
+		<img src="<%=request.getContextPath()%>/image/dog1.jpg" alt="자유게시판 사진첨부 예시1">
+		<br>
+		<img src="<%=request.getContextPath()%>/image/dog2.jpg" alt="자유게시판 사진첨부 예시2">
 		</div>
-		<p class = "context"> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here</p>
-		<div class = "context"> I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here</div>
+		<p class = "context"> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
+		<br>
+		<p class = "context"> 후... (담배)<br>니들은 이런거 하지 마라... </p>
+		<div class = "context"> </div>
 	</div>
 </div>
 
