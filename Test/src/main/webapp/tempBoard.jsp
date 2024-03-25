@@ -34,7 +34,11 @@
         margin: 10px 0;
         float: left;
       }
-      
+    .temp_container{
+    	margin-top: 40px; margin-left: 318.719px; 
+    	margin-right: 318.719px; height: 100px;
+    	padding-left: 20px; padding-right: 20px;
+    }
     .category{
     	float: right; margin-top: 50px;
     	margin-bottom: 5px;
@@ -46,7 +50,6 @@
   		border: none;
   		text-align: center;
         font-family: "JalnanGothic";
-
     }
     .searchInput{
 		padding-bottom: 8px; padding-top: 8px;
@@ -76,13 +79,17 @@
 
     }
     .album{
-    	margin-left: 252.712px; margin-right: 252.712px;
+    	margin-left: 318.719px; margin-right: 318.719px;
     	margin-top: 50px;
+    	padding-left: 20px; padding-right: 20px;
       	border-color: black;
     }
       
     .row{
       	margin-bottom: 100px;
+      	display: flex;
+   	 	justify-content: center;
+      	align-items: center;
     }
     .column1{
       	float : left;
@@ -93,8 +100,8 @@
       	border-radius: 10px;
     }
     .column2{
+    	margin-left: 183px; margin-right: 183px;
       	padding: 10px;
-      	margin-left: 115px;
       	display: inline-block;
        	border: 2px solid black;
        	border-color: darkgrey;
@@ -109,7 +116,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 240px; height: 240px;
+    	width: 270px; height: 240px;
     	border-radius: 10px;
     }
     .boardContainer{
@@ -126,20 +133,33 @@
     	float : right;
     	margin-top: 13px;
     }
-    .pageDiv{
-    	width: 500px;
-    	margin: 0 auto;
-        font-family: "JalnanGothic";
-
+    .pageContainer{
+    	display: flex;
+   	 	justify-content: center;
+      	align-items: center;
     }
-    .select{
-    	margin: 0 auto;
+    .pageDiv{
+    	margin-bottom: 300px;
+        font-family: "JalnanGothic";
+    }
+    .pageSelect{
+    	margin: 20px;
+    	text-decoration: none;
+    	font-weight: bold;
+    	color: gold;
+    }
+    .pageSelect:hover{
+    	color: gold;
+    }
+    .morePage{
+    	text-decoration: none;
+    	color: black;
     }
 </style>
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="temp_container" style="margin-top: 40px; margin-left: 252.712px; margin-right: 252.712px; height: 100px;">
+<div class="temp_container" style="">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1" style="">
@@ -199,21 +219,21 @@
             }
             // 마지막 행이 3개 미만일 경우를 처리
             
-        %>
+    %>
+    <div class="pageContainer">
        	<div class="pageDiv" id="">
-			<a>&lt;</a>
 			<c:forEach begin="1" end="2" var="i">
 			<c:choose>
-			<c:when test="1">
-				<a href="boardlist?page=" class="select">1</a>
+			<c:when test="${i eq 1}">
+				<a href="boardlist?page=" class="pageSelect">1</a>
 			</c:when>
 			<c:otherwise>
-				<a href="boardlist?page=" class="btn">다음</a><a>&gt;</a>
+				<a href="boardlist?page=" class="morePage">다음</a><a>&gt;</a>
 			</c:otherwise>
 			</c:choose>
-	</c:forEach>
-	
+			</c:forEach>
 		</div>
+	</div>
 </div>
 </body>
 </html>
