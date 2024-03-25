@@ -15,16 +15,15 @@
 .container{
 transform: scale(0.9,0.9);
 position:relative;
-top:30px;
 right: 280px;
 width:400px;
 float:right;
 }
 .backWalkDetail {
 	width: 750px;
-	height: 710px;
+	height: 750px;
 	background-color: #F5F5F5;
-	border-radius: 10%;
+	border-radius: 40px;
 }
 
 .frontWalkDetail {
@@ -34,7 +33,7 @@ float:right;
 	height: 660px;
 	background-color: #F5F5F5;
 	margin: 0 auto;
-	border-radius: 10%;
+	border-radius: 40px;
 	border-right: 3px solid #D9D9D9;
 }
 
@@ -101,13 +100,11 @@ h3 {
 }
 
 #walkLike {
-	margin-top: 2px; float : right;
 	height: 40px;
-	margin-right: 110px;
-	width: 15px;
-	font-weight: bold;
-	font-size: 18px;
+	width: 220px;
 	float: right;
+	font-size:30px;
+	text-align:center;
 }
 
 #walkBottomEmpty {
@@ -186,8 +183,8 @@ a {
 					</div>
 				</div>
 				<div id="walkLike">
-
-					<img src="<%=request.getContextPath()%>/image/good.png">Like
+					<b>Like</b><br>
+					<img src="<%=request.getContextPath()%>/image/none.png" style="width:45px;">
 				</div>
 			<div class="comment">
 			<%@ include file="mapComment.jsp" %>
@@ -197,4 +194,16 @@ a {
 </div>
 </div>
 </body>
+<script>
+$('#exitBtn').on("click",function(){
+$.ajax({
+	url:'walkBoard.jsp',
+	success:function(response){
+		$('#leftDiv').empty();
+		$('#leftDiv').append(`<img id="helpMessage" src="./image/help.png"/>`);
+	}
+	
+})
+})
+</script>
 </html>
