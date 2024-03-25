@@ -14,8 +14,8 @@
         font-family: "JalnanGothic";  	
         }
   	.comment_container{
-  		margin: 0 auto;
-  		padding-top: 20px;
+  		margin: 0 auto 160px; 
+  		padding-top: 20px; padding-bottom:20px;
       	background-color: #f5f5f5;
       	width: 1280px;
       	border-radius: 20px;
@@ -76,7 +76,7 @@
   		width: 80%;
   		height: 40px;
    		margin-left: 5px;
-  		margin-right: 100px; 
+  		margin-right: 120px; 
   		border-style: none;
   		outline: none;
   		font-size: 15px;

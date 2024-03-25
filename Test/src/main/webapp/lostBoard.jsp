@@ -29,14 +29,14 @@
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
 	.text {
-        font-size: 20px;
+        font-size: 34px;
         font-family: "JalnanGothic";
         margin: 10px 0;
         float: left;
       }
     .temp_container{
     	margin-top: 40px; margin-left: 318.719px; 
-    	margin-right: 318.719px; height: 100px;
+    	margin-right: 383.719px; height: 100px;
     	padding-left: 20px; padding-right: 20px;
     }  
     .category{
@@ -98,7 +98,7 @@
       	border-radius: 10px;
     }
     .column2{
-    	margin-left: 183px; margin-right: 183px;
+    	margin-left: 115px; margin-right: 115px;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
@@ -159,7 +159,7 @@
 <body>
 <%@ include file="/header.jsp" %>
 <div class="temp_container">
-	<div class="text">임시보호소</div>
+	<div class="text">미아보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1" style="">
 			<option value="">데리고있어요 / 데리고갔어요</option>

@@ -68,11 +68,11 @@ overflow:hidden;
 </style>
 </head>
 <body>
-<jsp:include page="/otherhead.jsp"/>
+<jsp:include page="/other_header.jsp"/>
 <div class="walkMap" id="walkMap">
 <div id="map"></div>
 <div id="leftDiv">
-<img id="helpMessage" src="./image/help.png"/>
+<img id="helpMessage" src="image/help.png"/>
 </div>
 </div>
 <br><br>
@@ -149,7 +149,6 @@ $.ajax({
 		
 		$('#leftDiv').html(response);
 	}
-	
 })	
 })
 }
