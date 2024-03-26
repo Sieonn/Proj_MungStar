@@ -124,7 +124,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		<br>
 		<span class = "titleInfo">댓글수 : n&nbsp;</span>
 		<span class = "titleInfo">조회수 : nnnn&nbsp;</span>
-		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이들어가는곳</div>
+		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이 들어가는곳</div>
 	</div>
 </div>
 	<br>
