@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멍뭉별 미아보호소 게시글</title>
+<title>멍뭉별 임시보호소 게시글 작성</title>
 <style>
-	body,
+body,
     html {
         width: 1920px;
         margin: 0;
@@ -64,7 +64,26 @@
       	color: black;
       	font-size: 30px;
       	font-weight: bold;
+      	border: none;
+     	outline: none;
       }
+      .address{
+      	border: none;
+     	outline: none;
+      }
+      .char{
+      
+      }
+      #myTextarea{
+      	width: 300px; /* 너비 설정 */
+		height: auto; /* 높이 설정 */
+  		border: none; /* 테두리 설정 */
+  		outline: none;
+    	resize: vertical; /* 크기 조절 가능 여부 설정 (수직으로만 조절 가능) */
+    	  }
+      .hidden {
+   		display: none;
+		}
       .contents{
       	font-size: 20px; color: #7E7E7E;
       	border-bottom: 1px solid #7E7E7E;
@@ -84,18 +103,18 @@
       	width: 230px; height: 200px;
       	border-radius: 10px;
       }
-      .btn_container{
-      	margin-top: 30px;
-      	display: flex;
-   	 	justify-content: center;
-      	align-items: center;
-      } 
       .state{
       	color: green;
       	margin-top: 10px;
       	font-size: 30px;
 		text-align: center;
       }
+      .btn_container{
+      	margin-top: 30px;
+      	display: flex;
+   	 	justify-content: center;
+      	align-items: center;
+      } 
       .Btn{
       	margin:10px;
 		background-color: #FED74B;
@@ -110,18 +129,25 @@
 		font-weight: bold;
       }
 </style>
+
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="text">미아보호소</div>
+<div class="text">임시보호소</div>
 
 <div class="content_container">
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
-				<div class="dogname_box">뽀삐</div>
-				<div><img src="<%=request.getContextPath()%>/image/place.png" style="">서울특별시 강북구 삼양로 21</div>
-				<div class="contents">특징</div>
+				<input type="text" placeholder="강아지 이름" class="dogname_box">
+				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
+				<div class="contents char">특징</div>
+				
+				<div>▶ <input type="text"></div>
+				
+				<textarea type="text" id="myTextarea" placeholder="▶"></textarea>
+				<div id="icon" class="hidden">▶</div>
+
 				<div>▶ 회색빛이 살짝 도는 검정색 토이 푸들이에요.</div>
 				<div>▶ 목에 목걸이를 차고 있어요.</div>
 				<div>▶ 너무 기여워요</div>
@@ -153,18 +179,39 @@
 			</div>
 			<div class="img_box">
 				<img class="dog_Img" src="<%=request.getContextPath()%>/image/temp3.jpg">
-				<div class="state">찾고있어요</div>
+				<div class="state">데리고있어요</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div class="btn_container">
-	<button type="submit" class="boardBtn Btn">목록</button>
-	<button type="submit" class="modifyBtn Btn">수정</button>
-</div>
-
-<%@ include file="/boardComment.jsp" %>
-
 </body>
+<script>
+const textarea = document.getElementById('myTextarea');
+
+/* textarea.addEventListener('click', handleTextareaClick){
+	
+	addfirstItem();
+}; */
+function addfirstItem(){
+	 const newValue = currentValue.substring(0, cursorPos) + '\n' + '▶' + ' ' + currentValue.substring(cursorPos); // 글머리 추가
+	 textarea.value = newValue; // 변경된 값 설정
+	 textarea.setSelectionRange(cursorPos + currentLineNumber.toString().length + 3, cursorPos + currentLineNumber.toString().length + 3); // 새로운 줄의 커서 위치 설정
+}
+
+textarea.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // 기본 Enter 동작을 중지
+        addfrontItem();
+    }
+});
+
+function addfrontItem() {
+    const cursorPos = textarea.selectionStart; // 커서 위치 가져오기
+    const currentValue = textarea.value; // 현재 textarea 값 가져오기
+    const lines = currentValue.split('\n'); // 개행 문자로 현재 내용을 분할
+    const newValue = currentValue.substring(0, cursorPos) + '\n' + '▶' + ' ' + currentValue.substring(cursorPos); // 글머리 추가
+    textarea.value = newValue; // 변경된 값 설정
+    textarea.setSelectionRange(cursorPos + currentLineNumber.toString().length + 3, cursorPos + currentLineNumber.toString().length + 3); // 새로운 줄의 커서 위치 설정
+}
+</script>
 </html>

@@ -64,6 +64,7 @@
       .dogname_box{
       	color: black;
       	font-size: 30px;
+      	font-weight: bold;
       }
       .contents{
       	font-size: 20px; color: #7E7E7E;
