@@ -89,7 +89,7 @@
       	margin-bottom: 100px;
       	display: flex;
    	 	justify-content: center;
-      	align-items: center;
+      	align-items: center; 
     }
     .column1{
       	float : left;
@@ -100,7 +100,7 @@
       	border-radius: 10px;
     }
     .column2{
-    	margin-left: 90px; margin-right: 90px;
+    	margin-left: 9.090%; margin-right: 9.090%;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
