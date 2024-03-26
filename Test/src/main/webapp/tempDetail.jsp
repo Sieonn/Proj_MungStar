@@ -32,7 +32,7 @@
       .content_box{
       	background-color: white;
       	margin: 0 4% 0 4%;
-      	height: 480px;
+      	height: 85%;
       	border-radius: 20px;
       	overflow: auto;
       }
