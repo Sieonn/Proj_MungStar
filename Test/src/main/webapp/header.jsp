@@ -4,7 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>멍뭉별</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>멍뭉별</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -13,6 +14,7 @@
         font-weight: normal;
         font-style: normal;
       }
+
       @font-face {
         font-family: "Pretendard-Regular";
         src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -20,6 +22,7 @@
         font-weight: 400;
         font-style: normal;
       }
+
       body,
       html {
         margin: 0;
@@ -30,7 +33,6 @@
       .header {
         margin: 0 16.6%;
         height: 10%;
-
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -44,6 +46,18 @@
         max-height: 100%;
         width: auto;
         margin-top: 20px;
+      }
+
+      .nav_menu {
+        display: flex;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-left: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
+      }
+
+      .nav_menu a {
+        margin-right: 20px; /* 각 메뉴 간의 오른쪽 여백 설정 */
+        margin-top: 50px;
       }
 
       .user-info {
@@ -71,25 +85,11 @@
         margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
 
-      /* 중앙 로고 스타일 */
-      .center-logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 20px;
-      }
-      .content {
-        margin: 0 16.6%;
-      }
-      .container {
-        display: flex;
-        justify-content: center;
-      }
       a:link {
         color: black;
         text-decoration: none;
       }
-            a:hover {
+      a:hover {
         color: black;
         font-weight: 700;
       }
@@ -100,13 +100,17 @@
       <div class="logo">
         <img src="<%=request.getContextPath()%>/image/logo.png" alt="Logo" width="90px" />
       </div>
-      <div class="center-logo">
-        <img src="<%=request.getContextPath()%>/image/cen_logo.png" alt="Cen Logo" width="90px" />
+      <div class="nav_menu">
+        <a href="#">산책로</a>
+        <a href="#">24시 동물병원</a>
+        <a href="#">동반 시설</a>
+        <a href="#">미멍보호소</a>
+        <a href="#">임시 보호해요</a>
       </div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
-        <img src="/image/profile.png" alt="Profile" width="50px" />
+        <img src="<%=request.getContextPath()%>/image/profile.png" alt="Profile" width="50px" />
       </div>
     </div>
     <div class="header-line"></div>
