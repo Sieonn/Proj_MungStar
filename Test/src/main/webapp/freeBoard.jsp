@@ -105,9 +105,10 @@
 </style>
 </head>
 <body>
-<div class="freeContainer">
+
     <jsp:include page="/header.jsp"/>
     <br><br><br>
+   <div class="freeContainer">
     <div id="freeCategory">
         <h1>&nbsp;자유게시판</h1>
         <div class="searchContainer">
