@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="image/logo.png" />
     <title>멍뭉별</title>
     <style>
       @font-face {
@@ -50,13 +50,13 @@
 
       .nav_menu {
         display: flex;
-        font-size: 18px;
+        font-size: 17px;
         margin-top: 10px;
         margin-left: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
       }
 
       .nav_menu a {
-        margin-right: 20px; /* 각 메뉴 간의 오른쪽 여백 설정 */
+        margin-right: 35px; /* 각 메뉴 간의 오른쪽 여백 설정 */
         margin-top: 50px;
       }
 
@@ -77,6 +77,11 @@
         height: 100%;
         border-radius: 100%;
         margin-top: 10px;
+      }
+
+      .welcome-message {
+        font-size: 12px;
+        margin-right: 20px;
       }
 
       /* 하단 선 스타일 */
@@ -107,6 +112,7 @@
         <a href="#">미멍보호소</a>
         <a href="#">임시 보호해요</a>
       </div>
+      <div class="welcome-message">회원님 안녕하세요!</div>
       <div class="user-info">
         <a href="#">로그인</a>
         <a href="#">회원가입</a>
@@ -116,3 +122,4 @@
     <div class="header-line"></div>
   </body>
 </html>
+

@@ -164,15 +164,9 @@
           <p class="text2" style="font-family: 'JalnanGothic'; font-size: 24px">
             비밀번호 재설정
           </p>
-          <input type="hidden" name="member_id" value="<%" ="finduid" % />
-          <input
-            type="passwor"
-            name="pw"
-            id="pw"
-            class="form-control"
-            placeholder="비밀번호"
-            required
-          /><br />
+          <input type="hidden" name="member_id" value="<%" ="finduid" %></input>
+          <input type="passwor"name="pw" id="pw" class="form-control" placeholder="비밀번호" required/>
+          <br />
           <input
             type="passwor"
             name="pw2"
@@ -274,3 +268,4 @@
     	};
   </script>
 </html>
+
