@@ -8,22 +8,20 @@
 <style>
 	body,
     html {
-        width: 1920px;
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
         }
 	.text {
-		margin-top: 50px; margin-bottom: 50px;
-		margin-left: 318.719px; margin-right: 318.719px;
+		margin: 50px 16.6% 50px 16.6%;
     	padding-left: 20px; padding-right: 20px;
         font-size: 34px;
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 auto;
+      	margin: 0 16.6% 0 16.6%;
       	background-color: #f5f5f5;
-      	width: 1280px; height: 620px;
+      	height: 620px;
       	display: flex;
    	 	justify-content: center;
       	align-items: center;

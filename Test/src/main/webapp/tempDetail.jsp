@@ -9,22 +9,20 @@
 <style>
 	body,
     html {
-        width: 1920px;
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
         }
 	.text {
-		margin-top: 50px; margin-bottom: 50px;
-		margin-left: 318.719px; margin-right: 318.719px;
+		margin: 50px 16.6% 50px 16.6%;
     	padding-left: 20px; padding-right: 20px;
         font-size: 34px;
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 auto;
+      	margin: 0 16.6% 0 16.6%;
       	background-color: #f5f5f5;
-      	width: 1280px; height: 620px;
+		height: 620px;
       	display: flex;
    	 	justify-content: center;
       	align-items: center;
@@ -33,7 +31,8 @@
       }
       .content_box{
       	background-color: white;
-      	width: 1168.07px; height: 480px;
+      	margin: 0 4% 0 4%;
+      	height: 480px;
       	border-radius: 20px;
       	overflow: auto;
       }
@@ -52,14 +51,14 @@
       	border-radius: 10px;
       }
       .content_box2{
-      	width: 944px; height: 400px;
+      	width: 90%; height: 400px;
       	margin: 40px auto 40px;
 /*       	background-color: gray;
  */      }
       .write_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 660px; height: 400px;
+ */      	width: 70%; height: 400px;
       }
       .dogname_box{
       	color: black;
@@ -75,14 +74,14 @@
       .img_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 230px; height: 250px;
+ */      	width: 25%; height: 250px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
       .dog_Img{
-      	width: 230px; height: 200px;
+      	width: 100%; height: 200px;
       	border-radius: 10px;
       }
       .state{
