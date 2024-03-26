@@ -24,7 +24,6 @@
     body,
     html {
         margin: 0;
-        width: 1920px;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
@@ -35,10 +34,9 @@
         float: left;
       }
     .temp_container{
-    	margin-top: 40px; margin-left: 318.719px; 
-    	margin-right: 383.719px; height: 100px;
+    	margin: 40px 16.6% 0 16.6%;  height: 100px;
     	padding-left: 20px; padding-right: 20px;
-    }  
+    }
     .category{
     	float: right; margin-top: 50px;
     	margin-bottom: 5px;
@@ -77,8 +75,7 @@
 
     }
     .album{
-    	margin-left: 318.719px; margin-right: 318.719px;
-    	margin-top: 50px;
+    	margin: 40px 16.6% 0 16.6%;;
     	padding-left: 20px; padding-right: 20px;
       	border-color: black;
     }
@@ -98,7 +95,7 @@
       	border-radius: 10px;
     }
     .column2{
-    	margin-left: 115px; margin-right: 115px;
+    	margin-left: 90px; margin-right: 90px;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
@@ -114,7 +111,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 270px; height: 240px;
+    	width: 240px; height: 220px;
     	border-radius: 10px;
     }
     .boardContainer{
