@@ -8,22 +8,20 @@
 <style>
 body,
     html {
-        width: 1920px;
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
         }
 	.text {
-		margin-top: 50px; margin-bottom: 50px;
-		margin-left: 318.719px; margin-right: 318.719px;
+		margin: 50px 16.6% 50px 16.6%;
     	padding-left: 20px; padding-right: 20px;
         font-size: 34px;
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 auto;
+      	margin: 0 16.6% 0 16.6%;
       	background-color: #f5f5f5;
-      	width: 1280px; height: 620px;
+      	height: 620px;
       	display: flex;
    	 	justify-content: center;
       	align-items: center;
@@ -32,7 +30,8 @@ body,
       }
       .content_box{
       	background-color: white;
-      	width: 1168.07px; height: 480px;
+      	margin: 0 4% 0 4%;
+		height: 480px;
       	border-radius: 20px;
       	overflow: auto;
       }
@@ -51,14 +50,14 @@ body,
       	border-radius: 10px;
       }
       .content_box2{
-      	width: 944px; height: 400px;
+      	width: 90%; height: 400px;
       	margin: 40px auto 40px;
 /*       	background-color: gray;
  */      }
       .write_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 660px; height: 400px;
+ */      	width: 70%; height: 400px;
       }
       .dogname_box{
       	color: black;
@@ -66,6 +65,9 @@ body,
       	font-weight: bold;
       	border: none;
      	outline: none;
+      }
+      ::placeholder{
+      	color: #BDBDBD;
       }
       .address{
       	border: none;
@@ -93,14 +95,14 @@ body,
       .img_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 230px; height: 250px;
+ */      	width: 25%; height: 250px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
       .dog_Img{
-      	width: 230px; height: 200px;
+      	width: 100%; height: 200px;
       	border-radius: 10px;
       }
       .state{
@@ -142,9 +144,9 @@ body,
 				<input type="text" placeholder="강아지 이름" class="dogname_box">
 				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
 				<div class="contents char">특징</div>
-				
-				<div>▶ <input type="text"></div>
-				
+				<div id="char_box">
+				<div id="char">▶ <input type="text"></div>
+				</div>
 				<textarea type="text" id="myTextarea" placeholder="▶"></textarea>
 				<div id="icon" class="hidden">▶</div>
 
@@ -186,32 +188,22 @@ body,
 </div>
 </body>
 <script>
-const textarea = document.getElementById('myTextarea');
-
-/* textarea.addEventListener('click', handleTextareaClick){
-	
-	addfirstItem();
-}; */
-function addfirstItem(){
-	 const newValue = currentValue.substring(0, cursorPos) + '\n' + '▶' + ' ' + currentValue.substring(cursorPos); // 글머리 추가
-	 textarea.value = newValue; // 변경된 값 설정
-	 textarea.setSelectionRange(cursorPos + currentLineNumber.toString().length + 3, cursorPos + currentLineNumber.toString().length + 3); // 새로운 줄의 커서 위치 설정
+const charBox = document.getElementById('char_box');
+const charInput=documnet.getElementById('char');
+charInput.handleKeyPress(event){
+	if(event.key=='Enter'){
+		addNewDiv();
+	}
 }
 
-textarea.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // 기본 Enter 동작을 중지
-        addfrontItem();
-    }
-});
+function addNewDiv(){
+	const newDiv = document.createElement('div'); // 새로운 div 요소 생성
+	const newInput = document.createElement('input'); // 새로운 div 요소 생성
 
-function addfrontItem() {
-    const cursorPos = textarea.selectionStart; // 커서 위치 가져오기
-    const currentValue = textarea.value; // 현재 textarea 값 가져오기
-    const lines = currentValue.split('\n'); // 개행 문자로 현재 내용을 분할
-    const newValue = currentValue.substring(0, cursorPos) + '\n' + '▶' + ' ' + currentValue.substring(cursorPos); // 글머리 추가
-    textarea.value = newValue; // 변경된 값 설정
-    textarea.setSelectionRange(cursorPos + currentLineNumber.toString().length + 3, cursorPos + currentLineNumber.toString().length + 3); // 새로운 줄의 커서 위치 설정
+    newDiv.className = 'char'; // 클래스 지정
+    newDiv.setAttribute('contenteditable', 'true'); // 입력 가능하도록 설정
+    charBox.appendChild(newDiv); // 부모 요소에 추가
 }
+
 </script>
 </html>

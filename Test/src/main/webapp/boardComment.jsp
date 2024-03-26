@@ -14,7 +14,7 @@
         }
   	.comment_container{
       	margin: 0 16.6% 160px 16.6%;
-  		padding-top: 20px; padding-bottom:20px;
+  		padding-top: 30px; padding-bottom:30px;
       	background-color: #f5f5f5;
       	border-radius: 20px;
   		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
