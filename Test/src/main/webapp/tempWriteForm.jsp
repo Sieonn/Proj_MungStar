@@ -144,9 +144,13 @@ body,
 				<input type="text" placeholder="강아지 이름" class="dogname_box">
 				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
 				<div class="contents char">특징</div>
-				<div id="char_box">
-				<div id="char">▶ <input type="text"></div>
+				
+				<div class="char_box" id="char_box">
+					<div class="item" contenteditable="true">
+					▶ <input type="text" placeholder="강아지 특징을 써주세요">
+					</div>
 				</div>
+				
 				<textarea type="text" id="myTextarea" placeholder="▶"></textarea>
 				<div id="icon" class="hidden">▶</div>
 
@@ -189,16 +193,19 @@ body,
 </body>
 <script>
 const charBox = document.getElementById('char_box');
-const charInput=documnet.getElementById('char');
-charInput.handleKeyPress(event){
+
+function handleKeyPress(event){
 	if(event.key=='Enter'){
-		addNewDiv();
+		addNewItem();
 	}
 }
 
-function addNewDiv(){
+function addNewItem(){
 	const newDiv = document.createElement('div'); // 새로운 div 요소 생성
-	const newInput = document.createElement('input'); // 새로운 div 요소 생성
+	newItem.className="item";
+	
+	const itemNumber = container.children.length + 1;
+	const itemText = document.createElement('input'); // 새로운 div 요소 생성
 
     newDiv.className = 'char'; // 클래스 지정
     newDiv.setAttribute('contenteditable', 'true'); // 입력 가능하도록 설정
