@@ -93,6 +93,7 @@
     }
     .column1{
       	float : left;
+      	width: 27.2727%;
       	padding: 10px;
       	display: inline-block;
       	border: 2px solid black;
@@ -101,6 +102,7 @@
     }
     .column2{
     	margin-left: 9.090%; margin-right: 9.090%;
+      	width: 27.2727%;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
@@ -109,6 +111,7 @@
     }
     .column3{
       	padding: 10px;
+      	width: 27.2727%;
       	float: right;
        	display: inline-block;
       	border: 2px solid black;
@@ -116,7 +119,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 240px; height: 220px;
+    	width: 100%; height: 220px;
     	border-radius: 10px;
     }
     .boardContainer{
