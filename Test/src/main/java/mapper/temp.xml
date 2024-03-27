@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.temp">
+	<select id="selectTempList" parameterType="Integer" resultType="dto.Temp">
+		<![CDATA[
+			select * from tempshelter order by tempNum desc
+   			limit #{row}, 9
+		]]>
+	</select>
+	
+	<select id="selectBoardCount" resultType="Integer">
+   		<![CDATA[
+   			select count(*) from tempshelter
+   		]]>
+	</select>
+	
+	<insert id="insertMember" parameterType="dto.Member">
+		<![CDATA[
+			insert into member (id,name,password,email,address,detailaddress)
+			values (#{id},#{name},#{password},#{email},#{address},#{detailAddress})
+		]]>
+	</insert>
+</mapper>

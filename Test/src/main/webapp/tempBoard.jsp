@@ -83,10 +83,12 @@
     	margin: 60px 16.6% 0 16.6%;;
     	padding-left: 20px; padding-right: 20px;
       	border-color: black;
-      	ve
     }
-      
+    table{
+    	width: 100%;	
+    }
     .row{
+    	width: 100%;
       	margin-bottom: calc(1000px/11);
       	display: flex;
    	 	justify-content: center;
@@ -143,11 +145,12 @@
       	align-items: center;
     }
     .pageDiv{
+    	margin-top: 300px;
     	margin-bottom: 300px;
         font-family: "JalnanGothic";
     }
     .pageSelect{
-    	margin: 20px;
+    	margin: 10px;
     	text-decoration: none;
     	font-weight: bold;
     	color: gold;
@@ -156,6 +159,7 @@
     	color: gold;
     }
     .morePage{
+    	margin: 10px;
     	text-decoration: none;
     	color: black;
     }
@@ -178,9 +182,40 @@
 		</form>
 	</div>
 </div>
-
+<div>
 <div class="album" style="height: 1000px">
-	<%
+	<c:forEach items="${temps}" var="temp" varStatus="loop">
+    <c:if test="${loop.count % 3 == 1}">
+        <div class="row">
+    </c:if>
+    
+    <c:choose>
+        <c:when test="${loop.count % 3 == 1}">
+            <div class="column1">
+        </c:when>
+        <c:when test="${loop.count % 3 == 2}">
+            <div class="column2">
+        </c:when>
+        <c:when test="${loop.count % 3 == 0}">
+            <div class="column3">
+        </c:when>
+    </c:choose>
+    
+    <img class="tempImg" src="/image/tempdog01.png">
+    <div class="boardContainer">  
+        <span class="dogName">${temp.tempName}</span>
+        <span class="state">${temp.tempCgory }</span>
+        <br/><span class="address">${temp.tempAddress}</span>
+    </div>
+    </div>
+    
+    <c:if test="${loop.count % 3 == 0}">
+        </div>
+    </c:if>
+    
+	</c:forEach>
+</div>
+	<%-- <%
             // 게시물 목록을 받아오는 코드 (예를 들어, posts는 List<Post> 형식이라고 가정)
 
             // 게시물 목록을 한 행에 3개씩 출력
@@ -223,19 +258,34 @@
             }
             // 마지막 행이 3개 미만일 경우를 처리
             
-    %>
+    %> --%>
     <div class="pageContainer">
+
+	
        	<div class="pageDiv" id="">
-			<c:forEach begin="1" end="2" var="i">
+    		<c:choose>
+				<c:when test="${pageInfo.curPage!=1}">
+					<a href="tempBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
+				</c:when>
+			</c:choose>			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i">
 			<c:choose>
-			<c:when test="${i eq 1}">
-				<a href="boardlist?page=" class="pageSelect">1</a>
+			<c:when test="${i==pageInfo.curPage}">	
+				<a href="tempBoard?page=${i}" class="pageSelect">${i}</a>
 			</c:when>
 			<c:otherwise>
-				<a href="boardlist?page=" class="morePage">다음</a><a>&gt;</a>
+				<a href="tempBoard?page=${i}" class="morePage">${i}</a>
 			</c:otherwise>
 			</c:choose>
 			</c:forEach>
+			
+			<c:choose>
+				<c:when test="${pageInfo.curPage==pageInfo.allPage}">
+					<a>&gt;</a>	
+				</c:when>
+				<c:otherwise>
+					<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>
