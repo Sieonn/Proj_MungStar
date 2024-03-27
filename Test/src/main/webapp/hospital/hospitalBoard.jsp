@@ -78,7 +78,7 @@ left:320px;
 </style>
 </head>
 <body>
-<jsp:include page="/otherhead.jsp"/>
+<jsp:include page="/header.jsp"/>
 <div class="hosMap" id="hosMap">
 <div id="hosMapBar"></div>
 <div id="map"></div>

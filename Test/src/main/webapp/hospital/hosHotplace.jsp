@@ -112,7 +112,7 @@ font-family: "Georgia";
 </style>
 </head>
 <body>
-<jsp:include page="/otherhead.jsp"/>
+<jsp:include page="/header.jsp"/>
 <div class="hosMap" id="hosMap">
 <div id="hosMapBar">
 <button id="hotplace" name="hotplace"><p>HOT</p></button>
