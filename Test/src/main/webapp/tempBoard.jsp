@@ -83,18 +83,19 @@
     	margin: 40px 16.6% 0 16.6%;;
     	padding-left: 20px; padding-right: 20px;
       	border-color: black;
+      	ve
     }
       
     .row{
-      	margin-bottom: 100px;
+      	margin-bottom: calc(1000px/11);
       	display: flex;
    	 	justify-content: center;
       	align-items: center; 
     }
     .column1{
       	float : left;
-      	width: 27.2727%;
-      	padding: 10px;
+      	width: 27.2727%; 
+      	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
       	border-color: darkgrey;
@@ -119,7 +120,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 100%; height: 220px;
+    	width: 100%; height: 270px;
     	border-radius: 10px;
     }
     .boardContainer{

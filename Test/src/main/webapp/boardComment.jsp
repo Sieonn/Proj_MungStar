@@ -7,37 +7,35 @@
     <title>댓글</title>
  <style>
   	.cheader{
-  		margin-top: 20px;
-		margin-left: 318.719px; margin-right: 318.719px;
+      	margin: 20px 16.6% 0 16.6%;
     	padding-left: 20px; padding-right: 20px;
         font-size: 18px;
         font-family: "JalnanGothic";  	
         }
   	.comment_container{
-  		margin: 0 auto 160px; 
-  		padding-top: 20px; padding-bottom:20px;
+      	margin: 0 16.6% 160px 16.6%;
+  		padding-top: 30px; padding-bottom:30px;
       	background-color: #f5f5f5;
-      	width: 1280px;
       	border-radius: 20px;
   		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   	}
   	.comment_box{
   		background-color: white;
-  		margin: 0 auto; margin-bottom: 15px;
-  		padding-top: 20px; padding-bottom: 20px;
-      	width: 1168.07px;
+  		margin: 0 4%; margin-bottom: 15px;
+  		padding: 20px 10px 20px 10px;
       	border-radius: 20px;
   	}
   	.writeComm{
-  		width: 763.86px; 
-  		margin-left:360px; margin-bottom: 10px;
+  		width: 70%; 
+  		float: right;
+ 		margin-bottom: 10px;
   		padding: 5px;
   		overflow: hidden;
   	}
   	.memComm{
 		width: 763.86px; 
-  		margin-left: 30px; margin-right: 365px;
-  		 margin-bottom: 10px;
+  		margin-right: 365px;
+  		margin-bottom: 10px;
   		padding: 5px;
   		overflow: hidden;  	
   	}
@@ -61,8 +59,7 @@
   	
   	
   	.inputDiv{
-  		margin: 0 auto;
-      	width: 1158.07px;
+  		margin: 0 4%;
   		padding: 4px;
   		background-color: white;
   		border-style : solid;
@@ -76,7 +73,7 @@
   		width: 80%;
   		height: 40px;
    		margin-left: 5px;
-  		margin-right: 120px; 
+  		margin-right: 70px; 
   		border-style: none;
   		outline: none;
   		font-size: 15px;
@@ -115,7 +112,7 @@
 	<div class="writeComm">
 		<img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
-		<span class="commContent mycomm">아아ㅏ아아아아아아ㅏ아아aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
+		<span class="commContent mycomm">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
 	</div>
 	<div class="writeComm">
 		<img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
