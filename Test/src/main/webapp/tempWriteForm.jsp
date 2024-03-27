@@ -19,7 +19,7 @@ body,
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 16.6% 0 16.6%;
+      	margin: 0 16.6% 150px 16.6%;
       	background-color: #f5f5f5;
       	height: 620px;
       	display: flex;
