@@ -11,6 +11,8 @@
 
 <style>
 body{
+margin:0;
+padding:0;
 width:1920px;
 
 }
@@ -33,8 +35,10 @@ margin-top:150px;
 width:500px;
 }
 a {
-	margin-top: 5px;
-	margin-left: 5px; text-align : center;
+display:inline-block;
+margin-left: 5px;
+margin-top:3px;
+	text-align: center;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
@@ -60,7 +64,7 @@ box-shadow: 0 3px 1px gray;
 .walkBtn{
 position: relative;
 top: 5px;
-left: 580px;
+left: 590px;
 width:1000px;
 height:40px;
 overflow:hidden;
@@ -68,11 +72,11 @@ overflow:hidden;
 </style>
 </head>
 <body>
-<jsp:include page="/other_header.jsp"/>
+<jsp:include page="/otherhead.jsp"/>
 <div class="walkMap" id="walkMap">
 <div id="map"></div>
 <div id="leftDiv">
-<img id="helpMessage" src="image/help.png"/>
+<img id="helpMessage" src="./image/help.png"/>
 </div>
 </div>
 <br><br>
@@ -124,6 +128,7 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 marker.setMap(map); 
 
+
 kakao.maps.event.addListener(marker, "click", function() {
     $('#helpMessage').remove();
     // AJAX를 이용하여 페이지를 동적으로 include
@@ -137,7 +142,16 @@ kakao.maps.event.addListener(marker, "click", function() {
         }
     });
 });
-
+$("#walkList").on("click",function(){
+	$.ajax({
+		url:'walkingList.jsp',
+		success:function(response){
+			
+			$('#leftDiv').html(response);
+		}
+		
+	})	
+})
 $("#exitBtn").on("click",function(){
 $('#leftDiv').empty();
 })
@@ -149,6 +163,7 @@ $.ajax({
 		
 		$('#leftDiv').html(response);
 	}
+	
 })	
 })
 }
