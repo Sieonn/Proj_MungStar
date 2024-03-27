@@ -21,18 +21,18 @@ position:relative;
 margin: 0 auto;
 }
 #map{
-width:600px;height:600px;
+width:570px;height:600px;
 margin-left:320px;
 margin-top:80px;
 float:left;
-border-left: 30px solid #3477c5;
-border-radius:3%;
+border-top-right-radius:3%;
+border-bottom-right-radius:3%;
 box-shadow: 0px 3px 4px lightgray;
 }
 
 #helpMessage{
-margin-top:150px;
-width:500px;
+margin-top:100px;
+width:600px;
 }
 a {
 display:inline-block;
@@ -64,16 +64,28 @@ box-shadow: 0 3px 1px gray;
 .walkBtn{
 position: relative;
 top: 5px;
-left: 590px;
-width:1000px;
+left: 570px;
+width:1200px;
 height:40px;
 overflow:hidden;
+}
+#walkMapBar{
+position:relative;
+float:left;
+width:30px;
+height:600px;
+background-color:#3477c5;
+border-top-left-radius:30px;
+border-bottom-left-radius:30px;
+margin-top:80px;
+left:320px;
 }
 </style>
 </head>
 <body>
-<jsp:include page="/otherhead.jsp"/>
+<jsp:include page="/header.jsp"/>
 <div class="walkMap" id="walkMap">
+<div id="walkMapBar"></div>
 <div id="map"></div>
 <div id="leftDiv">
 <img id="helpMessage" src="./image/help.png"/>
@@ -126,6 +138,7 @@ var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 
+
 marker.setMap(map); 
 
 
@@ -142,6 +155,8 @@ kakao.maps.event.addListener(marker, "click", function() {
         }
     });
 });
+
+
 $("#walkList").on("click",function(){
 	$.ajax({
 		url:'walkingList.jsp',
@@ -164,6 +179,15 @@ $.ajax({
 		$('#leftDiv').html(response);
 	}
 	
+})	
+})
+$("#walkMapBar").on("click",function(){
+$.ajax({
+	url:'walkHotplace.jsp',
+	success:function(response){
+	
+		
+	}
 })	
 })
 }
