@@ -7,13 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
  <style type="text/css">
+ 	.pageContainer {
+		width: 100%;
+	}
  	.freeContainer {
 		width : 1280px;
-		margin : 0 auto;
+		margin : 0 16.6%;
  	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 auto;
+ 		margin : 0 16.6%;
   	 }
   	.wrap{
   		background-color: #f5f5f5;
@@ -57,6 +60,7 @@
   	}
   	.yellowBtn {
   		background-color: #FED74B;
+  		font-weight: bold;
   		width: 65px;
   		padding: 5px;
   		border-radius: 17px;
@@ -65,6 +69,9 @@
   	}
   	.BtnArray {
   		 text-align: center;
+  	}
+  	.footer {
+  		height: 200px;
   	}
 </style>
 <style>

@@ -1,38 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
  <script>
- //ÀÌ°Å´Â ÇÏÀÌÆÛ¸µÅ© ½ºÅ©¸³Æ®¿¡¿Ë
+ //ì´ê±°ëŠ” í•˜ì´í¼ë§í¬ ìŠ¤í¬ë¦½íŠ¸ì—ì˜¹
     function addLink() {
       var url = prompt("Enter the URL:");
       document.execCommand('createLink', false, url);
     }
- //ÀÌ°Å´Â ±Û¾¾ »ö ¹Ù²Ù´Â ½ºÅ©¸³Æ®
+ //ì´ê±°ëŠ” ê¸€ì”¨ ìƒ‰ ë°”ê¾¸ëŠ” ìŠ¤í¬ë¦½íŠ¸
  	function changeTextColor() {
      var color = document.getElementById("colorPicker").value;
      document.execCommand('foreColor', false, color);
    }
- //ÀÌ°Å´Â ¹è°æ »ö ¹Ù²Ù´Â ½ºÅ©¸³Æ®
+ //ì´ê±°ëŠ” ë°°ê²½ ìƒ‰ ë°”ê¾¸ëŠ” ìŠ¤í¬ë¦½íŠ¸
  	function changeBackgroundColor(color) {
  	      document.execCommand('hiliteColor', false, color);
  	    }
   </script>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">	
+	.pageContainer {
+		width: 100%;
+	}
 	.freeContainer {
 		width : 1280px;
 		margin : 0 16.6%;
  	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 auto;	
+ 		margin : 0 16.6%;	
   	}
   	.writeContainer {
   		width :900px;
- 		margin : 0 auto;
+ 		margin : 0 16.6%;
  		
   	}
   	.writeTitle{
@@ -42,16 +45,16 @@
   		margin-bottom: 10px;
   		border-radius: 15px;
   		box-shadow: inset 1px 3px 3px rgba(0, 0, 0, 0.1);
-  		border: 0; /* input¿¡ border ¾ø¾Ö±â */
+  		border: 0; /* inputì— border ì—†ì• ê¸° */
   	}
-  	  	 /* È°¼ºÈ­µÈ inputÀÇ border ¾ø¾Ö±â */
+  	  	 /* í™œì„±í™”ëœ inputì˜ border ì—†ì• ê¸° */
     input:focus {
         outline: none;
     }
   	.content {
         background-color: #f5f5f5;
         width: 900px; 
-        height: 500px; 
+        height: 520px; 
         padding: 10px;
         margin: 10px auto;
         border-radius: 20px;
@@ -59,19 +62,31 @@
     }
 
     .text-area {
-        width: 100%; /* textarea ¿ä¼ÒÀÇ °¡·Î ³Êºñ¸¦ 100%·Î ¼³Á¤ */
-        height: 400px; /* textarea ¿ä¼ÒÀÇ ¼¼·Î ³ôÀÌ¸¦ 100%·Î ¼³Á¤ */
-        resize: none; /* textarea ¿ä¼ÒÀÇ Å©±â Á¶Á¤À» ºñÈ°¼ºÈ­ */
-        border: 0; /* textarea ¿ä¼ÒÀÇ Å×µÎ¸® Á¦°Å */
-        outline: none; /* textarea ¿ä¼ÒÀÇ Æ÷Ä¿½º Ç¥½Ã Á¦°Å */
-        background-color: transparent; /* textarea ¿ä¼ÒÀÇ ¹è°æ»öÀ» Åõ¸íÀ¸·Î ¼³Á¤ */
-        font-size: 14px; /* textarea ¿ä¼ÒÀÇ ±Û²Ã Å©±â ¼³Á¤ */
-        line-height: 1.5; /* textarea ¿ä¼ÒÀÇ ÁÙ °£°İ ¼³Á¤ */
+        width: 100%; /* textarea ìš”ì†Œì˜ ê°€ë¡œ ë„ˆë¹„ë¥¼ 100%ë¡œ ì„¤ì • */
+        height: 400px; /* textarea ìš”ì†Œì˜ ì„¸ë¡œ ë†’ì´ë¥¼ 100%ë¡œ ì„¤ì • */
+        resize: none; /* textarea ìš”ì†Œì˜ í¬ê¸° ì¡°ì •ì„ ë¹„í™œì„±í™” */
+        border: 0; /* textarea ìš”ì†Œì˜ í…Œë‘ë¦¬ ì œê±° */
+        outline: none; /* textarea ìš”ì†Œì˜ í¬ì»¤ìŠ¤ í‘œì‹œ ì œê±° */
+        background-color: transparent; /* textarea ìš”ì†Œì˜ ë°°ê²½ìƒ‰ì„ íˆ¬ëª…ìœ¼ë¡œ ì„¤ì • */
+        font-size: 14px; /* textarea ìš”ì†Œì˜ ê¸€ê¼´ í¬ê¸° ì„¤ì • */
+        line-height: 1.5; /* textarea ìš”ì†Œì˜ ì¤„ ê°„ê²© ì„¤ì • */
         padding: 10px;
         margin: 10px auto;
     }
+    .tag-input {
+    	align-item: center;
+    	margin-left: 10px;
+    	margin-bottom: 3px;
+    	border: 0;
+  		background-color: transparent;
+  		border-radius: 5px;
+  		transition: width 0.2s;
+  		width: 200px; /* ì´ˆê¸° ë„ˆë¹„ ì„¤ì • */
+  		max-width: 880px;
+	}
     .yellowBtn {
     	text-align: center;
+		font-weight: bold;
 		margin: 0 auto;
 		background-color: #FED74B;
   		width: 65px;
@@ -85,7 +100,7 @@
   	}
 </style>
 <style>
-  /* ½ºÅ©·Ñ °¡´ÉÇÑ »óÀÚ ½ºÅ¸ÀÏ */
+  /* ìŠ¤í¬ë¡¤ ê°€ëŠ¥í•œ ìƒì ìŠ¤íƒ€ì¼ */
     .scroll-box {
         background-color: #f5f5f5;
         width: 880px; 
@@ -96,7 +111,7 @@
         outline: none;
         border: 0;
         border-radius: 20px;
-        overflow-x: hidden; /* ¼öÆò ½ºÅ©·Ñ Á¦°Å */
+        overflow-x: hidden; /* ìˆ˜í‰ ìŠ¤í¬ë¡¤ ì œê±° */
     }
     .scroll-box::-webkit-scrollbar {
         width: 10px;
@@ -170,27 +185,52 @@
 	width: 20px;
 	height: 20px;
 }
+.colorPicker{
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+	margin-top: 2px;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+.bgcolorPicker{
+	color: white;
+	background-color: black;
+	width: 21px;
+	border-radius: 5px;
+	margin-left: 6px;
+	margin-bottom: -3px;
+}
 #colorPicker {
+	background-color:transparent;
+	width: 28px;
+	height: 15px;
     border: 0;
     border-radius: 3px;
-    height: 15px;
+    padding: 0px;
+    
   }
 #bgColorPicker {
+	background-color:transparent;
+	width:33px;
+	height: 17px;
     border:0;
     border-radius: 3px;
   }
+
 </style>
 </head>
 <body>
 <div class = "freeContainer">
 	<jsp:include page="/header.jsp"/>
-	<br><br><br>
+	<br>
 	<div id = "freeCategory">
-		<h2 style="margin-bottom: 5px;">&nbsp;ÀÚÀ¯°Ô½ÃÆÇ</h2>
-		<h4 style = "font-weight : lighter; margin-top: 0; margin-left: 40px; ">°Ô½Ã¹°ÀÛ¼º</h4>
+		<h2 style="margin-bottom: 5px;">ììœ ê²Œì‹œíŒ</h2>
+		<h4 style = "font-weight : lighter; margin-top: 0;">ê²Œì‹œë¬¼ì‘ì„±</h4>
 	</div>
 <div class="writeContainer">
-    <input class="writeTitle" type="text" placeholder="  Á¦¸ñ  " />    
+    <input class="writeTitle" type="text" placeholder="  ì œëª©  " />
+    <br>    
     <div class="content">
         <div class="toolbar">
         	<select class="toolbar-select font-size-select" onchange="document.execCommand('fontSize', false, this.value);">
@@ -210,25 +250,28 @@
     		<img src="<%=request.getContextPath()%>/image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
     		<img src="<%=request.getContextPath()%>/image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
     		<div class="imgBtn"></div>
-    		<img src="<%=request.getContextPath()%>/image/¿ŞÂÊÁ¤·Ä.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/°¡¿îµ¥Á¤·Ä.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/¿À¸¥ÂÊÁ¤·Ä.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
-  			<div>A
-  			<img src="<%=request.getContextPath()%>/image/¿ŞÂÊÁ¤·Ä.png" style = "height:7px;">
-  			<input type="color" id="colorPicker" style="margin-right: 5px;">
-    		<button class="toolbar-button" onclick="changeTextColor()"></button>
+    		<img src="<%=request.getContextPath()%>/image/ì™¼ìª½ì •ë ¬.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
+    		<img src="<%=request.getContextPath()%>/image/ê°€ìš´ë°ì •ë ¬.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
+    		<img src="<%=request.getContextPath()%>/image/ì˜¤ë¥¸ìª½ì •ë ¬.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
+  			<div class="imgBtn"></div>
+  			<div class="colorPicker" style="display: flex; flex-direction: column;">
+        		<div id="colorPicker" style="margin-bottom: -3px;">A</div>
+        		<input type="color" id="colorPicker" onchange="changeTextColor()">
+    			</div>
+    		<div class = "colorPicker" style="display: flex; flex-direction: column; margin-top: 4px;">
+    			<div class = "bgcolorPicker" style=" ">A</div>
+    				<input type="color" id="bgColorPicker" onchange="changeBackgroundColor(this.value)">
     		</div>
-    		<input type="color" id="bgColorPicker" class="toolbar-button" onchange="changeBackgroundColor(this.value)">
-    		
         </div>
         <div class="scroll-box">
             <img src="<%=request.getContextPath()%>/image/dog1.jpg" style="width: 100%; height: auto; margin-bottom: 10px;">
             <textarea class="text-area" style="overflow: hidden;"></textarea>
         </div>
+        <input type="text" class="tag-input" placeholder="#íƒœê·¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” (ì‰¼í‘œë¡œ êµ¬ë¶„)">
     </div>
 </div>
-	<br><br>
-	<div class="yellowBtn">Àú Àå</div>
+	<br>
+	<div class="yellowBtn">ì € ì¥</div>
 </div>
 <div class="footer"></div>	
 </body>

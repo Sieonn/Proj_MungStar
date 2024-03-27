@@ -31,7 +31,8 @@
       }
 
       .header {
-        margin: 0 16.6%;
+        margin: 0 auto;
+        width: 1017px;
         height: 10%;
         display: flex;
         align-items: center;
