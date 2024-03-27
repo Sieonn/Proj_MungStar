@@ -70,17 +70,17 @@
 #walkPhoto h2 {
 	text-align: center;
 	color: #82827F;
-	margin:0;
-	
+	margin: 0;
 }
 
-.walkPhotoButton{
-float: right;
-width:200px;
-text-align:center;
-color: #82827F;
-font-size:130px;
+.walkPhotoButton {
+	float: right;
+	width: 200px;
+	text-align: center;
+	color: #82827F;
+	font-size: 130px;
 }
+
 #walkTopEmpty {
 	height: 60px;
 	margin: 0;
@@ -90,13 +90,14 @@ font-size:130px;
 	height: 30px;
 	margin: 0;
 }
-#walkEndEmpty{
-height:30px;
+
+#walkEndEmpty {
+	height: 30px;
 }
+
 h3 {
 	margin-left: 25px;
 }
-
 
 #walkSub {
 	margin: 0;
@@ -158,13 +159,12 @@ h3 {
 	border-radius: 50%;
 	background-color: #C91C1C;
 	box-shadow: 1px 1px 3px #ECECEC inset;
-	margin-top: 10px;
 }
 
 a {
-display:inline-block;
-margin-left: 5px;
-margin-top:2px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 3px;
 	text-align: center;
 	font-weight: bold;
 	text-decoration: none;
@@ -190,17 +190,23 @@ margin-top:2px;
 	font-size: 20px;
 	border-bottom: 2px solid #C5C5C5;
 }
-#submit{
-margin-left:305px;
-width:70px;
-height:30px;
-border: 0;
-border-radius: 30px;
-background-color:#FED74B;
-font-weight:bold;
-font-size:15px;
-text-align:center;
-box-shadow: 0 2px 1px gray;
+
+#modify, #list {
+	width: 70px;
+	height: 30px;
+	border: 0;
+	border-radius: 30px;
+	background-color: #FED74B;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	box-shadow: 0 2px 1px gray;
+}
+
+.walkBtn {
+	top: 5px;
+	width: 400px;
+	float: right;
 }
 </style>
 </head>
@@ -211,53 +217,54 @@ box-shadow: 0 2px 1px gray;
 				<a href="#">X</a>
 			</div>
 			<div class="frontWalkDetail">
-			<form id="walkWriteForm" method="post">
-				<div class="walkDetail">
-					<div id="walkTopEmpty"></div>
-					<input type="hidden" name="walkWriter">
-					<div id="walkContent">
-						<div class="walkSubject">
-							<input type="text" name="walkName" placeholder="장소 이름을 입력해 주세요">
-						</div>
-						<div id="walkPhoto">
-							<label class="walkPhotoButton" for="walkPhotoBtn">
-								+
-							</label>
-							<input type="file" id="walkPhotoBtn" name="walkPhoto">
-							<h2>선택 사항</h2>
-						</div>
-						<br>
-						<br>
-						<div class="walkType">
-							<img src="<%=request.getContextPath()%>/image/place.png"
-								width="20px"> <select>
-								<option>장소 분류</option>
-								<option>장소 분류</option>
-								<option>장소 분류</option>
-								<option>장소 분류</option>
-							</select>
-						</div>
-
-						<div class="walkAddress">
-							<div id="detailAddress">
+				<form id="walkModifyForm" method="post">
+					<div class="walkDetail">
+						<div id="walkTopEmpty"></div>
+						<input type="hidden" name="walkWriter">
+						<div id="walkContent">
+							<div class="walkSubject">
+								<input type="text" name="walkName" placeholder="장소 이름을 입력해 주세요">
+							</div>
+							<div id="walkPhoto">
+								<label class="walkPhotoButton" for="walkPhotoBtn"> + </label> <input
+									type="file" id="walkPhotoBtn" name="walkPhoto">
+								<h2>선택 사항</h2>
+							</div>
+							<br> <br>
+							<div class="walkType">
 								<img src="<%=request.getContextPath()%>/image/place.png"
-									width="20px"> <input type="text" name="walkAddress3" placeholder="주소를 입력하세요">
+									width="20px"> <select>
+									<option>장소 분류</option>
+									<option>장소 분류</option>
+									<option>장소 분류</option>
+									<option>장소 분류</option>
+								</select>
+							</div>
+
+							<div class="walkAddress">
+								<div id="detailAddress">
+									<img src="<%=request.getContextPath()%>/image/place.png"
+										width="20px"> <input type="text" name="walkAddress3" placeholder="주소를 입력하세요">
+								</div>
 							</div>
 						</div>
+						<div id="walkMidEmpty"></div>
+						<div class="walkReason">
+							<h2>추천 이유</h2>
+							<input type="text" name="walkReason" placeholder="해당 장소를 추천하는 이유를 적어 주세요">
+						</div>
+						<div id="walkBottomEmpty"></div>
+						<div class="walkEtc">
+							<h2>기타 사항</h2>
+							<input type="text" name="walkEtc" placeholder="기타 사항">
+						</div>
 					</div>
-					<div id="walkMidEmpty"></div>
-					<div class="walkReason">
-						<h2>추천 이유</h2>
-						<input type="text" name="walkReason" placeholder="해당 장소를 추천하는 이유를 적어 주세요">
-					</div>
-					<div id="walkBottomEmpty"></div>
-					<div class="walkEtc">
-						<h2>기타 사항</h2>
-						<input type="text" name="walkEtc" placeholder="기타 사항">
-					</div>
-				</div></form>
+				</form>
 				<div id="walkEndEmpty"></div>
-								<button id="submit">등록</button>
+				<div class="walkBtn">
+					<button id="list" name="list">목록</button>
+					<button id="modify" name="modify" >수정</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -266,15 +273,21 @@ box-shadow: 0 2px 1px gray;
 
 <script src="http://code.jquery.com/jquery-Latest.min.js"></script>
 <script>
-$('#exitBtn').on("click",function(){
-$.ajax({
-	url:'walkBoard.jsp',
-	success:function(response){
-		$('#leftDiv').empty();
-		$('#leftDiv').append(`<img id="helpMessage" src="./image/help.png"/>`);
-	}
-	
-})
-})
+	$('#exitBtn')
+			.on(
+					"click",
+					function() {
+						$
+								.ajax({
+									url : 'walkBoard.jsp',
+									success : function(response) {
+										$('#leftDiv').empty();
+										$('#leftDiv')
+												.append(
+														`<img id="helpMessage" src="./image/help.png"/>`);
+									}
+
+								})
+					})
 </script>
 </html>

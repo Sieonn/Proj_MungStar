@@ -16,11 +16,11 @@
 	width: 600px;
 	height: 250px;
 	margin: 0 auto;
-	padding-top: 3px; border-radius : 5%;
+	padding: 10px; border-radius : 5%;
 	box-shadow: 0 2px 3px gray;
-	blur-radius: 10%;
+	blur-radius: 30px;
 	top: 30%;
-	border-radius: 5%;
+	border-radius: 20px;
 }
 
 .comment {

@@ -15,15 +15,16 @@
 .container{
 transform: scale(0.9,0.9);
 position:relative;
-right: 280px;
 width:400px;
+right:280px;
 float:right;
+
 }
 .backWalkDetail {
 	width: 750px;
 	height: 750px;
 	background-color: #F5F5F5;
-	border-radius: 40px;
+	border-radius: 10%;
 }
 
 .frontWalkDetail {
@@ -33,7 +34,7 @@ float:right;
 	height: 660px;
 	background-color: #F5F5F5;
 	margin: 0 auto;
-	border-radius: 40px;
+	border-radius: 10%;
 	border-right: 3px solid #D9D9D9;
 }
 
@@ -62,7 +63,7 @@ float:right;
 	border-radius: 10%;
 }
 
-#walkTopEmpty {
+#walkTopEmpty, #walkBottomEmpty {
 	height: 30px;
 	margin: 0;
 }
@@ -84,17 +85,6 @@ float:right;
 	border-radius: 5%;
 }
 
-.comment {
-	height: 340px;
-}
-
-#commentFont {
-	height: 30px;
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-}
-
 h3 {
 	margin-left: 25px;
 }
@@ -103,15 +93,12 @@ h3 {
 	height: 40px;
 	width: 220px;
 	float: right;
-	font-size:30px;
+	font-size:25px;
 	text-align:center;
 }
 
-#walkBottomEmpty {
-	height: 30px;
-}
 
-#walkSub {
+#walkName {
 	margin: 0;
 	float: left;
 }
@@ -150,8 +137,10 @@ h3 {
 }
 
 a {
-	margin-top: 5px;
-	margin-left: 5px; text-align : center;
+display:inline-block;
+margin-left: 5px;
+margin-top:2px;
+	text-align: center;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
@@ -171,12 +160,12 @@ a {
 				<div id="walkTopEmpty"></div>
 				<div id="walkContent">
 					<div class="walkSubject">
-						<h1 id="walkSub">카카오오름</h1>
+						<h1 id="walkName">카카오오름</h1>
 						<h2 id="walkType">기업, 빌딩</h2>
 					</div>
 					<div id="walkPhoto"></div>
 					<div class="walkAddress">
-						<div id="detailAddress">
+						<div id="walkAddress3">
 							<img src="<%=request.getContextPath()%>/image/place.png"
 								width="15px"> 카카오시 카카오구 카카오동 카카오오름
 						</div>
