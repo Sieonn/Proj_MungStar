@@ -31,7 +31,7 @@ body,
       .content_box{
       	background-color: white;
       	margin: 0 4% 0 4%;
-		height: 480px;
+		height: 85%; width: 92%;
       	border-radius: 20px;
       	overflow: auto;
       }
@@ -76,18 +76,35 @@ body,
       .char{
       
       }
-      #myTextarea{
-      	width: 300px; /* 너비 설정 */
-		height: auto; /* 높이 설정 */
-  		border: none; /* 테두리 설정 */
-  		outline: none;
-    	resize: vertical; /* 크기 조절 가능 여부 설정 (수직으로만 조절 가능) */
-    	  }
+      .item{
+      	padding: 2px 0 2px 0;
+      	outline: none;
+      }
+      .charInput{
+      	width: 90%;
+      	outline: none;
+      	border: none;
+      	border-bottom: 1px solid #BDBDBD;
+      }
+      .dateInput{
+      	color: #BDBDBD;
+      	outline: none;
+      	border: none;
+      	border-bottom: 1px solid #BDBDBD;
+      }
+      .etc{
+      	overflow: hidden;
+      	width: 98%; height: 100%;
+      	resize: none;
+      	outline: none;
+      	border: 0;
+      	font-size: 16px;
+      }
       .hidden {
    		display: none;
 		}
       .contents{
-      	font-size: 20px; color: #7E7E7E;
+      	font-size: 20px; color: black;
       	border-bottom: 1px solid #7E7E7E;
       	margin-bottom:10px; margin-top: 10px;
       	padding-bottom: 3px;
@@ -101,6 +118,28 @@ body,
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
+      .fileLable{
+      	display: inline-block;
+      	width: 100%; height: 75.6%;
+  		padding: 8px 0px;
+    	cursor: pointer;
+    	background-color: #f9f9f9;
+    	border: 1px solid #ccc;
+    	border-radius: 4px;
+    	font-size: 200px;
+    	text-align: center;
+    	color: #A3A3A3;
+      }
+      .fileInput{
+      	position: absolute;
+    	width: 1px;
+    	height: 1px;
+    	overflow: hidden;
+    	clip: rect(0,0,0,0);
+      }
+      .fileLable:hover {
+    	background-color: #e0e0e0;
+    	}
       .dog_Img{
       	width: 100%; height: 200px;
       	border-radius: 10px;
@@ -141,51 +180,29 @@ body,
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
+				
 				<input type="text" placeholder="강아지 이름" class="dogname_box">
+				
 				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
+				
 				<div class="contents char">특징</div>
 				
 				<div class="char_box" id="char_box">
 					<div class="item" contenteditable="true">
-					▶ <input type="text" placeholder="강아지 특징을 써주세요">
+					▶ <input class="charInput" type="text" placeholder="강아지 특징을 써주세요">
 					</div>
 				</div>
 				
-				<textarea type="text" id="myTextarea" placeholder="▶"></textarea>
-				<div id="icon" class="hidden">▶</div>
-
-				<div>▶ 회색빛이 살짝 도는 검정색 토이 푸들이에요.</div>
-				<div>▶ 목에 목걸이를 차고 있어요.</div>
-				<div>▶ 너무 기여워요</div>
 				<div class="contents">임시보호기간</div>
-				<div>2024.03.14 ~ 2024.03.20</div>
+    			<input class="dateInput" type="date" id="dateInput" name="dateInput">
+    			
 				<div class="contents">기타사항</div>
-				<div>지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...!</div>
+				<textarea class="etc" placeholder="기타사항 작성란입니다"></textarea>
+				
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="<%=request.getContextPath()%>/image/temp3.jpg">
-				<div class="state">데리고있어요</div>
+				<label for="fileInput" class="fileLable">+</label>
+				<input type="file" id="fileInput" class="fileInput">
 			</div>
 		</div>
 	</div>
@@ -194,23 +211,30 @@ body,
 <script>
 const charBox = document.getElementById('char_box');
 
-function handleKeyPress(event){
-	if(event.key=='Enter'){
-		addNewItem();
-	}
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        addNewItem();
+    }
+    if (event.key == 'Backspace'){
+    	remove
+    }
 }
 
-function addNewItem(){
-	const newDiv = document.createElement('div'); // 새로운 div 요소 생성
-	newItem.className="item";
-	
-	const itemNumber = container.children.length + 1;
-	const itemText = document.createElement('input'); // 새로운 div 요소 생성
+function addNewItem() {
+    const newItem = document.createElement('div'); // 새로운 div 요소 생성
+    newItem.textContent = '▶ ';
+    newItem.className = 'item';
 
-    newDiv.className = 'char'; // 클래스 지정
-    newDiv.setAttribute('contenteditable', 'true'); // 입력 가능하도록 설정
-    charBox.appendChild(newDiv); // 부모 요소에 추가
+    const itemText = document.createElement('input'); // 새로운 input 요소 생성
+    itemText.type = 'text'; // input 타입을 text로 지정
+    itemText.className = 'charInput';
+    itemText.placeholder = '강아지 특징을 써주세요';
+    newItem.appendChild(itemText); // input 요소를 항목에 추가
+
+    charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }
 
+// 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
+charBox.addEventListener('keypress', handleKeyPress);
 </script>
 </html>
