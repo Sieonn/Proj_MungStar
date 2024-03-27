@@ -80,7 +80,7 @@
 
     }
     .album{
-    	margin: 40px 16.6% 0 16.6%;;
+    	margin: 60px 16.6% 0 16.6%;;
     	padding-left: 20px; padding-right: 20px;
       	border-color: black;
       	ve

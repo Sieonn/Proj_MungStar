@@ -40,14 +40,19 @@
     .category{
     	float: right; margin-top: 50px;
     	margin-bottom: 5px;
-    	height: 30px;
-		padding-left: 10px; padding-right: 10px;	    
+     	height: 30px;
+		padding-left: 10px; padding-right: 10px;
+		padding-top: 6px; padding-bottom: 6px;   
     	background-color: #F6F6F6;
     	border-radius: 5px;
   		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
   		border: none;
   		text-align: center;
         font-family: "JalnanGothic";
+    	line-height: 30px;    	
+    }
+    .category option{
+    	line-height: 15px;
     }
     .searchInput{
 		padding-bottom: 8px; padding-top: 8px;
@@ -75,27 +80,30 @@
 
     }
     .album{
-    	margin: 40px 16.6% 0 16.6%;;
+    	margin: 60px 16.6% 0 16.6%;;
     	padding-left: 20px; padding-right: 20px;
       	border-color: black;
+      	ve
     }
       
     .row{
-      	margin-bottom: 100px;
+      	margin-bottom: calc(1000px/11);
       	display: flex;
    	 	justify-content: center;
-      	align-items: center;
+      	align-items: center; 
     }
     .column1{
       	float : left;
-      	padding: 10px;
+      	width: 27.2727%; 
+      	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
       	border-color: darkgrey;
       	border-radius: 10px;
     }
     .column2{
-    	margin-left: 90px; margin-right: 90px;
+    	margin-left: 9.090%; margin-right: 9.090%;
+      	width: 27.2727%;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
@@ -104,6 +112,7 @@
     }
     .column3{
       	padding: 10px;
+      	width: 27.2727%;
       	float: right;
        	display: inline-block;
       	border: 2px solid black;
@@ -111,7 +120,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 240px; height: 220px;
+    	width: 100%; height: 270px;
     	border-radius: 10px;
     }
     .boardContainer{
@@ -150,7 +159,6 @@
     	text-decoration: none;
     	color: black;
     }
-
 </style>
 </head>
 <body>

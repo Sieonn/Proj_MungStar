@@ -70,6 +70,7 @@ body,
       	color: #BDBDBD;
       }
       .address{
+      	width: 90%;
       	border: none;
      	outline: none;
       }
