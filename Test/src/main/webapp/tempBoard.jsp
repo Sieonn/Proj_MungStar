@@ -171,6 +171,11 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(function(){
+	$('#category').val('${tempCgory}');
+	$('#category').change(function(){
+		var tempCgory=$(this).val()
+		document.location.href="http://localhost:8080/Test/tempBoard?tempCgory="+tempCgory;
+	})
 /* 	$('.album').click(function(e) {
 		e.preventDefault();
 		$.ajax({
@@ -196,14 +201,14 @@ $(function(){
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1">
-			<option value="">찾습니다 / 발견했습니다</option>
-			<option value="찾습니다">찾습니다</option>
-			<option value="발견했습니다">발견했습니다</option>
+			<option value="all">주인을 찾고있어요 / 주인을 찾았어요</option>
+			<option value="finding">주인을 찾고있어요</option>
+			<option value="finded">주인을 찾았어요</option>
 		</select>
     	<form action="">
-    		<input type="text" class="searchInput" id="comment" name="text" placeholder="검색"/>
-			<button class="searchBtn" type="submit" class="Btn">검색</button>
-			<button class="writeBtn" type="submit" class="Btn">글쓰기</button>
+    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색"/>
+			<button class="searchBtn Btn" type="submit">검색</button>
+			<button class="writeBtn Btn" type="submit">글쓰기</button>
 		</form>
 	</div>
 </div>

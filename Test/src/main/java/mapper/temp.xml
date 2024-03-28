@@ -16,6 +16,19 @@
    		]]>
 	</select>
 	
+	<select id="selectTempListWithTempCgory" parameterType="Map" resultType="dto.Temp">
+		<![CDATA[
+			select * from tempshelter where tempCgory=#{tempCgory} order by tempNum desc
+   			limit #{row}, 9
+		]]>
+	</select>
+	
+	<select id="selectBoardCountWithTempCgory" resultType="Integer">
+   		<![CDATA[
+   			select count(*) from tempshelter where tempCgory=#{tempCgory}
+   		]]>
+	</select>
+		
 	<select id="selectTemp" parameterType="Integer" resultType="dto.Temp">
    		<![CDATA[
    			select * from tempshelter where tempNum=#{tempNum}

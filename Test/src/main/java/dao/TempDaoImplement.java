@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,6 +23,17 @@ public class TempDaoImplement implements TempDao{
 	@Override
 	public Temp selectTemp(Integer tempNum) throws Exception {
 		return sqlSession.selectOne("mapper.temp.selectTemp",tempNum);
+	}
+	@Override
+	public List<Temp> selectTempListWithTempCgory(Integer row, String tempCgory) throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		param.put("row", row);
+		param.put("tempCgory",tempCgory);
+		return sqlSession.selectList("mapper.temp.selectTempListWithTempCgory",param);
+	}
+	@Override
+	public Integer selectBoardCountWithTempCgory(String tempCgory) throws Exception {
+		return sqlSession.selectOne("mapper.temp.selectBoardCountWithTempCgory", tempCgory);
 	}
 
 }
