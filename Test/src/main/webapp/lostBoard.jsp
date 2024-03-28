@@ -34,7 +34,9 @@
         float: left;
       }
     .temp_container{
-    	margin: 40px 16.6% 0 16.6%;  height: 100px;
+    	margin: 40px auto;
+        width: 976.98px;
+    	height: 100px;
     	padding-left: 20px; padding-right: 20px;
     }
     .category{
@@ -77,50 +79,25 @@
     	border-radius: 5px;
     	border: none;
         font-family: "JalnanGothic";
-
     }
     .album{
-    	margin: 60px 16.6% 0 16.6%;;
-    	padding-left: 20px; padding-right: 20px;
+    	margin: 50px auto;
+        width: 1040px;
+    	padding: 0px; 
       	border-color: black;
-      	ve
-    }
-      
-    .row{
-      	margin-bottom: calc(1000px/11);
-      	display: flex;
-   	 	justify-content: center;
-      	align-items: center; 
+      	overflow: hidden;
     }
     .column1{
-      	float : left;
-      	width: 27.2727%; 
+		margin: 17.5px 17.5px;
+      	width: 280px; 
       	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
       	border-color: darkgrey;
       	border-radius: 10px;
     }
-    .column2{
-    	margin-left: 9.090%; margin-right: 9.090%;
-      	width: 27.2727%;
-      	padding: 10px;
-      	display: inline-block;
-       	border: 2px solid black;
-       	border-color: darkgrey;
-       	border-radius: 10px;
-    }
-    .column3{
-      	padding: 10px;
-      	width: 27.2727%;
-      	float: right;
-       	display: inline-block;
-      	border: 2px solid black;
-      	border-color: darkgrey;
-      	border-radius: 10px; 	
-    }
     .tempImg{
-    	width: 100%; height: 270px;
+    	width: 100%; height: 250px;
     	border-radius: 10px;
     }
     .boardContainer{
@@ -143,11 +120,12 @@
       	align-items: center;
     }
     .pageDiv{
-    	margin-bottom: 300px;
+    	margin-top: 0px;
+    	margin-bottom: 100px;
         font-family: "JalnanGothic";
     }
     .pageSelect{
-    	margin: 20px;
+    	margin: 10px;
     	text-decoration: none;
     	font-weight: bold;
     	color: gold;
@@ -156,6 +134,7 @@
     	color: gold;
     }
     .morePage{
+    	margin: 10px;
     	text-decoration: none;
     	color: black;
     }
@@ -179,65 +158,48 @@
 	</div>
 </div>
 
-<div class="album" style="height: 1000px">
-	<%
-            // 게시물 목록을 받아오는 코드 (예를 들어, posts는 List<Post> 형식이라고 가정)
+<div class="album" >
+	<c:forEach items="${temps}" var="temp" varStatus="loop">
+    	<div class="column1">
+    		<img class="tempImg" src="/image/tempdog01.png">
+    		<div class="boardContainer">  
+        		<span class="dogName">${temp.tempName}</span>
+        		<span class="state">${temp.tempCgory }</span>
+        		<br/><span class="address">${temp.tempAddress}</span>
+    		</div>
+    	</div>
+	</c:forEach>
+</div>
 
-            // 게시물 목록을 한 행에 3개씩 출력
-            int count = 0;
-            for (int i=0;i<9;i++) {
-                if (count % 3== 0) {
-                    out.println("<div class='row'>");
-                }
-                if(count % 3 == 0){
-                	 out.println("<div class='column1'>");
-                     out.println("<img class=\"tempImg\" src='/image/mung.png'>");
-                     out.println("<div class=\"boardContainer\">");  
-                     out.println("<span class=\"dogName\">뽀삐</span>");
-                     out.println("<span class=\"state\">완료</span>");
-                     out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                     out.println("</div></div>");
-                }
-                if(count % 3 == 1){
-               	 out.println("<div class='column2'>");
-                 out.println("<img class=\"tempImg\" src=\"/image/tempdog01.png\">");
-                 out.println("<div class=\"boardContainer\">");  
-                 out.println("<span class=\"dogName\">뽀삐</span>");
-                 out.println("<span class=\"state\">완료</span>");
-                 out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                 out.println("</div></div>");
-               }
-                if(count % 3 == 2){
-               	 out.println("<div class='column3'>");
-                 out.println("<img class=\"tempImg\" src=\"/image/tempdog01.png\">");
-                 out.println("<div class=\"boardContainer\">");  
-                 out.println("<span class=\"dogName\">뽀삐</span>");
-                 out.println("<span class=\"state\">완료</span>");
-                 out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                 out.println("</div></div>");
-               }
-                count++;
-                if (count % 3 == 0) {
-                    out.println("</div>");
-                }
-            }
-            // 마지막 행이 3개 미만일 경우를 처리
-            
-    %>
-    <div class="pageContainer">
-       	<div class="pageDiv" id="">
-			<c:forEach begin="1" end="2" var="i">
+<div class="pageContainer">
+	<div class="pageDiv" id="">
+    	<c:choose>
+			<c:when test="${pageInfo.curPage!=1}">
+				<a href="tempBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
+			</c:when>
+		</c:choose>			
+		
+		<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i">
 			<c:choose>
-			<c:when test="${i eq 1}">
-				<a href="boardlist?page=" class="pageSelect">1</a>
+				<c:when test="${i==pageInfo.curPage}">	
+					<a href="tempBoard?page=${i}" class="pageSelect">${i}</a>
+				</c:when>
+				<c:otherwise>
+					<a href="tempBoard?page=${i}" class="morePage">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+			
+		<c:choose>
+			<c:when test="${pageInfo.curPage==pageInfo.allPage}">
+				<a>&gt;</a>	
 			</c:when>
 			<c:otherwise>
-				<a href="boardlist?page=" class="morePage">다음</a><a>&gt;</a>
+				<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
 			</c:otherwise>
-			</c:choose>
-			</c:forEach>
-		</div>
+		</c:choose>
 	</div>
 </div>
+
 </body>
 </html>

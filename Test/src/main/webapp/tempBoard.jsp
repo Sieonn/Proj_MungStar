@@ -82,8 +82,8 @@
 
     }
     .album{
-    	margin: 60px auto;
-        width: 1020px;
+    	margin: 50px auto;
+        width: 1040px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;
@@ -99,7 +99,7 @@
       	align-items: center; 
     } */
     .column1{
-		margin: 15px 15px;
+		margin: 17.5px 17.5px;
       	width: 280px; 
       	padding: 10px; 
       	display: inline-block;
@@ -149,8 +149,8 @@
       	align-items: center;
     }
     .pageDiv{
-    	margin-top: 60px;
-    	margin-bottom: 60px;
+    	margin-top: 0px;
+    	margin-bottom: 100px;
         font-family: "JalnanGothic";
     }
     .pageSelect{
