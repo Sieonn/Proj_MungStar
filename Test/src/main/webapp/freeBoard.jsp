@@ -1,22 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">	
+	.pageContainer {
+		width: 100%;
+	}
 	.freeContainer {
 		width : 1280px;
-		margin : 0 auto;
+		margin : 0 16.6%;
  	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 auto;	
+ 		margin : 0 16.6%;	
   	}
   	.listContainer{
  		width :1000px;
- 		margin : 0 auto;
+ 		margin : 0 16.6%;
  		border-bottom: 2px solid #ddd;
   	}
   	
@@ -36,6 +39,7 @@
        border: none;
        border-top-left-radius:12px;
        border-bottom-left-radius:12px;
+       
    }
       #searchBtn{
          background-color: #2F65DD;
@@ -94,6 +98,7 @@
 		width: 19px;
 	}	
 	.yellowBtn {
+		font-weight: bold;
 		margin-left: 8px;
 		background-color: #FED74B;
   		width: 65px;
@@ -105,16 +110,15 @@
 </style>
 </head>
 <body>
-
+<div class="freeContainer">
     <jsp:include page="/header.jsp"/>
     <br><br><br>
-   <div class="freeContainer">
     <div id="freeCategory">
-        <h1>&nbsp;ÀÚÀ¯°Ô½ÃÆÇ</h1>
+        <h1>&nbsp;ìžìœ ê²Œì‹œíŒ</h1>
         <div class="searchContainer">
             <span class="searchBox">
-                <input type="text" placeholder="  °Ë»ö..." />
-            	<button id="searchBtn">°Ë»ö</button>
+                <input type="text" placeholder="  ê²€ìƒ‰..." />
+            	<button id="searchBtn">ê²€ìƒ‰</button>
             </span>
         </div>
     </div>
@@ -122,111 +126,111 @@
 <table class="board">
   <thead>
     <tr>
-  	  <th>ÅÂ±×
+  	  <th>íƒœê·¸
   	  <div style = "display:inline-block;">
   	  		<select>
-				<option value="daily">#ÀÏ»ó</option>
-				<option value="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</option>
-				<option value="infoShare">#Á¤º¸/°øÀ¯</option>
-				<option value="Question">#Áú¹®</option>
+				<option value="daily">#ì¼ìƒ</option>
+				<option value="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</option>
+				<option value="infoShare">#ì •ë³´/ê³µìœ </option>
+				<option value="Question">#ì§ˆë¬¸</option>
 			</select>
 		</div></th>
   	  	
-      <th>Á¦¸ñ</th>
-      <th>ÀÛ¼ºÀÚ</th>
-      <th>ÀÛ¼ºÀÏ</th>
-      <th>Á¶È¸¼ö</th>
+      <th>ì œëª©</th>
+      <th>ìž‘ì„±ìž</th>
+      <th>ìž‘ì„±ì¼</th>
+      <th>ì¡°íšŒìˆ˜</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post1.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post1.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-25</td>
       <td>109</td>
     </tr>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a id="title" href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a id="title" href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>486</td>
     </tr>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>1109</td>
     </tr>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>19</td>
     </tr>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>9</td>
     </tr>
     <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>5</td>
     </tr>
      <tr>
-      <td><a href="dogCon">#Àü±¹°»¾óÁãÀÚ¶û</a></td>
-      <td><a href="post2.html">¿ì¸®Áý °»¾óÁã º¸¼¼¿ä Â¯ ±Í¿©¿ò;</a></td>
-      <td>ÃÊÄÚ¸¾</td>
+      <td><a href="dogCon">#ì „êµ­ê°±ì–¼ì¥ìžëž‘</a></td>
+      <td><a href="post2.html">ìš°ë¦¬ì§‘ ê°±ì–¼ì¥ ë³´ì„¸ìš” ì§± ê·€ì—¬ì›€;</a></td>
+      <td>ì´ˆì½”ë§˜</td>
       <td>2024-03-24</td>
       <td>10</td>
     </tr>
     <tr>
-      <td><a href="infoShare">#Á¤º¸/°øÀ¯</a></td>
-      <td><a href="post2.html">ÀÌ¹ø¿¡ OO»ç·á È¯ºÒ ¾ÆÁ÷ ¸ø¹ÞÀ¸½Å ºÐ ¿©±â¼­ È¯ºÒ ¹ÞÀ¸¼¼¿ä</a></td>
-      <td>ÇØ¹Ù¶ó±â¾¾µµµÏ</td>
+      <td><a href="infoShare">#ì •ë³´/ê³µìœ </a></td>
+      <td><a href="post2.html">ì´ë²ˆì— OOì‚¬ë£Œ í™˜ë¶ˆ ì•„ì§ ëª»ë°›ìœ¼ì‹  ë¶„ ì—¬ê¸°ì„œ í™˜ë¶ˆ ë°›ìœ¼ì„¸ìš”</a></td>
+      <td>í•´ë°”ë¼ê¸°ì”¨ë„ë‘‘</td>
       <td>2024-03-24</td>
       <td>1094</td>
     </tr>
     <tr>
-      <td><a href="infoShare">#Á¤º¸/°øÀ¯</a></td>
-      <td><a href="post2.html">º¸È£¼Ò¿¡ ¿Ã¶ó¿Â ¸®Æ®¸®¹ö ºÐ½Ç ¾Æ´Ï°í À¯±â°°¾Æ¿ä¤Ð</a></td>
-      <td>¸¶Æ÷±¸º¸¾È´ó</td>
+      <td><a href="infoShare">#ì •ë³´/ê³µìœ </a></td>
+      <td><a href="post2.html">ë³´í˜¸ì†Œì— ì˜¬ë¼ì˜¨ ë¦¬íŠ¸ë¦¬ë²„ ë¶„ì‹¤ ì•„ë‹ˆê³  ìœ ê¸°ê°™ì•„ìš”ã… </a></td>
+      <td>ë§ˆí¬êµ¬ë³´ì•ˆëŒ•</td>
       <td>2024-03-24</td>
       <td>1011</td>
     </tr>
     <tr>
-     <td><a href="Question">#Áú¹®</a></td>
-      <td><a href="post2.html">È¤½Ã °£½Ä ¾÷Ã¼µµ ÃßÃµÇØµµ µÇ³ª¿ä?</a></td>
-      <td>ÇÏ¿ïÀÇÀ½ÁäÀÌ´Â¼º</td>
+     <td><a href="Question">#ì§ˆë¬¸</a></td>
+      <td><a href="post2.html">í˜¹ì‹œ ê°„ì‹ ì—…ì²´ë„ ì¶”ì²œí•´ë„ ë˜ë‚˜ìš”?</a></td>
+      <td>í•˜ìš¸ì˜ìŒì¥‘ì´ëŠ”ì„±</td>
       <td>2024-03-24</td>
       <td>412</td>
     </tr>
     <tr>
-      <td><a href="daily">#ÀÏ»ó</a></td>
-      <td><a href="post2.html">ÀÌ¹ø¿¡ ´ó´ó·±¿¡¼­ µµ¿òÁÖ¼Ì´ø °ßÁÖºÐ Ã£½À´Ï´Ù ¤Ð¤Ð</a></td>
-      <td>ÀºÇý°±Àº±îÄ¡</td>
+      <td><a href="daily">#ì¼ìƒ</a></td>
+      <td><a href="post2.html">ì´ë²ˆì— ëŒ•ëŒ•ëŸ°ì—ì„œ ë„ì›€ì£¼ì…¨ë˜ ê²¬ì£¼ë¶„ ì°¾ìŠµë‹ˆë‹¤ ã… ã… </a></td>
+      <td>ì€í˜œê°šì€ê¹Œì¹˜</td>
       <td>2024-03-24</td>
       <td>369</td>
     </tr>
     <tr>
-      <td><a href="Question">#Áú¹®</a></td>
-      <td><a href="post2.html">ÀÌ °­¾ÆÁö°¡ ÀÔÀº ¿Ê »çÀÌÁî°¡ ¸îÀÎÁö ¾Æ½Ã´ÂºÐ?</a></td>
-      <td>±ÝÃµ±¸¹°ÁÖ¸Ô</td>
+      <td><a href="Question">#ì§ˆë¬¸</a></td>
+      <td><a href="post2.html">ì´ ê°•ì•„ì§€ê°€ ìž…ì€ ì˜· ì‚¬ì´ì¦ˆê°€ ëª‡ì¸ì§€ ì•„ì‹œëŠ”ë¶„?</a></td>
+      <td>ê¸ˆì²œêµ¬ë¬¼ì£¼ë¨¹</td>
       <td>2024-03-24</td>
       <td>374</td>
     </tr>
   </tbody>
 </table>
 </div>    
-    <!-- ÆäÀÌÁö³×ÀÌ¼Ç -->
+    <!-- íŽ˜ì´ì§€ë„¤ì´ì…˜ -->
 <div class="pagination">
   <a href="#">&laquo;</a>
   <a href="#">1</a>
@@ -240,7 +244,7 @@
   <a href="#">9</a>
   <a href="#">10</a>
   <a href="#">&raquo;</a>
-  <button class="yellowBtn">±Û¾²±â</button>
+  <button class="yellowBtn">ê¸€ì“°ê¸°</button>
 </div>
 <div class="footer"></div>
 
