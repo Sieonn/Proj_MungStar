@@ -81,7 +81,7 @@
         font-family: "JalnanGothic";
 
     }
-    .album{
+    .album_container{
     	margin: 50px auto;
         width: 1040px;
     	padding: 0px; 
@@ -98,7 +98,7 @@
    	 	justify-content: center;
       	align-items: center; 
     } */
-    .column1{
+    .album{
 		margin: 17.5px 17.5px;
       	width: 280px; 
       	padding: 10px; 
@@ -168,6 +168,27 @@
     	color: black;
     }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(function(){
+/* 	$('.album').click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'tempDetail',
+			type:'GET',
+			async:true,
+			dataType:'text',
+			data:{tempNum:$(this).attr("id")},
+			success:function(result){
+				
+			},
+			error:function(result){
+				
+			}
+		})
+	}) */
+})
+</script>
 </head>
 <body>
 <%@ include file="/header.jsp" %>
@@ -187,90 +208,32 @@
 	</div>
 </div>
 
-<div class="album" >
+<div class="album_container" >
 	<c:forEach items="${temps}" var="temp" varStatus="loop">
-    <%-- <c:if test="${loop.count % 3 == 1}">
-        <div class="row">
-    </c:if> --%>
-    
-    <%-- <c:choose>
-        <c:when test="${loop.count % 3 == 1}">
-            <div class="column1">
-        </c:when>
-        <c:when test="${loop.count % 3 == 2}">
-            <div class="column2">
-        </c:when>
-        <c:when test="${loop.count % 3 == 0}">
-            <div class="column3">
-        </c:when>
-    </c:choose> --%>
-    <div class="column1">
+    <div id="${temp.tempNum}" class="album">
+    <a href="tempDetail?tempNum=${temp.tempNum}">
     <img class="tempImg" src="/image/tempdog01.png">
-    <div class="boardContainer">  
+    </a>
+    <div class="boardContainer">
+    	<a href="tempDetail?tempNum=${temp.tempNum}">
         <span class="dogName">${temp.tempName}</span>
         <span class="state">${temp.tempCgory }</span>
         <br/><span class="address">${temp.tempAddress}</span>
+        </a>
     </div>
     </div>
-    <%-- <c:if test="${loop.count % 3 == 0}">
-        </div>
-    </c:if> --%>
-    
 	</c:forEach>
 </div>
-	<%-- <%
-            // 게시물 목록을 받아오는 코드 (예를 들어, posts는 List<Post> 형식이라고 가정)
-
-            // 게시물 목록을 한 행에 3개씩 출력
-            int count = 0;
-            for (int i=0;i<9;i++) {
-                if (count % 3== 0) {
-                    out.println("<div class='row'>");
-                }
-                if(count % 3 == 0){
-                	 out.println("<div class='column1'>");
-                     out.println("<img class=\"tempImg\" src='/image/mung.png'>");
-                     out.println("<div class=\"boardContainer\">");  
-                     out.println("<span class=\"dogName\">뽀삐</span>");
-                     out.println("<span class=\"state\">완료</span>");
-                     out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                     out.println("</div></div>");
-                }
-                if(count % 3 == 1){
-               	 out.println("<div class='column2'>");
-                 out.println("<img class=\"tempImg\" src=\"/image/tempdog01.png\">");
-                 out.println("<div class=\"boardContainer\">");  
-                 out.println("<span class=\"dogName\">뽀삐</span>");
-                 out.println("<span class=\"state\">완료</span>");
-                 out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                 out.println("</div></div>");
-               }
-                if(count % 3 == 2){
-               	 out.println("<div class='column3'>");
-                 out.println("<img class=\"tempImg\" src=\"/image/tempdog01.png\">");
-                 out.println("<div class=\"boardContainer\">");  
-                 out.println("<span class=\"dogName\">뽀삐</span>");
-                 out.println("<span class=\"state\">완료</span>");
-                 out.println("<br/><span class=\"address\">가산디지털단지역</span>");
-                 out.println("</div></div>");
-               }
-                count++;
-                if (count % 3 == 0) {
-                    out.println("</div>");
-                }
-            }
-            // 마지막 행이 3개 미만일 경우를 처리
-            
-    %> --%>
-    <div class="pageContainer">
-
-	
-       	<div class="pageDiv" id="">
-    		<c:choose>
-				<c:when test="${pageInfo.curPage!=1}">
-					<a href="tempBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
-				</c:when>
-			</c:choose>			<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i">
+    
+<div class="pageContainer">
+	<div class="pageDiv" id="">
+    	<c:choose>
+			<c:when test="${pageInfo.curPage!=1}">
+				<a href="tempBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
+			</c:when>
+		</c:choose>			
+		
+		<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i">
 			<c:choose>
 			<c:when test="${i==pageInfo.curPage}">	
 				<a href="tempBoard?page=${i}" class="pageSelect">${i}</a>
@@ -279,18 +242,18 @@
 				<a href="tempBoard?page=${i}" class="morePage">${i}</a>
 			</c:otherwise>
 			</c:choose>
-			</c:forEach>
+		</c:forEach>
 			
-			<c:choose>
-				<c:when test="${pageInfo.curPage==pageInfo.allPage}">
-					<a>&gt;</a>	
-				</c:when>
-				<c:otherwise>
-					<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
+		<c:choose>
+			<c:when test="${pageInfo.curPage==pageInfo.allPage}">
+				<a>&gt;</a>	
+			</c:when>
+			<c:otherwise>
+				<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
+			</c:otherwise>
+		</c:choose>
 	</div>
+</div>
 
 </body>
 </html>

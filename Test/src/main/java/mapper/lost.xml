@@ -2,23 +2,23 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.temp">
-	<select id="selectTempList" parameterType="Integer" resultType="dto.Temp">
+<mapper namespace="mapper.lost">
+	<select id="selectLostList" parameterType="Integer" resultType="dto.Lost">
 		<![CDATA[
-			select * from tempshelter order by tempNum desc
+			select * from lost order by lostNum desc
    			limit #{row}, 9
 		]]>
 	</select>
 	
 	<select id="selectBoardCount" resultType="Integer">
    		<![CDATA[
-   			select count(*) from tempshelter
+   			select count(*) from lost
    		]]>
 	</select>
 	
-	<select id="selectTemp" parameterType="Integer" resultType="dto.Temp">
+	<select id="selectLost" parameterType="Integer" resultType="dto.Lost">
    		<![CDATA[
-   			select * from tempshelter where tempNum=#{tempNum}
+   			select * from lost where lostNum=#{lostNum}
    		]]>
 	</select>
 	

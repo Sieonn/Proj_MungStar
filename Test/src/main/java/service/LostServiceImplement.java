@@ -4,28 +4,28 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import dao.TempDao;
-import dao.TempDaoImplement;
-import dto.Temp;
+import dao.LostDao;
+import dao.LostDaoImplement;
+import dto.Lost;
 import util.PageInfo;
 
-public class TempServiceImplement implements TempService{
-	private TempDao tempDao;
-	
-	public TempServiceImplement() {
+public class LostServiceImplement implements LostService{
+	private LostDao lostDao;
+
+	public LostServiceImplement() {
 		super();
-		tempDao=new TempDaoImplement();
-	}
-	
+		lostDao=new LostDaoImplement();
+	}	
+
 	@Override
-	public void tempListByPage(HttpServletRequest request) throws Exception {
+	public void lostListByPage(HttpServletRequest request) throws Exception {
 		String paramPage=request.getParameter("page");
 		Integer page=1;
 		if(paramPage!=null) {
 			page=Integer.parseInt(paramPage);
 		}
 		
-		int boardCount=tempDao.selectBoardCount();
+		int boardCount=lostDao.selectBoardCount();
 		int maxPage=(int)Math.ceil((double)boardCount/9);
 		int startPage=(page-1)/9*9+1;
 		int endPage=startPage+9-1;
@@ -38,15 +38,15 @@ public class TempServiceImplement implements TempService{
 		pageInfo.setEndPage(endPage);
 		
 		int row=(page-1)*9;
-		List<Temp> tempList=tempDao.selectTempList(row);
+		List<Lost> lostList=lostDao.selectLostList(row);
 		
-		request.setAttribute("temps", tempList);
+		request.setAttribute("losts", lostList);
 		request.setAttribute("pageInfo", pageInfo);
 	}
 
 	@Override
-	public Temp tempDetail(Integer tempNum) throws Exception {
-		return tempDao.selectTemp(tempNum);
+	public Lost lostDetail(Integer lostNum) throws Exception {
+		return lostDao.selectLost(lostNum);
 	}
 	
 }
