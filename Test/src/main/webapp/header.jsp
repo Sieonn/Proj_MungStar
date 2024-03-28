@@ -79,13 +79,6 @@
         transform: translateX(-50%);
         margin-top: 20px;
       }
-      .content {
-        margin: 0 16.6%;
-      }
-      .container {
-        display: flex;
-        justify-content: center;
-      }
       a:link {
         color: black;
         text-decoration: none;
