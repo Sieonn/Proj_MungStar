@@ -29,9 +29,9 @@
       }
 
       .header {
-        margin: 0 16.6%;
+        margin: 0 auto;
+        width: 976.98px;
         height: 10%;
-
         display: flex;
         align-items: center;
         justify-content: space-between;

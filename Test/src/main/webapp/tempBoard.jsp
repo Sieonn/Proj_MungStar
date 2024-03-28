@@ -34,7 +34,9 @@
         float: left;
       }
     .temp_container{
-    	margin: 40px 16.6% 0 16.6%;  height: 100px;
+    	margin: 40px auto;
+        width: 976.98px;
+    	height: 100px;
     	padding-left: 20px; padding-right: 20px;
     }
     .category{
@@ -80,23 +82,25 @@
 
     }
     .album{
-    	margin: 60px 16.6% 0 16.6%;;
-    	padding-left: 20px; padding-right: 20px;
+    	margin: 60px auto;
+        width: 1010px;
+    	padding: 0px; 
       	border-color: black;
+      	overflow: hidden;
     }
     table{
     	width: 100%;	
     }
-    .row{
+    /* .row{
     	width: 100%;
       	margin-bottom: calc(1000px/11);
       	display: flex;
    	 	justify-content: center;
       	align-items: center; 
-    }
+    } */
     .column1{
-      	float : left;
-      	width: 27.2727%; 
+		margin: 15px 15px;
+      	width: 280px; 
       	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
@@ -105,7 +109,7 @@
     }
     .column2{
     	margin-left: 9.090%; margin-right: 9.090%;
-      	width: 27.2727%;
+      	width: 300px;
       	padding: 10px;
       	display: inline-block;
        	border: 2px solid black;
@@ -114,7 +118,7 @@
     }
     .column3{
       	padding: 10px;
-      	width: 27.2727%;
+      	width: 300px;
       	float: right;
        	display: inline-block;
       	border: 2px solid black;
@@ -122,7 +126,7 @@
       	border-radius: 10px; 	
     }
     .tempImg{
-    	width: 100%; height: 270px;
+    	width: 100%; height: 250px;
     	border-radius: 10px;
     }
     .boardContainer{
@@ -183,13 +187,13 @@
 	</div>
 </div>
 <div>
-<div class="album" style="height: 1000px">
+<div class="album" >
 	<c:forEach items="${temps}" var="temp" varStatus="loop">
-    <c:if test="${loop.count % 3 == 1}">
+    <%-- <c:if test="${loop.count % 3 == 1}">
         <div class="row">
-    </c:if>
+    </c:if> --%>
     
-    <c:choose>
+    <%-- <c:choose>
         <c:when test="${loop.count % 3 == 1}">
             <div class="column1">
         </c:when>
@@ -199,8 +203,8 @@
         <c:when test="${loop.count % 3 == 0}">
             <div class="column3">
         </c:when>
-    </c:choose>
-    
+    </c:choose> --%>
+    <div class="column1">
     <img class="tempImg" src="/image/tempdog01.png">
     <div class="boardContainer">  
         <span class="dogName">${temp.tempName}</span>
@@ -208,10 +212,9 @@
         <br/><span class="address">${temp.tempAddress}</span>
     </div>
     </div>
-    
-    <c:if test="${loop.count % 3 == 0}">
+    <%-- <c:if test="${loop.count % 3 == 0}">
         </div>
-    </c:if>
+    </c:if> --%>
     
 	</c:forEach>
 </div>
