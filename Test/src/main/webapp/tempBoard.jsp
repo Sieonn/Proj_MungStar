@@ -83,7 +83,7 @@
     }
     .album{
     	margin: 60px auto;
-        width: 1010px;
+        width: 1020px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;
@@ -149,8 +149,8 @@
       	align-items: center;
     }
     .pageDiv{
-    	margin-top: 300px;
-    	margin-bottom: 300px;
+    	margin-top: 60px;
+    	margin-bottom: 60px;
         font-family: "JalnanGothic";
     }
     .pageSelect{
@@ -186,7 +186,7 @@
 		</form>
 	</div>
 </div>
-<div>
+
 <div class="album" >
 	<c:forEach items="${temps}" var="temp" varStatus="loop">
     <%-- <c:if test="${loop.count % 3 == 1}">
@@ -291,6 +291,6 @@
 			</c:choose>
 		</div>
 	</div>
-</div>
+
 </body>
 </html>
