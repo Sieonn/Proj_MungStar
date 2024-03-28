@@ -79,15 +79,26 @@
     	border-radius: 5px;
     	border: none;
         font-family: "JalnanGothic";
+
     }
-    .album{
+    .album_container{
     	margin: 50px auto;
         width: 1040px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;
     }
-    .column1{
+    table{
+    	width: 100%;	
+    }
+    /* .row{
+    	width: 100%;
+      	margin-bottom: calc(1000px/11);
+      	display: flex;
+   	 	justify-content: center;
+      	align-items: center; 
+    } */
+    .album{
 		margin: 17.5px 17.5px;
       	width: 280px; 
       	padding: 10px; 
@@ -95,6 +106,24 @@
       	border: 2px solid black;
       	border-color: darkgrey;
       	border-radius: 10px;
+    }
+    .column2{
+    	margin-left: 9.090%; margin-right: 9.090%;
+      	width: 300px;
+      	padding: 10px;
+      	display: inline-block;
+       	border: 2px solid black;
+       	border-color: darkgrey;
+       	border-radius: 10px;
+    }
+    .column3{
+      	padding: 10px;
+      	width: 300px;
+      	float: right;
+       	display: inline-block;
+      	border: 2px solid black;
+      	border-color: darkgrey;
+      	border-radius: 10px; 	
     }
     .tempImg{
     	width: 100%; height: 250px;
@@ -158,34 +187,37 @@
 	</div>
 </div>
 
-<div class="album" >
-	<c:forEach items="${temps}" var="temp" varStatus="loop">
-    	<div class="column1">
-    		<img class="tempImg" src="/image/tempdog01.png">
-    		<div class="boardContainer">  
-        		<span class="dogName">${temp.tempName}</span>
-        		<span class="state">${temp.tempCgory }</span>
-        		<br/><span class="address">${temp.tempAddress}</span>
-    		</div>
-    	</div>
+<div class="album_container" >
+	<c:forEach items="${losts}" var="lost" varStatus="loop">
+    <div id="${lost.lostNum}" class="album">
+    <a href="lostDetail?lostNum=${lost.lostNum}">
+    <img class="tempImg" src="/image/lostdog01.png">
+    </a>
+    <div class="boardContainer">
+    	<a href="lostDetail?lostNum=${lost.lostNum}">
+        <span class="dogName">${lost.lostName}</span>
+        <span class="state">${lost.lostCgory}</span>
+        <br/><span class="address">${lost.lostAddress}</span>
+        </a>
+    </div>
+    </div>
 	</c:forEach>
 </div>
-
 <div class="pageContainer">
 	<div class="pageDiv" id="">
     	<c:choose>
 			<c:when test="${pageInfo.curPage!=1}">
-				<a href="tempBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
+				<a href="lostBoard?page=${pageInfo.curPage-1 }">&lt;</a>	
 			</c:when>
 		</c:choose>			
 		
 		<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i">
 			<c:choose>
 				<c:when test="${i==pageInfo.curPage}">	
-					<a href="tempBoard?page=${i}" class="pageSelect">${i}</a>
+					<a href="lostBoard?page=${i}" class="pageSelect">${i}</a>
 				</c:when>
 				<c:otherwise>
-					<a href="tempBoard?page=${i}" class="morePage">${i}</a>
+					<a href="lostBoard?page=${i}" class="morePage">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -195,7 +227,7 @@
 				<a>&gt;</a>	
 			</c:when>
 			<c:otherwise>
-				<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
+				<a href="lostBoard?page=${pageInfo.curPage+1}">&gt;</a>
 			</c:otherwise>
 		</c:choose>
 	</div>

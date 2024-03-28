@@ -102,10 +102,7 @@
   		border: none;
 		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
   		border-radius: 20px;
-		padding-left: 20px;
-		padding-right: 20px;
-		padding-bottom: 5px;
-		padding-top: 5px;
+		padding: 7px 22px 7px 22px;
 		font-size: 15px;
 		font-weight: bold;
       }
@@ -120,8 +117,8 @@
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
-				<div class="dogname_box">뽀삐</div>
-				<div><img src="<%=request.getContextPath()%>/image/place.png" style="">서울특별시 강북구 삼양로 21</div>
+				<div class="dogname_box">${temp.tempName}</div>
+				<div><img src="<%=request.getContextPath()%>/image/place.png" style="">${temp.tempAddress}</div>
 				<div class="contents">특징</div>
 				<div>▶ 회색빛이 살짝 도는 검정색 토이 푸들이에요.</div>
 				<div>▶ 목에 목걸이를 차고 있어요.</div>
@@ -161,8 +158,8 @@
 </div>
 
 <div class="btn_container">
-	<button type="submit" class="boardBtn Btn">목록</button>
-	<button type="submit" class="modifyBtn Btn">수정</button>
+	<a href="tempBoard" class="boardBtn Btn">목 록</a>
+	<a href="" class="boardBtn Btn">수 정</a>
 </div>
 
 <%@ include file="/boardComment.jsp" %>
