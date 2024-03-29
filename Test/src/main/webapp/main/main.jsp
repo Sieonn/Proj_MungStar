@@ -282,20 +282,7 @@
     </style>
   </head>
   <body>
-    <div class="header">
-      <div class="logo">
-        <img src="image/logo.png" alt="Logo" width="90px" />
-      </div>
-      <div class="center-logo">
-        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
-      </div>
-      <div class="user-info">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-        <img src="image/profile.png" alt="Profile" width="50px" />
-      </div>
-    </div>
-    <div class="header-line"></div>
+    <jsp:include page="../main/header.jsp"></jsp:include>
     <div class="content">
       <div class="container">
         <div class="slider">

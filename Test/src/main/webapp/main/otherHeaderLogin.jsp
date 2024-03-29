@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,8 +52,8 @@
       .nav_menu {
         display: flex;
         font-size: 17px;
-        margin-top: 10px;
-        margin-left: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
+        margin-top: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
+        margin-right: 10%;
       }
 
       .nav_menu a {
@@ -62,26 +63,18 @@
 
       .user-info {
         display: flex;
-        align-items: center;
+        justify-content: center;
         margin-left: 10px;
         font-size: 12px;
-        margin-top: 10px;
       }
 
       .user-info a {
-        margin-right: 10px;
-        margin-top: 50px;
+        margin: 5px 5px 0 5px;
       }
 
       .user-info img {
         height: 100%;
         border-radius: 100%;
-        margin-top: 10px;
-      }
-
-      .welcome-message {
-        font-size: 12px;
-        margin-right: 20px;
       }
 
       /* 하단 선 스타일 */
@@ -98,6 +91,13 @@
         color: black;
         font-weight: 700;
       }
+      .userPro {
+        display: grid;
+        margin-top: 2%;
+      }
+      a:visited {
+        color: black;
+      }
     </style>
   </head>
   <body>
@@ -112,14 +112,16 @@
         <a href="#">미멍보호소</a>
         <a href="#">임시 보호해요</a>
       </div>
-      <div class="welcome-message">회원님 안녕하세요!</div>
-      <div class="user-info">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-        <img src="../image/프로필01.jpg" alt="Profile" width="50px" />
+      <div class="userPro">
+        <div class="user-info">
+          <img src="../image/프로필01.jpg" alt="Profile" width="50px" />
+        </div>
+        <div class="user-info">
+          <a href="#">마이페이지</a>
+          <a href="#">로그아웃</a>
+        </div>
       </div>
     </div>
     <div class="header-line"></div>
   </body>
 </html>
-

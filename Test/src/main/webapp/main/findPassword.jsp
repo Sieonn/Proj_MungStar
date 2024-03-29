@@ -148,22 +148,9 @@
     </style>
   </head>
 
-  <body width="100%" height="100%" align="center">
-    <div class="header">
-      <div class="logo">
-        <img src="image/logo.png" alt="Logo" width="90px" />
-      </div>
-      <div class="center-logo">
-        <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
-      </div>
-      <div class="user-info">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-        <img src="image/profile.png" alt="Profile" width="50px" />
-      </div>
-    </div>
-    <div class="header-line"></div>
-    <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+  <body>
+    <jsp:include page="../main/header.jsp"></jsp:include>
+    <body >
 
       <div class="card align-middle" style="width:25rem;">
             

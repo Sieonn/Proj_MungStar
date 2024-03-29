@@ -32,6 +32,9 @@
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }	
+      .content{
+      margin:0 16.6%;
+      }
 	.pageContainer {
 		width: 100%;
 	}
@@ -46,10 +49,12 @@
   	}
   	
   	.searchContainer {
-    	float: right;
-    	display: inline-block;
-		align-item: center;
+
 		margin-bottom: 30px;
+		  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+  align-items: center;
    }
      
     .searchBox input[type="text"] {
@@ -95,6 +100,12 @@
   	.footer {
   		height: 200px;
   	}
+  	.searchBox{
+    list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  	}
 </style>
 <style>
 	.pagination {
@@ -133,16 +144,17 @@
 </style>
 </head>
 <body>
-    <jsp:include page="/header.jsp"/>
+    <jsp:include page="../main/header.jsp"/>
     <br><br><br>
+    <div class="content">
 <div class="pageContainer">
     <div class="freeContainer">
         <h1>&nbsp;자유게시판</h1>
         <div class="searchContainer">
-            <span class="searchBox">
+            <div  class="searchBox" >
                 <input type="text" placeholder="  검색..." />
             	<button id="searchBtn">검색</button>
-            </span>
+            </div>
         </div>
     </div>
 
@@ -278,7 +290,7 @@
   });
 </script>
 <div class="footer"></div>
-
+</div>
 </div>
 </body>
 </html>
