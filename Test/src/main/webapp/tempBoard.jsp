@@ -201,14 +201,14 @@ $(function(){
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1">
-			<option value="all">주인을 찾고있어요 / 주인을 찾았어요</option>
+			<option value="">주인을 찾고있어요 / 주인을 찾았어요</option>
 			<option value="finding">주인을 찾고있어요</option>
 			<option value="finded">주인을 찾았어요</option>
 		</select>
     	<form action="">
-    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색"/>
+    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색" value=""/>
 			<button class="searchBtn Btn" type="submit">검색</button>
-			<button class="writeBtn Btn" type="submit">글쓰기</button>
+			<a href="tempWrite"><button class="writeBtn Btn" type="submit">글쓰기</button></a>
 		</form>
 	</div>
 </div>

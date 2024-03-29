@@ -7,32 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.TempService;
-import service.TempServiceImplement;
-
-@WebServlet("/TempBoardBySearch")
-public class TempBoardBySearch extends HttpServlet {
+@WebServlet("/tempWrite")
+public class TempWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public TempBoardBySearch() {
+
+    public TempWrite() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		String searchText=request.getParameter("searchText");
-		
-		try {
-			TempService tempService=new TempServiceImplement();
-			tempService.
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		response.sendRedirect("tempWriteForm.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }
