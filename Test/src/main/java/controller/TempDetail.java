@@ -11,7 +11,7 @@ import dto.Temp;
 import service.TempService;
 import service.TempServiceImplement;
 
-@WebServlet("/tempDetail")
+@WebServlet("/temp/tempDetail")
 public class TempDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
