@@ -20,27 +20,27 @@
   </script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">	
+	body,html {
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+      }
 	.pageContainer {
 		width: 100%;
 	}
-	.freeContainer {
-		width : 1280px;
-		margin : 0 16.6%;
- 	}
  	#freeCategory{
  		width :1000px;
  		margin : 0 16.6%;	
   	}
   	.writeContainer {
-  		width :900px;
- 		margin : 0 16.6%;
+  		width :1000px;
+ 		margin : 0 auto;
  		
   	}
   	.writeTitle{
   		background-color: #f5f5f5;
-  		width: 900px;
+  		width: 1000px;
   		padding: 10px;
   		margin-bottom: 10px;
   		border-radius: 15px;
@@ -53,7 +53,7 @@
     }
   	.content {
         background-color: #f5f5f5;
-        width: 900px; 
+        width: 1000px; 
         height: 520px; 
         padding: 10px;
         margin: 10px auto;
@@ -103,7 +103,7 @@
   /* 스크롤 가능한 상자 스타일 */
     .scroll-box {
         background-color: #f5f5f5;
-        width: 880px; 
+        width: 900px; 
         height: 400px;
         overflow: auto;
         padding: 10px;
@@ -221,12 +221,13 @@
 </style>
 </head>
 <body>
+<jsp:include page="/header.jsp"/>
+<br>
+
 <div class = "freeContainer">
-	<jsp:include page="/header.jsp"/>
-	<br>
 	<div id = "freeCategory">
 		<h2 style="margin-bottom: 5px;">자유게시판</h2>
-		<h4 style = "font-weight : lighter; margin-top: 0;">게시물작성</h4>
+		<h4 style = "font-weight: lighter; margin-top: 0;">게시물작성</h4>
 	</div>
 <div class="writeContainer">
     <input class="writeTitle" type="text" placeholder="  제목  " />
@@ -271,8 +272,18 @@
     </div>
 </div>
 	<br>
-	<div class="yellowBtn">저 장</div>
+	<div class="yellowBtn" id="saveButton">저 장</div>
+
 </div>
+<script>
+  // 저장 버튼에 대한 클릭 이벤트 핸들러
+  document.getElementById('saveButton').addEventListener('click', function() {
+    // 작성된 글을 어딘가에 저장하는 코드를 여기에 추가합니다.
+    
+    // 저장이 완료되면 목록 페이지로 이동합니다.
+    window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
+  });
+</script>
 <div class="footer"></div>	
 </body>
 </html>

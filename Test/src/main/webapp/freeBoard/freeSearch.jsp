@@ -1,41 +1,47 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 태그를 클릭할 때 해당 태그 정보를 서버에 전달하는 스크립트 -->
 <script>
-    // 검색 버튼 클릭 시 검색 기능 구현
-    document.getElementById("searchBtn").addEventListener("click", function() {
-        var searchTerm = document.getElementById("searchInput").value;
-        // 여기서는 검색어를 콘솔에 출력하는 것으로 대체하겠습니다.
-        console.log("검색어:", searchTerm);
-        // 실제로는 검색 결과를 가져와서 화면에 표시해야 합니다.
-        // 검색 결과를 받아오는 API 호출 등의 로직을 추가해야 합니다.
-    });
+  // 태그를 클릭했을 때 해당 태그 정보를 서버에 전달하는 함수
+  function getPostsByTag(tag) {
+    // AJAX를 사용하여 서버에 요청을 보냅니다.
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '서버URL/태그검색?tag=' + tag, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // 서버로부터 받은 응답을 처리합니다.
+          var posts = JSON.parse(xhr.responseText);
+          // 받은 게시글 목록을 화면에 표시하는 함수를 호출합니다.
+          displayPosts(posts);
+        } else {
+          console.error('서버 오류:', xhr.status);
+        }
+      }
+    };
+    xhr.send();
+  }
 </script>
-<style type="text/css">	
-		body,html {
+<style type="text/css">
+	body,html {
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+      }	
 	.pageContainer {
 		width: 100%;
 	}
 	.freeContainer {
 		width : 1280px;
-		margin: 0 auto;
+		margin : 0 auto;
  	}
- 	#freeCategory{
- 		width :1000px;
- 		margin : 0 16.6%;	
-  	}
   	.listContainer{
  		width :1000px;
- 		margin: 0 auto;
+ 		margin : 0 auto;
  		border-bottom: 2px solid #ddd;
   	}
   	
@@ -43,6 +49,8 @@
     	float: right;
     	display: inline-block;
 		align-item: center;
+		
+		
 		margin-bottom: 30px;
    }
      
@@ -114,6 +122,7 @@
 		width: 19px;
 	}	
 	.yellowBtn {
+		text-align: center;
 		font-weight: bold;
 		margin-left: 8px;
 		background-color: #FED74B;
@@ -126,19 +135,19 @@
 </style>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
-<br><br>
+    <jsp:include page="/header.jsp"/>
+    <br><br><br>
 <div class="pageContainer">
-    <div id="freeCategory">
-        <h2 style="margin-bottom: 5px;">자유게시판</h2>
-		<br><br>
-		<div class="searchContainer">
+    <div class="freeContainer">
+        <h1>&nbsp;자유게시판</h1>
+        <div class="searchContainer">
             <span class="searchBox">
                 <input type="text" placeholder="  검색..." />
             	<button id="searchBtn">검색</button>
             </span>
         </div>
-	</div>
+    </div>
+
 <div class = "listContainer">
 <table class="board">
   <thead>
@@ -160,7 +169,7 @@
     </tr>
   </thead>
   <tbody>
-  	<tr>
+    <tr>
       <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
       <td><a href="post1.html">우리집 갱얼쥐 보세요 짱 귀여움;</a></td>
       <td>초코맘</td>
@@ -210,36 +219,36 @@
       <td>10</td>
     </tr>
     <tr>
-      <td><a href="#" onclick="getPostsByTag('infoShare')">#정보/공유</a></td>
-      <td><a href="post2.html">이번에 OO사료 환불 아직 못받으신 분 여기서 환불 받으세요</a></td>
+      <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
+      <td><a href="post2.html">말랑콩떡 인절미 최고</a></td>
       <td>해바라기씨도둑</td>
       <td>2024-03-24</td>
       <td>1094</td>
     </tr>
     <tr>
-      <td><a href="#" onclick="getPostsByTag('infoShare')">#정보/공유</a></td>
-      <td><a href="post2.html">보호소에 올라온 리트리버 분실 아니고 유기같아요ㅠ</a></td>
+      <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
+      <td><a href="post2.html">말티푸 너무 귀여워</a></td>
       <td>마포구보안댕</td>
       <td>2024-03-24</td>
       <td>1011</td>
     </tr>
     <tr>
-     <td><a href="#" onclick="getPostsByTag('Question')">#질문</a></td>
-      <td><a href="post2.html">혹시 간식 업체도 추천해도 되나요?</a></td>
+     <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
+      <td><a href="post2.html">왕크니까 왕 귀엽다</a></td>
       <td>하울의음쥑이는성</td>
       <td>2024-03-24</td>
       <td>412</td>
     </tr>
     <tr>
-      <td><a href="#" onclick="getPostsByTag('daily')">#일상</a></td>
-      <td><a href="post2.html">이번에 댕댕런에서 도움주셨던 견주분 찾습니다 ㅠㅠ</a></td>
+      <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
+      <td><a href="post2.html">*★울프독★*짱크고 짱귀엽다</a></td>
       <td>은혜갚은까치</td>
       <td>2024-03-24</td>
       <td>369</td>
     </tr>
     <tr>
-      <td><a href="#" onclick="getPostsByTag('Question')">#질문</a></td>
-      <td><a href="post2.html">이 강아지가 입은 옷 사이즈가 몇인지 아시는분?</a></td>
+      <td><a href="#" onclick="getPostsByTag('dogCon')">#전국갱얼쥐자랑</a></td>
+      <td><a href="post2.html">우리집 막내 사진 ^^~</a></td>
       <td>금천구물주먹</td>
       <td>2024-03-24</td>
       <td>374</td>
@@ -263,7 +272,6 @@
   <a href="#">&raquo;</a>
   <button class="yellowBtn" id="writeButton">글쓰기</button>
 </div>
- </div>
 <script>
   // 글쓰기 버튼에 대한 클릭 이벤트 핸들러
   document.getElementById('writeButton').addEventListener('click', function() {
@@ -272,5 +280,7 @@
   });
 </script>
 <div class="footer"></div>
+
+</div>
 </body>
 </html>

@@ -18,11 +18,7 @@ function restorePreviousContent() {
     textarea.value = previousContent;
 }
 
-// 페이지가 로드될 때 호출하여 이전에 작성한 내용을 textarea에 설정
-window.onload = function() {
-    restorePreviousContent();
-};
-//저장할 태그들을 보관할 배열
+// 저장할 태그들을 보관할 배열
 var tags = [];
 
 // 태그 입력란의 값이 변경될 때마다 호출되는 함수
@@ -37,9 +33,24 @@ function handleTagInput() {
 
 // 페이지 로드 시 호출되는 함수
 window.onload = function() {
+    // 이전에 작성한 내용을 textarea에 설정
+    restorePreviousContent();
+
     // 태그 입력란에 이벤트 리스너 추가
     document.getElementById("tagInput").addEventListener("input", handleTagInput);
 };
+
+// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
+function saveAndNavigate() {
+    // 이전에 작성한 내용을 가져오는 함수 호출
+    restorePreviousContent();
+
+    // 게시글을 저장하는 함수 호출
+    savePost();
+
+    // 저장된 게시글을 확인하는 페이지로 이동
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp"; // 저장된 게시글 확인 페이지의 URL로 교체하세요.
+}
 
 // 게시글을 저장하는 함수 (예: 서버에 전송)
 function savePost() {
@@ -48,46 +59,72 @@ function savePost() {
     console.log("게시글 내용:", postContent);
     console.log("태그:", tags);
 }
+
 </script>
-<title>Insert title here</title>
+<script type="text/javascript">
+// 삭제 여부를 묻는 팝업 창을 띄우는 함수
+function confirmDelete() {
+    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
+    var result = confirm("정말로 삭제하시겠습니까?");
+    // 사용자가 확인을 눌렀을 경우
+    if (result) {
+        // 삭제 동작을 수행하는 함수를 호출합니다.
+        deletePost();
+    } else {
+        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
+        console.log("삭제 취소");
+    }
+}
+
+// 게시글을 삭제하는 함수
+function deletePost() {
+    // 게시글 삭제 로직을 추가할 수 있습니다.
+    console.log("게시글이 삭제되었습니다.");
+}
+
+//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
+function moklock() {
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeBoard.jsp"; 
+    // 이전 페이지로
+    // onclick="window.history.back()" 변경예정
+}
+function savePost() {
+    // 저장~ saveAndNavigate()로 변경예정
+	window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp";
+}
+
+</script>
+
 <style type="text/css">
-      body,
-      html {
+      body,html {
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
-
 	.pageContainer {
 		width: 100%;
 	}
  	.freeContainer {
 		width : 1280px;
-		margin : 0 16.6%;
+		margin: 0 auto; 
  	}
  	#freeCategory{
  		width :1000px;
  		margin : 0 16.6%;	
   	}
   	.writeContainer {
-  		width :900px;
- 		margin : 0 16.6%;
+  		width :1000px;
+ 		margin: 0 auto; /* 중앙 정렬을 위해 수정 */
  		
   	}
-  	 .ContentBackground{
-  		background-color: #ffffff;
-  		width: 900px;
-		padding: 10px;
-  		margin: 10px auto;
-  		border-radius: 20px;
-  	 }
+  	
   	 .writeTitle{
   		background-color: #f5f5f5;
-  		width: 900px;
+  		width: 985px;
   		padding: 10px;
   		margin-bottom: 10px;
   		border-radius: 15px;
-  		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+  		box-shadow: inset 1px 3px 3px rgba(0, 0, 0, 0.1);
   		border: 0; /* input에 border 없애기 */
   	}
   	
@@ -97,12 +134,12 @@ function savePost() {
     }
   	.content {
         background-color: #f5f5f5;
-        width: 900px; 
+        width: 985px; 
         height: 520px; 
         padding: 10px;
         margin: 10px auto;
         border-radius: 20px;
-        box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 1px 3px 3px rgba(0, 0, 0, 0.1);
     }
   	 .text-area {
         width: 100%; /* textarea 요소의 가로 너비를 100%로 설정 */
@@ -273,7 +310,6 @@ document.getElementById('tagInput').addEventListener('input', adjustInputWidth);
         background-color: transparent;
         border-radius: 10px;
     }
-
 </style>
 </head>
 <body>
@@ -287,14 +323,14 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 });
 </script>
 <jsp:include page="/header.jsp"/>
-<div class = "freeContainer">
+<br>
+<div class = "pageContainer">
+		<div id="freeCategory">
+			<h2 style="margin-bottom: 5px;">자유게시판</h2>
+			<br><br>
+		</div>
 	
-	<br>
-	<div id = "freeCategory">
-		<h2>자유게시판</h2>
-		<br>
-	</div>
-<div class="writeContainer">
+	<div class="writeContainer">
 	<input class="writeTitle" type="text" placeholder=" 수정 이전 작성한 제목  " />    
 	<br>
 	<div class="content">
@@ -343,9 +379,9 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 </div>
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn">목록</button>
-	<button type = "submit" class = "yellowBtn">저장</button>
-	<button type = "submit" class = "yellowBtn">삭제</button>
+	<button type = "submit" class = "yellowBtn" onclick="moklock()">목록</button>
+	<button type = "submit" class = "yellowBtn" onclick="savePost()">저장</button>
+	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 </div>
 
 
