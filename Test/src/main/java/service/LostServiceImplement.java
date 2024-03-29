@@ -24,12 +24,33 @@ public class LostServiceImplement implements LostService{
 		if(paramPage!=null) {
 			page=Integer.parseInt(paramPage);
 		}
+		String searchText=request.getParameter("searchText");
+		String lostCgory=request.getParameter("lostCgory");
 		
-		int boardCount=lostDao.selectBoardCount();
+		if(lostCgory!=null && lostCgory.equals("")) lostCgory=null;
+//		if(tempCgory==null)
+//			tempCgory = "all";
+//		System.out.println(tempCgory);
+//		int boardCount = 0;
+//		List<Temp> tempList = null;
+//		if(tempCgory=="") {
+//			boardCount=tempDao.selectBoardCount();
+//			int row=(page-1)*9;
+//			tempList=tempDao.selectTempList(row);
+//		} else {
+//			boardCount=tempDao.selectBoardCountWithTempCgory(tempCgory);
+//			int row=(page-1)*9;
+//			tempList=tempDao.selectTempListWithTempCgory(row,tempCgory);
+//		}
+		int boardCount=lostDao.selectLostCountWithCgoryAndSearch(lostCgory, searchText);
+		
 		int maxPage=(int)Math.ceil((double)boardCount/9);
 		int startPage=(page-1)/9*9+1;
 		int endPage=startPage+9-1;
-		if(endPage>maxPage) endPage=maxPage;
+		if(endPage>maxPage) endPage=maxPage;	
+		
+		int row=(page-1)*9;
+		List<Lost> lostList=lostDao.selectLostListWithCgoryAndSearch(row, lostCgory, searchText);
 		
 		PageInfo pageInfo=new PageInfo();
 		pageInfo.setCurPage(page);
@@ -37,11 +58,9 @@ public class LostServiceImplement implements LostService{
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		
-		int row=(page-1)*9;
-		List<Lost> lostList=lostDao.selectLostList(row);
-		
 		request.setAttribute("losts", lostList);
 		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("lostCgory", lostCgory);
 	}
 
 	@Override

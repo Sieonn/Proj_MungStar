@@ -3,6 +3,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.lost">
+	<select id="selectLostListWithCgoryAndSearch" parameterType="Map" resultType="dto.Lost">
+	
+  		SELECT * FROM lost
+  		<where>
+  			
+  			<if test="lostCgory != null">
+    			AND lostCgory = #{lostCgory}
+  			</if>
+   			<if test="searchText != null">
+    			AND lostAddress like '%${searchText}%'
+  			</if>
+   		</where>
+  		order by lostNum desc
+   		limit #{row}, 9
+	</select>
+	
+	<select id="selectLostCountWithCgoryAndSearch" parameterType="Map" resultType="Integer">
+  		SELECT count(*) FROM lost
+  		<where>
+  			<if test="lostCgory != null">
+    			AND lostCgory = #{lostCgory}
+  			</if>
+   			<if test="searchText != null">
+    			AND lostAddress like '%${searchText}%'
+  			</if>
+  		</where>
+	</select>
+
 	<select id="selectLostList" parameterType="Integer" resultType="dto.Lost">
 		<![CDATA[
 			select * from lost order by lostNum desc

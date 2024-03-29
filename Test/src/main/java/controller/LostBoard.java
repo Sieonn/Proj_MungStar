@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.LostService;
 import service.LostServiceImplement;
 
-@WebServlet("/lostBoard")
+@WebServlet("/lost/lostBoard")
 public class LostBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

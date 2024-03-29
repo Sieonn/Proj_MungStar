@@ -21,12 +21,6 @@
         font-weight: 400;
         font-style: normal;
     }
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
 	.text {
         font-size: 34px;
         font-family: "JalnanGothic";
@@ -168,21 +162,31 @@
     	color: black;
     }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(function(){
+	$('#category').val('${lostCgory}');
+	$('#category').change(function(){
+		var lostCgory=$(this).val()
+		document.location.href="http://localhost:8080/MoongStar/lost/lostBoard?lostCgory="+lostCgory;
+	})
+})
+</script>
 </head>
-<body>
-<%@ include file="/header.jsp" %>
+<body> 
+<%@ include file="../main/header.jsp" %>
 <div class="temp_container">
 	<div class="text">미아보호소</div>
 	<div class="right_container" style="float: right;">
 		<select class="category" id="category" name="category" size="1" style="">
-			<option value="">데리고있어요 / 데리고갔어요</option>
-			<option value="찾습니다">데리고있어요</option>
-			<option value="발견했습니다">데리고갔어요</option>
+			<option value="">찾고있어요 / 발견했어요</option>
+			<option value="finding">찾고있어요</option>
+			<option value="finded">발견했어요</option>
 		</select>
     	<form action="">
-    		<input type="text" class="searchInput" id="comment" name="text" placeholder="검색"/>
+    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색"/>
 			<button class="searchBtn" type="submit" class="Btn">검색</button>
-			<button class="writeBtn" type="submit" class="Btn">글쓰기</button>
+			<a href="lostWrite"></a><button class="writeBtn" type="submit" class="Btn">글쓰기</button>
 		</form>
 	</div>
 </div>
