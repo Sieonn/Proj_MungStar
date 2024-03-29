@@ -131,6 +131,13 @@ function deletePost() {
 function goToEditPage() {
     window.location.href = "http://localhost:8080/Test/freeBoard/freeModify.jsp"; // 수정 페이지 URL로 변경
 }
+//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
+function moklock() {
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeBoard.jsp"; 
+    // 이전 페이지로
+    // onclick="window.history.back()" 변경예정
+}
+
 </script>
 </head>
 
@@ -184,7 +191,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
+	<button type = "submit" class = "yellowBtn" onclick="moklock()">목록</button>
 	<button type = "submit" class = "yellowBtn" onclick="goToEditPage()">수정</button>
 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 </div>
