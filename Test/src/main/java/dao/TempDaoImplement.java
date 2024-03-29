@@ -35,5 +35,24 @@ public class TempDaoImplement implements TempDao{
 	public Integer selectBoardCountWithTempCgory(String tempCgory) throws Exception {
 		return sqlSession.selectOne("mapper.temp.selectBoardCountWithTempCgory", tempCgory);
 	}
+	@Override
+	public List<Temp> selectTempListWithCgoryAndSearch(Integer row, String tempCgory, String searchText)
+			throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		param.put("row", row);
+		param.put("tempCgory",tempCgory);
+		param.put("searchText", searchText);
+		System.out.println(param.get("tempCgory"));
+		return sqlSession.selectList("mapper.temp.selectTempListWithCgoryAndSearch",param);
+	}
+	@Override
+	public Integer selectTempCountWithCgoryAndSearch(String tempCgory, String searchText) throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		
+		param.put("tempCgory",tempCgory);
+		param.put("searchText", searchText);
+		System.out.println(param.get("tempCgory"));
+		return sqlSession.selectOne("mapper.temp.selectTempCountWithCgoryAndSearch", param);
+	}
 
 }

@@ -24,27 +24,33 @@ public class TempServiceImplement implements TempService{
 		if(paramPage!=null) {
 			page=Integer.parseInt(paramPage);
 		}
-		String searchText=request.getParameter(paramPage)
+		String searchText=request.getParameter("searchText");
 		String tempCgory=request.getParameter("tempCgory");
-		if(tempCgory==null)
-			tempCgory = "all";
-		System.out.println(tempCgory);
-		int boardCount = 0;
-		List<Temp> tempList = null;
-		if(tempCgory.equals("all")) {
-			boardCount=tempDao.selectBoardCount();
-			int row=(page-1)*9;
-			tempList=tempDao.selectTempList(row);
-		} else {
-			boardCount=tempDao.selectBoardCountWithTempCgory(tempCgory);
-			int row=(page-1)*9;
-			tempList=tempDao.selectTempListWithTempCgory(row,tempCgory);
-		}
+		
+		if(tempCgory!=null && tempCgory.equals("")) tempCgory=null;
+//		if(tempCgory==null)
+//			tempCgory = "all";
+//		System.out.println(tempCgory);
+//		int boardCount = 0;
+//		List<Temp> tempList = null;
+//		if(tempCgory=="") {
+//			boardCount=tempDao.selectBoardCount();
+//			int row=(page-1)*9;
+//			tempList=tempDao.selectTempList(row);
+//		} else {
+//			boardCount=tempDao.selectBoardCountWithTempCgory(tempCgory);
+//			int row=(page-1)*9;
+//			tempList=tempDao.selectTempListWithTempCgory(row,tempCgory);
+//		}
+		int boardCount=tempDao.selectTempCountWithCgoryAndSearch(tempCgory, searchText);
 		
 		int maxPage=(int)Math.ceil((double)boardCount/9);
 		int startPage=(page-1)/9*9+1;
 		int endPage=startPage+9-1;
 		if(endPage>maxPage) endPage=maxPage;	
+		
+		int row=(page-1)*9;
+		List<Temp> tempList=tempDao.selectTempListWithCgoryAndSearch(row, tempCgory, searchText);
 		
 		PageInfo pageInfo=new PageInfo();
 		pageInfo.setCurPage(page);
