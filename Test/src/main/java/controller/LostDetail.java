@@ -11,7 +11,7 @@ import dto.Lost;
 import service.LostService;
 import service.LostServiceImplement;
 
-@WebServlet("/lostDetail")
+@WebServlet("/lost/lostDetail")
 public class LostDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

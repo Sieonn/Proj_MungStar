@@ -19,7 +19,7 @@ body,
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 16.6% 150px 16.6%;
+      	margin: 0 16.6% 50px 16.6%;
       	background-color: #f5f5f5;
       	height: 620px;
       	display: flex;
@@ -174,7 +174,7 @@ body,
 
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">
@@ -208,6 +208,12 @@ body,
 		</div>
 	</div>
 </div>
+	<div style="display: flex;
+   	 	justify-content: center;
+      	align-items: center;
+      	margin-bottom: 150px;">
+      	<a href="" class="boardBtn Btn">등록</a>
+    </div>
 </body>
 <script>
 const charBox = document.getElementById('char_box');
@@ -223,9 +229,18 @@ function handleKeyPress(event) {
 
 function addNewItem() {
     const newItem = document.createElement('div'); // 새로운 div 요소 생성
-    newItem.textContent = '▶ ';
-    newItem.className = 'item';
-
+    
+    // 삭제 버튼 추가
+    const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
+    deleteButton.textContent = '삭제'; // 버튼 텍스트 설정
+    deleteButton.onclick = function() {
+        removeItem(newItem);
+    };
+    newItem.appendChild(deleteButton); // 버튼 요소를 항목에 추가
+    
+    /* newItem.textContent = '▶ ';
+    newItem.className = 'item'; */
+    
     const itemText = document.createElement('input'); // 새로운 input 요소 생성
     itemText.type = 'text'; // input 타입을 text로 지정
     itemText.className = 'charInput';
@@ -235,7 +250,13 @@ function addNewItem() {
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }
 
+function removeItem(item) {
+    item.parentNode.removeChild(item); // 부모 요소에서 해당 항목 제거
+}
+
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
 charBox.addEventListener('keypress', handleKeyPress);
+
+$('#')
 </script>
 </html>

@@ -110,7 +110,7 @@
 
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">
@@ -162,7 +162,7 @@
 	<a href="" class="boardBtn Btn">수 정</a>
 </div>
 
-<%@ include file="/boardComment.jsp" %>
+<%@ include file="../temp/boardComment.jsp" %>
 
 </body>
 </html>
