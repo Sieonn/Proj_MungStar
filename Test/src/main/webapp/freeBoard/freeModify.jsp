@@ -110,7 +110,7 @@ function savePost() {
  	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 16.6%;	
+ 		margin : 0 auto;	
   	}
   	.writeContainer {
   		width :1000px;
@@ -325,11 +325,12 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 <jsp:include page="/header.jsp"/>
 <br>
 <div class = "pageContainer">
+	<div class="freeContainer">
 		<div id="freeCategory">
 			<h2 style="margin-bottom: 5px;">자유게시판</h2>
 			<br><br>
 		</div>
-	
+	</div>
 	<div class="writeContainer">
 	<input class="writeTitle" type="text" placeholder=" 수정 이전 작성한 제목  " />    
 	<br>

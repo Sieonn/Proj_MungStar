@@ -29,9 +29,13 @@
 	.pageContainer {
 		width: 100%;
 	}
+	.freeContainer {
+		width : 1280px;
+		margin : 0 auto;
+ 	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 16.6%;	
+ 		margin : 0 auto;	
   	}
   	.writeContainer {
   		width :1000px;
@@ -223,7 +227,7 @@
 <body>
 <jsp:include page="/header.jsp"/>
 <br>
-
+<div class="pageContainer">
 <div class = "freeContainer">
 	<div id = "freeCategory">
 		<h2 style="margin-bottom: 5px;">자유게시판</h2>
@@ -284,6 +288,7 @@
     window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
   });
 </script>
+</div>
 <div class="footer"></div>	
 </body>
 </html>

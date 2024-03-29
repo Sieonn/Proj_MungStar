@@ -31,7 +31,7 @@
  	}
  	#freeCategory{
  		width :1000px;
- 		margin : 0 16.6%;	
+ 		margin : 0 auto;	
   	}
   	.listContainer{
  		width :1000px;
@@ -129,6 +129,7 @@
 <jsp:include page="/header.jsp"/>
 <br><br>
 <div class="pageContainer">
+	<div class="freeContainer">
     <div id="freeCategory">
         <h2 style="margin-bottom: 5px;">자유게시판</h2>
 		<br><br>
@@ -138,6 +139,7 @@
             	<button id="searchBtn">검색</button>
             </span>
         </div>
+	</div>
 	</div>
 <div class = "listContainer">
 <table class="board">

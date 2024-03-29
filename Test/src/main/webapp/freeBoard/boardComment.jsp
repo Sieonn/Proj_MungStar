@@ -17,6 +17,7 @@
   		width: 990px;
 		padding: 10px;
   		margin: 10px auto;
+  		overflow: auto;
   		border-radius: 20px;
   		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
      }
@@ -26,6 +27,7 @@
 		padding: 10px;
   		margin: 10px auto;
   		border-radius: 20px;
+  		
      }
      .writeComm{
         width: 60%; 
@@ -138,6 +140,51 @@
       <span class="commNickname comm">&nbsp;&nbsp;<img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
       <span class="memcommContent comm" >댓글내용이 들어가는 곳입니다.</span>
    </div>     
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm">aaaaaaaaaadfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfdsfaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="memComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img comm">
+      <span class="commNickname comm">&nbsp;&nbsp;<img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="memcommContent comm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm">aaaaaaaaaadfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfdsfaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="memComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img comm">
+      <span class="commNickname comm">&nbsp;&nbsp;<img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="memcommContent comm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm">aaaaaaaaaadfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfdsfaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="writeComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="commContent mycomm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
+   <div class="memComm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img comm">
+      <span class="commNickname comm">&nbsp;&nbsp;<img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
+      <span class="memcommContent comm" >댓글내용이 들어가는 곳입니다.</span>
+   </div>
    </div>
     <div class="inputDiv">
     <form action="">
