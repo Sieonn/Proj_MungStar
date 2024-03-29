@@ -347,7 +347,7 @@
         <div class="field">
           <div class="inner-title">닉네임</div>
           <div class="inner-input">
-            <input type="text" name="nickname" />
+            <input type="text" name="nickname"  placeholder="2~11자 입력"/>
             <input type="button" onclick="" value="중복 검사" />
           </div>
         </div>
