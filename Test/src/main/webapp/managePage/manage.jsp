@@ -15,7 +15,6 @@
  		width :1000px;
  		margin : 0 16.6%;	
   	}
-      
       .listContainer{
  		width :1000px;
  		margin : 0 16.6%;
