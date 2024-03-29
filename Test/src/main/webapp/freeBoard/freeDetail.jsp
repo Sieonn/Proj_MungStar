@@ -5,19 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
  <style type="text/css">
+ 	body,html {
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+      }
  	.pageContainer {
 		width: 100%;
 	}
  	.freeContainer {
-		width : 1280px;
-		margin : 0 16.6%;
+		width : 1024px;
+		margin : 0 auto;
  	}
- 	#freeCategory{
- 		width :1000px;
- 		margin : 0 16.6%;
-  	 }
   	.wrap{
   		background-color: #f5f5f5;
   		width: 990px;
@@ -102,6 +102,32 @@
 }
 
 </style>
+<script type="text/javascript">
+// 삭제 여부를 묻는 팝업 창을 띄우는 함수
+function confirmDelete() {
+    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
+    var result = confirm("정말로 삭제하시겠습니까?");
+    // 사용자가 확인을 눌렀을 경우
+    if (result) {
+        // 삭제 동작을 수행하는 함수를 호출합니다.
+        deletePost();
+    } else {
+        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
+        console.log("삭제 취소");
+    }
+}
+
+// 게시글을 삭제하는 함수
+function deletePost() {
+    // 게시글 삭제 로직을 추가할 수 있습니다.
+    console.log("게시글이 삭제되었습니다.");
+}
+
+//수정 페이지로 이동하는 함수
+function goToEditPage() {
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeModify.jsp"; // 수정 페이지 URL로 변경
+}
+</script>
 </head>
 
 
@@ -118,11 +144,11 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
     // 여기서 원하는 추가 동작을 수행할 수 있습니다.
 });
 </script>
-<div class = "freeContainer">
 <jsp:include page="/header.jsp"/>
 <br>
-<div id = "freeCategory">
-<h2>&nbsp;자유게시판</h2>
+<div class = "pageContainer">
+<div class = "freeContainer">
+		<h2>&nbsp;자유게시판</h2>
 </div>
 <div class="wrap">
 	<div>
@@ -149,14 +175,15 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 	</div>
 </div>
 
-
+<br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn">목록</button>
-	<button type = "submit" class = "yellowBtn">수정</button>
-	<button type = "submit" class = "yellowBtn">삭제</button>
+	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
+	<button type = "submit" class = "yellowBtn" onclick="goToEditPage()">수정</button>
+	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 </div>
-
-<jsp:include page="/boardComment.jsp"/>
+<br>
 </div>
+<jsp:include page="/freeBoard/boardComment.jsp"></jsp:include>
+<div class="footer"></div>
 </body>
 </html>
