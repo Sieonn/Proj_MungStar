@@ -29,8 +29,7 @@
       }
 
       .header {
-        margin: 0 auto;
-        width: 976.98px;
+        margin: 0 16.6%;
         height: 10%;
         display: flex;
         align-items: center;
@@ -96,15 +95,15 @@
     <div class="head">
       <div class="header">
         <div class="logo">
-          <img src="image/logo.png" alt="Logo" width="90px" />
+          <img src="../image/logo.png" alt="Logo" width="90px" />
         </div>
         <div class="center-logo">
-          <img src="image/cen_logo.png" alt="Cen Logo" width="90px" />
+          <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
         </div>
         <div class="user-info">
           <a href="#">로그인</a>
           <a href="#">회원가입</a>
-          <img src="image/profile.png" alt="Profile" width="50px" />
+          <img src="../image/profile.png" alt="Profile" width="50px" />
         </div>
       </div>
       <div class="header-line"></div>
