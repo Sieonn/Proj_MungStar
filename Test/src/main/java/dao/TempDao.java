@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import dto.File;
 import dto.Temp;
 
 public interface TempDao {
@@ -14,4 +15,5 @@ public interface TempDao {
 	Temp selectTemp(Integer tempNum) throws Exception;
 	
 	void insertTemp(Temp temp) throws Exception;
+	void insertFile(File file) throws Exception;
 }

@@ -1,7 +1,5 @@
 package service;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,17 +90,19 @@ public class TempServiceImplement implements TempService {
 		uploadFile.setContenttype(multi.getContentType("file"));
 		tempDao.insertFile(uploadFile);
 		
+		java.io.File file=new java.io.File(uploadPath,multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));
+		
+		temp.setTempPhoto(uploadFile.getNum());
 		temp.setTempName(multi.getParameter("tempName"));
 		temp.setTempAddress(multi.getParameter("tempAddress"));
-		  // 문자열
-		String dateStr=multi.getParameter("protectDate");        
-		// 포맷터
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");         
+       
 		// 문자열 -> Date
-		temp.setProtectDate((Date) formatter.parse(dateStr));
+		temp.setProtectDate(multi.getParameter("protectDate"));
 		temp.setTempChar(multi.getParameter("tempChar"));
 		temp.setTempEtc(multi.getParameter("tempEtc"));
 		temp.setTempCgory(multi.getParameter("tempCgory"));
+		temp.setMemId("hong");
 		
 		tempDao.insertTemp(temp);
 	}

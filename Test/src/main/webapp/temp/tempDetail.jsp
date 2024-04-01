@@ -112,7 +112,7 @@
 
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<%@ include file="../main/headerLogin.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">
@@ -121,39 +121,25 @@
 			<div class="write_box">
 				<div class="dogname_box">${temp.tempName}</div>
 				<div><img src="<%=request.getContextPath()%>/image/place.png" style="">${temp.tempAddress}</div>
+				<div id="char_box">
 				<div class="contents">특징</div>
-				<div>▶ 회색빛이 살짝 도는 검정색 토이 푸들이에요.</div>
-				<div>▶ 목에 목걸이를 차고 있어요.</div>
-				<div>▶ 너무 기여워요</div>
+				</div>
 				<div class="contents">임시보호기간</div>
-				<div>2024.03.14 ~ 2024.03.20</div>
+				<div>${temp.tempWriteDate} ~ ${temp.protectDate}</div>
 				<div class="contents">기타사항</div>
-				<div>지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...! 지나가다 어미없이 혼자 떨고있길래 데리고왔는데요ㅜㅜ 
-				집에 이미 키우는 강아지도 있고 둘을 키울 형편이 안돼서 잠깐 
-				임시보호중인 아이입니다.. 너무귀엽고 사랑스러운 뽀삐의 보금자리가 
-				돼주실분...!</div>
+				<div>${temp.tempEtc}</div>
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="<%=request.getContextPath()%>/image/temp3.jpg">
-				<div class="state">데리고있어요</div>
+				<img class="dog_Img" src="../imageView?num=${temp.tempPhoto}">
+				
+				<c:choose>
+				<c:when test="${temp.tempCgory eq 'fingding'}">
+				<div class="state">주인이 필요해요</div>
+				</c:when>
+				<c:otherwise>
+				<div class="state">주인이 생겼어요</div>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -167,4 +153,27 @@
 <%@ include file="../temp/boardComment.jsp" %>
 
 </body>
+
+<script>
+const charBox = document.getElementById('char_box');
+
+var charString='${temp.tempChar}';
+console.log(charString);
+var chars=charString.split('@');
+console.log(chars[0]);
+
+
+for (var i = 0; i < chars.length-1; i++) {
+	const newItem = document.createElement('div'); // 새로운 div 요소 생성
+	newItem.textContent = '▶ '+ chars[i]; // 버튼 텍스트 설정
+	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
+}
+
+/* chars.forEach(function(char){
+	const newItem = document.createElement('div'); // 새로운 div 요소 생성
+	newItem.textContent = '▶ '+ char; // 버튼 텍스트 설정
+	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
+}) */
+
+</script>
 </html>

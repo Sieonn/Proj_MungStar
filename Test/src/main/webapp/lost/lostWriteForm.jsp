@@ -191,7 +191,7 @@ body,
 </script>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<%@ include file="../main/headerLogin.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">

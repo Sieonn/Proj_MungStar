@@ -1,16 +1,14 @@
 package dto;
 
-import java.sql.Date;
-
 public class Temp {
 	private Integer tempNum;
 	private String tempName;
 	private String tempAddress;
-	private Date tempWriteDate;
-	private Date protectDate;
+	private String tempWriteDate;
+	private String protectDate;
 	private String tempChar;
 	private String tempEtc;
-	private String tempPhoto;
+	private Integer tempPhoto;
 	private String tempCgory;
 	private String memId;
 	
@@ -18,8 +16,8 @@ public class Temp {
 		super();
 	}
 	
-	public Temp(Integer tempNum, String tempName, String tempAddress, Date tempWriteDate, Date protectDate,
-			String tempChar, String tempEtc, String tempPhoto, String tempCgory, String memId) {
+	public Temp(Integer tempNum, String tempName, String tempAddress, String tempWriteDate, String protectDate,
+			String tempChar, String tempEtc, Integer tempPhoto, String tempCgory, String memId) {
 		super();
 		this.tempNum = tempNum;
 		this.tempName = tempName;
@@ -51,16 +49,16 @@ public class Temp {
 	public void setTempAddress(String tempAddress) {
 		this.tempAddress = tempAddress;
 	}
-	public Date getTempWriteDate() {
+	public String getTempWriteDate() {
 		return tempWriteDate;
 	}
-	public void setTempWriteDate(Date tempWriteDate) {
+	public void setTempWriteDate(String tempWriteDate) {
 		this.tempWriteDate = tempWriteDate;
 	}
-	public Date getProtectDate() {
+	public String getProtectDate() {
 		return protectDate;
 	}
-	public void setProtectDate(Date protectDate) {
+	public void setProtectDate(String protectDate) {
 		this.protectDate = protectDate;
 	}
 	public String getTempChar() {
@@ -75,10 +73,10 @@ public class Temp {
 	public void setTempEtc(String tempEtc) {
 		this.tempEtc = tempEtc;
 	}
-	public String getTempPhoto() {
+	public Integer getTempPhoto() {
 		return tempPhoto;
 	}
-	public void setTempPhoto(String tempPhoto) {
+	public void setTempPhoto(Integer tempPhoto) {
 		this.tempPhoto = tempPhoto;
 	}
 	public String getTempCgory() {

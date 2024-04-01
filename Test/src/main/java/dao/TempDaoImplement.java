@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.File;
 import dto.Temp;
 import util.MybatisSqlSessionFactory;
 
@@ -42,7 +43,6 @@ public class TempDaoImplement implements TempDao{
 		param.put("row", row);
 		param.put("tempCgory",tempCgory);
 		param.put("searchText", searchText);
-		System.out.println(param.get("tempCgory"));
 		return sqlSession.selectList("mapper.temp.selectTempListWithCgoryAndSearch",param);
 	}
 	@Override
@@ -51,12 +51,16 @@ public class TempDaoImplement implements TempDao{
 		
 		param.put("tempCgory",tempCgory);
 		param.put("searchText", searchText);
-		System.out.println(param.get("tempCgory"));
 		return sqlSession.selectOne("mapper.temp.selectTempCountWithCgoryAndSearch", param);
 	}
 	@Override
 	public void insertTemp(Temp temp) throws Exception {
 		sqlSession.insert("mapper.temp.insertTemp",temp);
+		sqlSession.commit();
+	}
+	@Override
+	public void insertFile(File file) throws Exception {
+		sqlSession.insert("mapper.file.insertFile",file);
 		sqlSession.commit();
 	}
 

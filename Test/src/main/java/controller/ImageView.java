@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
+import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,31 +11,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Temp;
-import service.TempService;
-import service.TempServiceImplement;
-
-@WebServlet("/temp/tempBoard")
-public class TempBoard extends HttpServlet {
+@WebServlet("/imageView")
+public class ImageView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public TempBoard() {
+       
+    public ImageView() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		try {
-			TempService tempService=new TempServiceImplement();
-			tempService.tempListByPage(request);
-			request.getRequestDispatcher("tempBoard.jsp").forward(request, response);                                               
-		} catch(Exception e) {
-			e.printStackTrace();
+		String num=request.getParameter("num");
+		System.out.println(num);
+		String path=request.getServletContext().getRealPath("upload");
+		FileInputStream fis=new FileInputStream(new File(path,num+""));
+		OutputStream out=response.getOutputStream();
+		byte[] buff=new byte[4096];
+		int len=0;
+		while((len=fis.read(buff))>0) {
+			out.write(buff,0,len);
 		}
+		fis.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

@@ -22,7 +22,6 @@ public class TempDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		
-		System.out.println(request.getParameter("tempNum"));
 		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
 		System.out.println(tempNum);
 		try {

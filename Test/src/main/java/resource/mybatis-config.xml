@@ -19,5 +19,6 @@
       <mapper  resource="mapper/member.xml"/>
       <mapper  resource="mapper/temp.xml"/>
       <mapper  resource="mapper/lost.xml"/>
+      <mapper  resource="mapper/file.xml"/>
    </mappers>
 </configuration>

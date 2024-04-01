@@ -173,7 +173,7 @@ $(function(){
 </script>
 </head>
 <body> 
-<%@ include file="../main/header.jsp" %>
+<%@ include file="../main/headerLogin.jsp" %>
 <div class="temp_container">
 	<div class="text">미아보호소</div>
 	<div class="right_container" style="float: right;">

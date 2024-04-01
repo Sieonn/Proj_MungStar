@@ -174,12 +174,13 @@ body,
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
-		$('#btn').click(function(){
+		$('#tempWrite').submit(function(){
 			var chars='';
 			$('input[class=charInput]').map(function(){
-				chars +='@'+$(this).val();
+				chars +=$(this).val()+'@';
 			});
-			console.log($('#dogName').val());
+			$("#tempChar").val(chars)
+			/* console.log($('#dogName').val());
 			console.log($('#address').val());
 			console.log(chars);
 			console.log($('#protectDate').val());
@@ -195,25 +196,31 @@ body,
 				success:(function(result){
 					
 				})
-			})
+			}) */
 		})
 	})
 </script>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<%@ include file="../main/headerLogin.jsp" %>
 <div class="text">임시보호소</div>
-
+<form action="tempWrite" enctype="multipart/form-data" method="post" id="tempWrite">
+<input type="hidden" name="tempChar" id="tempChar"/>
 <div class="content_container">
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
-				
-				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName">
+				<div class="cgory_container">
+					<select class="category" id="category" name="tempCgory" size="1">
+						<option value="finding">주인을 찾고있어요</option>
+						<option value="finded">주인을 찾았어요</option>
+					</select>
+    			</div>
+				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName" name="tempName">
 				
 				<div>
 				<img src="<%=request.getContextPath()%>/image/place.png">
-				<input type="text" placeholder="현재 보호중인 장소" id="address" class="address">
+				<input type="text" placeholder="현재 보호중인 장소" id="address" class="address" name="tempAddress">
 				</div>
 				
 				<div class="contents char">특징</div>
@@ -224,15 +231,15 @@ body,
 					</div></div>
 				
 				<div class="contents">임시보호기간</div>
-    			<input class="dateInput" type="date" id="protectDate" name="dateInput">
+    			<input class="dateInput" type="date" id="protectDate" name="protectDate">
     			
 				<div class="contents">기타사항</div>
-				<textarea id="etc" class="etc" placeholder="기타사항 작성란입니다"></textarea>
+				<textarea id="etc" class="etc" placeholder="기타사항 작성란입니다" name="tempEtc"></textarea>
 				
 			</div>
 			<div class="img_box">
 				<label for="fileInput" class="fileLable">+</label>
-				<input type="file" id="fileInput" class="fileInput">
+				<input type="file" id="fileInput" class="fileInput" name="file">
 			</div>
 		</div>
 	</div>
@@ -243,6 +250,7 @@ body,
       	margin-bottom: 150px;">
       	<button class="boardBtn Btn" id="btn">등록</button>
     </div>
+</form>
 </body>
 <script>
 const charBox = document.getElementById('char_box');
@@ -289,14 +297,15 @@ function addNewItem() {
     itemText.placeholder = '강아지 특징을 써주세요';
     itemText.onkeypress = function(e) {
    	 	if (event.key === 'Enter') {
-   			if(this.parentNode == charBox.lastChild) {
-   				addNewItem();
-   		 	}
+   		 console.log(this.parentNode)
+   		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+   		 if(this.parentNode == charBox.lastChild) {
+   			 addNewItem();
+   		 }
   		}
 	}
     newItem.appendChild(itemText); // input 요소를 항목에 추가
   
-
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
     itemText.focus()
 }
