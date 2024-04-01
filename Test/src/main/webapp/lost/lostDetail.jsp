@@ -13,13 +13,14 @@
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
         }
 	.text {
-		margin: 50px 16.6% 50px 16.6%;
-    	padding-left: 20px; padding-right: 20px;
+		margin: 50px auto 50px auto;
+      	width: 1280px;
         font-size: 34px;
         font-family: "JalnanGothic";
       }
       .content_container{
-      	margin: 0 16.6% 0 16.6%;
+      	margin: 0 auto;
+      	width: 1280px;
       	background-color: #f5f5f5;
 		height: 620px;
       	display: flex;
@@ -111,7 +112,7 @@
 </style>
 </head>
 <body>
-<jsp:include page='<c:url value="/main/header.jsp"/>'/>
+<%@ include file="../main/header.jsp" %>
 <div class="text">미아보호소</div>
 
 <div class="content_container">
@@ -162,7 +163,7 @@
 	<button type="submit" class="boardBtn Btn">목록</button>
 	<button type="submit" class="modifyBtn Btn">수정</button>
 </div>
-<jsp:include page='<c:url value="/lost/boardComment.jsp"/>'/>
+<%@ include file="../temp/boardComment.jsp" %>
 
 </body>
 </html>

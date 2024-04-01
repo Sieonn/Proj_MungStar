@@ -31,7 +31,6 @@
     	margin: 40px auto;
         width: 1280px;
     	height: 100px;
-    	padding-left: 20px; padding-right: 20px;
     }
     .category{
     	float: right; margin-top: 50px;
@@ -77,7 +76,7 @@
     }
     .album_container{
     	margin: 50px auto;
-        width: 1040px;
+        width: 1280px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;

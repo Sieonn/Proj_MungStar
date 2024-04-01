@@ -7,13 +7,12 @@
     <title>댓글</title>
  <style>
   	.cheader{
-      	margin: 20px 16.6% 0 16.6%;
-    	padding-left: 20px; padding-right: 20px;
+      	margin: 20px auto 0 auto;
         font-size: 18px;
         font-family: "JalnanGothic";  	
         }
   	.comment_container{
-      	margin: 0 16.6% 160px 16.6%;
+      	margin: 0 auto 160px auto;
   		padding-top: 30px; padding-bottom:30px;
       	background-color: #f5f5f5;
       	border-radius: 20px;
