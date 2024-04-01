@@ -125,7 +125,7 @@
 </head>
 <body>
 <<<<<<< HEAD
-<jsp:include page="../main/header.jsp"/>
+<jsp:include page="../main/other_header.jsp"/>
 =======
 <jsp:include page='<c:url value="/main/header.jsp"/>'/>
 >>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
