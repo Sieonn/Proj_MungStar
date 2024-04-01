@@ -5,104 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="text/javascript">
-//이전에 작성한 내용을 가져와서 textarea에 설정하는 함수
-function restorePreviousContent() {
-    // 이전에 작성한 내용을 가져오는 로직 (예: 저장된 내용을 가져옴)
-    var previousContent = "이전에 작성한 내용을 가져옵니다.";
 
-    // textarea 요소를 가져옴
-    var textarea = document.getElementById("myTextarea");
-
-    // textarea의 value 속성에 이전에 작성한 내용을 설정
-    textarea.value = previousContent;
-}
-
-// 저장할 태그들을 보관할 배열
-var tags = [];
-
-// 태그 입력란의 값이 변경될 때마다 호출되는 함수
-function handleTagInput() {
-    var tagInput = document.getElementById("tagInput");
-    // 입력된 값을 쉼표로 분리하여 배열에 저장
-    tags = tagInput.value.split(",").map(function(tag) {
-        return tag.trim(); // 공백 제거
-    });
-    console.log("현재 태그:", tags);
-}
-
-// 페이지 로드 시 호출되는 함수
-window.onload = function() {
-    // 이전에 작성한 내용을 textarea에 설정
-    restorePreviousContent();
-
-    // 태그 입력란에 이벤트 리스너 추가
-    document.getElementById("tagInput").addEventListener("input", handleTagInput);
-};
-
-// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
-function saveAndNavigate() {
-    // 이전에 작성한 내용을 가져오는 함수 호출
-    restorePreviousContent();
-
-    // 게시글을 저장하는 함수 호출
-    savePost();
-
-    // 저장된 게시글을 확인하는 페이지로 이동
-    window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp"; // 저장된 게시글 확인 페이지의 URL로 교체하세요.
-}
-
-// 게시글을 저장하는 함수 (예: 서버에 전송)
-function savePost() {
-    // 게시글 내용과 태그를 전송하는 로직을 추가할 수 있습니다.
-    var postContent = document.getElementById("myTextarea").value;
-    console.log("게시글 내용:", postContent);
-    console.log("태그:", tags);
-}
-
-</script>
-<script type="text/javascript">
-// 삭제 여부를 묻는 팝업 창을 띄우는 함수
-function confirmDelete() {
-    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
-    var result = confirm("정말로 삭제하시겠습니까?");
-    // 사용자가 확인을 눌렀을 경우
-    if (result) {
-        // 삭제 동작을 수행하는 함수를 호출합니다.
-        deletePost();
-    } else {
-        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
-        console.log("삭제 취소");
-    }
-}
-
-// 게시글을 삭제하는 함수
-function deletePost() {
-    // 게시글 삭제 로직을 추가할 수 있습니다.
-    console.log("게시글이 삭제되었습니다.");
-}
-
-//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
-function moklock() {
-    window.location.href = "http://localhost:8080/Test/freeBoard/freeBoard.jsp"; 
-    // 이전 페이지로
-    // onclick="window.history.back()" 변경예정
-}
-function savePost() {
-    // 저장~ saveAndNavigate()로 변경예정
-	window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp";
-}
-
-</script>
 
 <style type="text/css">
-      body,
-      html {
+      body,html {
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
-
 	.pageContainer {
 		width: 100%;
 	}
@@ -110,6 +20,10 @@ function savePost() {
 		width : 1280px;
 		margin: 0 auto; 
  	}
+ 	#freeCategory{
+ 		width :1000px;
+ 		margin : 0 auto;	
+  	}
   	.writeContainer {
   		width :1000px;
  		margin: 0 auto; /* 중앙 정렬을 위해 수정 */
@@ -320,12 +234,14 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
     // 여기서 원하는 추가 동작을 수행할 수 있습니다.
 });
 </script>
-<jsp:include page='<c:url value="/main/header.jsp"/>'/>
+<jsp:include page="../main/other_header.jsp"/>
 <br>
 <div class = "pageContainer">
-<div class = "freeContainer">
-		<h2>자유게시판</h2>
-		<br>
+	<div class="freeContainer">
+		<div id="freeCategory">
+			<h2 style="margin-bottom: 5px;">자유게시판</h2>
+			<br><br>
+		</div>
 	</div>
 	<div class="writeContainer">
 	<input class="writeTitle" type="text" placeholder=" 수정 이전 작성한 제목  " />    
@@ -339,39 +255,42 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
         		<option value="4">Very Large</option>
     		</select>
     		<div class="imgBtn"></div>
-    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, '');">B</button>
-    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, '');">I</button>
+    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, null);">B</button>
+    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, null);">I</button>
     		<button class="toolbar-button underline-button" onclick="document.execCommand('underline', false, '');">U</button>
     		<button class="toolbar-button strike-button" onclick="document.execCommand('strikeThrough', false, '');">S</button>
-    		<img src="<%=request.getContextPath()%>/image/quote.png" class = "imgBtn" onclick="quoteText()">
+    		<img src="../image/quote.png" class = "imgBtn" onclick="quoteText()">
     		<div class="imgBtn"></div>
-    		<input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFiles(this.files)">
-    		<img src="<%=request.getContextPath()%>/image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
-    		<img src="<%=request.getContextPath()%>/image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
+    		<img src="../image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
+    		<input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFiles(event)">
+   
+    		<img src="../image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
     		<div class="imgBtn"></div>
-    		<img src="<%=request.getContextPath()%>/image/왼쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/가운데정렬.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/오른쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
+    		<img src="../image/왼쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
+    		<img src="../image/가운데정렬.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
+    		<img src="../image/오른쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
   			<div class="imgBtn"></div>
   			<div class="colorPicker" style="display: flex; flex-direction: column;">
         		<div id="colorPicker" style="margin-bottom: -3px;">A</div>
-        		<input type="color" id="colorPicker" onchange="changeTextColor()">
+        		<input type="color" id="colorPicker" onchange="changeTextColor(event)">
     			</div>
     		<div class = "colorPicker" style="display: flex; flex-direction: column; margin-top: 4px;">
     			<div class = "bgcolorPicker" style=" ">A</div>
-    				<input type="color" id="bgColorPicker" onchange="changeBackgroundColor(this.value)">
+    				<input type="color" id="bgColorPicker" onchange="changeBackgroundColor(event)">
     		</div>
-        </div>
+        </div>        
         <div class="scroll-box">
         	<div class = "contextImg">
-           		<img src="<%=request.getContextPath()%>/image/dog1.jpg" alt="자유게시판 사진첨부 예시1">
-            	<br><img src="<%=request.getContextPath()%>/image/dog2.jpg" alt="자유게시판 사진첨부 예시2">
+           		<img src="../image/dog1.jpg" alt="자유게시판 사진첨부 예시1">
+            	<br><img src="../image/dog2.jpg" alt="자유게시판 사진첨부 예시2">
 			</div>
+			<div id="imagePreview"></div>
             	<p> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
 				<br>
 				<p > 후... (담배)<br>니들은 이런거 하지 마라... </p>
+			<div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
         </div>
-				<input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
+			<input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
     </div>
 </div>
 <br>
@@ -385,5 +304,144 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 </div>
 <jsp:include page="/freeBoard/boardComment.jsp"/>
 <div class="footer"></div>
+<script type="text/javascript">
+//이전에 작성한 내용을 가져와서 textarea에 설정하는 함수
+function restorePreviousContent() {
+    // 이전에 작성한 내용을 가져오는 로직 (예: 저장된 내용을 가져옴)
+    var previousContent = "이전에 작성한 내용을 가져옵니다.";
+
+    // textarea 요소를 가져옴
+    var div = document.getElementById('editor');
+
+    // textarea의 value 속성에 이전에 작성한 내용을 설정
+    textarea.value = previousContent;
+}
+	//페이지 로드 시 호출되는 함수
+	window.onload = function() {
+    // 이전에 작성한 내용을 div에 설정
+    restorePreviousContent();
+};
+//인용구 추가 함수
+function quoteText() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var selectedText = range.toString();
+    
+    // 인용구로 감싸기
+    var quoteElement = document.createElement('blockquote');
+    quoteElement.textContent = selectedText;
+
+    // 선택 영역 교체
+    range.deleteContents();
+    range.insertNode(quoteElement);
+}
+//이거는 하이퍼링크 스크립트에옹
+function addLink() {
+  var url = prompt("Enter the URL:");
+  document.execCommand('createLink', false, url);
+}
+// 글자 색상 변경 함수
+function changeTextColor(event) {
+    var color = event.target.value;
+    document.execCommand('foreColor', false, color);
+}
+function changeBackgroundColor(event) {
+    var color = event.target.value;
+    document.execCommand('hiliteColor', false, color);
+}
+// 파일 업로드 함수
+function handleFiles(event) {
+    var file = event.target.files[0];
+    var content = document.getElementById('imagePreview'); // 이미지가 추가될 위치를 변경
+
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var imgElement = document.createElement('img');
+            imgElement.src = event.target.result;
+            imgElement.style.width = '100%';
+            content.appendChild(imgElement); // 이미지 추가
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+
+// 저장할 태그들을 보관할 배열
+var tags = [];
+
+// 태그 입력란의 값이 변경될 때마다 호출되는 함수
+function handleTagInput() {
+    var tagInput = document.getElementById("tagInput");
+    // 입력된 값을 쉼표로 분리하여 배열에 저장
+    tags = tagInput.value.split(",").map(function(tag) {
+        return tag.trim(); // 공백 제거
+    });
+    console.log("현재 태그:", tags);
+}
+
+// 페이지 로드 시 호출되는 함수
+window.onload = function() {
+    // 이전에 작성한 내용을 textarea에 설정
+    restorePreviousContent();
+
+    // 태그 입력란에 이벤트 리스너 추가
+    document.getElementById("tagInput").addEventListener("input", handleTagInput);
+};
+
+// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
+function saveAndNavigate() {
+    // 이전에 작성한 내용을 가져오는 함수 호출
+    restorePreviousContent();
+
+    // 게시글을 저장하는 함수 호출
+    savePost();
+
+    // 저장된 게시글을 확인하는 페이지로 이동
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp"; // 저장된 게시글 확인 페이지의 URL로 교체하세요.
+}
+
+// 게시글을 저장하는 함수 (예: 서버에 전송)
+function savePost() {
+    // 게시글 내용과 태그를 전송하는 로직을 추가할 수 있습니다.
+    var postContent = document.getElementById("myTextarea").value;
+    console.log("게시글 내용:", postContent);
+    console.log("태그:", tags);
+}
+
+</script>
+<script type="text/javascript">
+// 삭제 여부를 묻는 팝업 창을 띄우는 함수
+function confirmDelete() {
+    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
+    var result = confirm("정말로 삭제하시겠습니까?");
+    // 사용자가 확인을 눌렀을 경우
+    if (result) {
+        // 삭제 동작을 수행하는 함수를 호출합니다.
+        deletePost();
+    } else {
+        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
+        console.log("삭제 취소");
+    }
+}
+
+// 게시글을 삭제하는 함수
+function deletePost() {
+    // 게시글 삭제 로직을 추가할 수 있습니다.
+    console.log("게시글이 삭제되었습니다.");
+}
+
+//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
+function moklock() {
+    window.location.href = "http://localhost:8080/Test/freeBoard/freeBoard.jsp"; 
+    // 이전 페이지로
+    // onclick="window.history.back()" 변경예정
+}
+function savePost() {
+    // 저장~ saveAndNavigate()로 변경예정
+	window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp";
+}
+
+</script>
 </body>
 </html>
