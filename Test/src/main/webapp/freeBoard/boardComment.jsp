@@ -124,17 +124,17 @@
 
    <div class="comment_box">
    <div class="writeComm">
-      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm" onclick="deleteComment(event)">
       <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
       <span class="commContent mycomm">aaaaaaaaaadfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfdsfaaaaaaaaaaaaaaaaaaaaa댓글내용이 들어가는 곳입니다.</span>
    </div>
    <div class="writeComm">
-      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img mycomm" onclick="deleteComment(event)">
       <span class="commNickname mycomm"><img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
       <span class="commContent mycomm" >댓글내용이 들어가는 곳입니다.</span>
    </div>
    <div class="memComm">
-      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img comm">
+      <img src='<c:url value="/image/delete.png"/>' style="width:18px; height:18px" class="delete_img comm" onclick="deleteComment(event)">
       <span class="commNickname comm">&nbsp;&nbsp;<img  src='<c:url value="/image/logo.png"/>' style="width:15px; height:15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
       <span class="memcommContent comm" >댓글내용이 들어가는 곳입니다.</span>
    </div>     
@@ -147,4 +147,38 @@
    </div>
 </div>
 </div>
+<script>
+
+// 이미지를 클릭하여 댓글 삭제 기능을 처리하는 함수
+function deleteComment(event) {
+    // 클릭한 이미지의 부모 요소를 찾아냅니다. 여기서는 댓글을 감싸는 div의 클래스가 'writeComm' 또는 'memComm' 입니다.
+    var comment = event.target.closest('.writeComm, .memComm');
+    // 부모 요소가 존재하는지 확인합니다.
+    if (comment) {
+        // 부모 요소를 삭제합니다.
+        comment.remove();
+    }
+}
+/*
+    // 이미지를 클릭하여 댓글 삭제 기능을 처리하는 함수
+    function deleteComment(event) {
+        // 클릭한 이미지의 부모 요소를 찾아냅니다. 여기서는 댓글을 감싸는 div의 클래스가 'comment_box' 입니다.
+        var commentBox = event.target.closest('.comment_box');
+        // 부모 요소가 존재하는지 확인합니다.
+        if (commentBox) {
+            // 댓글 작성자와 현재 로그인한 사용자를 비교합니다.
+            var author = commentBox.querySelector('.commNickname').innerText.trim();
+            var currentUser = "현재 로그인한 사용자"; // 현재 로그인한 사용자의 정보를 가져와야 합니다.
+            
+            // 댓글 작성자와 현재 로그인한 사용자가 일치하는 경우에만 삭제합니다.
+            if (author === currentUser) {
+                // 부모 요소를 삭제합니다.
+                commentBox.remove();
+            } else {
+                alert("본인이 작성한 댓글만 삭제할 수 있습니다.");
+            }
+        }
+    }
+ */
+</script>
 </html>

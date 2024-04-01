@@ -72,8 +72,35 @@
   		box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.1);
   	}
   	.BtnArray {
-  		 text-align: center;
+  		display: flex;
+    	justify-content: center;
+    	align-items: center; /* 수직 정렬을 위해 추가 */
+    	margin-left: 10px;
   	}
+  	.BtnArray button {
+    margin: 0 2px; /* 좌우 여백을 10px로 설정 */
+}
+  	
+  	.likeButton {
+  		width: 40px;
+  		height: 40px;
+  		background-image: url('../image/하트(회)수정.png');
+  		background-size: cover;
+  		background-color: transparent;
+  		border: none; /* 기본적인 버튼 스타일 제거 */
+  		cursor: pointer; /* 마우스를 올리면 커서 모양 변경 */
+	}
+	
+	.likeButton.active {
+  		background-image: url('../image/하트(핑).png'); /* 활성화된 상태의 이미지 */
+	}
+	
+	#likeCount {
+    display: inline-block; /* 인라인 요소로 변경하여 텍스트와 버튼이 한 줄에 정렬되도록 변경 */
+    vertical-align: middle; /* 수직 정렬을 위해 추가 */
+    margin-right: 10px; /* 좌우 여백 추가 */
+}
+	
   	.footer {
   		height: 200px;
   	}
@@ -138,6 +165,9 @@ function moklock() {
     // onclick="window.history.back()" 변경예정
 }
 
+function toggleLike(button) {
+	  button.classList.toggle('active');
+	}
 </script>
 </head>
 
@@ -169,7 +199,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		<span class= "title" >&nbsp;&nbsp;&nbsp;제목이 들어가는 곳입니다.</span>
 		<span class = "titleInfo">YYYY/MM/DD&nbsp;&nbsp;&nbsp;</span>
 		<br>
-		<span class = "titleInfo">댓글수 : n&nbsp;</span>
+		<span class = "titleInfo">좋아요 : n&nbsp;</span>
 		<span class = "titleInfo">조회수 : nnnn&nbsp;</span>
 		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이들어가는곳</div>
 	</div>
@@ -194,10 +224,38 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 	<button type = "submit" class = "yellowBtn" onclick="moklock()">목록</button>
 	<button type = "submit" class = "yellowBtn" onclick="goToEditPage()">수정</button>
 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+	<button class="likeButton" onclick="toggleLike(this)"></button>
+	<span id="likeCount">0</span>
 </div>
 <br>
 </div>
 <jsp:include page="/freeBoard/boardComment.jsp"></jsp:include>
 <div class="footer"></div>
+<script>
+// 클릭 수를 저장할 변수
+let clickCount = 0;
+
+// 버튼 요소 가져오기
+const likeButton = document.getElementById('likeButton');
+
+// 클릭 이벤트 리스너 추가
+likeButton.addEventListener('click', function() {
+  // 버튼이 활성화되어 있는지 확인
+  const isActive = likeButton.classList.contains('active');
+  
+  // 활성화되어 있으면 비활성화 상태로 변경하고 클릭 수 감소
+  if (isActive) {
+    likeButton.classList.remove('active');
+    clickCount--;
+  } else {
+    // 비활성화 상태면 활성화 상태로 변경하고 클릭 수 증가
+    likeButton.classList.add('active');
+    clickCount++;
+  }
+  
+  // 클릭 수 출력
+  console.log('클릭 수:', clickCount);
+});
+</script>
 </body>
 </html>

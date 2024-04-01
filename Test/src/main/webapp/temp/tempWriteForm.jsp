@@ -176,7 +176,7 @@ body,
 	$(function(){
 		$('#btn').click(function(){
 			var chars='';
-			$('input[id=char]').map(function(){
+			$('input[class=charInput]').map(function(){
 				chars +='@'+$(this).val();
 			});
 			console.log($('#dogName').val());
@@ -221,8 +221,7 @@ body,
 				<div class="char_box" id="char_box">
 					<div class="item" contenteditable="true">
 					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
-					</div>
-				</div>
+					</div></div>
 				
 				<div class="contents">임시보호기간</div>
     			<input class="dateInput" type="date" id="protectDate" name="dateInput">
@@ -248,13 +247,26 @@ body,
 <script>
 const charBox = document.getElementById('char_box');
 
-function handleKeyPress(event) {
+/* function handleKeyPress(event) {
     if (event.key === 'Enter') {
         addNewItem();
     }
-    if (event.key == 'Backspace'){
-    	remove
-    }
+} */
+
+
+$(".charInput").on('keypress', (function(e) {
+	console.log("charInput");
+	 if (event.key === 'Enter') {
+		 console.log(this.parentNode)
+		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+		 if(this.parentNode == charBox.lastChild) {
+			 addNewItem();
+		 }
+	 }
+}))
+
+function appendItem(target) {
+	
 }
 
 function addNewItem() {
@@ -274,11 +286,19 @@ function addNewItem() {
     const itemText = document.createElement('input'); // 새로운 input 요소 생성
     itemText.type = 'text'; // input 타입을 text로 지정
     itemText.className = 'charInput';
-    itemText.id='char'
     itemText.placeholder = '강아지 특징을 써주세요';
+    itemText.onkeypress = function(e) {
+   	 	if (event.key === 'Enter') {
+   			if(this.parentNode == charBox.lastChild) {
+   				addNewItem();
+   		 	}
+  		}
+	}
     newItem.appendChild(itemText); // input 요소를 항목에 추가
+  
 
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
+    itemText.focus()
 }
 
 function removeItem(item) {
@@ -286,7 +306,7 @@ function removeItem(item) {
 }
 
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
-charBox.addEventListener('keypress', handleKeyPress);
+//charBox.addEventListener('keypress', handleKeyPress);
 
 </script>
 </html>
