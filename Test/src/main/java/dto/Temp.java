@@ -7,7 +7,7 @@ public class Temp {
 	private String tempName;
 	private String tempAddress;
 	private Date tempWriteDate;
-	private Date pritectDate;
+	private Date protectDate;
 	private String tempChar;
 	private String tempEtc;
 	private String tempPhoto;
@@ -18,14 +18,14 @@ public class Temp {
 		super();
 	}
 	
-	public Temp(Integer tempNum, String tempName, String tempAddress, Date tempWriteDate, Date pritectDate,
+	public Temp(Integer tempNum, String tempName, String tempAddress, Date tempWriteDate, Date protectDate,
 			String tempChar, String tempEtc, String tempPhoto, String tempCgory, String memId) {
 		super();
 		this.tempNum = tempNum;
 		this.tempName = tempName;
 		this.tempAddress = tempAddress;
 		this.tempWriteDate = tempWriteDate;
-		this.pritectDate = pritectDate;
+		this.protectDate = protectDate;
 		this.tempChar = tempChar;
 		this.tempEtc = tempEtc;
 		this.tempPhoto = tempPhoto;
@@ -57,11 +57,11 @@ public class Temp {
 	public void setTempWriteDate(Date tempWriteDate) {
 		this.tempWriteDate = tempWriteDate;
 	}
-	public Date getPritectDate() {
-		return pritectDate;
+	public Date getProtectDate() {
+		return protectDate;
 	}
-	public void setPritectDate(Date pritectDate) {
-		this.pritectDate = pritectDate;
+	public void setProtectDate(Date protectDate) {
+		this.protectDate = protectDate;
 	}
 	public String getTempChar() {
 		return tempChar;

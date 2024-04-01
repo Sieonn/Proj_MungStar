@@ -54,5 +54,10 @@ public class TempDaoImplement implements TempDao{
 		System.out.println(param.get("tempCgory"));
 		return sqlSession.selectOne("mapper.temp.selectTempCountWithCgoryAndSearch", param);
 	}
+	@Override
+	public void insertTemp(Temp temp) throws Exception {
+		sqlSession.insert("mapper.temp.insertTemp",temp);
+		sqlSession.commit();
+	}
 
 }

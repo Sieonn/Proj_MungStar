@@ -13,4 +13,5 @@ public interface TempDao {
 	Integer selectTempCountWithCgoryAndSearch(String tempCgory, String searchText) throws Exception;
 	Temp selectTemp(Integer tempNum) throws Exception;
 	
+	void insertTemp(Temp temp) throws Exception;
 }

@@ -111,7 +111,7 @@
 </style>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<jsp:include page='<c:url value="/main/header.jsp"/>'/>
 <div class="text">미아보호소</div>
 
 <div class="content_container">
@@ -162,8 +162,7 @@
 	<button type="submit" class="boardBtn Btn">목록</button>
 	<button type="submit" class="modifyBtn Btn">수정</button>
 </div>
-
-<%@ include file="/boardComment.jsp" %>
+<jsp:include page='<c:url value="/lost/boardComment.jsp"/>'/>
 
 </body>
 </html>

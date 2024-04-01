@@ -79,7 +79,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<jsp:include page='<c:url value="/main/header.jsp"/>'/>
 
 	<br>
 	<div id = "manageCategory">

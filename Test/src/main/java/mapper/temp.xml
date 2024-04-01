@@ -63,10 +63,10 @@
    		]]>
 	</select>
 	
-	<insert id="insertMember" parameterType="dto.Member">
+	<insert id="insertTemp" parameterType="dto.Temp">
 		<![CDATA[
-			insert into member (id,name,password,email,address,detailaddress)
-			values (#{id},#{name},#{password},#{email},#{address},#{detailAddress})
+			insert into tempshelter (tempName,tempAddress,tempWriteDate,protectDate,tempChar,tempEtc,tempPhoto,tempCgory,memId)
+			values (#{tempName},#{tempAddress},curdate(), #{protectDate},#{tempChar},#{tempEtc},#{tempPhoto},#{tempCgory},#{memId))
 		]]>
 	</insert>
 </mapper>

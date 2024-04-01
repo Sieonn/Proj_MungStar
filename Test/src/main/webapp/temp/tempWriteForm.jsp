@@ -171,7 +171,24 @@ body,
 		font-weight: bold;
       }
 </style>
-
+<script>
+	$(function(){
+		$('#btn').click(function(){
+			
+			let temp={temp:[{dogName:$('#dogName'),age:40},{name:"손흥민",age:30},{name:"김민재",age:32}]}
+			console.log(dogName);
+			$.ajax({
+				url:'temp/tempWrite',
+				type:'post',
+				async:true,
+				data:{temp:JSON.stringify(temp)},
+				success:(function(result){
+					alert(result);
+				})
+			})
+		})
+	})
+</script>
 </head>
 <body>
 <%@ include file="../main/header.jsp" %>
@@ -182,7 +199,7 @@ body,
 		<div class="content_box2">
 			<div class="write_box">
 				
-				<input type="text" placeholder="강아지 이름" class="dogname_box">
+				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName">
 				
 				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
 				
@@ -212,7 +229,7 @@ body,
    	 	justify-content: center;
       	align-items: center;
       	margin-bottom: 150px;">
-      	<a href="" class="boardBtn Btn">등록</a>
+      	<a href="" class="boardBtn Btn" id="btn">등록</a>
     </div>
 </body>
 <script>
