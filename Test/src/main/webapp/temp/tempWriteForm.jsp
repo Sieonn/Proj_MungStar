@@ -171,19 +171,29 @@ body,
 		font-weight: bold;
       }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
 		$('#btn').click(function(){
+			var chars='';
+			$('input[id=char]').map(function(){
+				chars +='@'+$(this).val();
+			});
 			console.log($('#dogName').val());
-			let temp={temp:[{dogName:$('#dogName').value,age:40},{name:"손흥민",age:30},{name:"김민재",age:32}]}
+			console.log($('#address').val());
+			console.log(chars);
+			console.log($('#protectDate').val());
+			console.log($('#etc').val());
+			let temp={tempName:$('#dogName').val(), tempAddress:$('#address').val(), tempChar:chars, 
+					protectDate:$('#protectDate').val(), tempEtc:$('#etc').val()}
 			
 			$.ajax({
-				url:'temp/tempWrite',
+				url:'tempWrite',
 				type:'post',
 				async:true,
 				data:{temp:JSON.stringify(temp)},
 				success:(function(result){
-					alert(result);
+					
 				})
 			})
 		})
@@ -201,21 +211,24 @@ body,
 				
 				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName">
 				
-				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
+				<div>
+				<img src="<%=request.getContextPath()%>/image/place.png">
+				<input type="text" placeholder="현재 보호중인 장소" id="address" class="address">
+				</div>
 				
 				<div class="contents char">특징</div>
 				
 				<div class="char_box" id="char_box">
 					<div class="item" contenteditable="true">
-					▶ <input class="charInput" type="text" placeholder="강아지 특징을 써주세요">
+					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
 					</div>
 				</div>
 				
 				<div class="contents">임시보호기간</div>
-    			<input class="dateInput" type="date" id="dateInput" name="dateInput">
+    			<input class="dateInput" type="date" id="protectDate" name="dateInput">
     			
 				<div class="contents">기타사항</div>
-				<textarea class="etc" placeholder="기타사항 작성란입니다"></textarea>
+				<textarea id="etc" class="etc" placeholder="기타사항 작성란입니다"></textarea>
 				
 			</div>
 			<div class="img_box">
@@ -229,7 +242,7 @@ body,
    	 	justify-content: center;
       	align-items: center;
       	margin-bottom: 150px;">
-      	<a href="" class="boardBtn Btn" id="btn">등록</a>
+      	<button class="boardBtn Btn" id="btn">등록</button>
     </div>
 </body>
 <script>
@@ -249,7 +262,7 @@ function addNewItem() {
     
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-    deleteButton.textContent = '삭제'; // 버튼 텍스트 설정
+    deleteButton.textContent = '-'; // 버튼 텍스트 설정
     deleteButton.onclick = function() {
         removeItem(newItem);
     };
@@ -261,6 +274,7 @@ function addNewItem() {
     const itemText = document.createElement('input'); // 새로운 input 요소 생성
     itemText.type = 'text'; // input 타입을 text로 지정
     itemText.className = 'charInput';
+    itemText.id='char'
     itemText.placeholder = '강아지 특징을 써주세요';
     newItem.appendChild(itemText); // input 요소를 항목에 추가
 
@@ -274,6 +288,5 @@ function removeItem(item) {
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
 charBox.addEventListener('keypress', handleKeyPress);
 
-$('#')
 </script>
 </html>

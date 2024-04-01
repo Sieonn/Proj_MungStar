@@ -28,7 +28,7 @@ public class TempWrite extends HttpServlet {
 		try {
 			TempService tempService=new TempServiceImplement();
 			tempService.tempWrite(request);
-			response.sendRedirect("/temp/tempBoard");
+			response.sendRedirect("tempBoard");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
