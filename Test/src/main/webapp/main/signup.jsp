@@ -300,6 +300,61 @@
         margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
     </style>
+    <script>
+	$(function() {
+		$('#doubleId').click(function(e) {
+			e.preventDefault();
+			$.ajax({
+				url:'memberDoubleId',
+				type:'post',
+				async:true,
+				dataType:'text',
+				data:{id:$('#id').val()},
+				success:function(result) {
+					if(result=='true') {
+						alert("아이디가 중복됩니다");
+					} else {
+						alert("사용 가능한 아이디입니다");
+					}
+				},
+				error:function(result) {
+					
+				}
+			})
+			
+		})
+		$("submit").click(function () {
+			var member = {}
+			member.id = $("#id").val();
+			member.password= $("#password").val();
+			member.pwd = $("#passwordcheck").val();
+			member.name = $("#nickname").val();
+			member.email= $("#email").val();
+			member.address= $("#address").val();
+			member.addressD= $("#addressD").val();
+			console.log(member);
+			
+			$.ajax({
+				url : "join",
+				type : "post",
+				async : true,
+				data : {
+					member : JSON.stringify(member)
+				},
+				success : function(result) {
+					if(result=='true'){
+					location.href  = "main";
+					}else {
+						alert(result)
+					}
+				},
+				error : function(err) {
+					alert("회원가입에 실패했습니다.")
+				}
+			})
+		})
+	})
+</script>
   </head>
 
   <body>
@@ -318,8 +373,8 @@
         <div class="field">
           <div class="inner-title">아이디</div>
           <div class="inner-input">
-            <input type="text" name="id" placeholder="아이디 입력(4~25자)" />
-            <input type="button" onclick="" value="중복검사" />
+            <input type="text" name="id"  id="id" placeholder="아이디 입력(4~25자)" />
+            <input type="button"  id="doubleId" onclick="" value="중복검사" />
           </div>
         </div>
 
@@ -328,7 +383,7 @@
           <div class="inner-title">비밀번호</div>
           <div class="inner-input2">
             <div style="width: 230px">
-              <input id="pwd" type="password" name="pwd" />
+              <input id="password" type="password"  name="password" />
             </div>
             <div id="warn" style="font-size: 12px; margin-left: 10px">
               * 비밀번호 8~20자 영문 소문자, 특수기호만 사용
@@ -339,7 +394,7 @@
         <div class="field">
           <div class="inner-title">비밀번호 확인</div>
           <div style="width: 230px">
-            <input id="pwdcheck" type="password" type="text" name="pwdCheck" />
+            <input id="passwordcheck" type="password" name="passwordcheck" />
           </div>
         </div>
 
@@ -347,8 +402,8 @@
         <div class="field">
           <div class="inner-title">닉네임</div>
           <div class="inner-input">
-            <input type="text" name="nickname"  placeholder="2~11자 입력"/>
-            <input type="button" onclick="" value="중복 검사" />
+            <input type="text" name="nickname" id="name"  placeholder="2~11자 입력"/>
+            <button id="doubleId">중복검사</button>
           </div>
         </div>
 
@@ -357,7 +412,7 @@
           <div class="inner-title">이메일</div>
           <div class="inner-input2" style="flex: 1">
             <div class="inner-input">
-              <input type="text" name="emailID" />
+              <input type="text" name="email" id="email" />
               <span>&nbsp; @ </span>
               <input class="box" id="domain-txt" type="text" />
               <select class="box" id="domain-list">
@@ -407,9 +462,9 @@
         <div class="field tel-number">
           <div class="inner-title">휴대전화</div>
           <div class="inner-input" style="flex: 1">
-            <input type="tel" />
-            <input type="tel" />
-            <input type="tel" />
+            <input type="tel" id="tel" name="tel" />
+  <input type="tel" id="tel" name="tel" />
+  <input type="tel" id="tel" name="tel" />
           </div>
         </div>
         <!-- 주소 -->

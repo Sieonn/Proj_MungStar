@@ -122,18 +122,22 @@
     <div class="content">
       <div class="login-wrapper">
         <h2>LOGIN</h2>
-        <form method="post" action="#" id="login-form">
+        <form method="post" action="login" id="login-form">
           <input
             type="text"
-            name="userName"
+            name="id"
             placeholder="ID"
+            value='<%=id%>'
             autofocus
             required
           />
-          <input type="password" name="userPassword" placeholder="Password" />
+          <input type="password" name="password" placeholder="Password" value="<%=password%>" />
 
           <label for="remember-check">
-            <input type="checkbox" id="remember-check" style="margin-right:10px;" />아이디 저장하기
+          <%if(autologin) { %>
+            <input type="checkbox"  value="true" id="remember-check" style="margin-right:10px;" />아이디 저장하기
+           <%} else { %>
+           	<input type="checkbox" value="true" id="remember-check" style="margin-right:10px;" />아이디 저장하기
           </label>
 
           <input type="submit" value="Login" required />

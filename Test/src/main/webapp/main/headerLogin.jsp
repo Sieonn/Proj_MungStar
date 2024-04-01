@@ -102,7 +102,7 @@ img {
   <body>
     <div class="header">
       <div class="logo">
-        <img src="../image/logo.png" alt="Logo" width="90px" />
+          <a href="../main/main.jsp"> <img src="../image/logo.png" alt="Logo" width="90px" /></a>
       </div>
       <div class="center-logo">
         <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
@@ -112,8 +112,8 @@ img {
           <img src="../image/프로필01.jpg" alt="Profile" width="50px" height="50px" />
         </div>
         <div class="user-info">
-          <a href="#">마이페이지</a>
-          <a href="#">로그아웃</a>
+          <a href="../main/myPage.jsp">마이페이지</a>
+          <a href="../main/login.jsp">로그아웃</a>
         </div>
       </div>
     </div>

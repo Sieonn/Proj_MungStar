@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,9 +26,9 @@
       body,
       html {
         margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+        padding:0;
+        font-family: "Pretendard-Regular", sans-serif;
+      } 
 
       .header {
         margin: 0 auto;
@@ -51,26 +50,22 @@
         align-items: center; /* 추가: 로고를 수직으로 중앙 정렬하기 위해 */
       }
 
-      .nav_menu {
-        display: flex;
-        font-size: 20px;
-       
-        gap: 30px;
-        margin-right: 400px;
+      /* 중앙 로고 스타일 */
+      .center-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
-      img {
-        vertical-align: middle;
-        border-style: none;
-      }
-      .nav_menu a {
-        margin-top: 40px;
-      }
-
+img {
+  vertical-align: middle;
+  border-style: none;
+}
       .user-info {
         display: flex;
         justify-content: center;
         margin-left: 10px;
         font-size: 12px;
+
       }
 
       .user-info a {
@@ -97,7 +92,7 @@
       }
       .userPro {
         display: grid;
-        margin: 2px 0 1px 0;
+        margin: 2px 0  1px 0;
       }
       a:visited {
         color: black;
@@ -107,22 +102,20 @@
   <body>
     <div class="header">
       <div class="logo">
-      <a href="../main/main.jsp"><img src="../image/logo.png" alt="Logo" width="90px" /></a>
+      <a  href="../main/main.jsp">
+        <img src="../image/logo.png" alt="Logo" width="90px" />
+        </a>
       </div>
-      <div class="nav_menu">
-        <a href="../walking/walkingBoard.jsp">산책로</a>
-        <a href="../hospital/hospitalBoard.jsp">24시 동물병원</a>
-        <a href="../freeBoard/freeBoard.jsp">자유게시판</a>
-        <a href="../lost/lostBoard.jsp">미멍보호소</a>
-        <a href="../temp/tempBoard.jsp">임시 보호해요</a>
+      <div class="center-logo">
+        <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
       <div class="userPro">
         <div class="user-info">
-          <img src="../image/프로필01.jpg" alt="Profile" width="50px" />
+          <img src="../image/blue.png" alt="Profile" width="50px" height="50px" />
         </div>
         <div class="user-info">
-          <a href="../main/myPage.jsp">마이페이지</a>
-          <a href="../main/login.jsp">로그아웃</a>
+          <a href="../main/login.jsp">로그인</a>
+          <a href="../main/signup.jsp">회원가입</a>
         </div>
       </div>
     </div>

@@ -107,22 +107,22 @@
   <body>
     <div class="header">
       <div class="logo">
-        <img src="../image/logo.png" alt="Logo" width="90px" />
+      <a href="../main/main.jsp"> <img src="../image/logo.png" alt="Logo" width="90px" /></a> 
       </div>
       <div class="nav_menu">
-        <a href="#">산책로</a>
-        <a href="#">24시 동물병원</a>
-        <a href="#">동반 시설</a>
-        <a href="#">미멍보호소</a>
-        <a href="#">임시 보호해요</a>
+        <a href="../walking/walkingBoard.jsp">산책로</a>
+        <a href="../hospital/hospitalBoard.jsp">24시 동물병원</a>
+        <a href="../freeBoard/freeBoard.jsp">자유게시판</a>
+        <a href="../lost/lostBoard.jsp">미멍보호소</a>
+        <a href="../temp/tempBoard.jsp">임시 보호해요</a>
       </div>
       <div class="userPro">
         <div class="user-info">
-          <img src="../image/프로필01.jpg" alt="Profile" width="50px" />
+          <img src="../image/blue.png" alt="Profile" width="50px" />
         </div>
         <div class="user-info">
-          <a href="#">로그인</a>
-          <a href="#">회원가입</a>
+          <a href="../main/login.jsp">로그인</a>
+          <a href="../main/signup.jsp">회원가입</a>
         </div>
       </div>
     </div>
