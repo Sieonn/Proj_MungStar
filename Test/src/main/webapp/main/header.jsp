@@ -109,11 +109,11 @@ img {
       </div>
       <div class="userPro">
         <div class="user-info">
-          <img src="../image/프로필01.jpg" alt="Profile" width="50px" height="50px" />
+          <img src="../image/blue.png" alt="Profile" width="50px" height="50px" />
         </div>
         <div class="user-info">
-          <a href="#">마이페이지</a>
-          <a href="#">로그아웃</a>
+          <a href="#">로그인</a>
+          <a href="#">회원가입</a>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +26,14 @@
       body,
       html {
         margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+        padding:0;
+        font-family: "Pretendard-Regular", sans-serif;
+      } 
 
       .header {
         margin: 0 auto;
-        height: 10%; width:1280px;
+        width: 1280px;
+        height: 95px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -44,49 +45,41 @@
         height: 100%;
         max-height: 100%;
         width: auto;
-        margin-top: 20px;
+        justify-content: center;
+        display: flex; /* 추가: 로고를 수직으로 중앙 정렬하기 위해 */
+        align-items: center; /* 추가: 로고를 수직으로 중앙 정렬하기 위해 */
       }
 
-      .nav_menu {
-        display: flex;
-        font-size: 17px;
-        margin-top: 10px;
-        margin-left: 10px; /* 로고와 오른쪽 여백을 조절하기 위해 남은 공간을 모두 차지하도록 설정 */
+      /* 중앙 로고 스타일 */
+      .center-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
-
-      .nav_menu a {
-        margin-right: 35px; /* 각 메뉴 간의 오른쪽 여백 설정 */
-        margin-top: 50px;
-      }
-
+img {
+  vertical-align: middle;
+  border-style: none;
+}
       .user-info {
         display: flex;
-        align-items: center;
+        justify-content: center;
         margin-left: 10px;
         font-size: 12px;
-        margin-top: 10px;
+
       }
 
       .user-info a {
-        margin-right: 10px;
-        margin-top: 50px;
+        margin: 5px 5px 0 5px;
       }
 
       .user-info img {
         height: 100%;
         border-radius: 100%;
-        margin-top: 10px;
-      }
-
-      .welcome-message {
-        font-size: 12px;
-        margin-right: 20px;
       }
 
       /* 하단 선 스타일 */
       .header-line {
         border-top: 2px solid rgb(221, 224, 224);
-        margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
       }
 
       a:link {
@@ -97,6 +90,13 @@
         color: black;
         font-weight: 700;
       }
+      .userPro {
+        display: grid;
+        margin: 2px 0  1px 0;
+      }
+      a:visited {
+        color: black;
+      }
     </style>
   </head>
   <body>
@@ -104,21 +104,19 @@
       <div class="logo">
         <img src="../image/logo.png" alt="Logo" width="90px" />
       </div>
-      <div class="nav_menu">
-        <a href="#">산책로</a>
-        <a href="#">24시 동물병원</a>
-        <a href="#">동반 시설</a>
-        <a href="#">미멍보호소</a>
-        <a href="#">임시 보호해요</a>
+      <div class="center-logo">
+        <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
       </div>
-      <div class="welcome-message">회원님 안녕하세요!</div>
-      <div class="user-info">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-        <img src="../image/프로필01.jpg" alt="Profile" width="50px" />
+      <div class="userPro">
+        <div class="user-info">
+          <img src="../image/프로필01.jpg" alt="Profile" width="50px" height="50px" />
+        </div>
+        <div class="user-info">
+          <a href="#">마이페이지</a>
+          <a href="#">로그아웃</a>
+        </div>
       </div>
     </div>
     <div class="header-line"></div>
   </body>
 </html>
-

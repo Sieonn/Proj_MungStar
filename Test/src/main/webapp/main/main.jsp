@@ -261,7 +261,7 @@
       <div class="menu_container">
         <div class="menu">산책로 추천</div>
         <div class="menu">24시 동물병원</div>
-        <div class="menu">애견 동반 시설</div>
+        <div class="menu">자유게시판</div>
         <div class="menu">미멍보호소</div>
         <div class="menu">임시보호</div>
       </div>
