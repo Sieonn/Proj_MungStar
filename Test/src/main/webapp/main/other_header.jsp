@@ -37,7 +37,6 @@
         align-items: center;
         justify-content: space-between;
         color: white;
-        padding: 0 20px;
         position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
       }
 

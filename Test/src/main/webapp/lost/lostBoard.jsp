@@ -29,7 +29,7 @@
       }
     .temp_container{
     	margin: 40px auto;
-        width: 976.98px;
+        width: 1280px;
     	height: 100px;
     	padding-left: 20px; padding-right: 20px;
     }
