@@ -22,11 +22,15 @@
         font-weight: 400;
         font-style: normal;
       }
-      * {
-        font-family: Pretendard-Regular;
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
       .container {
-        margin: 0 16.6%;
+          width:1280px;
+       margin:0 auto;
       }
       .mypage-container {
         display: flex;
@@ -183,6 +187,26 @@
         justify-content: center;
       }
       .actBtn:hover {
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px rgba(128, 128, 128, 0.133), 4px 4px 5px 0px #0001;
+      }
+      button{
+
+        border: 2px solid #c9c9c9;
+        border-radius: 5px;
+        font-family: "Lato", sans-serif;
+        font-weight: 700;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+            button:hover {
         box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
           7px 7px 20px 0px rgba(128, 128, 128, 0.133), 4px 4px 5px 0px #0001;
       }

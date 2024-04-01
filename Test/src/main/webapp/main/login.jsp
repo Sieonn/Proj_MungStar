@@ -12,10 +12,6 @@
         margin: 0;
         border: none;
       }
-      body {
-        font-size: 14px;
-        font-family: "Roboto", sans-serif;
-      }
       .login-wrapper {
         width: 400px;
         height: 350px;
@@ -89,60 +85,9 @@
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
-
-      .header {
-        margin: 0 16.6%;
-        height: 10%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
-        padding: 0 20px;
-        position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
-      }
-
-      .logo {
-        height: 100%;
-        max-height: 100%;
-        width: auto;
-        margin-top: 20px;
-      }
-
-      .user-info {
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-        font-size: 12px;
-        margin-top: 10px;
-      }
-
-      .user-info a {
-        margin-right: 10px;
-        margin-top: 50px;
-      }
-
-      .user-info img {
-        height: 100%;
-        border-radius: 100%;
-        margin-top: 10px;
-      }
-
-      /* 하단 선 스타일 */
-      .header-line {
-        border-top: 2px solid rgb(221, 224, 224);
-        margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
-      }
-
-      /* 중앙 로고 스타일 */
-      .center-logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 20px;
-      }
       .content {
-        margin: 0 16.6%;
+      width:1280px;
+             margin:0 auto;
       }
       .container {
         display: flex;
@@ -188,7 +133,7 @@
           <input type="password" name="userPassword" placeholder="Password" />
 
           <label for="remember-check">
-            <input type="checkbox" id="remember-check" />아이디 저장하기
+            <input type="checkbox" id="remember-check" style="margin-right:10px;" />아이디 저장하기
           </label>
 
           <input type="submit" value="Login" required />

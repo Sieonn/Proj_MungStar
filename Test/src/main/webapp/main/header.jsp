@@ -26,28 +26,40 @@
       body,
       html {
         margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+        padding:0;
+        font-family: "Pretendard-Regular", sans-serif;
+      } 
 
       .header {
         margin: 0 auto;
         width: 1280px;
-        height: 10%;
+        height: 95px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         color: white;
-        /*position: relative; *//* 로고 중앙 정렬을 위해 position 설정 */
+        position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
       }
 
       .logo {
         height: 100%;
         max-height: 100%;
         width: auto;
+        justify-content: center;
+        display: flex; /* 추가: 로고를 수직으로 중앙 정렬하기 위해 */
+        align-items: center; /* 추가: 로고를 수직으로 중앙 정렬하기 위해 */
       }
-	
 
+      /* 중앙 로고 스타일 */
+      .center-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+img {
+  vertical-align: middle;
+  border-style: none;
+}
       .user-info {
         display: flex;
         justify-content: center;
@@ -80,7 +92,7 @@
       }
       .userPro {
         display: grid;
-        margin: 2% 0  1% 0;
+        margin: 2px 0  1px 0;
       }
       a:visited {
         color: black;
@@ -92,9 +104,9 @@
       <div class="logo">
         <img src="../image/logo.png" alt="Logo" width="90px" />
       </div>
-        <div class="center-logo">
-          <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
-        </div>
+      <div class="center-logo">
+        <img src="../image/cen_logo.png" alt="Cen Logo" width="90px" />
+      </div>
       <div class="userPro">
         <div class="user-info">
           <img src="../image/프로필01.jpg" alt="Profile" width="50px" height="50px" />
@@ -108,4 +120,3 @@
     <div class="header-line"></div>
   </body>
 </html>
-

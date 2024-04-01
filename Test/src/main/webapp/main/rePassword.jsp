@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta charset="utf-8" />
@@ -12,13 +12,80 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous"/>
-    <title>비밀번호 재설정</title>
+    <title>멍뭉별 | 비밀번호 재설정</title>
     <style>
-        /* 스타일은 여기에 작성합니다. */
+          @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-weight: 400;
+        font-style: normal;
+      }
+body{
+margin:0;
+padding:0;
+        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+      }
+      .content {
+      width:1280px;
+      margin:0 auto;
+      }
+       .card {
+        margin: 5% auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+      }
+      
+      #btn-Yes {
+        background-color: #0155b7;
+        border: none;
+        margin-top: 10px;
+      }
+
+      .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .card-title {
+        margin-left: 30px;
+      }
+      .links {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      a {
+        color: #0155b7;
+        text-decoration: none;
+      }
+      .text2 {
+        color: #0155b7;
+      }
+      a:link {
+        color: rgb(117, 117, 117);
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        font-weight: 700;
+      }
     </style>
 </head>
-<body style="width:100%; height:100%; align:center">
+<body>
 <jsp:include page="../main/header.jsp"></jsp:include>
+<div class="content">
 <div class="card align-middle" style="width: 25rem">
     <div class="card-body">
         <form action="resetPw" class="form-signin" method="POST">
@@ -112,5 +179,6 @@
         <% session.invalidate(); %>;
     };
 </script>
+</div>
 </body>
 </html>

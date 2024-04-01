@@ -30,7 +30,9 @@
       }
 
       .content {
-        margin: 0 16.6%;
+       width:1280px;
+       margin:0 auto;
+       padding-bottom: 100px;
       }
       .container {
         display: flex;
@@ -99,6 +101,7 @@
       }
       .place {
         margin-top: 52px;
+        display: grid;
       }
       .text_h {
         font-size: 40px;
@@ -162,15 +165,17 @@
         background-color: #f0f0f0;
       }
       .headline-container {
-        margin-bottom: 10px;
+      display: grid;
+        margin-top: 40px;
+        
       }
 
       .more {
-        float: right;
-        margin: 10px 10px 0 0;
+		text-align: right;
       }
       .headline {
-        margin-top: 40px;
+        font-family: "JalnanGothic";
+                font-size:24px;
       }
 
       .archive {
@@ -276,7 +281,9 @@
         >
           따뜻한 봄이왔어요~🌸
         </div>
-
+        <span class="more">
+          <a href="#" style="font-size: 12px; margin-right: 60px;">더보기</a></span
+        >
       </div>
       <div class="loc">
         <div class="plac">
@@ -318,7 +325,7 @@
       </div>
       <div class="free">
         <div class="free_b">
-          <div class="headline-container" style="margin-top: 40px">
+          <div class="headline-container">
             <span class="headline"> 자유게시판 </span>
 
             <span class="more">
@@ -331,7 +338,6 @@
 
       <div
         class="headline-container"
-        style="margin-top: 40px; margin-button: 10px"
       >
         <span class="headline"> 임시보호해요 </span>
 
@@ -382,7 +388,7 @@
         </div>
       </div>
 
-      <div class="headline-container" style="margin-top: 40px">
+      <div class="headline-container" >
         <span class="headline"> 미멍보호소 </span>
         <span class="more">
           <a href="#" style="font-size: 12px">더보기</a></span
@@ -430,7 +436,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"></div>
+      <div class="footer" ></div>
     </div>
 
     <script>

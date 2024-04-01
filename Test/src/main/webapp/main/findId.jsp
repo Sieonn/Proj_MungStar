@@ -18,7 +18,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <title>아이디 찾기</title>
+    <title>멍뭉별 | 아이디 찾기</title>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -34,85 +34,28 @@
         font-weight: 400;
         font-style: normal;
       }
-
       body,
       html {
         margin: 0;
         padding: 0;
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
-      .header {
-        margin: 0 16.6%;
-        height: 10%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
-        padding: 0 20px;
-        position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
-      }
-      .wrapper {
-        /*헤더 고정*/
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 100;
-        background-color: #ffffff;
-      }
-
-      .logo {
         height: 100%;
-        max-height: 100%;
-        width: auto;
-        margin-top: 20px;
       }
 
-      .user-info {
+      .content {
         display: flex;
-        align-items: center;
-        margin-left: 10px;
-        font-size: 12px;
-        margin-top: 10px;
+        justify-content: center;
+        align-items: center;	
+        height: calc(100vh - 95px); /* 화면 전체 높이에 대한 100% */
       }
 
-      .user-info a {
-        margin-right: 10px;
-        margin-top: 50px;
-      }
 
-      .user-info img {
-        height: 100%;
-        border-radius: 100%;
-        margin-top: 10px;
-      }
-
-      /* 하단 선 스타일 */
-      .header-line {
-        border-top: 2px solid rgb(221, 224, 224);
-        margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
-      }
-
-      /* 중앙 로고 스타일 */
-      .center-logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 20px;
-      }
-
-      .card {
-        margin: 5% auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
-      }
 
       #btn-Yes {
         background-color: #0155b7;
         border: none;
         margin-top: 10px;
       }
-
       .form-signin .form-control {
         position: relative;
         height: auto;
@@ -124,6 +67,20 @@
       }
       .card-title {
         margin-left: 30px;
+      }
+
+      .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+      }
+      button,
+      input {
+        overflow: visible;
       }
       .links {
         text-align: center;
@@ -149,49 +106,53 @@
   </head>
 
   <body>
-   
-<jsp:include page="../main/header.jsp"></jsp:include>
-    <div class="card align-middle" style="width: 25rem">
-      <div class="card-title">
-        <h2 class="card-title" style="color: #0155b7"></h2>
-      </div>
+    <jsp:include page="../main/header.jsp"></jsp:include>
+    <div class="content">
+      <div class="card">
+        <div class="card-title">
+          <h2 class="card-title" style="color: #0155b7"></h2>
+        </div>
 
-      <div class="card-body">
-        <form action="findId" class="form-signin" method="POST">
-          <p class="text2" style="font-family: 'JalnanGothic'; font-size: 24px">
-            아이디 찾기
-          </p>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            class="form-control"
-            placeholder="이름"
-            required
-            autofocus
-          /><br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="form-control"
-            placeholder="이메일"
-            required
-          /><br />
-          <p class="check" id="check"></p>
-          <button
-            id="btn-Yes"
-            class="btn btn-lg btn-primary btn-block"
-            type="submit"
-            style="font-weight: 900"
-          >
-            아 이 디 찾 기
-          </button>
-        </form>
-      </div>
-      <div class="links">
-        <a href="memberPw">비밀번호 찾기</a> |
-        <a href="memberLogin">로그인</a> | <a href="memberRegist">회원가입</a>
+        <div class="card-body">
+          <form action="findId" class="form-signin" method="POST">
+            <p
+              class="text2"
+              style="font-family: 'JalnanGothic'; font-size: 24px"
+            >
+              아이디 찾기
+            </p>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              placeholder="이름"
+              required
+              autofocus
+            /><br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              placeholder="이메일"
+              required
+            /><br />
+            <p class="check" id="check"></p>
+            <button
+              id="btn-Yes"
+              class="btn btn-lg btn-primary btn-block"
+              type="submit"
+              style="font-weight: 900"
+            >
+              아 이 디 찾 기
+            </button>
+          </form>
+        </div>
+        <div class="links">
+          <a href="memberPw">비밀번호 찾기</a> |
+          <a href="memberLogin">로그인</a> | <a href="memberRegist">회원가입</a>
+        </div>
       </div>
     </div>
   </body>
@@ -215,3 +176,4 @@
     });
   </script>
 </html>
+
