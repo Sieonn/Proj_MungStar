@@ -304,7 +304,10 @@
   </head>
 
   <body>
+  <jsp:include page="../main/header.jsp"></jsp:include>
+=======
   <jsp:include page='<c:url value="/main/header.jsp"/>'></jsp:include>
+>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
     <div class="container">
       <!-- 개인정보 입력 폼 -->
       <h2>SIGN UP</h2>
