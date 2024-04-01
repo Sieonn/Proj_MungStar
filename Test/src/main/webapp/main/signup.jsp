@@ -131,13 +131,12 @@
       html {
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
+      .content{
+        width: 1280px;
+                margin: 0 auto;
+      }
       .container {
-        width: calc(
-          100% - (20% * 2)
-        ); /* 콘텐츠 영역의 너비에서 양쪽 여백을 뺀 크기로 설정 */
-        margin: 0 20%; /* 양쪽 여백을 16.6%로 설정 */
-        margin-bottom: 20px;
-        margin-top: 20px;
+      margin: 0 30px;
       }
       .container .field {
         margin: 5px 0;
@@ -190,12 +189,12 @@
         margin-left: 10px; /* 오른쪽 여백 */
         border-radius: 3px;
       }
+         .field input[type="tel"] {
+         }
       .container .field input[type="button"],
       .container input[type="submit"] {
         margin-left: 3px;
         width: auto;
-        /* 버튼 너비를 내용에 맞게 자동 조정 */
-        /* 버튼 내용에 따라 적절한 패딩 적용 */
         border-radius: 3px;
         padding: 6px 15px;
         font-weight: bold;
@@ -230,7 +229,7 @@
       }
       .signup-container,
       .petFormTemplate {
-        margin: 3% 13%;
+        margin: 15px 250px;
         height: auto;
       }
       .inner-title {
@@ -305,6 +304,7 @@
 
   <body>
   <jsp:include page="../main/header.jsp"></jsp:include>
+  <div class="content">
     <div class="container">
       <!-- 개인정보 입력 폼 -->
       <h2>SIGN UP</h2>
@@ -527,12 +527,13 @@
         value="가입하기"
         style="
           border-radius: 3px;
-          padding: 7px 15px;
+          padding: 10px 0;
           font-weight: bold;
           font-size: 20px;
-          letter-spacing: 10px;
-        "
+          letter-spacing: 30px;
+                    margin-bottom: 30px;"
       />
+    </div>
     </div>
   </body>
 </html>

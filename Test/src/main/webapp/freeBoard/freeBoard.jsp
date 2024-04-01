@@ -129,7 +129,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="../main/other_header.jsp"/>
+<jsp:include page="../main/otherHeader.jsp"/>
 <br><br>
 <div class="pageContainer">
 	<div class="freeContainer">
