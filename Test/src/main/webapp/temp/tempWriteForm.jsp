@@ -174,9 +174,9 @@ body,
 <script>
 	$(function(){
 		$('#btn').click(function(){
+			console.log($('#dogName').val());
+			let temp={temp:[{dogName:$('#dogName').value,age:40},{name:"손흥민",age:30},{name:"김민재",age:32}]}
 			
-			let temp={temp:[{dogName:$('#dogName'),age:40},{name:"손흥민",age:30},{name:"김민재",age:32}]}
-			console.log(dogName);
 			$.ajax({
 				url:'temp/tempWrite',
 				type:'post',
