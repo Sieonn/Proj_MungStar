@@ -83,7 +83,7 @@ left:320px;
 </style>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<jsp:include page='<c:url value="/main/header.jsp"/>'/>
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
 <div id="map"></div>

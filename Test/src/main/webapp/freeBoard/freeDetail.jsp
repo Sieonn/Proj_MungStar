@@ -144,7 +144,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
     // 여기서 원하는 추가 동작을 수행할 수 있습니다.
 });
 </script>
-<jsp:include page="/header.jsp"/>
+<jsp:include page='<c:url value="/main/header.jsp"/>'/>
 <br>
 <div class = "pageContainer">
 <div class = "freeContainer">

@@ -174,7 +174,7 @@ $(function(){
 	$('#category').val('${tempCgory}');
 	$('#category').change(function(){
 		var tempCgory=$(this).val()
-		document.location.href="http://localhost:8080/Test/tempBoard?tempCgory="+tempCgory;
+		document.location.href="http://localhost:8090/MoongStar/temp/tempBoard?tempCgory="+tempCgory;
 	})
 /* 	$('.album').click(function(e) {
 		e.preventDefault();
@@ -196,7 +196,7 @@ $(function(){
 </script>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="temp_container" style="">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">
@@ -208,8 +208,9 @@ $(function(){
     	<form action="">
     		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색" value=""/>
 			<button class="searchBtn Btn" type="submit">검색</button>
-			<a href="tempWrite"><button class="writeBtn Btn" type="submit">글쓰기</button></a>
+			
 		</form>
+		<a href="tempWrite"><button class="writeBtn Btn" type="submit">글쓰기</button></a>
 	</div>
 </div>
 

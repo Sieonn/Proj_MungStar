@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.TempService;
+import service.TempServiceImplement;
+
 @WebServlet("/temp/tempWrite")
 public class TempWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +23,15 @@ public class TempWrite extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("utf-8");
+		
+		try {
+			TempService tempService=new TempServiceImplement();
+			tempService.tempWrite(request);
+			response.sendRedirect("/temp/tempBoard");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
