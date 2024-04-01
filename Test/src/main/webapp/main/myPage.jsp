@@ -167,7 +167,7 @@
       .actBtn {
         flex: 1;
         padding: 20px 15px;
-        border: 2px solid #919191;
+        border: 2px solid #c9c9c9;
         border-radius: 5px;
         font-family: "Lato", sans-serif;
         font-weight: 700;

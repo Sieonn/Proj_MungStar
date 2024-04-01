@@ -304,7 +304,7 @@
   </head>
 
   <body>
-  <jsp:include page="/header.jsp"></jsp:include>
+  <jsp:include page="../main/header.jsp"></jsp:include>
     <div class="container">
       <!-- 개인정보 입력 폼 -->
       <h2>SIGN UP</h2>

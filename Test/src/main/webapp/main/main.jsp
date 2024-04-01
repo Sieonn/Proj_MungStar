@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="image/logo.png" />
+    <link rel="icon" href="../image/logo.png" />
     <title>멍뭉별</title>
     <style>
       @font-face {
@@ -29,57 +29,6 @@
         font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
       }
 
-      .header {
-        margin: 0 16.6%;
-        height: 10%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
-        padding: 0 20px;
-        position: relative; /* 로고 중앙 정렬을 위해 position 설정 */
-      }
-
-      .logo {
-        height: 100%;
-        max-height: 100%;
-        width: auto;
-        margin-top: 20px;
-      }
-
-      .user-info {
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-        font-size: 12px;
-        margin-top: 10px;
-      }
-
-      .user-info a {
-        margin-right: 10px;
-        margin-top: 50px;
-      }
-
-      .user-info img {
-        height: 100%;
-        border-radius: 100%;
-        margin-top: 10px;
-      }
-
-      /* 하단 선 스타일 */
-      .header-line {
-        border-top: 2px solid rgb(221, 224, 224);
-        margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
-      }
-
-      /* 중앙 로고 스타일 */
-      .center-logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 20px;
-      }
       .content {
         margin: 0 16.6%;
       }
@@ -200,10 +149,10 @@
       .free {
         gap: 20px;
         display: flex;
-        margin: 10px 0 10px 0;
+        margin: 3% 0;
       }
       .free_b {
-        width: 50%; /* .free_b를 반씩 차지하도록 설정 */
+        width: 100%; /* .free_b를 반씩 차지하도록 설정 */
         box-sizing: border-box; /* padding, border를 요소의 크기에 포함 */
         /* 좌우 여백 추가 */
       }
@@ -263,14 +212,6 @@
         margin-top: 5px;
         font-size: 12px;
       }
-      .headline {
-        margin-top: 40px; /* headline 위로 40px의 간격을 줌 */
-        font-family: "JalnanGothic";
-        font-size: 20px;
-      }
-      .footer {
-        margin-bottom: 110px;
-      }
             a:link {
         color: black;
         text-decoration: none;
@@ -287,13 +228,13 @@
       <div class="container">
         <div class="slider">
           <div class="img">
-            <img src="image/banner1.png" alt="이미지 1" />
+            <img src="../image/banner1.png" alt="이미지 1" />
           </div>
           <div class="img">
-            <img src="image/banner2.png" alt="이미지 2" />
+            <img src="../image/banner2.png" alt="이미지 2" />
           </div>
           <div class="img">
-            <img src="image/banner3.png" alt="이미지 3" />
+            <img src="../image/banner3.png" alt="이미지 3" />
           </div>
         </div>
       </div>
@@ -335,10 +276,11 @@
         >
           따뜻한 봄이왔어요~🌸
         </div>
+
       </div>
       <div class="loc">
         <div class="plac">
-          <img src="image/loc_1.jpg" alt="Image 1" />
+          <img src="../image/loc_1.jpg" alt="Image 1" />
           <div class="text">
             경북 의성 펫월드<br />
             <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
@@ -347,7 +289,7 @@
           </div>
         </div>
         <div class="plac">
-          <img src="image/loc_2.jpg" alt="Image 2" />
+          <img src="../image/loc_2.jpg" alt="Image 2" />
           <div class="text" style="font-size: 18px">
             인천 반려동물 놀이터
             <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
@@ -356,7 +298,7 @@
           </div>
         </div>
         <div class="plac">
-          <img src="image/loc_3.jpg" alt="Image 3" />
+          <img src="../image/loc_3.jpg" alt="Image 3" />
           <div class="text" style="font-size: 18px">
             반려동물 테마파크
             <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
@@ -365,7 +307,7 @@
           </div>
         </div>
         <div class="plac">
-          <img src="image/loc_4.jpg" alt="Image 4" />
+          <img src="../image/loc_4.jpg" alt="Image 4" />
           <div class="text" style="font-size: 18px">
             임실 오수의경관광지
             <div style="font-size: 14px; font-family: 'Pretendard-Regular'">
@@ -380,20 +322,7 @@
             <span class="headline"> 자유게시판 </span>
 
             <span class="more">
-              <a href="#" style="font-size: 12px">더보기</a></span
-            >
-          </div>
-          <div class="free_box"></div>
-        </div>
-        <div class="free_b">
-          <div
-            class="headline-container"
-            style="margin-top: 40px; margin-button: 10px"
-          >
-            <span class="headline"> 같이걷개 </span>
-
-            <span class="more">
-              <a href="#" style="font-size: 12px">더보기</a></span
+              <a href="../freeBoard/freeSearch.jsp" style="font-size: 12px">더보기</a></span
             >
           </div>
           <div class="free_box"></div>
@@ -414,7 +343,7 @@
       <div class="archive">
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp1.jpg" />
+            <img src="../image/temp1.jpg" />
             <div class="inner_title">영희</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -422,7 +351,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp2.jpg" />
+            <img src="../image/temp2.jpg" />
             <div class="inner_title">철수</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -430,7 +359,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp3.jpg" />
+            <img src="../image/temp3.jpg" />
             <div class="inner_title">뽀삐</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -438,7 +367,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp4.jpg" />
+            <img src="../image/temp4.jpg" />
             <div class="inner_title">쪼롱</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -446,7 +375,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp5.jpg" />
+            <img src="../image/temp5.jpg" />
             <div class="inner_title">초코</div>
             <div class="inner_text">가산디지털단지</div>
           </div>
@@ -463,7 +392,7 @@
       <div class="archive">
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp1.jpg" />
+            <img src="../image/temp1.jpg" />
             <div class="inner_title">영희</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -471,7 +400,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp2.jpg" />
+            <img src="../image/temp2.jpg" />
             <div class="inner_title">철수</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -479,7 +408,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp3.jpg" />
+            <img src="../image/temp3.jpg" />
             <div class="inner_title">뽀삐</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -487,7 +416,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp4.jpg" />
+            <img src="../image/temp4.jpg" />
             <div class="inner_title">쪼롱</div>
 
             <div class="inner_text">가산디지털단지</div>
@@ -495,7 +424,7 @@
         </div>
         <div class="photo">
           <div class="inner_photo">
-            <img src="image/temp5.jpg" />
+            <img src="../image/temp5.jpg" />
             <div class="inner_title">초코</div>
             <div class="inner_text">가산디지털단지</div>
           </div>
