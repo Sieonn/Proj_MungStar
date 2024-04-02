@@ -33,8 +33,8 @@
       }
       .content_box{
       	background-color: white;
-      	margin: 0 4% 0 4%;
-      	height: 85%;
+      	margin: 0 auto;
+      	width: 92%; height: 85%;
       	border-radius: 20px;
       	overflow: auto;
       }
@@ -76,14 +76,14 @@
       .img_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 25%; height: 250px;
+ */      	width: 25%; height: 315px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
       .dog_Img{
-      	width: 100%; height: 200px;
+      	width: 100%; height: 265px;
       	border-radius: 10px;
       }
       .state{
@@ -147,7 +147,7 @@
 
 <div class="btn_container">
 	<a href="tempBoard" class="boardBtn Btn">목 록</a>
-	<a href="" class="boardBtn Btn">수 정</a>
+	<a href="tempModify?tempNum=${temp.tempNum}" class="boardBtn Btn">수 정</a>
 </div>
 
 <%@ include file="../temp/boardComment.jsp" %>

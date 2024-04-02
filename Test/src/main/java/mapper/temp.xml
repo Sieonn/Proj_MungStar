@@ -16,7 +16,7 @@
   			</if>
    		</where>
   		order by tempNum desc
-   		limit #{row}, 9
+   		limit #{row}, 8
 	</select>
 	
 	<select id="selectTempCountWithCgoryAndSearch" parameterType="Map" resultType="Integer">

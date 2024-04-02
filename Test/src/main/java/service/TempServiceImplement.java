@@ -48,13 +48,13 @@ public class TempServiceImplement implements TempService {
 //		}
 		int boardCount = tempDao.selectTempCountWithCgoryAndSearch(tempCgory, searchText);
 
-		int maxPage = (int) Math.ceil((double) boardCount / 9);
-		int startPage = (page - 1) / 9 * 9 + 1;
-		int endPage = startPage + 9 - 1;
+		int maxPage = (int) Math.ceil((double) boardCount / 8);
+		int startPage = (page - 1) / 8 * 8 + 1;
+		int endPage = startPage + 8 - 1;
 		if (endPage > maxPage)
 			endPage = maxPage;
 
-		int row = (page - 1) * 9;
+		int row = (page - 1) * 8;
 		List<Temp> tempList = tempDao.selectTempListWithCgoryAndSearch(row, tempCgory, searchText);
 
 		PageInfo pageInfo = new PageInfo();

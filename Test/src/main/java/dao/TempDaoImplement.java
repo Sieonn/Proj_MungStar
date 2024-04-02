@@ -48,7 +48,6 @@ public class TempDaoImplement implements TempDao{
 	@Override
 	public Integer selectTempCountWithCgoryAndSearch(String tempCgory, String searchText) throws Exception {
 		Map<String,Object> param = new HashMap<>();
-		
 		param.put("tempCgory",tempCgory);
 		param.put("searchText", searchText);
 		return sqlSession.selectOne("mapper.temp.selectTempCountWithCgoryAndSearch", param);

@@ -113,16 +113,15 @@ body,
       .img_box{
       	display: inline-block;
 /*       	background-color: yellow;
- */      	width: 25%; height: 250px;
+ */      	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
-      .fileLable{
+      .fileImg{
       	display: inline-block;
-      	width: 100%; height: 75.6%;
-  		padding: 8px 0px;
+      	width: 100%; height: 80%;
     	cursor: pointer;
     	background-color: #f9f9f9;
     	border: 1px solid #ccc;
@@ -133,12 +132,11 @@ body,
       }
       .fileInput{
       	position: absolute;
-    	width: 1px;
-    	height: 1px;
+    	display: none;
     	overflow: hidden;
     	clip: rect(0,0,0,0);
       }
-      .fileLable:hover {
+      .fileImg:hover {
     	background-color: #e0e0e0;
     	}
       .dog_Img{
@@ -175,6 +173,7 @@ body,
 <script>
 	$(function(){
 		$('#tempWrite').submit(function(){
+			alert("submit")
 			var chars='';
 			$('input[class=charInput]').map(function(){
 				chars +=$(this).val()+'@';
@@ -204,7 +203,8 @@ body,
 <body>
 <%@ include file="../main/headerLogin.jsp" %>
 <div class="text">임시보호소</div>
-<form action="tempWrite" enctype="multipart/form-data" method="post" id="tempWrite">
+<form action="tempWrite" enctype="multipart/form-data" method="post" id="tempWrite" 
+	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="tempChar" id="tempChar"/>
 <div class="content_container">
 	<div class="content_box">
@@ -226,7 +226,7 @@ body,
 				<div class="contents char">특징</div>
 				
 				<div class="char_box" id="char_box">
-					<div class="item" contenteditable="true">
+					<div class="item">
 					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
 					</div></div>
 				
@@ -238,8 +238,8 @@ body,
 				
 			</div>
 			<div class="img_box">
-				<label for="fileInput" class="fileLable">+</label>
-				<input type="file" id="fileInput" class="fileInput" name="file">
+				<img class="fileImg" id="preview" src="../image/addFile.png">
+				<input type="file" id="fileInput" class="fileInput" name="file" accept="imageView/*">
 			</div>
 		</div>
 	</div>
@@ -271,7 +271,7 @@ $(".charInput").on('keypress', (function(e) {
 			 addNewItem();
 		 }
 	 }
-}))
+})) 
 
 function appendItem(target) {
 	
@@ -299,13 +299,13 @@ function addNewItem() {
    	 	if (event.key === 'Enter') {
    		 console.log(this.parentNode)
    		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
-   		 if(this.parentNode == charBox.lastChild) {
+   		 if(this.parentNode ==   charBox.lastChild) {
    			 addNewItem();
    		 }
   		}
 	}
     newItem.appendChild(itemText); // input 요소를 항목에 추가
-  
+
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
     itemText.focus()
 }
@@ -316,6 +316,30 @@ function removeItem(item) {
 
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
 //charBox.addEventListener('keypress', handleKeyPress);
+
+let preview=document.querySelector("#preview");
+let fileInput=document.querySelector("#fileInput");
+preview.onclick=function(){
+	fileInput.click();
+}
+
+fileInput.onchange=function(e){
+	let file=e.target.files[0];
+	if(file) {
+		let reader=new FileReader();
+		
+		reader.onload=function(data){
+			console.log(data);
+			preview.src=data.target.result;
+			/* preview.width= 250;
+			preview.height= 250; */
+		}
+			
+		reader.readAsDataURL(file);
+	} else{
+		preview.src="../image/addFile.png";
+	}
+}
 
 </script>
 </html>

@@ -83,7 +83,7 @@
     }
     .album_container{
     	margin: 50px auto;
-        width: 1280px;
+        width: 1332px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;
@@ -99,8 +99,8 @@
       	align-items: center; 
     } */
     .album{
-		margin: 17.5px 17.5px;
-      	width: 280px; 
+		margin: 17.5px 23.8px;
+      	width: 258px; height: 305px;
       	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
@@ -134,9 +134,16 @@
     	margin-bottom: 10px;
     }
     .dogName{
+    	height: 45px;
     	font-size: 22px;
+    	overflow: hidden;
     }
     .address{
+    	display: inline-block;
+    	height: 19px; width: 164px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
     }
     .state{
     	font-size: 28px;
@@ -206,7 +213,7 @@ $(function(){
 			<option value="finded">주인을 찾았어요</option>
 		</select>
     	<div>
-    	<form action="">   
+    	<form action="" style="display: inline-block;">   
     		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색" value=""/>
 			<button class="searchBtn Btn" type="submit">검색</button>
 			
@@ -220,14 +227,15 @@ $(function(){
 	<c:forEach items="${temps}" var="temp" varStatus="loop">
     <div id="${temp.tempNum}" class="album">
     <a href="tempDetail?tempNum=${temp.tempNum}">
-    <img class="tempImg" src="/image/tempdog01.png">
+    <img class="tempImg" src="../imageView?num=${temp.tempPhoto}">
     </a>
     <div class="boardContainer">
-    	<a href="tempDetail?tempNum=${temp.tempNum}">
-        <span class="dogName">${temp.tempName}</span>
-        <span class="state">${temp.tempCgory }</span>
-        <br/><span class="address">${temp.tempAddress}</span>
-        </a>
+    	
+        <a href="tempDetail?tempNum=${temp.tempNum}" class="dogName">${temp.tempName}</a>
+        <a href="tempDetail?tempNum=${temp.tempNum}" class="state">${temp.tempCgory }</a><br>
+        <a href="tempDetail?tempNum=${temp.tempNum}" class="address">${temp.tempAddress}</a>
+        
+        
     </div>
     </div>
 	</c:forEach>
