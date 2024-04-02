@@ -70,42 +70,36 @@ public class FreeServiceImpl implements FreeService{
 	@Override
 	public void freeListByPage(HttpServletRequest request) throws Exception {
 		//1. 페이지를 가져오고 없으면 페이지번호를 1로 한다.
-		String paramPage = request.getParameter("page");
-		Integer page = 1;
-		if(paramPage!=null) {
-			page = Integer.parseInt(paramPage);
-		}
-		
-		//2. PageInfo 계산하여 설정하기
-		int boardCount = freeDAO.selectBoardCount();
-		int maxPage = (int)Math.ceil((double)boardCount/10);
-		int startPage = (page-1)/10*10+1;  //페이지 10을 고려하여 page-1을 한다.
-		int endPage = startPage+10-1;
-		if(endPage>maxPage) endPage = maxPage;
-		
-		PageInfo pageInfo = new PageInfo();
-		pageInfo.setCurPage(page);
-		pageInfo.setAllPage(maxPage);
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		
-		//3.해당 페이지에 해당하는 게시판 글 목록 조회
-		int row = (page-1)*10;
-		List<fBoard> boardList = freeDAO.selectBoardList(row);
-		
-		List<Member> members=new ArrayList<>();
-		for (fBoard fBoard : boardList) {
-			MemberDAO memberDAO=new MemberDAOImpl();
-			for (Member member : members) {
-				member=memberDAO.selectMember(fBoard.getFreeNick());
-			}
-		}
-		//4.응답으로 보내기 위해 request영역에 담는다
-		request.setAttribute("members", members);
-		request.setAttribute("freeBoard", boardList);
-		request.setAttribute("pageInfo", pageInfo);
-		
+	    String paramPage = request.getParameter("page");
+	    Integer page = 1;
+	    if (paramPage != null) {
+	        page = Integer.parseInt(paramPage);
+	    }
 
+	    //2. PageInfo 계산하여 설정하기
+	    int boardCount = freeDAO.selectBoardCount();
+	    int maxPage = (int) Math.ceil((double) boardCount / 10);
+	    int startPage = (page - 1) / 10 * 10 + 1; //페이지 10을 고려하여 page-1을 한다.
+	    int endPage = startPage + 10 - 1;
+	    if (endPage > maxPage) endPage = maxPage;
+
+	    PageInfo pageInfo = new PageInfo();
+	    pageInfo.setCurPage(page);
+	    pageInfo.setAllPage(maxPage);
+	    pageInfo.setStartPage(startPage);
+	    pageInfo.setEndPage(endPage);
+
+	    //3. 해당 페이지에 해당하는 게시판 글 목록 조회
+	    int row = (page - 1) * 10;
+	    List<fBoard> boardList = freeDAO.selectBoardList(row);
+
+	    //4. 회원 정보 가져오기
+	    List<Member> members = new ArrayList<>();
+	
+	    //5. 응답으로 보내기 위해 request 영역에 담는다
+	    request.setAttribute("members", members);
+	    request.setAttribute("freeBoard", boardList);
+	    request.setAttribute("pageInfo", pageInfo);
 	}
 	@Override
 	public fBoard freeDetail(Integer num) throws Exception {

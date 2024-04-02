@@ -30,7 +30,7 @@ public class FreeDAOImpl implements FreeDAO {
 
 	@Override
 	public void insertFile(File file) throws Exception {
-		sqlSession.insert("mapper.board.insertFile", file);
+		sqlSession.insert("mapper.file.insertFile", file);
 	    sqlSession.commit();
 	    // dto에 있는 파일 import
 		

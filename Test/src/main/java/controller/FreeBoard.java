@@ -13,7 +13,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeBoard
  */
-@WebServlet("/Test/freeBoard")
+@WebServlet("/freeBoard/freeBoard")
 public class FreeBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

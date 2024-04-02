@@ -268,7 +268,7 @@
   </tbody>
 </table>
 -->
-<table class = "listContainer">
+<table class = "board">
 	<tr>
 		<th>태그
   	  <div style = "display:inline-block;">
@@ -281,11 +281,12 @@
 		</div></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>좋아요</th>
 		<c:forEach items = "${freeBoard }" var = "board">
 			<tr>
-				<td>${board.freeNum }</td>
+				<td>${board.freeTag }</td>
 				<td><a href = "boarddetail?num=${board.freeNum }">${board.freeSub }</a></td>
-				<td>${board.freeNick }</td>
+				<td>${board.freeId }</td>
 				<td>${board.freeWriteDate }</td>
 				<td>${board.freeView }</td>
+				<td>${board.freeLike }<span class="like-icon"></span></td>
 			</tr>
 		</c:forEach>
 	</tr>
