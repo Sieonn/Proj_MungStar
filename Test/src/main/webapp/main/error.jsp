@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="header.jsp" %>
+<h3 style="text-align:center"><%=request.getAttribute("err") %></h3>
 </body>
 </html>

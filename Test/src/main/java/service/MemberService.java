@@ -1,9 +1,10 @@
 package service;
 
-import dto.Member;
+import javax.servlet.http.HttpServletRequest;
 
 public interface MemberService {
-	void join(Member member) throws Exception;
-	void login(String id, String password) throws Exception;
-	boolean checkDoubleId(String id) throws Exception;
+	void login(HttpServletRequest request) throws Exception;
+	void signup(HttpServletRequest request) throws Exception;
+	boolean memberIdCheck(String memId) throws Exception;
+	boolean memberNickCheck(String memNick) throws Exception;
 }

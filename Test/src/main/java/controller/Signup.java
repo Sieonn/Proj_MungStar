@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 import service.MemberService;
 import service.MemberServiceImpl;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/main/signup")
+public class Signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public Login() {
+       
+    public Signup() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/signup.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			MemberService memberService=new MemberServiceImpl();
-			memberService.login(request);
+			memberService.signup(request);
 			response.sendRedirect("main");
 		} catch(Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "로그인 실패 오류");
+			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}

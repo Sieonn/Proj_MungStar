@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	String cookieHeader = request.getHeader("Cookie");
+	Boolean autologin = false;
+	String id = "";
+	String password = "";
+	if(cookieHeader!=null) {
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("autologin")) {
+				if(cookie.getValue().equals("true"))
+					autologin = true;	
+				else 
+					autologin = false;
+			} else if(cookie.getName().equals("id")) {
+				id = cookie.getValue();
+			} else if(cookie.getName().equals("password")) {
+				password = cookie.getValue();
+			}
+		}
+	}
+%>   
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -122,7 +143,7 @@
     <div class="content">
       <div class="login-wrapper">
         <h2>LOGIN</h2>
-        <form method="post" action="login" id="login-form">
+        <form  action="login"  method="post"id="login-form">
           <input
             type="text"
             name="id"
@@ -133,19 +154,12 @@
           />
           <input type="password" name="password" placeholder="Password" value="<%=password%>" />
 
-          <label for="remember-check">
-          <%if(autologin) { %>
-            <input type="checkbox"  value="true" id="remember-check" style="margin-right:10px;" />아이디 저장하기
-           <%} else { %>
-           	<input type="checkbox" value="true" id="remember-check" style="margin-right:10px;" />아이디 저장하기
-          </label>
-
           <input type="submit" value="Login" required />
         </form>
         <div class="links">
-          <a href="memberId">아이디 찾기</a> |
-          <a href="memberPw">비밀번호 찾기</a> |
-          <a href="memberRegist">회원가입</a>
+          <a href="../main/findId.jsp">아이디 찾기</a> |
+          <a href="../main/findPassword.jsp">비밀번호 찾기</a> |
+          <a href="../main/signup.jsp">회원가입</a>
         </div>
       </div>
     </div>

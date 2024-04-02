@@ -1,60 +1,81 @@
 package dto;
 
 public class Member {
-	private String id;
-	private String name;
-	private String password;
-	private String email;
-	private String address;
-	private String addressD;
+	private String memId;
+	private String memNick;
+	private String memPw;
+	private String memEmail;
+	private String memPhone;
+	private String memAddress1;
+	private String memAddress2;
 	
 	public Member() {}
 	
-	public Member(String id, String name, String password, String email, String address, String addressD) {
+	public Member(String memId, String memNick, String memPw, String memEmail, String memPhone, String memAddress1, String memAddress2) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.email = email;
-		this.address = address;
-		this.addressD = addressD;
+		this.memId = memId;
+		this.memNick = memNick;
+		this.memPw = memPw;
+		this.memEmail = memEmail;
+		this.memPhone = memPhone;
+		this.memAddress1 = memAddress1;
+		this.memAddress2 =  memAddress2;
 	}
-	public String getId() {
-		return id;
+
+	public String getMemId() {
+		return memId;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
-	public String getName() {
-		return name;
+
+	public String getMemNick() {
+		return memNick;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setMemNick(String memNick) {
+		this.memNick = memNick;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getMemPw() {
+		return memPw;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setMemPw(String memPw) {
+		this.memPw = memPw;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getMemEmail() {
+		return memEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getMemPhone() {
+		return memPhone;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setMemPhone(String memPhone) {
+		this.memPhone = memPhone;
 	}
-	
-	public String getAddressD() {
-		return address;
+
+	public String getMemAddress1() {
+		return memAddress1;
 	}
-	public void setAddressD(String addressD) {
-		this.addressD = addressD;
+
+	public void setMemAddress1(String memAddress1) {
+		this.memAddress1 = memAddress1;
+	}
+
+	public String getMemAddress2() {
+		return memAddress2;
+	}
+
+	public void setMemAddress2(String memAddress2) {
+		this.memAddress2 = memAddress2;
 	}
 
 }

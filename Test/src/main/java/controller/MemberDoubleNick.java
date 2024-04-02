@@ -10,27 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import service.MemberService;
 import service.MemberServiceImpl;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-    public Login() {
+@WebServlet("/memberDoubleNick")
+public class MemberDoubleNick extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public MemberDoubleNick() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		try {
 			MemberService memberService=new MemberServiceImpl();
-			memberService.login(request);
-			response.sendRedirect("main");
+			boolean doubleNick=memberService.memberNickCheck(request.getParameter("memNick"));
+			response.getWriter().write(String.valueOf(doubleNick));
 		} catch(Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", "로그인 실패 오류");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			response.sendError(500);
 		}
 	}
 

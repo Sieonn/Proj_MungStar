@@ -7,6 +7,6 @@
 				password="7564"
 				driverClassName="org.mariadb.jdbc.Driver"
 				factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-				url="jdbc:mariadb://localhost:3306/moongstar"
+				url="jdbc:mariadb://localhost:3306/mung"
 				maxActive="500"/>
 </Context>
