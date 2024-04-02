@@ -1,5 +1,9 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -55,7 +59,28 @@ public class FreeDAOImpl implements FreeDAO {
 
 	@Override
 	public void updateBoardViewCount(Integer num) {
-		// TODO Auto-generated method stub
+		 try {
+		        // 데이터베이스 연결 설정
+		        Connection conn = DriverManager.getConnection("데이터베이스 url", "사용자이름", "비밀번호");
+
+		        // SQL 쿼리 작성
+		        String sql = "UPDATE freeboard SET freeView = freeView + 1 WHERE freeNum = ?";
+
+		        // PreparedStatement 생성
+		        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		        // 매개변수 설정
+		        pstmt.setInt(1, num);
+
+		        // 쿼리 실행
+		        pstmt.executeUpdate();
+
+		        // 리소스 정리
+		        pstmt.close();
+		        conn.close();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
 		
 	}
 

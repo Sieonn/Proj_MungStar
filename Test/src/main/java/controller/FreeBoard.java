@@ -13,7 +13,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeBoard
  */
-@WebServlet("/freelist")
+@WebServlet("/Test/freeBoard")
 public class FreeBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,11 +32,11 @@ public class FreeBoard extends HttpServlet {
 		try {
 			FreeService freeService = new FreeServiceImpl();
 			freeService.freeListByPage(request);
-			request.getRequestDispatcher("boardlist.jsp").forward(request, response);
+			request.getRequestDispatcher("freeBoard.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "게시글 목록조회 실패");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("/freeBoard/error.jsp").forward(request, response);
 		}
 	}
 

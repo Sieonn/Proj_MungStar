@@ -264,7 +264,6 @@
     		</div>
         </div>
         <div class="scroll-box">
-            <img src="../image/dog1.jpg" style="width: 100%; height: auto; margin-bottom: 10px;">
             <div id="imagePreview"></div>
             <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
         </div>
@@ -306,13 +305,6 @@ function handleFiles(event) {
         reader.readAsDataURL(file);
     }
 }
-  // 저장 버튼에 대한 클릭 이벤트 핸들러
-  document.getElementById('saveButton').addEventListener('click', function() {
-    // 작성된 글을 어딘가에 저장하는 코드를 여기에 추가합니다.
-    
-    // 저장이 완료되면 목록 페이지로 이동합니다.
-    window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
-  });
 
  //이거는 하이퍼링크 스크립트에옹
     function addLink() {
@@ -330,13 +322,25 @@ function handleFiles(event) {
     }
   </script>
 <script>
-  // 저장 버튼에 대한 클릭 이벤트 핸들러
-  document.getElementById('saveButton').addEventListener('click', function() {
-    // 작성된 글을 어딘가에 저장하는 코드를 여기에 추가합니다.
-    
-    // 저장이 완료되면 목록 페이지로 이동합니다.
-    window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
-  });
+document.getElementById('saveButton').addEventListener('click', function() {
+    // 작성된 글을 어딘가에 저장하는 코드
+    var title = document.querySelector('.writeTitle').value; // 제목 가져오기
+    var content = document.querySelector('#editor').innerHTML; // 내용 가져오기
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'saveDataServlet', true); // 저장을 처리하는 서블릿 주소로 POST 요청 보냄
+    xhr.setRequestHeader('Content-Type', 'application/json'); // 요청 헤더 설정
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // 저장이 완료되면 목록 페이지로 이동
+            window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
+        } else {
+            console.error('저장 실패:', xhr.statusText);
+        }
+    };
+    // JSON 형태로 데이터 전송
+    xhr.send(JSON.stringify({ title: title, content: content }));
+});
 </script>
 </div>
 <div class="footer"></div>	

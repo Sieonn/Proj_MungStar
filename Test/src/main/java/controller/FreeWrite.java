@@ -35,6 +35,7 @@ public class FreeWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("freeWriteForm.jsp").forward(request, response);
 	}
 
@@ -47,10 +48,10 @@ public class FreeWrite extends HttpServlet {
 		try {
 			FreeService freeService = new FreeServiceImpl();
 			freeService.freeWrite(request);
-			request.getRequestDispatcher("boardlist").forward(request, response);
+			response.sendRedirect("freeBoard");
 		} catch(Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "글쓰기 실패");
+			request.setAttribute("err", "게시물 생성 실패");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 		

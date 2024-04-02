@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,12 +197,12 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 	</div>
 <div class="wrap">
 	<div>
-		<span class= "title" >&nbsp;&nbsp;&nbsp;제목이 들어가는 곳입니다.</span>
+		<span class= "title" >&nbsp;&nbsp;&nbsp;제목이 들어가는 곳입니다.${board.freeSub }</span>
 		<span class = "titleInfo">YYYY/MM/DD&nbsp;&nbsp;&nbsp;</span>
 		<br>
 		<span class = "titleInfo">좋아요 : n&nbsp;</span>
 		<span class = "titleInfo">조회수 : nnnn&nbsp;</span>
-		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이들어가는곳</div>
+		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이들어가는곳${board.freeNick }</div>
 	</div>
 </div>
 	<br>
@@ -215,7 +216,10 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		<p class = "context"> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
 		<br>
 		<p class = "context"> 후... (담배)<br>니들은 이런거 하지 마라... </p>
-		<div class = "context"> </div>
+		<div class = "context">${board.content}</div>
+		<c:if test="${board.filenum ne null}">
+			<img src="image?num=${board.filenum}" width="100px"/>
+		</c:if>
 	</div>
 </div>
 

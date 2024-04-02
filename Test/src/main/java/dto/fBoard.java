@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class fBoard {
 	private Integer freeNum;
-	private String freeNick;
+	private String freeId;
 	private String freeSub;
 	private String freeContent;
 	private Integer freePhoto;
@@ -15,11 +15,11 @@ public class fBoard {
 	
 	public fBoard() {}
 
-	public fBoard(Integer freeNum, String freeNick, String freeSub, String freeContent, Integer freePhoto,
+	public fBoard(Integer freeNum, String freeId, String freeSub, String freeContent, Integer freePhoto,
 			String freeTag, Integer freeView, Date freeWriteDate, Integer freeLike) {
 		super();
 		this.freeNum = freeNum;
-		this.freeNick = freeNick;
+		this.freeId = freeId;
 		this.freeSub = freeSub;
 		this.freeContent = freeContent;
 		this.freePhoto = freePhoto;
@@ -38,11 +38,11 @@ public class fBoard {
 	}
 
 	public String getFreeNick() {
-		return freeNick;
+		return freeId;
 	}
 
 	public void setFreeNick(String freeNick) {
-		this.freeNick = freeNick;
+		this.freeId = freeNick;
 	}
 
 	public String getFreeSub() {

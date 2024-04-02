@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.FreeDAO;
 import dao.FreeDAOImpl;
+import dao.MemberDAO;
+import dao.MemberDAOImpl;
 import dto.File;
+import dto.Member;
 import dto.fBoard;
 import util.PageInfo;
 
@@ -89,11 +93,19 @@ public class FreeServiceImpl implements FreeService{
 		int row = (page-1)*10;
 		List<fBoard> boardList = freeDAO.selectBoardList(row);
 		
+		List<Member> members=new ArrayList<>();
+		for (fBoard fBoard : boardList) {
+			MemberDAO memberDAO=new MemberDAOImpl();
+			for (Member member : members) {
+				member=memberDAO.selectMember(fBoard.getFreeNick());
+			}
+		}
 		//4.응답으로 보내기 위해 request영역에 담는다
-		request.setAttribute("boardList", boardList);
+		request.setAttribute("members", members);
+		request.setAttribute("freeBoard", boardList);
 		request.setAttribute("pageInfo", pageInfo);
 		
-		
+
 	}
 	@Override
 	public fBoard freeDetail(Integer num) throws Exception {

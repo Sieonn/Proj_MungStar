@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,6 +128,7 @@
   		box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.1);
 	}
 </style>
+<script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 </head>
 <body>
 <jsp:include page="../main/otherHeader.jsp"/>
@@ -145,6 +147,7 @@
 	</div>
 	</div>
 <div class = "listContainer">
+<!--  
 <table class="board">
   <thead>
     <tr>
@@ -264,24 +267,48 @@
     </tr>
   </tbody>
 </table>
+-->
+<table class = "listContainer">
+	<tr>
+		<th>태그
+  	  <div style = "display:inline-block;">
+  	  		<select onchange="getPostsByTag(this.value)">
+				<option value="daily">#일상</option>
+				<option value="dogCon">#전국갱얼쥐자랑</option>
+				<option value="infoShare">#정보/공유</option>
+				<option value="Question">#질문</option>
+			</select>
+		</div></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>좋아요</th>
+		<c:forEach items = "${freeBoard }" var = "board">
+			<tr>
+				<td>${board.freeNum }</td>
+				<td><a href = "boarddetail?num=${board.freeNum }">${board.freeSub }</a></td>
+				<td>${board.freeNick }</td>
+				<td>${board.freeWriteDate }</td>
+				<td>${board.freeView }</td>
+			</tr>
+		</c:forEach>
+	</tr>
+</table>
 </div>    
 <br>
     <!-- 페이지네이션 -->
 <div class="pagination">
-  <a href="#">&laquo;</a>
-  <a href="#">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">6</a>
-  <a href="#">7</a>
-  <a href="#">8</a>
-  <a href="#">9</a>
-  <a href="#">10</a>
-  <a href="#">&raquo;</a>
+  	<a>&lt;</a>
+	<c:forEach begin = "${pageInfo.startPage }" end = "${pageInfo.endPage }" var = "i">
+		<c:choose>
+			<c:when test = "test=${i==psgeInfo.curPage }">
+				<a href = "boardlist?page=${i }" class = "select">${i }</a>
+			</c:when>
+		<c:otherwise>
+			<a href = "boardlist?page=${i }" class = "select">${i }</a>
+		</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<a>&gt;</a>
   <button class="yellowBtn" id="writeButton">글쓰기</button>
 </div>
+
  </div>
  <script>
 //검색 버튼 클릭 시 검색 기능 구현
