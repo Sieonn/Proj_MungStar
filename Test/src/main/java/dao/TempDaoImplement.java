@@ -62,5 +62,10 @@ public class TempDaoImplement implements TempDao{
 		sqlSession.insert("mapper.file.insertFile",file);
 		sqlSession.commit();
 	}
+	@Override
+	public void updateTemp(Temp temp) throws Exception {
+		sqlSession.update("mapper.temp.updateTemp",temp);
+		sqlSession.commit();
+	}
 
 }

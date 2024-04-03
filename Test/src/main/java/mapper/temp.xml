@@ -69,4 +69,17 @@
 			values (#{tempName},#{tempAddress},curdate(), #{protectDate},#{tempChar},#{tempEtc},#{tempPhoto},#{tempCgory},#{memId})
 		]]>
 	</insert>
+	
+	<update id="updateTemp" parameterType="dto.Temp">
+		update tempshelter
+   		<trim prefix="SET" suffixOverrides=",">
+   			<if test="tempAddress !=null">tempAddress=#{tempAddress},</if>
+   			<if test="protectDate !=null">protectDate=#{protectDate},</if>
+   			<if test="tempChar !=null">tempChar=#{tempChar},</if>
+   			<if test="tempEtc !=null">tempEtc=#{tempEtc},</if>
+   			<if test="tempCgory !=null">tempCgory=#{tempCgory},</if>
+   			<if test="tempPhoto !=null">tempPhoto=#{tempPhoto}</if>
+   		</trim>
+   		where tempNum=#{tempNum}
+	</update>
 </mapper>

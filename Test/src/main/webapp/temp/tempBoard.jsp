@@ -128,6 +128,8 @@
     .tempImg{
     	width: 100%; height: 250px;
     	border-radius: 10px;
+    	display: inline-block;
+    	overflow: hidden;
     }
     .boardContainer{
     	padding-left: 5px;
@@ -200,6 +202,106 @@ $(function(){
 		})
 	}) */
 })
+
+const realInput = document.querySelector(".tempImg");
+const imgTag = document.querySelector(".photo");
+
+realInput.addEventListener("change", handleImgInput);
+
+const resizeImage = (settings) => {
+  const file = settings.file;
+  const maxSize = settings.maxSize;
+  const reader = new FileReader();
+  const image = new Image();
+  const canvas = document.createElement("canvas");
+
+  // dataURL 을 Blob 로 변경,  아래 코드는 canvas.toBlob 로 대신
+  const dataURLtoBlob = (dataURL) => {
+    const bytes =
+      dataURL.split(",")[0].indexOf("base64") >= 0
+        ? atob(dataURL.split(",")[1])
+        : unescape(dataURL.split(",")[1]);
+    const mime = dataURL.split(",")[0].split(":")[1].split(";")[0];
+    const max = bytes.length;
+    const ia = new Uint8Array(max);
+    for (let i = 0; i < max; i++) ia[i] = bytes.charCodeAt(i);
+    return new Blob([ia], { type: mime });
+  };
+
+  const resize = () => {
+    let width = image.width;
+    let height = image.height;
+    if (width > height) {
+      if (width > maxSize) {
+        height *= maxSize / width;
+        width = maxSize;
+      }
+    } else {
+      if (height > maxSize) {
+        width *= maxSize / height;
+        height = maxSize;
+      }
+    }
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+/* 
+	const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
+ 	return dataURLtoBlob(dataUrl);
+ */
+ 	return canvas
+  };
+
+  return new Promise((ok, no) => {
+    if (!file) {
+      return;
+    }
+    if (!file.type.match(/image.*/)) {
+      no(new Error("Not an image"));
+      return;
+    }
+    reader.onload = (readerEvent) => {
+      image.onload = () => {
+        return ok(resize());
+      };
+      image.src = readerEvent.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+};
+
+let imageBlob = null;
+
+const handleImgInput = (e) => {
+  const config = {
+    file: e.target.files[0],
+    maxSize: 200,
+  };
+  resizeImage(config)
+    .then((resizedImage) => {
+    	resizedImage.toBlob( blob=> {
+    	      const url = window.URL.createObjectURL(blob);
+    	      const img = document.createElement("img");
+    	      img.setAttribute("src", url);
+    	      img.className = "profile-img";
+    	      img.style.display = "block";
+    	      img.onload = () => {
+    	        const widthDiff = (img.clientWidth - imgTag.offsetWidth) / 2;
+    	        const heightDiff = (img.clientHeight - imgTag.offsetHeight) / 2;
+
+    	        img.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+    	      };    	      
+    	      
+    	      imgTag.innerHTML = "";
+    	      imgTag.appendChild(img);
+    	      imageBlob = blob;
+    	      console.log(imageBlob)
+    	}, 'image/webp')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 </script>
 </head>
 <body>
@@ -226,9 +328,13 @@ $(function(){
 <div class="album_container" >
 	<c:forEach items="${temps}" var="temp" varStatus="loop">
     <div id="${temp.tempNum}" class="album">
+    
+    <div class="tempImg" >
     <a href="tempDetail?tempNum=${temp.tempNum}">
-    <img class="tempImg" src="../imageView?num=${temp.tempPhoto}">
+    <img class="photo" src="../imageView?num=${temp.tempPhoto}">
     </a>
+    </div>
+    
     <div class="boardContainer">
     	
         <a href="tempDetail?tempNum=${temp.tempNum}" class="dogName">${temp.tempName}</a>

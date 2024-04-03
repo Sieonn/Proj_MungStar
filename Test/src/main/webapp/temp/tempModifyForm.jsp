@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,13 +174,13 @@ body,
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
-		$('#tempWrite').submit(function(){
+		$('#tempModify').submit(function(){
 			alert("submit")
 			var chars='';
 			$('input[class=charInput]').map(function(){
 				chars +=$(this).val()+'@';
 			});
-			$("#tempChar").val(chars)
+			$("#tempChar").val(chars);
 			/* console.log($('#dogName').val());
 			console.log($('#address').val());
 			console.log(chars);
@@ -203,17 +205,26 @@ body,
 <body>
 <%@ include file="../main/headerLogin.jsp" %>
 <div class="text">임시보호소</div>
-<form action="tempWrite" enctype="multipart/form-data" method="post" id="tempWrite" 
+<form action="tempModify" enctype="multipart/form-data" method="post" id="tempModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="tempChar" id="tempChar"/>
+<input type="hidden" name="tempNum" value="${temp.tempNum}"/>
 <div class="content_container">
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
 				<div class="cgory_container">
 					<select class="category" id="category" name="tempCgory" size="1" >
-						<option value="finding" >주인을 찾고있어요</option>
-						<option value="finded">주인을 찾았어요</option>
+						<c:choose>
+							<c:when test="${temp.tempCgory eq 'finding'}">
+								<option value="finding" selected>주인을 찾고있어요</option>
+								<option value="finded">주인을 찾았어요</option>	
+							</c:when>
+							<c:otherwise>
+								<option value="finding">주인을 찾고있어요</option>
+								<option value="finded" selected>주인을 찾았어요</option>
+							</c:otherwise>
+						</c:choose>
 					</select>
     			</div>
 				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName" name="tempName" required="required" value="${temp.tempName}">
@@ -225,10 +236,7 @@ body,
 				
 				<div class="contents char">특징</div>
 				
-				<div class="char_box" id="char_box">
-					<div class="item">
-					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
-					</div></div>
+				<div class="char_box" id="char_box"></div>
 				
 				<div class="contents">임시보호기간</div>
     			<input class="dateInput" type="date" id="protectDate" name="protectDate" required="required" value="${temp.protectDate}">
@@ -238,8 +246,8 @@ body,
 				
 			</div>
 			<div class="img_box">
-				<img class="fileImg" id="preview" src="../image/addFile.png">
-				<input type="file" id="fileInput" class="fileInput" name="file" accept="imageView/*">
+				<img class="fileImg" id="preview" src="../imageView?num=${temp.tempPhoto }">
+				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
 			</div>
 		</div>
 	</div>
@@ -253,29 +261,50 @@ body,
 </form>
 </body>
 <script>
+
 const charBox = document.getElementById('char_box');
 
-/* function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        addNewItem();
+var charString='${temp.tempChar}';
+var chars=charString.split('@');
+
+
+for (var i = 0; i < chars.length-1; i++) {
+	const newItem = document.createElement('div'); // 새로운 div 요소 생성
+    
+    if(i==0){
+    	newItem.textContent = '▶ ';
+    } else{
+    	// 삭제 버튼 추가
+        const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
+        deleteButton.textContent = '-'; // 버튼 텍스트 설정
+        deleteButton.onclick = function() {
+            removeItem(newItem);
+        };
+        newItem.appendChild(deleteButton); // 버튼 요소를 항목에 추가
     }
-} */
-
-
-$(".charInput").on('keypress', (function(e) {
-	console.log("charInput");
-	 if (event.key === 'Enter') {
-		 console.log(this.parentNode)
-		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
-		 if(this.parentNode == charBox.lastChild) {
-			 addNewItem();
-		 }
-	 }
-})) 
-
-function appendItem(target) {
 	
+    const itemText = document.createElement('input'); // 새로운 input 요소 생성
+    itemText.type = 'text'; // input 타입을 text로 지정
+    itemText.className = 'charInput';
+    itemText.required = true;
+    itemText.value = chars[i];
+    itemText.id='char'
+    //itemText.name = 'tempChar'
+    itemText.onkeypress = function(e) {
+   	 	if (event.key === 'Enter') {
+   		 console.log(this.parentNode)
+   		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+   		 if(this.parentNode ==   charBox.lastChild) {
+   			 addNewItem();
+   		 }
+  		}
+	}
+    
+    newItem.appendChild(itemText); // input 요소를 항목에 추가
+
+    charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }
+
 
 function addNewItem() {
     const newItem = document.createElement('div'); // 새로운 div 요소 생성
@@ -314,8 +343,6 @@ function removeItem(item) {
     item.parentNode.removeChild(item); // 부모 요소에서 해당 항목 제거
 }
 
-// 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
-//charBox.addEventListener('keypress', handleKeyPress);
 
 let preview=document.querySelector("#preview");
 let fileInput=document.querySelector("#fileInput");
@@ -331,8 +358,6 @@ fileInput.onchange=function(e){
 		reader.onload=function(data){
 			console.log(data);
 			preview.src=data.target.result;
-			/* preview.width= 250;
-			preview.height= 250; */
 		}
 			
 		reader.readAsDataURL(file);

@@ -36,6 +36,14 @@ public class TempModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		
+		try {
+			TempService tempService=new TempServiceImplement();
+			tempService.tempModify(request);
+			response.sendRedirect("tempBoard");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
