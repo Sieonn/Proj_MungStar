@@ -16,4 +16,6 @@ public interface TempDao {
 	
 	void insertTemp(Temp temp) throws Exception;
 	void insertFile(File file) throws Exception;
+	
+	void updateTemp(Temp temp) throws Exception;
 }

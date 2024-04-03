@@ -76,35 +76,72 @@ public class TempServiceImplement implements TempService {
 	@Override
 	public void tempWrite(HttpServletRequest request) throws Exception {
 		Temp temp = new Temp();
-		
+
 		// 파일업로드
 		String uploadPath = request.getServletContext().getRealPath("upload");
 		int size = 10 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
-		
+
 		dto.File uploadFile = new dto.File();
 		uploadFile.setDirectory(uploadPath);
 		uploadFile.setName(multi.getOriginalFileName(uploadPath));
 		uploadFile.setSize(multi.getFile("file").length());
 		uploadFile.setContenttype(multi.getContentType("file"));
 		tempDao.insertFile(uploadFile);
-		
-		java.io.File file=new java.io.File(uploadPath,multi.getFilesystemName("file"));
-		file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));
-		
+
+		java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));
+
 		temp.setTempPhoto(uploadFile.getNum());
 		temp.setTempName(multi.getParameter("tempName"));
 		temp.setTempAddress(multi.getParameter("tempAddress"));
-       
+
 		// 문자열 -> Date
 		temp.setProtectDate(multi.getParameter("protectDate"));
 		temp.setTempChar(multi.getParameter("tempChar"));
 		temp.setTempEtc(multi.getParameter("tempEtc"));
 		temp.setTempCgory(multi.getParameter("tempCgory"));
 		temp.setMemId("hong");
-		
+
 		tempDao.insertTemp(temp);
+	}
+
+	@Override
+	public void tempModify(HttpServletRequest request) throws Exception {
+		Temp temp = new Temp();
+
+		// 파일업로드
+		String uploadPath = request.getServletContext().getRealPath("upload");
+		int size = 10 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
+				new DefaultFileRenamePolicy());
+
+		if (multi.getFile("file") != null) {
+			dto.File uploadFile = new dto.File();
+			uploadFile.setDirectory(uploadPath);
+			uploadFile.setName(multi.getOriginalFileName(uploadPath));
+			uploadFile.setSize(multi.getFile("file").length());
+			uploadFile.setContenttype(multi.getContentType("file"));
+			tempDao.insertFile(uploadFile);
+
+			java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+			file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));
+			temp.setTempPhoto(uploadFile.getNum());
+		}
+		temp.setTempNum(Integer.parseInt(multi.getParameter("tempNum")));
+		temp.setTempName(multi.getParameter("tempName"));
+		temp.setTempAddress(multi.getParameter("tempAddress"));
+
+		// 문자열 -> Date
+		temp.setProtectDate(multi.getParameter("protectDate"));
+		System.out.println(multi.getParameter("tempChar"));
+		temp.setTempChar(multi.getParameter("tempChar"));
+		temp.setTempEtc(multi.getParameter("tempEtc"));
+		temp.setTempCgory(multi.getParameter("tempCgory"));
+		temp.setMemId("hong");
+
+		tempDao.updateTemp(temp);
 	}
 
 }
