@@ -94,9 +94,9 @@ public class FreeServiceImpl implements FreeService{
 	    request.setAttribute("pageInfo", pageInfo);
 	}
 	@Override
-	public FBoard freeDetail(Integer num) throws Exception {
-		freeDAO.updateBoardViewCount(num);
-		return freeDAO.selectBoard(num);
+	public FBoard freeDetail(Integer freeNum) throws Exception {
+		freeDAO.updateBoardViewCount(freeNum);
+		return freeDAO.selectBoard(freeNum);
 	}
 	@Override
 	public void freeModify(HttpServletRequest request) throws Exception {

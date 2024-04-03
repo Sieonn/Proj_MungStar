@@ -282,8 +282,8 @@
 		<c:forEach items = "${freeBoard }" var = "board">
 			<tr>
 				<td>${board.freeTag }</td>
-				<td><a href = "boarddetail?num=${board.freeNum }">${board.freeSub }</a></td>
-				<td>${board.freeId }</td>
+				<td><a href = "boarddetail?freeNum=${board.freeNum }">${board.freeSub }</a></td>
+				<td>${board.freeNick }</td>
 				<td>${board.freeWriteDate }</td>
 				<td>${board.freeView }</td>
 				<td>${board.freeLike }<span class="like-icon"></span></td>

@@ -219,7 +219,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="../main/otherHeader.jsp"/>
+<%@ include file="../main/header.jsp" %>
 <br>
 <div class="pageContainer">
 <div class = "freeContainer">

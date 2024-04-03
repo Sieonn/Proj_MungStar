@@ -186,7 +186,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
     // 여기서 원하는 추가 동작을 수행할 수 있습니다.
 });
 </script>
-<jsp:include page="../main/otherHeader.jsp"/>
+<%@ include file="../main/header.jsp" %>
 <br>
 <div class = "pageContainer">
 <div class="freeContainer">
@@ -197,25 +197,17 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 	</div>
 <div class="wrap">
 	<div>
-		<span class= "title" >&nbsp;&nbsp;&nbsp;제목이 들어가는 곳입니다.${board.freeSub }</span>
-		<span class = "titleInfo">YYYY/MM/DD&nbsp;&nbsp;&nbsp;</span>
+		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
+		<span class = "titleInfo">${board.freeWriteDate}&nbsp;&nbsp;&nbsp;</span>
 		<br>
-		<span class = "titleInfo">좋아요 : n&nbsp;</span>
-		<span class = "titleInfo">조회수 : nnnn&nbsp;</span>
-		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;닉네임이들어가는곳${board.freeNick }</div>
+		<span class = "titleInfo">좋아요 : ${board.freeLike}&nbsp;</span>
+		<span class = "titleInfo">조회수 : ${board.freeView}&nbsp;</span>
+		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;${board.freeNick }</div>
 	</div>
 </div>
 	<br>
 <div class="wrap">
 	<div class="ContentBackground scroll-box">
-		<div class = "contextImg">
-		<img src="<%=request.getContextPath()%>/image/dog1.jpg" alt="자유게시판 사진첨부 예시1">
-		<br>
-		<img src="<%=request.getContextPath()%>/image/dog2.jpg" alt="자유게시판 사진첨부 예시2">
-		</div>
-		<p class = "context"> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
-		<br>
-		<p class = "context"> 후... (담배)<br>니들은 이런거 하지 마라... </p>
 		<div class = "context">${board.freeContent}</div>
 		<c:if test="${board.freePhoto ne null}">
 			<img src="image?num=${board.freePhoto}" width="100px"/>
@@ -257,6 +249,7 @@ likeButton.addEventListener('click', function() {
     clickCount++;
   }
   </script>
+ <!-- 
   <script>
   // 클릭 수 출력
   console.log('클릭 수:', clickCount);
@@ -269,7 +262,7 @@ $(function(){
 			url : 'boardlike',
 			type : 'post',
 			async : true,
-			data :{like:JSON.stringify({memberID:"${user.id}",boardNum:"${board.num}"})},
+			data :{like:JSON.stringify({memberID:"${board.freeNick}",boardNum:"${board.freeNum}"})},
 			success : function(result) {
 				if(result == 'true') {
 					$('#likeCount').attr("src","../image/하트(회)수정.png")
@@ -282,5 +275,6 @@ $(function(){
 })
 
 </script>
+ -->
 </body>
 </html>

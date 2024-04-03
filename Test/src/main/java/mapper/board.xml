@@ -38,7 +38,7 @@
 		where freeNum = #{freeNum}
 	</update>
 	
-	<update id="updateBoardViewCount">
+	<update id="updateBoardViewCount" parameterType="Integer">
 		<![CDATA[
 		update freeboard set freeView = freeView+1 where freeNum=#{freeNum}
 		]]>

@@ -43,8 +43,8 @@ public class FreeDAOImpl implements FreeDAO {
 	}
 
 	@Override
-	public FBoard selectBoard(Integer num) throws Exception {
-		return sqlSession.selectOne("mapper.board.selectBoard", num);
+	public FBoard selectBoard(Integer freeNum) throws Exception {
+		return sqlSession.selectOne("mapper.board.selectBoard", freeNum);
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class FreeDAOImpl implements FreeDAO {
 	}
 
 	@Override
-	public void updateBoardViewCount(Integer num) {
-		sqlSession.update("mapper.board.updateBoardViewCount", num); 
+	public void updateBoardViewCount(Integer freeNum) throws Exception{
+		sqlSession.update("mapper.board.updateBoardViewCount", freeNum); 
 		sqlSession.commit();
 	}
 

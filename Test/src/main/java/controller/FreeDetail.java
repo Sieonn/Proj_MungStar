@@ -33,10 +33,10 @@ public class FreeDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-	    Integer num = Integer.parseInt(request.getParameter("num"));
+	    Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	    try {
 	        FreeService boardService = new FreeServiceImpl();
-	        FBoard board = (FBoard) boardService.freeDetail(num);
+	        FBoard board = (FBoard) boardService.freeDetail(freeNum);
 	        request.setAttribute("board", board);
 	        
 	        // forward 이전에 파일을 열도록 이동합니다.
