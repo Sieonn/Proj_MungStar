@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	<select id="selectBoardList" parameterType="Integer" resultType="dto.fBoard">
+		<![CDATA[
+			select * from freeboard order by freeNum desc
+			limit #{row}, 10 
+		]]>
+	</select>
+	
+	<select id="selectBoardCount" resultType="Integer">
+		<![CDATA[
+			select count(*) from freeboard
+		]]>
+	</select>
+	
+	<select id="selectBoard" parameterType="Integer" resultType="dto.fBoard">
+		<![CDATA[
+			select * from freeboard where freeNum = #{freeNum}
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="dto.fBoard" useGeneratedKeys="true" keyProperty="num">
+		<![CDATA[
+			insert into freeboard (freeNum,freeId,freeSub,freeContent,freePhoto,freeTag,freeView,freeWriteDate,freeLike)
+			values (#{freeNum},#{freeId},#{freeSub}, #{freeContent}, #{freePhoto},#{freeTag},#{freeView}, curdate(), #{freeLike})
+		]]>
+	</insert>
+	
+	<update id="updateBoard" parameterType="dto.fBoard">
+		update board
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="freeSub != null">freeSub=#{freeSub},</if>
+			<if test="freeContent != null">freeContent=#{freeContent},</if>
+			<if test="freePhoto != null">freePhoto=#{freePhoto}</if>
+		</trim>
+		where freeNum = #{freeNum}
+	</update>
+	
+	<update id="updateBoardViewCount">
+		<![CDATA[
+		update freeboard set freeView = freeView+1 where freeNum=#{freeNum}
+		]]>
+	</update>
+</mapper>

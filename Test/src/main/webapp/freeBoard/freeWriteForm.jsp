@@ -2,22 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
- <script>
- //이거는 하이퍼링크 스크립트에옹
-    function addLink() {
-      var url = prompt("Enter the URL:");
-      document.execCommand('createLink', false, url);
-    }
- //이거는 글씨 색 바꾸는 스크립트
- 	function changeTextColor() {
-     var color = document.getElementById("colorPicker").value;
-     document.execCommand('foreColor', false, color);
-   }
- //이거는 배경 색 바꾸는 스크립트
- 	function changeBackgroundColor(color) {
- 	      document.execCommand('hiliteColor', false, color);
- 	    }
-  </script>
+
 <head>
 <meta charset="UTF-8">
 <style type="text/css">	
@@ -72,10 +57,19 @@
         border: 0; /* textarea 요소의 테두리 제거 */
         outline: none; /* textarea 요소의 포커스 표시 제거 */
         background-color: transparent; /* textarea 요소의 배경색을 투명으로 설정 */
-        font-size: 14px; /* textarea 요소의 글꼴 크기 설정 */
+        font-size: 15px; /* textarea 요소의 글꼴 크기 설정 */
+        font-weight: normal;
         line-height: 1.5; /* textarea 요소의 줄 간격 설정 */
         padding: 10px;
         margin: 10px auto;
+    }
+     #imagePreview img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+     #fileInput {
+            display: none; /* 파일 선택 input 요소 숨기기 */
     }
     .tag-input {
     	align-item: center;
@@ -225,7 +219,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<jsp:include page="../main/otherHeader.jsp"/>
 <br>
 <div class="pageContainer">
 <div class = "freeContainer">
@@ -245,32 +239,33 @@
         		<option value="4">Very Large</option>
     		</select>
     		<div class="imgBtn"></div>
-    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, '');">B</button>
-    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, '');">I</button>
+    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, null);">B</button>
+    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, null);">I</button>
     		<button class="toolbar-button underline-button" onclick="document.execCommand('underline', false, '');">U</button>
     		<button class="toolbar-button strike-button" onclick="document.execCommand('strikeThrough', false, '');">S</button>
-    		<img src="<%=request.getContextPath()%>/image/quote.png" class = "imgBtn" onclick="quoteText()">
+    		<img src="../image/quote.png" class = "imgBtn" onclick="quoteText()">
     		<div class="imgBtn"></div>
-    		<input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFiles(this.files)">
-    		<img src="<%=request.getContextPath()%>/image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
-    		<img src="<%=request.getContextPath()%>/image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
+    		<img src="../image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
+    		<input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFiles(event)">
+   
+    		<img src="../image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
     		<div class="imgBtn"></div>
-    		<img src="<%=request.getContextPath()%>/image/왼쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/가운데정렬.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
-    		<img src="<%=request.getContextPath()%>/image/오른쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
+    		<img src="../image/왼쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyLeft', false, '');">
+    		<img src="../image/가운데정렬.png" class = "imgBtn" onclick="document.execCommand('justifyCenter', false, '');">
+    		<img src="../image/오른쪽정렬.png" class = "imgBtn" onclick="document.execCommand('justifyRight', false, '');">
   			<div class="imgBtn"></div>
   			<div class="colorPicker" style="display: flex; flex-direction: column;">
         		<div id="colorPicker" style="margin-bottom: -3px;">A</div>
-        		<input type="color" id="colorPicker" onchange="changeTextColor()">
+        		<input type="color" id="colorPicker" onchange="changeTextColor(event)">
     			</div>
     		<div class = "colorPicker" style="display: flex; flex-direction: column; margin-top: 4px;">
     			<div class = "bgcolorPicker" style=" ">A</div>
-    				<input type="color" id="bgColorPicker" onchange="changeBackgroundColor(this.value)">
+    				<input type="color" id="bgColorPicker" onchange="changeBackgroundColor(event)">
     		</div>
         </div>
         <div class="scroll-box">
-            <img src="<%=request.getContextPath()%>/image/dog1.jpg" style="width: 100%; height: auto; margin-bottom: 10px;">
-            <textarea class="text-area" style="overflow: hidden;"></textarea>
+            <div id="imagePreview"></div>
+            <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
         </div>
         <input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
     </div>
@@ -279,14 +274,73 @@
 	<div class="yellowBtn" id="saveButton">저 장</div>
 
 </div>
-<script>
-  // 저장 버튼에 대한 클릭 이벤트 핸들러
-  document.getElementById('saveButton').addEventListener('click', function() {
-    // 작성된 글을 어딘가에 저장하는 코드를 여기에 추가합니다.
+ <script>
+ // 인용구 추가 함수
+function quoteText() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var selectedText = range.toString();
     
-    // 저장이 완료되면 목록 페이지로 이동합니다.
-    window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
-  });
+    // 인용구로 감싸기
+    var quoteElement = document.createElement('blockquote');
+    quoteElement.textContent = selectedText;
+
+    // 선택 영역 교체
+    range.deleteContents();
+    range.insertNode(quoteElement);
+}
+// 파일 업로드 함수
+function handleFiles(event) {
+    var file = event.target.files[0];
+    var content = document.getElementById('imagePreview'); // 이미지가 추가될 위치를 변경
+
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var imgElement = document.createElement('img');
+            imgElement.src = event.target.result;
+            imgElement.style.width = '100%';
+            content.appendChild(imgElement); // 이미지 추가
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+ //이거는 하이퍼링크 스크립트에옹
+    function addLink() {
+      var url = prompt("Enter the URL:");
+      document.execCommand('createLink', false, url);
+    }
+ // 글자 색상 변경 함수
+    function changeTextColor(event) {
+        var color = event.target.value;
+        document.execCommand('foreColor', false, color);
+    }
+    function changeBackgroundColor(event) {
+        var color = event.target.value;
+        document.execCommand('hiliteColor', false, color);
+    }
+  </script>
+<script>
+document.getElementById('saveButton').addEventListener('click', function() {
+    // 작성된 글을 어딘가에 저장하는 코드
+    var title = document.querySelector('.writeTitle').value; // 제목 가져오기
+    var content = document.querySelector('#editor').innerHTML; // 내용 가져오기
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'saveDataServlet', true); // 저장을 처리하는 서블릿 주소로 POST 요청 보냄
+    xhr.setRequestHeader('Content-Type', 'application/json'); // 요청 헤더 설정
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // 저장이 완료되면 목록 페이지로 이동
+            window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
+        } else {
+            console.error('저장 실패:', xhr.statusText);
+        }
+    };
+    // JSON 형태로 데이터 전송
+    xhr.send(JSON.stringify({ title: title, content: content }));
+});
 </script>
 </div>
 <div class="footer"></div>	
