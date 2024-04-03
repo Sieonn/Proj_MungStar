@@ -84,7 +84,7 @@ padding:0;
     </style>
 </head>
 <body>
-<jsp:include page="../main/header.jsp"></jsp:include>
+<%@ include file="../main/header.jsp" %>
 <div class="content">
 <div class="card align-middle" style="width: 25rem">
     <div class="card-body">

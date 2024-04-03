@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
   <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta charset="utf-8" />
@@ -106,7 +106,7 @@
   </head>
 
   <body>
-    <jsp:include page="../main/header.jsp"></jsp:include>
+<%@ include file="../main/header.jsp" %>
     <div class="content">
       <div class="card">
         <div class="card-title">
