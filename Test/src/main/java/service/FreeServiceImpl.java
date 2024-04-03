@@ -1,6 +1,5 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +9,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.FreeDAO;
 import dao.FreeDAOImpl;
-import dao.MemberDAO;
-import dao.MemberDAOImpl;
+import dto.FBoard;
 import dto.File;
-import dto.Member;
-import dto.fBoard;
 import util.PageInfo;
 
 public class FreeServiceImpl implements FreeService{
@@ -25,7 +21,7 @@ public class FreeServiceImpl implements FreeService{
 	}
 	@Override
 	public void freeWrite(HttpServletRequest request) throws Exception {
-		fBoard board = new fBoard();
+		FBoard board = new FBoard();
 		
 		//업로드 경로 & 파일크기
 		String uploadPath = request.getServletContext().getRealPath("upload");
@@ -91,24 +87,20 @@ public class FreeServiceImpl implements FreeService{
 
 	    //3. 해당 페이지에 해당하는 게시판 글 목록 조회
 	    int row = (page - 1) * 10;
-	    List<fBoard> boardList = freeDAO.selectBoardList(row);
-
-	    //4. 회원 정보 가져오기
-	    List<Member> members = new ArrayList<>();
+	    List<FBoard> boardList = freeDAO.selectBoardList(row);
 	
 	    //5. 응답으로 보내기 위해 request 영역에 담는다
-	    request.setAttribute("members", members);
 	    request.setAttribute("freeBoard", boardList);
 	    request.setAttribute("pageInfo", pageInfo);
 	}
 	@Override
-	public fBoard freeDetail(Integer num) throws Exception {
+	public FBoard freeDetail(Integer num) throws Exception {
 		freeDAO.updateBoardViewCount(num);
 		return freeDAO.selectBoard(num);
 	}
 	@Override
 	public void freeModify(HttpServletRequest request) throws Exception {
-		fBoard board = new fBoard();
+		FBoard board = new FBoard();
 	      // 파일업로드
 	      //1-1. 업로드할 경로 설정
 	      String uploadPath = request.getServletContext().getRealPath("upload");

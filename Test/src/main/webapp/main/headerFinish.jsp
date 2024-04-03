@@ -9,7 +9,7 @@
 <body>
  <c:choose>
 			<c:when test="${user eq Empty }">
-	  <jsp:include page="headerLogin.jsp" />
+	  <jsp:include page="/main/headerLogin.jsp" />
 
 			</c:when>
 			<c:otherwise>

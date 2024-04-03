@@ -1,9 +1,7 @@
 package controller;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import dto.fBoard;
+import dto.FBoard;
 import service.FreeService;
 import service.FreeServiceImpl;
 
@@ -39,22 +36,22 @@ public class FreeDetail extends HttpServlet {
 	    Integer num = Integer.parseInt(request.getParameter("num"));
 	    try {
 	        FreeService boardService = new FreeServiceImpl();
-	        fBoard board = (fBoard) boardService.freeDetail(num);
+	        FBoard board = (FBoard) boardService.freeDetail(num);
 	        request.setAttribute("board", board);
 	        
 	        // forward 이전에 파일을 열도록 이동합니다.
-	        String pnum = request.getParameter("num");
-	        String path = request.getServletContext().getRealPath("upload");
-	        FileInputStream fis = new FileInputStream(new File(path, pnum));
-	        OutputStream out = response.getOutputStream();
-	        byte[] buff = new byte[4096];
-	        int len = 0;
-	        while ((len = fis.read(buff)) > 0) {
-	            out.write(buff, 0, len);
-	        }
-	        fis.close();
+//	        String pnum = request.getParameter("num");
+//	        String path = request.getServletContext().getRealPath("upload");
+//	        FileInputStream fis = new FileInputStream(new File(path, pnum));
+//	        OutputStream out = response.getOutputStream();
+//	        byte[] buff = new byte[4096];
+//	        int len = 0;
+//	        while ((len = fis.read(buff)) > 0) {
+//	            out.write(buff, 0, len);
+//	        }
+//	        fis.close();
 	        
-	        request.getRequestDispatcher("boarddetail.jsp").forward(request, response);
+	        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        request.setAttribute("err", "게시글 조회 실패");
