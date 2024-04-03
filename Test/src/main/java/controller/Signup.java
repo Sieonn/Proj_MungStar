@@ -23,10 +23,11 @@ public class Signup extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			memberService.signup(request);
-			response.sendRedirect("main");
+			response.sendRedirect("main.jsp");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

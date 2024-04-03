@@ -25,6 +25,7 @@ public class MemberDoubleId extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		System.out.println(request.getParameter("memId"));
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			boolean doubleId=memberService.memberIdCheck(request.getParameter("memId"));
