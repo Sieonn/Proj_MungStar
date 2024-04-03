@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value=" ${pageContext.request.contextPath}"/>
+<c:set var="path" value=" ${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +66,17 @@ img {
 	border-style: none;
 }
 
+.nav_menu {
+	display: flex;
+	font-size: 20px;
+	gap: 30px;
+	margin-right: 400px;
+}
+
+.nav_menu a {
+	margin-top: 40px;
+}
+
 .user-info {
 	display: flex;
 	justify-content: center;
@@ -110,23 +121,36 @@ a:visited {
 <body>
 	<div class="header">
 		<div class="logo">
-			<a href="${path}/main/main.jsp"> <img src="${path}/image/logo.png"
-				alt="Logo" width="90px" />
+			<a href="${path}/main/main.jsp"> <img
+				src="${path}/image/logo.png" alt="Logo" width="90px" />
 			</a>
 		</div>
-		<div class="center-logo">
-			<img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
-		</div>
+	<c:choose>
+    <c:when test="${pageContext.request.servletPath == '/main/main.jsp'}">
+        <div class="center-logo">
+            <img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div class="nav_menu">
+            <a href="${path}/walking/walkingBoard.jsp">산책로</a>
+            <a href="${path}/hospital/hospitalBoard.jsp">24시 동물병원</a>
+            <a href="${path}/freeBoard/freeBoard.jsp">자유게시판</a>
+            <a href="${path}/lost/lostBoard.jsp">미멍보호소</a>
+            <a href="${path}/temp/tempBoard.jsp">임시 보호해요</a>
+        </div>
+    </c:otherwise>
+</c:choose>
 		<div class="userPro">
 			<div class="user-info">
 				<c:choose>
 					<c:when test="${user == null }">
 						<img src="${path}/image/blue.png" alt="Profile" width="50px"
-							height="50px" />					
+							height="50px" />
 					</c:when>
 					<c:otherwise>
 						<img src="${path}/image/프로필01.jpg" alt="Profile" width="50px"
-							height="50px" />				
+							height="50px" />
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -135,11 +159,11 @@ a:visited {
 				<c:choose>
 					<c:when test="${user == null }">
 						<a href="login">로그인</a>
-						<a href="signup">회원가입</a>					
+						<a href="signup">회원가입</a>
 					</c:when>
 					<c:otherwise>
 						<a href="../main/myPage.jsp">마이페이지</a>
-						<a href="${path}/logout">로그아웃</a>					
+						<a href="${path}/logout">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
