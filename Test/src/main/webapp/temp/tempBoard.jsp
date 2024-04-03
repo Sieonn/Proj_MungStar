@@ -278,7 +278,7 @@ const handleImgInput = (e) => {
     maxSize: 200,
   };
   resizeImage(config)
-    .then((resizedImage) => {
+    .then((resizedImage) => {   
     	resizedImage.toBlob( blob=> {
     	      const url = window.URL.createObjectURL(blob);
     	      const img = document.createElement("img");
