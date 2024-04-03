@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.fBoard;
+import dto.FBoard;
 import service.FreeService;
 import service.FreeServiceImpl;
 
@@ -34,7 +34,7 @@ public class FreeModify extends HttpServlet {
 	      Integer num = Integer.parseInt(request.getParameter("num"));
 	      try {
 	         FreeService boardService = new FreeServiceImpl();
-	         fBoard board = boardService.freeDetail(num);
+	         FBoard board = boardService.freeDetail(num);
 	         request.setAttribute("board", board);
 	         request.getRequestDispatcher("modifyform.jsp").forward(request, response);
 	      } catch(Exception e) {

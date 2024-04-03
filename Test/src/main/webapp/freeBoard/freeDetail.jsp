@@ -216,9 +216,9 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		<p class = "context"> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
 		<br>
 		<p class = "context"> 후... (담배)<br>니들은 이런거 하지 마라... </p>
-		<div class = "context">${board.content}</div>
-		<c:if test="${board.filenum ne null}">
-			<img src="image?num=${board.filenum}" width="100px"/>
+		<div class = "context">${board.freeContent}</div>
+		<c:if test="${board.freePhoto ne null}">
+			<img src="image?num=${board.freePhoto}" width="100px"/>
 		</c:if>
 	</div>
 </div>
@@ -256,10 +256,31 @@ likeButton.addEventListener('click', function() {
     likeButton.classList.add('active');
     clickCount++;
   }
-  
+  </script>
+  <script>
   // 클릭 수 출력
   console.log('클릭 수:', clickCount);
 });
+
+<script type="text/javascript">
+$(function(){
+	$('#likeCount').click(function(){
+		$.ajax({
+			url : 'boardlike',
+			type : 'post',
+			async : true,
+			data :{like:JSON.stringify({memberID:"${user.id}",boardNum:"${board.num}"})},
+			success : function(result) {
+				if(result == 'true') {
+					$('#likeCount').attr("src","../image/하트(회)수정.png")
+				} else {
+					$('#likeCount').attr("src","../image/하트(핑)수정.png")
+				}
+			}
+		})
+	})
+})
+
 </script>
 </body>
 </html>
