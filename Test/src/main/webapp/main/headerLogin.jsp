@@ -113,7 +113,7 @@ img {
         </div>
         <div class="user-info">
           <a href="../main/myPage.jsp">마이페이지</a>
-          <a href="../main/login.jsp">로그아웃</a>
+          <a href="/logout">로그아웃</a>
         </div>
       </div>
     </div>

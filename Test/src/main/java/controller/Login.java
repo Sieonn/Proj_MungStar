@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.MemberService;
 import service.MemberServiceImpl;
 
-@WebServlet("/login")
+@WebServlet("/main/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -19,14 +19,14 @@ public class Login extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			memberService.login(request);
-			response.sendRedirect("main");
+			response.sendRedirect("main.jsp");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "로그인 실패 오류");

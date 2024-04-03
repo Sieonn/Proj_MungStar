@@ -228,7 +228,7 @@
     </style>
   </head>
   <body>
-    <jsp:include page="../main/header.jsp"></jsp:include>
+     <%@ include file="../main/headerFinish.jsp" %>
     <div class="content">
       <div class="container">
         <div class="slider">

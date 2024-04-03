@@ -6,63 +6,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
-<script>
-        function previewFile() {
-          var preview = document.querySelector("img");
-          var file = document.querySelector("input[type=file]").files[0];
-          var reader = new FileReader();
-
-          reader.addEventListener(
-            "load",
-            function () {
-              preview.src = reader.result;
-            },
-            false
-          );
-
-          if (file) {
-            reader.readAsDataURL(file);
-          }
-        }
-        $(function () {
-          $("#profile-image1").on("click", function () {
-            $("#profile-image-upload").click();
-          });
-        });
-      }
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const previewImage = document.getElementById("preview-image");
-        const fileInput = document.getElementById("file-input");
-        const uploadButton = document.getElementById("upload-btn");
-        const deleteButton = document.getElementById("delete-btn");
-
-        // 파일 선택 시 미리보기 업데이트
-        fileInput.addEventListener("change", function (event) {
-          const file = event.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              previewImage.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-
-        // 이미지 업로드 버튼 클릭 시 input 클릭 이벤트 발생
-        uploadButton.addEventListener("click", function () {
-          fileInput.click();
-        });
-
-        // 이미지 삭제 버튼 클릭 시 미리보기 초기화
-        deleteButton.addEventListener("click", function () {
-          previewImage.src =
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-          fileInput.value = null;
-        });
-      });
-    </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
@@ -182,12 +125,11 @@ function findAddr() {
       }
          .field input[type="tel"] {
          }
-      .container .field input[type="button"],
-      .container input[type="submit"] {
+      .container .field input[type="button"] {
         margin-left: 3px;
         width: auto;
         border-radius: 3px;
-        padding: 6px 15px;
+        padding: 10	px 15px;
         font-weight: bold;
         font-size: 13px;
         letter-spacing: 2px;
@@ -196,6 +138,18 @@ function findAddr() {
         border: none;
         margin-left: 5px;
       }
+       .container input[type="submit"]{
+        width: auto;
+        border-radius: 3px;
+        padding: 20	px 15px;
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 2px;
+        background-color: #0155b7;
+        color: white;
+        border: none;
+        margin-left: 5px;
+       }
       .inner-input2 .inner-input button {
         margin-left: 3px;
         width: auto;
@@ -379,9 +333,10 @@ $(function() {
   <jsp:include page="../main/header.jsp"></jsp:include>
   <div class="content">
     <div class="container">
+          <h2>SIGN UP</h2>
+    
       <!-- 개인정보 입력 폼 -->
       <form action="signup" method="post">
-      <h2>SIGN UP</h2>
       <div class="title">
         개인정보 입력
         <span style="font-size: 14px; color: red">(필수)</span>
@@ -514,66 +469,6 @@ $(function() {
           margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
         "
       />
-
-      <!-- 프로필 추가 -->
-
-      <div class="title">
-        추가 정보입력
-        <span style="font-size: 14px">(선택)</span>
-      </div>
-      <hr />
-      <div class="signup-container">
-        <div class="field">
-          <div class="inner-title">반려동물 이름</div>
-          <div class="inner-input">
-            <input type="text" name="petName" />
-          </div>
-        </div>
-
-        <!-- 반려동물 성별 -->
-        <div class="field">
-          <div class="inner-title">반려동물 성별</div>
-          <div class="gender">
-            <input type="radio" id="male" name="petGender" value="남" />
-            <label for="male">남</label>
-            <input type="radio" id="female" name="petGender" value="여" />
-            <label for="female">여</label>
-          </div>
-        </div>
-
-        <!-- 프로필 사진 -->
-        <div class="field">
-          <div class="inner-title">프로필 사진</div>
-          <div class="inner-input2">
-            <img
-              id="preview-image"
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-              alt="프로필 미리보기"
-              style="width: 100px; height: 100px; margin-left: 10px"
-            />
-            <input
-              type="file"
-              id="file-input"
-              style="display: none"
-              accept="image/jpg,image/png,image/jpeg"
-            />
-
-            <div
-              class="inner-input"
-              style="margin-left: 5px; margin-top: 10px; gap: 10px"
-            >
-              <button id="upload-btn">이미지 업로드</button>
-              <button id="delete-btn">이미지 삭제</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr
-        style="
-          border-top: 1px solid rgb(214, 214, 214);
-          margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
-        "
-      />
       <div class="centerForm">
         <span>
           <a href="#" style="font-size: 12px">개인정보 수집/이용동의</a>
@@ -593,11 +488,11 @@ $(function() {
         </span>
       </div>
       <!-- 6. 가입하기 버튼 -->
-      <input
-        type="submit" name="submit" id="submit"
-      value="회원가입"/>
-          </form>
-    </div>
+      <div style="display: flex;">      <input
+        type="submit" name="submit" id="submit" style="padding: 15px 0; width: 600px; margin: 0 auto;"
+      value="회원가입"/></div>
+     </form>
+     </div>
     </div>
   </body>
 </html>

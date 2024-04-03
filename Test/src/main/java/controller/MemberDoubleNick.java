@@ -11,7 +11,7 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 
-@WebServlet("/memberDoubleNick")
+@WebServlet("/main/memberDoubleNick")
 public class MemberDoubleNick extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,6 +25,7 @@ public class MemberDoubleNick extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		System.out.println(request.getParameter("memNick"));
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			boolean doubleNick=memberService.memberNickCheck(request.getParameter("memNick"));

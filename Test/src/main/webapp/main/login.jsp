@@ -3,8 +3,8 @@
     <%
 	String cookieHeader = request.getHeader("Cookie");
 	Boolean autologin = false;
-	String id = "";
-	String password = "";
+	String memId = "";
+	String memPw = "";
 	if(cookieHeader!=null) {
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
@@ -13,10 +13,10 @@
 					autologin = true;	
 				else 
 					autologin = false;
-			} else if(cookie.getName().equals("id")) {
-				id = cookie.getValue();
-			} else if(cookie.getName().equals("password")) {
-				password = cookie.getValue();
+			} else if(cookie.getName().equals("memId")) {
+				memId = cookie.getValue();
+			} else if(cookie.getName().equals("memPw")) {
+				memPw = cookie.getValue();
 			}
 		}
 	}
@@ -143,16 +143,16 @@
     <div class="content">
       <div class="login-wrapper">
         <h2>LOGIN</h2>
-        <form  action="login"  method="post"id="login-form">
+        <form  action="login"  method="post" id="login-form">
           <input
             type="text"
-            name="id"
+            name="memId"
             placeholder="ID"
-            value='<%=id%>'
+            value='<%= memId %>'
             autofocus
             required
           />
-          <input type="password" name="password" placeholder="Password" value="<%=password%>" />
+          <input type="password" name="memPw" placeholder="Password" value="<%=memPw%>" />
 
           <input type="submit" value="Login" required />
         </form>

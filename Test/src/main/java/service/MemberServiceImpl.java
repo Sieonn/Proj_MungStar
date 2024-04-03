@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 	public void login(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		Member member=memberDao.selectMember(request.getParameter("id"));
+		Member member=memberDao.selectMember(request.getParameter("memId"));
 		if(member==null) throw new Exception("아이디 오류");
 		if(!member.getMemPw().equals(request.getParameter("memPw"))) {
 			throw new Exception("비밀번호 오류");

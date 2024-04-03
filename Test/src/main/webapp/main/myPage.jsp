@@ -1,12 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.Member" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지</title>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        function previewFile() {
+          var preview = document.querySelector("img");
+          var file = document.querySelector("input[type=file]").files[0];
+          var reader = new FileReader();
+
+          reader.addEventListener(
+            "load",
+            function () {
+              preview.src = reader.result;
+            },
+            false
+          );
+
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+        }
+        $(function () {
+          $("#profile-image1").on("click", function () {
+            $("#profile-image-upload").click();
+          });
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const previewImage = document.getElementById("preview-image");
+        const fileInput = document.getElementById("file-input");
+        const uploadButton = document.getElementById("upload-btn");
+        const deleteButton = document.getElementById("delete-btn");
+
+        // 파일 선택 시 미리보기 업데이트
+        fileInput.addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              previewImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // 이미지 업로드 버튼 클릭 시 input 클릭 이벤트 발생
+        uploadButton.addEventListener("click", function () {
+          fileInput.click();
+        });
+
+        // 이미지 삭제 버튼 클릭 시 미리보기 초기화
+        deleteButton.addEventListener("click", function () {
+          previewImage.src =
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+          fileInput.value = null;
+        });
+      });
+    </script>
     <style>
       @font-face {
         font-family: "JalnanGothic";
@@ -213,35 +272,27 @@
     </style>
   </head>
   <body>
-    <jsp:include page="../main/headerLogin.jsp"></jsp:include>
+    <%@ include file="../main/otherHeaderLogin.jsp" %>
     <div class="container">
       <!-- 인삿말 -->
+       <% Member user = (Member) session.getAttribute("user"); %>
       <div class="mypage-container">
         <div class="wel-Img">
           <div class="inner_profile">
             <img src="../image/프로필01.jpg" />
           </div>
         </div>
-        <div class="wel-txt">
-          <div class="hello">
-            <span style="display: flex"
-              ><span
-                style="
-                  text-decoration: underline;
-                  text-underline-offset: 10px;
-                  text-decoration-thickness: 5%;
-                  font-family: 'JalnanGothic';
-                "
-              >
-                소금이산책기계
-              </span>
-              <span style="text-decoration: none; font-weight: 900">
-                &nbsp;님</span
-              >
-            </span>
-            <div style="margin-top: 10px; font-weight: 900">다녀오셨어요?</div>
-          </div>
-        </div>
+         <div class="wel-txt">
+                    <div class="hello">
+                        <span style="display: flex">
+                            <span style="text-decoration: underline; text-underline-offset: 10px; text-decoration-thickness: 5%; font-family: 'JalnanGothic';">
+                                <%= user.getMemNick() %>
+                            </span>
+                            <span style="text-decoration: none; font-weight: 900">&nbsp;님</span>
+                        </span>
+                        <div style="margin-top: 10px; font-weight: 900">다녀오셨어요?</div>
+                    </div>
+                </div>
       </div>
 
       <hr />
@@ -262,19 +313,17 @@
               <!-- <hr /> -->
 
               <div class="field1">
-                <div class="inner-txt">이름</div>
-                <div class="myinfo">홍길동</div>
+                <div class="inner-txt">아이디</div>
+                <div class="myinfo"><%= user.getMemId() %></div>
               </div>
               <div class="field1">
                 <div class="inner-txt">닉네임</div>
-                <div class="myinfo">소금이산책기계</div>
+                <div class="myinfo"> <%= user.getMemNick() %></div>
               </div>
               <div class="field1">
                 <div class="inner-txt">전화 번호</div>
                 <div class="myinfo">
-                  <span id="tel1">010</span>
-                  <span id="tel2">1234</span>
-                  <span id="tel3">5678</span>
+                  <span id="tel1"><%= user.getMemPhone() %></span>
                 </div>
               </div>
               <div class="field1">
@@ -311,7 +360,7 @@
               style="text-align: center; border-width: 3px 0 0 0"
             >
               <!-- <hr /> -->
-
+				
               <div class="signup-container"></div>
 
               <script>
@@ -349,6 +398,34 @@
             </span>
 
             <!-- 반려동물 사진 -->
+            <!-- 프로필 사진 -->
+            <div class="field">
+              <div class="inner-txt">프로필 사진</div>
+              <div>
+                <img
+                  id="preview-image"
+                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  alt="프로필 미리보기"
+                  style="width: 100px; height: 100px; margin-left: 10px"
+                />
+                <input
+                  type="file"
+                  id="file-input"
+                  style="display: none"
+                  accept="image/jpg,image/png,image/jpeg"
+                />
+
+                <div
+                  class="inner-input"
+                  style="margin-left: 5px; margin-top: 10px; gap: 10px"
+                >
+                  <button id="upload-btn">이미지 업로드</button>
+                  <button id="delete-btn">이미지 삭제</button>
+                </div>
+              </div>
+            </div>
+            
+            
             <span class="field" style="display: flex;justify-content: flex-end;">
               <!-- 삭제 버튼 -->
               <button class="delete-btn" onclick="deletePetInfo(this)">
