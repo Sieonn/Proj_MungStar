@@ -131,7 +131,7 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 </head>
 <body>
-<jsp:include page="../main/otherHeader.jsp"/>
+     <%@ include file="/main/headerFinish.jsp" %>
 <br><br>
 <div class="pageContainer">
 	<div class="freeContainer">

@@ -1,26 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-	String cookieHeader = request.getHeader("Cookie");
-	Boolean autologin = false;
-	String memId = "";
-	String memPw = "";
-	if(cookieHeader!=null) {
-		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals("autologin")) {
-				if(cookie.getValue().equals("true"))
-					autologin = true;	
-				else 
-					autologin = false;
-			} else if(cookie.getName().equals("memId")) {
-				memId = cookie.getValue();
-			} else if(cookie.getName().equals("memPw")) {
-				memPw = cookie.getValue();
-			}
-		}
-	}
-%>   
 <!DOCTYPE html>
 <html>
   <head>
@@ -148,11 +127,10 @@
             type="text"
             name="memId"
             placeholder="ID"
-            value='<%= memId %>'
             autofocus
             required
           />
-          <input type="password" name="memPw" placeholder="Password" value="<%=memPw%>" />
+          <input type="password" name="memPw" placeholder="Password" />
 
           <input type="submit" value="Login" required />
         </form>

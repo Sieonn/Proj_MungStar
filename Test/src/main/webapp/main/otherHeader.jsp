@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -118,13 +119,28 @@
       </div>
       <div class="userPro">
         <div class="user-info">
-          <img src="../image/blue.png" alt="Profile" width="50px" />
-        </div>
+        	<c:choose>
+					<c:when test="${user eq Empty} ">
+				<img src="../image/blue.png" alt="Profile" width="50px"
+					height="50px" />
+					</c:when>
+					<c:otherwise>
+						<img src="../image/프로필01.jpg" alt="Profile" width="50px"height="50px" />
+					</c:otherwise>
+					</c:choose>
+					</div>
         <div class="user-info">
-          <a href="../main/login.jsp">로그인</a>
-          <a href="../main/signup.jsp">회원가입</a>
+       <c:choose>
+					<c:when test="${user eq Empty} ">
+						<a href="../main/login.jsp">로그인</a>
+											<a href="../main/signup.jsp">회원가입</a>
+					</c:when>
+					<c:otherwise>
+						<a href="../main/myPage.jsp">마이페이지</a>
+											<a href="logout">로그아웃</a>
+					</c:otherwise>
+				</c:choose>
         </div>
-      </div>
     </div>
     <div class="header-line"></div>
   </body>
