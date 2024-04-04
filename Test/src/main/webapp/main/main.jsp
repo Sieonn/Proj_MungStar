@@ -329,7 +329,7 @@
             <span class="headline"> 자유게시판 </span>
 
             <span class="more">
-              <a href="../freeBoard/freeSearch.jsp" style="font-size: 12px">더보기</a></span
+              <a href="../freeBoard/freeBoard" style="font-size: 12px">더보기</a></span
             >
           </div>
           <div class="free_box"></div>
@@ -342,7 +342,7 @@
         <span class="headline"> 임시보호해요 </span>
 
         <span class="more">
-          <a href="#" style="font-size: 12px">더보기</a></span
+          <a href="../temp/tempBoard" style="font-size: 12px">더보기</a></span
         >
       </div>
       <div class="header-line"></div>
@@ -391,7 +391,7 @@
       <div class="headline-container" >
         <span class="headline"> 미멍보호소 </span>
         <span class="more">
-          <a href="#" style="font-size: 12px">더보기</a></span
+          <a href="../lost/lostBoard" style="font-size: 12px">더보기</a></span
         >
       </div>
       <div class="header-line"></div>
