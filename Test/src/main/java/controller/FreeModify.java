@@ -30,7 +30,8 @@ public class FreeModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 	      Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	      try {
 	         FreeService boardService = new FreeServiceImpl();
@@ -49,11 +50,12 @@ public class FreeModify extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 	       try {
 	          FreeService boardService = new FreeServiceImpl();
 	          boardService.freeModify(request);
-	          response.sendRedirect("freeDetail");
+	          //response.sendRedirect("freeDetail.jsp");
 	       } catch (Exception e) {
 	          e.printStackTrace();
 	          request.setAttribute("err", "게시글 수정 실패");

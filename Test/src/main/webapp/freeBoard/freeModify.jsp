@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,26 +94,7 @@
   		height: 200px;
   	}
 </style>
-<script type="text/javascript">
 
-//페이지 로드 시 이전 게시글 정보를 가져오는 함수
-window.onload = function loadPreviousContent() {
- var xhr = new XMLHttpRequest();
- xhr.onreadystatechange = function() {
-     if (xhr.readyState === XMLHttpRequest.DONE) {
-         if (xhr.status === 200) {
-             var previousContent = xhr.responseText;
-             document.getElementById('freeContent').innerHTML = previousContent;
-         } else {
-             console.error('이전 게시글 정보를 불러오는데 실패했습니다.');
-         }
-     }
- };
- xhr.open('GET', 'freeDetail.jsp', true); // 수정 전 게시글 정보를 가져오는 서블릿 또는 JSP 페이지의 URL을 입력하세요.
- xhr.send();
-}
-
-</script>
 <style>
 .toolbar {
     background-color: #ffffff;
@@ -233,18 +216,11 @@ window.onload = function loadPreviousContent() {
 </style>
 </head>
 <body>
-<script>
-// 스크롤 상자의 스크롤 이벤트를 처리하는 함수
-document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
-    // 스크롤 상자의 스크롤 위치를 가져옵니다.
-    var scrollTop = event.target.scrollTop;
-    console.log("스크롤 위치:", scrollTop);
-    // 여기서 원하는 추가 동작을 수행할 수 있습니다.
-});
-</script>
+
 <%@ include file="../main/header.jsp" %>
 <br>
 <div class = "pageContainer">
+	<form action="${path}/freeBoard/freemodify" method="post" enctype="multipart/form-data">
 	<div class="freeContainer">
 		<div id="freeCategory">
 			<h2 style="margin-bottom: 5px;">자유게시판</h2>
@@ -252,7 +228,10 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		</div>
 	</div>
 	<div class="writeContainer">
-	<input class="writeTitle" type="text" placeholder="${board.freeSub}" value="${board.freeSub }" />    
+
+	
+	<input type="hidden" value="${board.freeNum}" name="freeNum"/>
+	<input class="writeTitle" type="text" id="title" placeholder="${board.freeSub}" value="${board.freeSub }" name="freeSub" />    
 	<br>
 	<div class="content">
         <div class="toolbar">
@@ -292,38 +271,51 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 				<img src="image?num=${board.freePhoto}" width="100px"/>
 			</c:if>
 			<div id="imagePreview"></div>
-            	<div class = "context">${board.freeContent}</div>
-			<div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
+            	<div class = "context"></div>
+            <input type="hidden" name="freeContent" id="freeContent"/>	
+			<div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">${board.freeContent}</div>
         </div>
-			<input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
+			<input type="text" class="tag-input" placeholder="${board.freeTag}" value="${board.freeTag }" id="tag" name="freeTag">
     </div>
+
 </div>
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
-	<button type = "submit" class = "yellowBtn" onclick="saveAndNavigate()">저장</button>
-	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+	<button class = "yellowBtn" id="listBtn">목록</button>
+	<button type="submit" class = "yellowBtn">저장</button>
+	<button class = "yellowBtn" id="deleteBtn">삭제</button>
 </div>
-
-
-</div>
-<jsp:include page="/freeBoard/boardComment.jsp"/>
+	</form>
+<%@ include file="boardComment.jsp" %>
 <div class="footer"></div>
+<script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$('form').submit(function(e) {
+		$('#freeContent').val($("#editor").text())
+		
+	})
+	$("#listBtn").click(function(e) {
+		e.preventDefault();
+		
+	})
+	$("#deleteBtn").click(function(e) {
+		e.preventDefault();
+		confirmDelete();
+	})	
+</script>
+</div>
+<script>
+// 스크롤 상자의 스크롤 이벤트를 처리하는 함수
+document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
+    // 스크롤 상자의 스크롤 위치를 가져옵니다.
+    var scrollTop = event.target.scrollTop;
+    console.log("스크롤 위치:", scrollTop);
+    // 여기서 원하는 추가 동작을 수행할 수 있습니다.
+});
+</script>
 <script type="text/javascript">
-
 // 게시글을 저장하고 확인하는 페이지로 이동하는 함수
-function saveAndNavigate() {
-    restorePreviousContent();
-    savePost();
-    window.location.href = "boarddetail?freeNum=${board.freeNum }";
-    
-}
 
-// 게시글을 저장하는 함수
-function savePost() {
-    var postContent = document.getElementById("myTextarea").value;
-    console.log("게시글 내용:", postContent);
-}
 //인용구 추가 함수
 function quoteText() {
     var selection = window.getSelection();
@@ -387,7 +379,8 @@ function handleTagInput() {
 // 게시글을 저장하는 함수 (예: 서버에 전송)
 function savePost() {
     // 게시글 내용과 태그를 전송하는 로직을 추가할 수 있습니다.
-    var freeContent = document.getElementById("freeNum").value;
+    var freeContent = '${board.freeNum}';
+    var freeTag = '${board.freeTag}';
     console.log("게시글 내용:", freeContent);
     console.log("태그:", freeTag);
 }

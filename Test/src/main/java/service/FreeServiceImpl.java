@@ -158,9 +158,11 @@ public class FreeServiceImpl implements FreeService{
 	         board.setFreePhoto(uploadFile.getNum());
 	      }
 	      //3. 수정된 Board 정보를 파라미터에서 가져다가 Board 객체 생성하여 Board 테이블 갱신
-	      board.setFreeNum(Integer.parseInt(multi.getParameter("num")));
-	      board.setFreeSub(multi.getParameter("subject"));
-	      board.setFreeContent(multi.getParameter("content"));
+	      board.setFreeNum(Integer.parseInt(multi.getParameter("freeNum")));
+	      board.setFreeSub(multi.getParameter("freeSub"));
+	      board.setFreeContent(multi.getParameter("freeContent"));
+	      board.setFreeTag(multi.getParameter("freeTag"));
+
 	      
 	      freeDAO.updateBoard(board);
 	   }

@@ -156,15 +156,10 @@ function deletePost() {
 }
 
 //수정 페이지로 이동하는 함수
-function goToEditPage() {
-    window.location.href = "http://localhost:8080/MoongStar/freeBoard/freemodify"; // 수정 페이지 URL로 변경
-}
-//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
-function moklock() {
-    window.location.href = "http://localhost:8080/MoongStar/freeBoard/freeBoard"; 
-    // 이전 페이지로
-    // onclick="window.history.back()" 변경예정
-}
+function goToModifyPage(freeNum) {
+        window.location.href = "freemodify?freeNum=" + freeNum;
+    }
+
 
 function toggleLike(button) {
 	  button.classList.toggle('active');
@@ -217,10 +212,9 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="moklock()">목록</button>
-	<a style="text-align: center; font-size: 14px;" class = "yellowBtn" href = "freemodify?freeNum=${board.freeNum }">수 정</a>
-<!-- 	<button type = "submit" class = "yellowBtn" onclick="goToEditPage()">수정</button>
- -->	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
+ 	<button type = "submit" class = "yellowBtn" onclick="goToModifyPage(${board.freeNum})">수정</button>
+ 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 	<button class="likeButton" onclick="toggleLike(this)"></button>
 	<span id="likeCount">0</span>
 </div>

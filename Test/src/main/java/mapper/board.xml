@@ -67,11 +67,12 @@
 	</insert>
 	
 	<update id="updateBoard" parameterType="dto.FBoard">
-		update board
+		update freeboard
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="freeSub != null">freeSub=#{freeSub},</if>
 			<if test="freeContent != null">freeContent=#{freeContent},</if>
 			<if test="freePhoto != null">freePhoto=#{freePhoto}</if>
+			<if test="freeTag != null">freeTag=#{freeTag}</if>
 		</trim>
 		where freeNum = #{freeNum}
 	</update>
