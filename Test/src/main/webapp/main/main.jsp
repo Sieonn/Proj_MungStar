@@ -270,7 +270,6 @@ a:hover {
 		</div>
 
 		<div class="menu_container">
-			<<<<<<< HEAD
 			<div class="menu"
 				onclick="location.href='${path}/walking/walkBoard';"
 				style="cursor: pointer;">산책로 추천</div>
