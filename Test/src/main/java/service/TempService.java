@@ -9,4 +9,5 @@ public interface TempService {
 	Temp tempDetail(Integer tempNum) throws Exception;
 	void tempWrite(HttpServletRequest request) throws Exception;
 	void tempModify(HttpServletRequest request) throws Exception;
+	void tempDelete(Integer tempNum) throws Exception;
 }
