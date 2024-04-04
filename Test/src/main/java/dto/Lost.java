@@ -9,7 +9,7 @@ public class Lost {
 	private Date lostWriteDate;
 	private String lostChar;
 	private String lostEtc;
-	private String lostPhoto;
+	private Integer lostPhoto;
 	private String lostCgory;
 	private String lostBlind;
 	private String memId;
@@ -19,7 +19,7 @@ public class Lost {
 	}
 	
 	public Lost(Integer lostNum, String lostName, String lostAddress, Date lostWriteDate, String lostChar,
-			String lostEtc, String lostPhoto, String lostCgory, String lostBlind, String memId) {
+			String lostEtc, Integer lostPhoto, String lostCgory, String lostBlind, String memId) {
 		super();
 		this.lostNum = lostNum;
 		this.lostName = lostName;
@@ -69,10 +69,10 @@ public class Lost {
 	public void setLostEtc(String lostEtc) {
 		this.lostEtc = lostEtc;
 	}
-	public String getLostPhoto() {
+	public Integer getLostPhoto() {
 		return lostPhoto;
 	}
-	public void setLostPhoto(String lostPhoto) {
+	public void setLostPhoto(Integer lostPhoto) {
 		this.lostPhoto = lostPhoto;
 	}
 	public String getLostCgory() {

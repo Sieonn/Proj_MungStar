@@ -16,7 +16,7 @@
   			</if>
    		</where>
   		order by lostNum desc
-   		limit #{row}, 9
+   		limit #{row}, 8
 	</select>
 	
 	<select id="selectLostCountWithCgoryAndSearch" parameterType="Map" resultType="Integer">
@@ -50,10 +50,26 @@
    		]]>
 	</select>
 	
-	<insert id="insertMember" parameterType="dto.Member">
+	<insert id="insertLost" parameterType="dto.Lost" useGeneratedKeys="true" keyProperty="lostNum">
 		<![CDATA[
-			insert into member (id,name,password,email,address,detailaddress)
-			values (#{id},#{name},#{password},#{email},#{address},#{detailAddress})
+			insert into lost (lostName,lostAddress,lostWriteDate,lostChar,lostEtc,lostPhoto,lostCgory,memId)
+			values (#{lostName},#{lostAddress},curdate(), #{lostpChar},#{lostEtc},#{lostPhoto},#{lostCgory},#{memId})
 		]]>
 	</insert>
+	
+	<update id="updateLost" parameterType="dto.Lost">
+		update lost
+   		<trim prefix="SET" suffixOverrides=",">
+   			<if test="lostAddress !=null">lostAddress=#{lostAddress},</if>
+   			<if test="lostChar !=null">lostChar=#{lostChar},</if>
+   			<if test="lostEtc !=null">lostEtc=#{lostEtc},</if>
+   			<if test="lostCgory !=null">lostCgory=#{lostCgory},</if>
+   			<if test="lostPhoto !=null">lostPhoto=#{lostPhoto}</if>
+   		</trim>
+   		where lostNum=#{lostNum}
+	</update>
+	
+	<delete id="deleteLost" parameterType="Integer">
+		delete 
+	</delete>
 </mapper>

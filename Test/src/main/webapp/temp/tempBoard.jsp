@@ -37,7 +37,6 @@
     	margin: 40px auto;
         width: 1280px;
     	height: 100px;
-    	padding-left: 20px; padding-right: 20px;
     }
     .category{
     	float: right; margin-top: 50px;
@@ -341,7 +340,6 @@ const handleImgInput = (e) => {
         <a href="tempDetail?tempNum=${temp.tempNum}" class="state">${temp.tempCgory }</a><br>
         <a href="tempDetail?tempNum=${temp.tempNum}" class="address">${temp.tempAddress}</a>
         
-        
     </div>
     </div>
 	</c:forEach>
@@ -371,7 +369,7 @@ const handleImgInput = (e) => {
 				<a>&gt;</a>	
 			</c:when>
 			<c:otherwise>
-				<a href="boardlist?page=${pageInfo.curPage+1}">&gt;</a>
+				<a href="tempBoard?page=${pageInfo.curPage+1}">&gt;</a>
 			</c:otherwise>
 		</c:choose>
 	</div>

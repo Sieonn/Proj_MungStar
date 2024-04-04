@@ -76,7 +76,7 @@
     }
     .album_container{
     	margin: 50px auto;
-        width: 1280px;
+        width: 1332px;
     	padding: 0px; 
       	border-color: black;
       	overflow: hidden;
@@ -92,8 +92,8 @@
       	align-items: center; 
     } */
     .album{
-		margin: 17.5px 17.5px;
-      	width: 280px; 
+		margin: 17.5px 23.8px;
+      	width: 258px; height: 305px;
       	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
@@ -121,15 +121,24 @@
     .tempImg{
     	width: 100%; height: 250px;
     	border-radius: 10px;
+    	display: inline-block;
+    	overflow: hidden;
     }
     .boardContainer{
     	padding-left: 5px;
     	margin-bottom: 10px;
     }
     .dogName{
+    	height: 45px;
     	font-size: 22px;
+    	overflow: hidden;
     }
     .address{
+    	display: inline-block;
+    	height: 19px; width: 164px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
     }
     .state{
     	font-size: 28px;
@@ -173,35 +182,40 @@ $(function(){
 </script>
 </head>
 <body> 
-<%@ include file="../main/headerLogin.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="temp_container">
 	<div class="text">미아보호소</div>
 	<div class="right_container" style="float: right;">
-		<select class="category" id="category" name="category" size="1" style="">
-			<option value="">찾고있어요 / 발견했어요</option>
-			<option value="finding">찾고있어요</option>
+		<select class="category" id="category" name="category" size="1">
+			<option value="">잃어버렸어요 / 발견했어요</option>
+			<option value="finding">잃어버렸어요</option>
 			<option value="finded">발견했어요</option>
 		</select>
-    	<form action="">
+		<div>
+    	<form action="" style="display: inline-block";>
     		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색"/>
 			<button class="searchBtn" type="submit" class="Btn">검색</button>
-			<a href="lostWrite"></a><button class="writeBtn" type="submit" class="Btn">글쓰기</button>
+			
 		</form>
+		<a href="lostWrite"><button class="writeBtn" type="submit" class="Btn">글쓰기</button></a>
+		</div>
 	</div>
 </div>
 
 <div class="album_container" >
 	<c:forEach items="${losts}" var="lost" varStatus="loop">
     <div id="${lost.lostNum}" class="album">
+    
+    <div class="lostImg">
     <a href="lostDetail?lostNum=${lost.lostNum}">
-    <img class="tempImg" src="/image/lostdog01.png">
+    <img class="photo" src="../imageView?num=${lost.lostPhoto}">
     </a>
+    </div>
+    
     <div class="boardContainer">
-    	<a href="lostDetail?lostNum=${lost.lostNum}">
-        <span class="dogName">${lost.lostName}</span>
-        <span class="state">${lost.lostCgory}</span>
-        <br/><span class="address">${lost.lostAddress}</span>
-        </a>
+        <a class="dogName" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostName}</a>
+        <a class="state" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostCgory}</a><br>
+        <a class="address" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostAddress}</a>
     </div>
     </div>
 	</c:forEach>
