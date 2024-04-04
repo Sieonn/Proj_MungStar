@@ -19,7 +19,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeWrite
  */
-@WebServlet("/freewrite")
+@WebServlet("/freeBoard/freewrite")
 public class FreeWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -92,17 +92,25 @@
   		height: 200px;
   	}
 </style>
-<script>
-// 입력 칸의 너비를 동적으로 조절하는 함수
-function adjustInputWidth() {
-  var input = document.getElementById('tagInput');
-  var inputText = input.value || ''; // 입력된 텍스트 또는 빈 문자열
-  var textWidth = inputText.length * 8; // 텍스트 길이에 따른 너비 계산
-  input.style.width = Math.max(100, textWidth) + 'px'; // 최소 너비를 100px로 설정
+<script type="text/javascript">
+
+//페이지 로드 시 이전 게시글 정보를 가져오는 함수
+window.onload = function loadPreviousContent() {
+ var xhr = new XMLHttpRequest();
+ xhr.onreadystatechange = function() {
+     if (xhr.readyState === XMLHttpRequest.DONE) {
+         if (xhr.status === 200) {
+             var previousContent = xhr.responseText;
+             document.getElementById('freeContent').innerHTML = previousContent;
+         } else {
+             console.error('이전 게시글 정보를 불러오는데 실패했습니다.');
+         }
+     }
+ };
+ xhr.open('GET', 'freeDetail.jsp', true); // 수정 전 게시글 정보를 가져오는 서블릿 또는 JSP 페이지의 URL을 입력하세요.
+ xhr.send();
 }
 
-// 입력 칸의 텍스트가 변경될 때마다 너비 조절 함수 호출
-document.getElementById('tagInput').addEventListener('input', adjustInputWidth);
 </script>
 <style>
 .toolbar {
@@ -244,7 +252,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 		</div>
 	</div>
 	<div class="writeContainer">
-	<input class="writeTitle" type="text" placeholder=" 수정 이전 작성한 제목  " />    
+	<input class="writeTitle" type="text" placeholder="${board.freeSub}" value="${board.freeSub }" />    
 	<br>
 	<div class="content">
         <div class="toolbar">
@@ -280,14 +288,11 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
     		</div>
         </div>        
         <div class="scroll-box">
-        	<div class = "contextImg">
-           		<img src="../image/dog1.jpg" alt="자유게시판 사진첨부 예시1">
-            	<br><img src="../image/dog2.jpg" alt="자유게시판 사진첨부 예시2">
-			</div>
+        	<c:if test="${board.freePhoto ne null}">
+				<img src="image?num=${board.freePhoto}" width="100px"/>
+			</c:if>
 			<div id="imagePreview"></div>
-            	<p> when you were here before<br> couldn't look you in the eye<br><br>you're just like an angel <br>your skin makes me cry <br>you float like a feather<br> in a beautiful world <br><br>I wish I was special<br> you so fucking special<br><br>But I'm a creep <br> I'm a weirdo<br>what the hell am I doing here?<br>I don't belong here<br><br>I don't care if it hurts<br>I wanna have control<br>I want a perfect body<br>I want a perfect soul<br>I want you to notice<br>When I'm not around<br><br>I wish I was special<br>So fuckin' special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br><br>She's running out the door (run)<br>She's running out<br>She run, run, run, run<br><br>Run<br><br>Whatever makes you happy<br>Whatever you want<br><br>You're so fuckin' special<br><br>I wish I was special<br><br>But I'm a creep<br>I'm a weirdo<br>What the hell am I doin' here?<br>I don't belong here<br>I don't belong here </p>
-				<br>
-				<p > 후... (담배)<br>니들은 이런거 하지 마라... </p>
+            	<div class = "context">${board.freeContent}</div>
 			<div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
         </div>
 			<input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
@@ -295,8 +300,8 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 </div>
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="moklock()">목록</button>
-	<button type = "submit" class = "yellowBtn" onclick="savePost()">저장</button>
+	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
+	<button type = "submit" class = "yellowBtn" onclick="saveAndNavigate()">저장</button>
 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 </div>
 
@@ -305,22 +310,20 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 <jsp:include page="/freeBoard/boardComment.jsp"/>
 <div class="footer"></div>
 <script type="text/javascript">
-//이전에 작성한 내용을 가져와서 textarea에 설정하는 함수
-function restorePreviousContent() {
-    // 이전에 작성한 내용을 가져오는 로직 (예: 저장된 내용을 가져옴)
-    var previousContent = "이전에 작성한 내용을 가져옵니다.";
 
-    // textarea 요소를 가져옴
-    var div = document.getElementById('editor');
-
-    // textarea의 value 속성에 이전에 작성한 내용을 설정
-    textarea.value = previousContent;
-}
-	//페이지 로드 시 호출되는 함수
-	window.onload = function() {
-    // 이전에 작성한 내용을 div에 설정
+// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
+function saveAndNavigate() {
     restorePreviousContent();
-};
+    savePost();
+    window.location.href = "boarddetail?freeNum=${board.freeNum }";
+    
+}
+
+// 게시글을 저장하는 함수
+function savePost() {
+    var postContent = document.getElementById("myTextarea").value;
+    console.log("게시글 내용:", postContent);
+}
 //인용구 추가 함수
 function quoteText() {
     var selection = window.getSelection();
@@ -380,33 +383,13 @@ function handleTagInput() {
     console.log("현재 태그:", tags);
 }
 
-// 페이지 로드 시 호출되는 함수
-window.onload = function() {
-    // 이전에 작성한 내용을 textarea에 설정
-    restorePreviousContent();
-
-    // 태그 입력란에 이벤트 리스너 추가
-    document.getElementById("tagInput").addEventListener("input", handleTagInput);
-};
-
-// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
-function saveAndNavigate() {
-    // 이전에 작성한 내용을 가져오는 함수 호출
-    restorePreviousContent();
-
-    // 게시글을 저장하는 함수 호출
-    savePost();
-
-    // 저장된 게시글을 확인하는 페이지로 이동
-    window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp"; // 저장된 게시글 확인 페이지의 URL로 교체하세요.
-}
 
 // 게시글을 저장하는 함수 (예: 서버에 전송)
 function savePost() {
     // 게시글 내용과 태그를 전송하는 로직을 추가할 수 있습니다.
-    var postContent = document.getElementById("myTextarea").value;
-    console.log("게시글 내용:", postContent);
-    console.log("태그:", tags);
+    var freeContent = document.getElementById("freeNum").value;
+    console.log("게시글 내용:", freeContent);
+    console.log("태그:", freeTag);
 }
 
 </script>
@@ -431,16 +414,6 @@ function deletePost() {
     console.log("게시글이 삭제되었습니다.");
 }
 
-//그냥 일단 어느 페이지로 가는지 대충 보여주려고 넣는 함수~ 삭제예정~
-function moklock() {
-    window.location.href = "http://localhost:8080/Test/freeBoard/freeBoard.jsp"; 
-    // 이전 페이지로
-    // onclick="window.history.back()" 변경예정
-}
-function savePost() {
-    // 저장~ saveAndNavigate()로 변경예정
-	window.location.href = "http://localhost:8080/Test/freeBoard/freeDetail.jsp";
-}
 
 </script>
 </body>

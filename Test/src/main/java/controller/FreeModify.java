@@ -31,19 +31,20 @@ public class FreeModify extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-	      Integer num = Integer.parseInt(request.getParameter("num"));
+	      Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	      try {
 	         FreeService boardService = new FreeServiceImpl();
-	         FBoard board = boardService.freeDetail(num);
+	         FBoard board = boardService.freeDetail(freeNum);
 	         request.setAttribute("board", board);
 	         request.getRequestDispatcher("modifyform.jsp").forward(request, response);
 	      } catch(Exception e) {
 	         e.printStackTrace();
-	         request.setAttribute("err","게시글 수정 실패");
+	         request.setAttribute("err","게시글 불러오기 실패");
 	         request.getRequestDispatcher("error.jsp").forward(request, response);
 	      }
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -52,7 +53,7 @@ public class FreeModify extends HttpServlet {
 	       try {
 	          FreeService boardService = new FreeServiceImpl();
 	          boardService.freeModify(request);
-	          response.sendRedirect("boardlist");
+	          response.sendRedirect("freeDetail");
 	       } catch (Exception e) {
 	          e.printStackTrace();
 	          request.setAttribute("err", "게시글 수정 실패");
