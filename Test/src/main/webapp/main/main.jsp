@@ -333,7 +333,7 @@ a:hover {
 			<div class="free_b">
 				<div class="headline-container">
 					<span class="headline"> 자유게시판 </span> <span class="more"> <a
-						href="../freeBoard/freeBoard" style="font-size: 12px">더보기</a></span>
+						href="../freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
 				</div>
 				<div class="free_box"></div>
 			</div>
@@ -341,7 +341,7 @@ a:hover {
 
 		<div class="headline-container">
 			<span class="headline"> 임시보호해요 </span> <span class="more">
-			<a href="'${path}/temp/tempBoard.jsp';"
+			<a href='${path}/temp/tempBoard'
 				style="font-size: 12px">더보기</a>
 			</span>
           <a href="../temp/tempBoard" style="font-size: 12px">더보기</a>
@@ -391,7 +391,7 @@ a:hover {
 
 		<div class="headline-container">
 			<span class="headline"> 미멍보호소 </span> <span class="more"> <a
-				href="'${path}/lost/lostBoard.jsp'" style="font-size: 12px">더보기</a></span>
+				href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
 		</div>
 		<div class="header-line"></div>
 		<div class="archive">
