@@ -316,7 +316,7 @@ $(function() {
 					if(result=='true') {
 						alert("닉네임이 중복됩니다");
 					} else {
-						alert("사용 가능한 아이디입니다");
+						alert("사용 가능한 닉네임입니다");
 					}
 				},
 				error:function(result) {
@@ -379,8 +379,8 @@ $(function() {
 						<div class="inner-title">아이디</div>
 						<div class="inner-input">
 							<input type="text" name="memId" id="memId"
-								placeholder="아이디 입력(4~25자)" />
-							<input type="button" onclick="()" id="doubleId" name="doubleId" value="중복조회"/>
+								placeholder="아이디 입력(4~25자)" /> <input type="button"
+								onclick="()" id="doubleId" name="doubleId" value="중복조회" />
 						</div>
 					</div>
 
@@ -408,8 +408,8 @@ $(function() {
 						<div class="inner-title">닉네임</div>
 						<div class="inner-input">
 							<input type="text" name="memNick" id="memNick"
-								placeholder="2~11자 입력" />
-							<input type="button" onclick="()" id="doubleNick" value="중복검사"/>
+								placeholder="2~11자 입력" /> <input type="button" onclick="()"
+								id="doubleNick" value="중복검사" />
 						</div>
 					</div>
 
@@ -434,7 +434,7 @@ $(function() {
 							<div class="inner-input">
 								<div style="display: flex">
 									<input class="diy-width" type="email" placeholder="인증번호를 입력하세요" />
-									<input type="button" onclick="()" value="확인"/>
+									<input type="button" onclick="()" value="확인" />
 								</div>
 							</div>
 						</div>
@@ -485,24 +485,23 @@ $(function() {
 				</div>
 				<hr
 					style="border-top: 1px solid rgb(214, 214, 214); margin-top: 10px;" />
-				<div class="centerForm">
-					<span> <a href="#" style="font-size: 12px">개인정보 수집/이용동의</a>
-					</span> &nbsp; <span id="informationConsent"> <a href="#"
-						style="font-size: 12px"> 개인정보 처리방침</a> <!-- 세부내용 중략 -->
-					</span> <br />
-				</div>
-				<div class="centerForm">
-					<span class="agree-check" style="display: flex; font-size: 12px">
-						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
-						style="width: 30px" />
-					</span>
-				</div>
-				<!-- 6. 가입하기 버튼 -->
-				<div style="display: flex;">
-					<input type="submit" name="submit" id="submit"
-						style="padding: 15px 0; width: 600px; margin: 0 auto;"
-						value="회원가입" />
-				</div>
+					<div class="centerForm">
+				<span> <a href="#" style="font-size: 12px">개인정보 수집/이용동의</a>
+				</span> &nbsp; <span id="informationConsent"> <a href="#"
+					style="font-size: 12px"> 개인정보 처리방침</a> <!-- 세부내용 중략 -->
+				</span> <br />
+			</div>
+			<div class="centerForm">
+				<span class="agree-check" style="display: flex; font-size: 12px">
+					이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
+					style="width: 30px" />
+				</span>
+			</div>
+			<!-- 6. 가입하기 버튼 -->
+			<div style="display: flex;">
+				<input type="submit" name="submit" id="submit"
+					style="padding: 15px 0; width: 600px; margin: 0 auto;" value="회원가입" />
+			</div>
 			</form>
 		</div>
 	</div>

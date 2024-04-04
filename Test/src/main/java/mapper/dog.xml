@@ -10,10 +10,10 @@
 	</select>
 
 	<insert id="insertDog" parameterType="dto.Dog">
-		<![CDATA[
-			insert into dog (dogName,dogNum,memId,dogAge,dogProfile,dogGender)
-			values (#{dogName},#{dogNum},#{memId},#{dogAge},#{dogProfile},#{dogGender})
-		]]>
+	 <![CDATA[
+        insert into dog (dogName, memId, dogAge, dogProfile, dogGender)
+        values (#{dogName}, #{memId}, #{dogAge}, #{dogProfile}, #{dogGender})
+    ]]>
 	</insert>
 	<update id="updateDog">
 		UPDATE dog SET dogName=#{dogName} dogAge=#{dogAge} dogProfile=#{dogProfile} dogGender=#{dogGender}

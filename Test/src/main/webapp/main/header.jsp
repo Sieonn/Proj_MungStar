@@ -120,13 +120,15 @@ a:visited {
 </head>
 <body>
 	<div class="header">
+	
 		<div class="logo">
-			<a href="${path}/main/main"> <img
+			<a href="${path}/main"> <img
 				src="${path}/image/logo.png" alt="Logo" width="90px" />
 			</a>
 		</div>
+		
 	<c:choose>
-    <c:when test="${pageContext.request.servletPath == '/main/main'}">
+    <c:when test="${pageContext.request.servletPath == '/main/main.jsp'}">
         <div class="center-logo">
             <img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
         </div>
@@ -158,11 +160,11 @@ a:visited {
 			<div class="user-info">
 				<c:choose>
 					<c:when test="${user == null }">
-						<a href="login">로그인</a>
-						<a href="signup">회원가입</a>
+						<a href="${path}/login">로그인</a>
+						<a href="${path}/signup">회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href="mypage">마이페이지</a>
+						<a href="${path}/mypage">마이페이지</a>
 						<a href="${path}/logout">로그아웃</a>
 					</c:otherwise>
 				</c:choose>

@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import service.DogService;
-import service.DogServiceImpl;
 import service.MemberService;
 import service.MemberServiceImpl;
 

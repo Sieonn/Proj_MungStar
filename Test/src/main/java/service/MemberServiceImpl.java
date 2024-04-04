@@ -46,6 +46,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		Member member=new Member(memId, memNick, memPw, memEmail,memPhone, memAddress1, memAddress2);
 		memberDao.insertMember(member);
+		
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/main/main")
+@WebServlet("/main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,12 +25,6 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Object obj = session.getAttribute("user");
-		if(obj==null) {
-			request.getRequestDispatcher("/main/login").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/main/main.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 	}
 }

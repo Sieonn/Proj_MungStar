@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<c:set var="path" value = "${pageContext.request.contextPath}"/>		
 <!DOCTYPE html>
 <html>
 <head>
@@ -250,13 +252,13 @@ a:hover {
 		<div class="container">
 			<div class="slider">
 				<div class="img">
-					<img src="../image/banner1.png" alt="이미지 1" />
+					<img src="${path }/image/banner1.png" alt="이미지 1" />
 				</div>
 				<div class="img">
-					<img src="../image/banner2.png" alt="이미지 2" />
+					<img src="${path }/image/banner2.png" alt="이미지 2" />
 				</div>
 				<div class="img">
-					<img src="../image/banner3.png" alt="이미지 3" />
+					<img src="${path }/image/banner3.png" alt="이미지 3" />
 				</div>
 			</div>
 		</div>

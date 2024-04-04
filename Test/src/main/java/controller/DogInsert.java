@@ -7,27 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.MemberService;
-import service.MemberServiceImpl;
+import service.DogService;
+import service.DogServiceImpl;
 
-@WebServlet("/signup")
-public class Signup extends HttpServlet {
+@WebServlet("/doginsert")
+public class DogInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Signup() {
+    public DogInsert() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/main/signup.jsp").forward(request, response);
+		request.getRequestDispatcher("/main/dogInsert.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			MemberService memberService=new MemberServiceImpl();
-			memberService.signup(request);
-			response.sendRedirect("main.jsp");
+			DogService dogService=new DogServiceImpl();
+			dogService.doginsert(request);
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

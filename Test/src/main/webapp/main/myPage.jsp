@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="dto.Member"%>
+<c:set var="path" value = "${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -250,7 +251,7 @@ button:hover {
 		20px 0px rgba(128, 128, 128, 0.133), 4px 4px 5px 0px #0001;
 }
 </style>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
         function previewFile() {
           var preview = document.querySelector("img");
@@ -378,7 +379,6 @@ button:hover {
 						style="text-align: center; border-width: 3px 0 0 0">
 						<div class="signup-container">
 							<!-- 아이디 -->
-							<c:forEach items="${dog.memId}" var="vo">
 								<div class="field">
 									<div class="inner-txt">반려동물 이름</div>
 									<div class="inner-input">${dog.dogName}</div>
@@ -403,9 +403,9 @@ button:hover {
 									</div>
 								</div>
 						</div>
-						</c:forEach>
 						<div class="btnSet">
-							<a class="btn-fill" href="modify.cu?id=${user.memId }">수정</a> <a
+						<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
+							<a class="btn-fill" href="${path}/dogmodify?id=${user.memId }">수정</a> <a
 								class="btn-fill"
 								onclick="if( confirm('정말 삭제하시겠습니까?') ){ href='delete.cu?id=${vo.id }' }">삭제</a>
 						</div>

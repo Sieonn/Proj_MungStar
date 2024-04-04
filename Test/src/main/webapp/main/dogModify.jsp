@@ -287,7 +287,8 @@ a:hover {
 
 			<!-- 개인정보 입력 폼 -->
 			<form action="doginfo" method="post">
-				<input type="hidden" name="id" value="${user.memId }" />
+				<input type="hidden" name="memid" value="${dog.memId}" />
+				<input type="hidden" name="dogNum" value="${dog.dogNum}" />
 				<div class="signup-container">
 					<!-- 아이디 -->
 					<div class="field">

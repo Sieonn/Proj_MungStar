@@ -10,11 +10,10 @@ public class Dog {
 	
 	public Dog() {}
 	
-	public Dog(String dogName, int dogNum, String memId, int dogAge, String dogGender, String dogProfile) {
+	public Dog(String dogName, String memId, int dogAge, String dogGender, String dogProfile) {
 		super();
 		this.memId = memId;
 		this.dogName = dogName;
-		this.dogNum = dogNum;
 		this.dogAge = dogAge;
 		this.dogGender = dogGender;
 		this.dogProfile = dogProfile;
