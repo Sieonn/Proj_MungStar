@@ -112,7 +112,7 @@
 
 </head>
 <body>
-<%@ include file="../main/headerLogin.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">
@@ -148,6 +148,7 @@
 <div class="btn_container">
 	<a href="tempBoard" class="boardBtn Btn">목 록</a>
 	<a href="tempModify?tempNum=${temp.tempNum}" class="boardBtn Btn">수 정</a>
+	<a href="tempDelete?tempNum=${temp.tempNum}" class="boardBtn Btn" id="deleteBtn">삭 제</a>
 </div>
 
 <%@ include file="../temp/boardComment.jsp" %>

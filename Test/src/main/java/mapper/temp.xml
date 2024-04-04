@@ -7,7 +7,7 @@
 	
   		SELECT * FROM tempshelter
   		<where>
-  			
+  				
   			<if test="tempCgory != null">
     			AND tempCgory = #{tempCgory}
   			</if>
@@ -22,7 +22,7 @@
 	<select id="selectTempCountWithCgoryAndSearch" parameterType="Map" resultType="Integer">
   		SELECT count(*) FROM tempshelter
   		<where>
-  			<if test="tempCgory != null">
+  			<if test='tempCgory != null'>
     			AND tempCgory = #{tempCgory}
   			</if>
    			<if test="searchText != null">
@@ -82,4 +82,8 @@
    		</trim>
    		where tempNum=#{tempNum}
 	</update>
+	
+	<delete id="deleteTemp" parameterType="Integer">
+		delete 
+	</delete>
 </mapper>

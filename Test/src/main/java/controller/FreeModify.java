@@ -14,7 +14,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeModify
  */
-@WebServlet("/freemodify")
+@WebServlet("/freeBoard/freemodify")
 public class FreeModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class FreeModify extends HttpServlet {
 	         FreeService boardService = new FreeServiceImpl();
 	         FBoard board = boardService.freeDetail(freeNum);
 	         request.setAttribute("board", board);
-	         request.getRequestDispatcher("modifyform.jsp").forward(request, response);
+	         request.getRequestDispatcher("freeModify.jsp").forward(request, response);
 	      } catch(Exception e) {
 	         e.printStackTrace();
 	         request.setAttribute("err","게시글 불러오기 실패");

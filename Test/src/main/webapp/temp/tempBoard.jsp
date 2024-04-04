@@ -125,7 +125,7 @@
       	border-color: darkgrey;
       	border-radius: 10px; 	
     }
-    .tempImg{
+    .photo{
     	width: 100%; height: 250px;
     	border-radius: 10px;
     	display: inline-block;
@@ -305,7 +305,7 @@ const handleImgInput = (e) => {
 </script>
 </head>
 <body>
-<%@ include file="../main/headerLogin.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="temp_container" style="">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">

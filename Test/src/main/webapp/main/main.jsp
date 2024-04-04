@@ -259,11 +259,19 @@
       </div>
 
       <div class="menu_container">
+<<<<<<< HEAD
         <div class="menu" onclick="location.href='${path}/walking/walkingBoard.jsp';" style=" cursor: pointer;">산책로 추천</div>
         <div class="menu" onclick="location.href='${path}/hospital/hospitalBoard.jsp';" style=" cursor: pointer;">24시 동물병원</div>
         <div class="menu" onclick="location.href='${path}/freeBoard/freeBoard.jsp';" style=" cursor: pointer;">자유게시판</div>
         <div class="menu" onclick="location.href='${path}/lost/lostBoard.jsp';" style=" cursor: pointer;">미멍보호소</div>
         <div class="menu" onclick="location.href='${path}/temp/tempBoard.jsp';" style=" cursor: pointer;">임시보호</div>
+=======
+        <div class="menu" onclick="location.href='../walking/walkBoard';" style=" cursor: pointer;">산책로 추천</div>
+        <div class="menu" onclick="location.href='../hospital/hospitalBoard.jsp';" style=" cursor: pointer;">24시 동물병원</div>
+        <div class="menu" onclick="location.href='../freeBoard/freeBoard';" style=" cursor: pointer;">자유게시판</div>
+        <div class="menu" onclick="location.href='../lost/lostBoard';" style=" cursor: pointer;">미멍보호소</div>
+        <div class="menu" onclick="location.href='../temp/tempBoard';" style=" cursor: pointer;">임시보호</div>
+>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
       </div>
 
       <div class="place">
@@ -329,7 +337,7 @@
             <span class="headline"> 자유게시판 </span>
 
             <span class="more">
-              <a href="../freeBoard/freeSearch.jsp" style="font-size: 12px">더보기</a></span
+              <a href="../freeBoard/freeBoard" style="font-size: 12px">더보기</a></span
             >
           </div>
           <div class="free_box"></div>
@@ -342,7 +350,11 @@
         <span class="headline"> 임시보호해요 </span>
 
         <span class="more">
+<<<<<<< HEAD
           <a href="'${path}/temp/tempBoard.jsp';" style="font-size: 12px">더보기</a></span
+=======
+          <a href="../temp/tempBoard" style="font-size: 12px">더보기</a></span
+>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
         >
       </div>
       <div class="header-line"></div>
@@ -391,7 +403,11 @@
       <div class="headline-container" >
         <span class="headline"> 미멍보호소 </span>
         <span class="more">
+<<<<<<< HEAD
           <a href="'${path}/lost/lostBoard.jsp'" style="font-size: 12px">더보기</a></span
+=======
+          <a href="../lost/lostBoard" style="font-size: 12px">더보기</a></span
+>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
         >
       </div>
       <div class="header-line"></div>

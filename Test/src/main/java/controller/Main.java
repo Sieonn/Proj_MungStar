@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/main")
+@WebServlet("/main/main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,7 +28,7 @@ public class Main extends HttpServlet {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("user");
 		if(obj==null) {
-			request.getRequestDispatcher("/main/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/main/login").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/main/main.jsp").forward(request, response);
 		}

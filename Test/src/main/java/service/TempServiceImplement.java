@@ -32,20 +32,7 @@ public class TempServiceImplement implements TempService {
 
 		if (tempCgory != null && tempCgory.equals(""))
 			tempCgory = null;
-//		if(tempCgory==null)
-//			tempCgory = "all";
-//		System.out.println(tempCgory);
-//		int boardCount = 0;
-//		List<Temp> tempList = null;
-//		if(tempCgory=="") {
-//			boardCount=tempDao.selectBoardCount();
-//			int row=(page-1)*9;
-//			tempList=tempDao.selectTempList(row);
-//		} else {
-//			boardCount=tempDao.selectBoardCountWithTempCgory(tempCgory);
-//			int row=(page-1)*9;
-//			tempList=tempDao.selectTempListWithTempCgory(row,tempCgory);
-//		}
+
 		int boardCount = tempDao.selectTempCountWithCgoryAndSearch(tempCgory, searchText);
 
 		int maxPage = (int) Math.ceil((double) boardCount / 8);
@@ -142,6 +129,12 @@ public class TempServiceImplement implements TempService {
 		temp.setMemId("hong");
 
 		tempDao.updateTemp(temp);
+	}
+
+	@Override
+	public void tempDelete(Integer tempNum) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -203,7 +203,7 @@ body,
 </script>
 </head>
 <body>
-<%@ include file="../main/headerLogin.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="text">임시보호소</div>
 <form action="tempModify" enctype="multipart/form-data" method="post" id="tempModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">

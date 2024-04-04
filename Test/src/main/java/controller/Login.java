@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			memberService.login(request);
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("main");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "로그인 실패 오류");

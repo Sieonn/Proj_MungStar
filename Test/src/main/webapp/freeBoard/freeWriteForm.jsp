@@ -333,7 +333,7 @@ document.getElementById('saveButton').addEventListener('click', function() {
     xhr.onload = function() {
         if (xhr.status === 200) {
             // 저장이 완료되면 목록 페이지로 이동
-            window.location.href = 'http://localhost:8080/Test/freeBoard/freeBoard.jsp';
+            window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freeBoard.jsp';
         } else {
             console.error('저장 실패:', xhr.statusText);
         }
