@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import dto.Comment;
 import dto.File;
 import dto.Temp;
 
@@ -18,4 +19,10 @@ public interface TempDao {
 	void insertFile(File file) throws Exception;
 	
 	void updateTemp(Temp temp) throws Exception;
+	
+	List<Comment> selectTempComment(Integer tempNum) throws Exception;
+	
+	void insertTempComment(Comment comment) throws Exception;
+	
+	String selectTempNick(String memId) throws Exception;
 }

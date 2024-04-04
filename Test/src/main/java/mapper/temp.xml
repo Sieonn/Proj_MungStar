@@ -86,4 +86,25 @@
 	<delete id="deleteTemp" parameterType="Integer">
 		delete 
 	</delete>
+	
+	<select id="selectTempComment" parameterType="Integer"
+		resultType="dto.Comment">
+		<![CDATA[
+			select * from tempComment where tempNum=#{tempNum}
+		]]>
+	</select>
+
+	<insert id="insertTempComment" parameterType="dto.Comment">
+		<![CDATA[
+			insert into tempComment (commNick,tempNum,commContent,commDate)
+			values (#{commNick},#{tempNum},#{commContent},curdate())
+		]]>
+	</insert>
+	
+	<select id="selectTempNick" parameterType="String"
+		resultType="String">
+		<![CDATA[
+			select memNick from member where memId=#{memId}
+		]]>
+	</select>
 </mapper>

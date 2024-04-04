@@ -9,6 +9,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.TempDao;
 import dao.TempDaoImplement;
+import dto.Comment;
 import dto.Temp;
 import util.PageInfo;
 
@@ -137,4 +138,15 @@ public class TempServiceImplement implements TempService {
 		
 	}
 
+	@Override
+	public List<Comment> tempCommentList(Integer tempNum) throws Exception {
+		return tempDao.selectTempComment(tempNum);
+	}
+
+	@Override
+	public String getTempNick(String memId) throws Exception {
+		return tempDao.selectTempNick(memId);
+	}
+
+	
 }

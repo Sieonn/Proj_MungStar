@@ -10,41 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Comment;
-import dto.Temp;
 import service.TempService;
 import service.TempServiceImplement;
 
-@WebServlet("/temp/tempDetail")
-public class TempDetail extends HttpServlet {
+@WebServlet("/temp/tempCommentList")
+public class TempCommentList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public TempDetail() {
+    public TempCommentList() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("utf-8");
-		
+		request.setCharacterEncoding("utf-8");
 		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
-		System.out.println(tempNum);
+		
 		try {
 			TempService tempService=new TempServiceImplement();
-			Temp temp=tempService.tempDetail(tempNum);
-			List<Comment> comments=tempService.tempCommentList(tempNum);
-			String tempNick=tempService.getTempNick(temp.getMemId());
-			System.out.println(tempNick);
-			System.out.println(temp.getTempName());
-			request.setAttribute("temp", temp);
+			List<Comment> comments= tempService.tempCommentList(tempNum);
 			request.setAttribute("comments", comments);
-			request.setAttribute("tempNick", tempNick);
 			request.getRequestDispatcher("tempDetail.jsp").forward(request, response);
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utr-8");
+		
+		try {
+			TempService tempService=new TempServiceImplement();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

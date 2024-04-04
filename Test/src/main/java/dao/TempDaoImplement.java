@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.Comment;
 import dto.File;
 import dto.Temp;
 import util.MybatisSqlSessionFactory;
@@ -66,6 +67,19 @@ public class TempDaoImplement implements TempDao{
 	public void updateTemp(Temp temp) throws Exception {
 		sqlSession.update("mapper.temp.updateTemp",temp);
 		sqlSession.commit();
+	}
+	@Override
+	public List<Comment> selectTempComment(Integer tempNum) throws Exception {
+		return sqlSession.selectList("mapper.temp.selectTempComment",tempNum);
+	}
+	@Override
+	public void insertTempComment(Comment comment) throws Exception {
+		sqlSession.insert("mapper.temp.insertTempComment");
+		sqlSession.commit();
+	}
+	@Override
+	public String selectTempNick(String memId) throws Exception {
+		return sqlSession.selectOne("mapper.temp.selectTempNick",memId);
 	}
 
 }
