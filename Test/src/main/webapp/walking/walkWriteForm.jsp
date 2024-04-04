@@ -332,7 +332,7 @@ box-shadow: 0 2px 1px gray;
 </style>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<%@ include file="../main/header.jsp" %>
 <div class="container1">
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>

@@ -259,9 +259,9 @@
       </div>
 
       <div class="menu_container">
-        <div class="menu" onclick="location.href='../walking/walkingBoard.jsp';" style=" cursor: pointer;">산책로 추천</div>
+        <div class="menu" onclick="location.href='../walking/walkBoard';" style=" cursor: pointer;">산책로 추천</div>
         <div class="menu" onclick="location.href='../hospital/hospitalBoard.jsp';" style=" cursor: pointer;">24시 동물병원</div>
-        <div class="menu" onclick="location.href='../freeBoard/freeBoard.jsp';" style=" cursor: pointer;">자유게시판</div>
+        <div class="menu" onclick="location.href='../freeBoard/freeBoard';" style=" cursor: pointer;">자유게시판</div>
         <div class="menu" onclick="location.href='../lost/lostBoard';" style=" cursor: pointer;">미멍보호소</div>
         <div class="menu" onclick="location.href='../temp/tempBoard';" style=" cursor: pointer;">임시보호</div>
       </div>

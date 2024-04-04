@@ -112,7 +112,7 @@
 
 </head>
 <body>
-<%@ include file="../main/headerLogin.jsp" %>
+<%@ include file="../main/header.jsp" %>
 <div class="text">임시보호소</div>
 
 <div class="content_container">

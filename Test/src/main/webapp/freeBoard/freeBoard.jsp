@@ -19,11 +19,11 @@
 		margin: 0 auto;
  	}
  	#freeCategory{
- 		width :1024px;
+
  		margin : 0 auto;	
   	}
   	.listContainer{
- 		width :1024px;
+		width : 1280px;
  		margin: 0 auto;
  		border-bottom: 2px solid #ddd;
   	}
@@ -60,7 +60,7 @@
       }
 
 	.board {
-    	width: 1024px;
+		width : 1280px;
     	margin: 0 auto;
     	border-collapse: collapse;
     	margin-top: 30px;
@@ -347,7 +347,7 @@ displaySearchResults 함수에서는 검색 결과를 받아와서 화면에 표
   // 글쓰기 버튼에 대한 클릭 이벤트 핸들러
   document.getElementById('writeButton').addEventListener('click', function() {
     // 글쓰기 페이지 URL로 이동
-    window.location.href = 'http://localhost:8080/Test/freeBoard/freeWriteForm.jsp';
+    window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freewrite';
   });
 </script>
 <div class="footer"></div>

@@ -23,7 +23,7 @@ public class TempDelete extends HttpServlet {
 		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
 		try {
 			TempService tempService=new TempServiceImplement();
-			tempService.deleteTemp(tempNum);
+//			tempService.deleteTemp(tempNum);s
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
