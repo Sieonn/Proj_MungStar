@@ -38,18 +38,4 @@ public class MyPage extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//
-//		try {
-//			DogService dogService = new DogServiceImpl();
-//			dogService.mypage(request);
-////			response.sendRedirect("main.jsp");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			request.setAttribute("err", e.getMessage());
-//			request.getRequestDispatcher("error.jsp").forward(request, response);
-//		}
-//	}
 }

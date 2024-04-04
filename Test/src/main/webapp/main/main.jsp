@@ -356,12 +356,10 @@ a:hover {
 
 		<div class="headline-container">
 			<span class="headline"> 임시보호해요 </span> <span class="more">
-				<<<<<<< HEAD <a href="'${path}/temp/tempBoard.jsp';"
+			<a href="'${path}/temp/tempBoard.jsp';"
 				style="font-size: 12px">더보기</a>
-			</span
-=======
-          <a href="../temp/tempBoard" style="font-size: 12px">더보기</a></span>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
-			>
+			</span>
+          <a href="../temp/tempBoard" style="font-size: 12px">더보기</a>
 		</div>
 		<div class="header-line"></div>
 		<div class="archive">

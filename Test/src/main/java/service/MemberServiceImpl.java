@@ -3,12 +3,16 @@ package service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import dao.DogDAO;
+import dao.DogDAOImpl;
 import dao.MemberDAO;
 import dao.MemberDAOImpl;
+import dto.Dog;
 import dto.Member;
 
 public class MemberServiceImpl implements MemberService {
 	MemberDAO memberDao=new MemberDAOImpl();
+	DogDAO dogDao=new DogDAOImpl();
 	
 	@Override
 	public void login(HttpServletRequest request) throws Exception {
@@ -61,7 +65,7 @@ public class MemberServiceImpl implements MemberService {
 	public void getMypage(HttpServletRequest request) throws Exception {
 		Member member=memberDao.selectMember(request.getParameter("memId"));
 		request.setAttribute("member", member);
-		
+		Dog dog=dogDao.selectDog(request.getParameter("memId"));
+		request.setAttribute("dog", dog);
 	}
-
 }
