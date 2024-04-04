@@ -16,6 +16,7 @@
       </environment>
    </environments>
    <mappers>
+         <mapper  resource="mapper/dog.xml"/>
       <mapper  resource="mapper/member.xml"/>
       <mapper  resource="mapper/board.xml"/>
       <mapper  resource="mapper/boardlike.xml"/>
