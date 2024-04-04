@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import service.DogService;
+import service.DogServiceImpl;
 import service.MemberService;
 import service.MemberServiceImpl;
 
@@ -32,16 +34,22 @@ public class MyPage extends HttpServlet {
 			} else {
 				request.getRequestDispatcher("/main/myPage.jsp").forward(request, response);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//
+//		try {
+//			DogService dogService = new DogServiceImpl();
+//			dogService.mypage(request);
+////			response.sendRedirect("main.jsp");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			request.setAttribute("err", e.getMessage());
+//			request.getRequestDispatcher("error.jsp").forward(request, response);
+//		}
+//	}
 }

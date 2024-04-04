@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="dto.Member" %>
+<%@ page import="dto.Member"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,20 +211,38 @@ body, html {
 		20px 0px rgba(128, 128, 128, 0.133), 4px 4px 5px 0px #0001;
 }
 
-button {
-	border: 2px solid #c9c9c9;
-	border-radius: 5px;
-	font-family: "Lato", sans-serif;
-	font-weight: 700;
-	background: transparent;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	position: relative;
-	display: inline-block;
-	transition: all 0.3s ease;
+.btnSet {
+	margin-top: 15px;
 	text-align: center;
-	align-items: center;
-	justify-content: center;
+}
+
+a.btn-fill, a.btn-empty {
+	text-align: center;
+	padding: 5px 15px;
+	border-radius: 3px;
+	border: 1px solid #404650;
+	text-decoration: none;
+	/* box-shadow: 0 1px 1px #404650;*/
+	text-decoration: none;
+	/* 오른쪽, 아래쪽, 번진 정도 */
+}
+
+a.btn-fill {
+	background-color: #fff;
+	color: #404650;
+}
+
+a.btn-empty {
+	background-color: #fff;
+	color: #404650;
+}
+
+.btnSet a:not(:first-child) {
+	margin-left: 3px;
+}
+
+a:hover {
+	cursor: pointer;
 }
 
 button:hover {
@@ -303,9 +321,10 @@ button:hover {
 			</div>
 			<div class="wel-txt">
 				<div class="hello">
-					<span style="display: flex; text-decoration: underline; text-underline-offset: 10px;
-							text-decoration-thickness: 5%; font-family: 'JalnanGothic';">
-					${user.memNick}<span style="text-decoration: none; font-weight: 900">&nbsp;님</span>
+					<span
+						style="display: flex; text-decoration: underline; text-underline-offset: 10px; text-decoration-thickness: 5%; font-family: 'JalnanGothic';">
+						${user.memNick}<span
+						style="text-decoration: none; font-weight: 900">&nbsp;님</span>
 					</span>
 					<div style="margin-top: 10px; font-weight: 900">다녀오셨어요?</div>
 				</div>
@@ -325,24 +344,25 @@ button:hover {
 
 						<div class="field1">
 							<div class="inner-txt">아이디</div>
-							<div class="myinfo">
-							${user.memId}</div>
+							<div class="myinfo">${user.memId}</div>
 						</div>
 						<div class="field1">
 							<div class="inner-txt">닉네임</div>
 							<div class="myinfo">${user.memNick}</div>
 						</div>
 						<div class="field1">
-							<div class="inner-txt">전화 번호</div>
+							<div class="inner-txt">이메일</div>
 							<div class="myinfo">
-								<span id="tel1">${user.memPhone}</span>
+								<span id="tel1">${user.memEmail}</span>
 							</div>
 						</div>
 						<div class="field1">
-							<div class="inner-txt">프로필 사진</div>
-							<div class="myinfo">
-								<img src="../image/프로필01.jpg"
-									style="width: 100px; height: 100px" />
+							<div class="inner-txt">전화번호</div>
+							<div class="myinfo">${user.memPhone}</div>
+						</div>
+						<div class="field1">
+							<div class="inner-txt">주소</div>
+							<div class="myinfo">${user.memAddress1} ${user.memAddress2}
 							</div>
 						</div>
 					</div>
@@ -351,121 +371,44 @@ button:hover {
 					<!-- <div class="actTitle">반려동물 정보</div> -->
 					<div class="actTitle"
 						style="display: flex; justify-content: space-between; align-items: center;">
-						<span>반려동물정보</span>
+						<span>추가 프로필</span>
 						<div class="header-line"></div>
-						<div class="button-group">
-							<!-- 추가 버튼 -->
-							<button class="add-btn" onclick="addPetInfo()">추가</button>
-							<button type="submit"  class="save-btn" onclick="savePetInfo()">저장</button>
-						</div>
 					</div>
-					<div class="petInfo2"
+					<div class="petInfo"
 						style="text-align: center; border-width: 3px 0 0 0">
-						<!-- <hr /> -->
+						<div class="signup-container">
+							<!-- 아이디 -->
+							<c:forEach items="${dog.memId}" var="vo">
+								<div class="field">
+									<div class="inner-txt">반려동물 이름</div>
+									<div class="inner-input">${dog.dogName}</div>
+								</div>
 
-						<div class="signup-container"></div>
+								<!-- 닉네임 -->
+								<div class="field">
+									<div class="inner-txt">반려견 나이</div>
+									<div class="inner-input">${dog.dogAge}</div>
+								</div>
 
-						<script>
-                // 추가 버튼 클릭 시 양식 추가
-                function addPetInfo() {
-                  const signupContainer =
-                    document.querySelector(".signup-container");
-                  const newPetInfo = document.createElement("div");
-                  newPetInfo.classList.add("signup"); // 양식에 클래스 추가
-                  newPetInfo.innerHTML = `
-                  <form action="doginfo" method="POST">
-            <span class="field">
-              <span class="inner-txt">이름</span>
-              <div>
-                <input type="text" name="dogName" id="dogNum" />
-              </div>
-            </span>
+								<div class="field">
+									<div class="inner-txt">성별</div>
+									<div class="inner-input">${dog.dogGender}</div>
+								</div>
 
-            <!-- 반려동물 성별 -->
-            <span class="field">
-              <span class="inner-txt">성별</span>
-              <div class="gender">
-                <div class="field">
-                <input type="radio" id="male" name="pet-gender" value="male" />
-                <label for="male">남</label>
-                <input type="radio" id="female" name="pet-gender" value="female" />
-                <label for="female">여</label>
-              </div>
-            </div>
-            </span>
-            <span class="field">
-              <span class="inner-txt">나이</span>
-              <div>
-                <input class="text"; type="text" name="dogAge" />
-              </div>
-            </span>
-
-            <!-- 반려동물 사진 -->
-            <!-- 프로필 사진 -->
-            <div class="field">
-              <div class="inner-txt">프로필 사진</div>
-              <div>
-                <img
-                  id="preview-image"
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                  alt="프로필 미리보기"
-                  style="width: 100px; height: 100px; margin-left: 10px"
-                />
-                <input
-                  type="file"
-                  id="file-input"
-                  style="display: none"
-                  accept="image/jpg,image/png,image/jpeg"
-                />
-
-                <div
-                  class="inner-input"
-                  style="margin-left: 5px; margin-top: 10px; gap: 10px"
-                >
-                  <button id="upload-btn">이미지 업로드</button>
-                  <button id="delete-btn">이미지 삭제</button>
-                </div>
-              </div>
-            </div>
-            
-            
-            <span class="field" style="display: flex;justify-content: flex-end;">
-              <!-- 삭제 버튼 -->
-              <button class="delete-btn" onclick="deletePetInfo(this)">
-              삭제
-              </button>
-        
-            </span>
-            <hr/>
-            </form>
-          `;
-                  signupContainer.appendChild(newPetInfo);
-                }
-
-                // 양식 삭제 함수
-                function deletePetInfo(button) {
-                  const signupContainer =
-                    document.querySelector(".signup-container");
-                  signupContainer.removeChild(button.parentNode.parentNode);
-                }
-
-                // 파일 선택 시 미리보기 업데이트
-                const fileInputs = document.querySelectorAll(".file-input");
-                fileInputs.forEach(function (fileInput) {
-                  fileInput.addEventListener("change", function (event) {
-                    const previewImage =
-                      event.target.parentNode.querySelector(".preview-image");
-                    const file = event.target.files[0];
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onload = function (e) {
-                        previewImage.src = e.target.result;
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  });
-                });
-              </script>
+								<div class="field">
+									<div class="inner-txt">프로필 사진</div>
+									<div class="inner-input">
+										<img src="../image/프로필01.jpg"
+											style="width: 100px; height: 100px" />
+									</div>
+								</div>
+						</div>
+						</c:forEach>
+						<div class="btnSet">
+							<a class="btn-fill" href="modify.cu?id=${user.memId }">수정</a> <a
+								class="btn-fill"
+								onclick="if( confirm('정말 삭제하시겠습니까?') ){ href='delete.cu?id=${vo.id }' }">삭제</a>
+						</div>
 					</div>
 				</div>
 			</div>
