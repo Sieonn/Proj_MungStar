@@ -272,34 +272,20 @@ a:hover {
 		<div class="menu_container">
 			<<<<<<< HEAD
 			<div class="menu"
-				onclick="location.href='${path}/walking/walkingBoard.jsp';"
+				onclick="location.href='${path}/walking/walkBoard';"
 				style="cursor: pointer;">산책로 추천</div>
 			<div class="menu"
-				onclick="location.href='${path}/hospital/hospitalBoard.jsp';"
+				onclick="location.href='${path}/hospital/hospitalBoard';"
 				style="cursor: pointer;">24시 동물병원</div>
 			<div class="menu"
-				onclick="location.href='${path}/freeBoard/freeBoard.jsp';"
+				onclick="location.href='${path}/freeBoard/freeboard';"
 				style="cursor: pointer;">자유게시판</div>
 			<div class="menu"
-				onclick="location.href='${path}/lost/lostBoard.jsp';"
+				onclick="location.href='${path}/lost/lostBoard';"
 				style="cursor: pointer;">미멍보호소</div>
 			<div class="menu"
-				onclick="location.href='${path}/temp/tempBoard.jsp';"
+				onclick="location.href='${path}/temp/tempBoard';"
 				style="cursor: pointer;">임시보호</div>
-			=======
-			<div class="menu" onclick="location.href='../walking/walkBoard';"
-				style="cursor: pointer;">산책로 추천</div>
-			<div class="menu"
-				onclick="location.href='../hospital/hospitalBoard.jsp';"
-				style="cursor: pointer;">24시 동물병원</div>
-			<div class="menu" onclick="location.href='../freeBoard/freeBoard';"
-				style="cursor: pointer;">자유게시판</div>
-			<div class="menu" onclick="location.href='../lost/lostBoard';"
-				style="cursor: pointer;">미멍보호소</div>
-			<div class="menu" onclick="location.href='../temp/tempBoard';"
-				style="cursor: pointer;">임시보호</div>
-			>>>>>>> branch 'master' of
-			https://github.com/HONGHAJOON/moongstar.git
 		</div>
 
 		<div class="place">
