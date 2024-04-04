@@ -7,39 +7,55 @@
     <title>댓글 JSP</title>
 
   <style type="text/css">
-#walkMidEmpty {
-	height: 80px;
-	margin: 0;
+ @font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-weight: 400;
+        font-style: normal;
+      }
+body,html{
+margin:0;
+padding:0;
+ font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+
+}
+.containers{
+position:relative;
+width:1280px;
+top: 30px;
+margin: 0 auto;
 }
 #walkComment {
 	background-color: #EFEFEF;
-	width: 600px;
+	width: 1250px;
 	height: 250px;
-	margin: 0 auto;
-	padding: 10px; border-radius : 5%;
+	padding: 20px; border-radius : 5%;
 	box-shadow: 0 2px 3px gray;
 	blur-radius: 30px;
-	top: 30%;
 	border-radius: 20px;
 }
 
 .comment {
 	height: 340px;
-	position: relative;
 }
 
-#commentFont {
+.commentFont {
 	height: 30px;
-	margin: 0 auto;
 	padding: 0;
 	display: inline-block;
 }
 h3 {
 	margin-left: 25px;
 }
-#walkBottomEmpty {
-	height: 30px;
-}
+
 
 #sticker1 {
 	position: relative;
@@ -86,7 +102,7 @@ h3 {
 	position: relative;
 	margin: 0 auto;
 	top: 45%;
-	width: 550px;
+	width: 1200px;
 	padding: 5px;
 	background-color: white;
 	border: 4px solid #EFC940;
@@ -95,7 +111,7 @@ h3 {
 }
 
 .memComm {
-	width: 580px;
+	width: 1200px;
 	margin: 0 auto;
 	padding: 5px;
 	overflow: hidden;
@@ -114,7 +130,7 @@ h3 {
 }
 
 .writeComm {
-	width: 580px;
+	width: 1200px;
 	margin: 0 auto;
 	padding: 5px;
 	overflow: hidden;
@@ -131,10 +147,11 @@ h3 {
   </style>
 </head>
 <body>
-					<div id="walkMidEmpty"></div>
-					<div id="commentFont">
+					<div class="containers">
+					<div class="commentFont">
 						<img id="sticker2"
-							src="<%=request.getContextPath()%>/image/mung.png"> <img
+							src="<%=request.getContextPath()%>/image/mung.png">
+							<img
 							id="sticker1" src="<%=request.getContextPath()%>/image/mung.png">
 						<img id="sticker3"
 							src="<%=request.getContextPath()%>/image/mung.png">
@@ -176,7 +193,7 @@ h3 {
 							</form>
 						</div>
 					</div>
-			<div id="walkBottomEmpty"></div>
+			</div>
 		
 </body>
 </html>

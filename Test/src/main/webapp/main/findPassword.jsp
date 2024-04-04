@@ -93,7 +93,7 @@
   </head>
 
   <body>
-    <jsp:include page="../main/header.jsp"></jsp:include>
+<%@ include file="../main/header.jsp" %>
     <body >
 <div class="content">
       <div class="card" style="width:25rem;">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +112,7 @@ font-family: "Georgia";
 </style>
 </head>
 <body>
-<jsp:include page='<c:url value="/main/header.jsp"/>'/>
+<jsp:include page="/main/header.jsp"/>
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar">
 <button id="hotplace" name="hotplace"><p>HOT</p></button>

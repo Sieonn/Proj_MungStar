@@ -162,7 +162,7 @@ a:visited {
 						<a href="signup">회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href="../main/myPage.jsp">마이페이지</a>
+						<a href="mypage">마이페이지</a>
 						<a href="${path}/logout">로그아웃</a>
 					</c:otherwise>
 				</c:choose>

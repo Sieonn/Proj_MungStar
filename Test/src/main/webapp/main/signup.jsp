@@ -330,7 +330,7 @@ $(function() {
   </head>
 
   <body>
-  <jsp:include page="../main/header.jsp"></jsp:include>
+<%@ include file="../main/header.jsp" %>
   <div class="content">
     <div class="container">
           <h2>SIGN UP</h2>

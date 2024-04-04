@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,21 +8,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
-<script>
-
-</script>
+<script src="https://code.jquery.com/jquery-Latest.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+body,html{
+margin:0 auto;
+padding:0;
+}
 .container{
-transform: scale(0.9,0.9);
-position:relative;
-width:400px;
-right:280px;
-float:right;
+margin: 0 auto;
+width:1280px;}
 
+#map{
+width:570px;height:600px;
+margin-top:85px;
+margin-left:30px;
+float:left;
+border-top-right-radius:3%;
+border-bottom-right-radius:3%;
+box-shadow: 0px 3px 4px lightgray;
+}
+#leftDiv{
+position:relative;
+width:580px;
+float:left;
+margin-left:40px;
+top:60px;
+}
+
+
+#walkList, #walkWriteForm{
+width:70px;
+height:20px;
+border: 0;
+border-radius: 30px;
+background-color:#FED74B;
+color:white;
+text-align:center;
+box-shadow: 0 3px 1px gray;
+}
+
+.walkBtn{
+position:relative;
+top:10px;
+left: 230px;
+float: left;
+width:1280px;
+height:40px;
+}
+#walkMapBar{
+position:absolute;
+float:left;
+width:30px;
+margin-top:85px;
+height:600px;
+background-color:#3477c5;
+border-top-left-radius:30px;
+border-bottom-left-radius:30px;
 }
 .backWalkDetail {
-	width: 750px;
-	height: 750px;
+	width: 650px;
+	height: 650px;
 	background-color: #F5F5F5;
 	border-radius: 10%;
 }
@@ -30,8 +76,8 @@ float:right;
 .frontWalkDetail {
 	position: relative;
 	top: 40px;
-	width: 700px;
-	height: 660px;
+	width: 600px;
+	height: 560px;
 	background-color: #F5F5F5;
 	margin: 0 auto;
 	border-radius: 10%;
@@ -41,22 +87,22 @@ float:right;
 .walkDetail {
 	position: relative;
 	top: 15px;
-	width: 650px;
-	height: 630px;
+	width: 550px;
+	height: 530px;
 	background-color: white;
 	border-radius: 5%;
 	margin: 0 auto;
 }
 
 #walkContent {
-	width: 610px;
+	width: 510px;
 	height: 200px;
 	margin: 0 auto;
 }
 
 
 #walkTopEmpty, #walkBottomEmpty  {
-	height: 30px;
+	height: 15px;
 	margin: 0;
 }
 
@@ -91,8 +137,8 @@ margin-top:3px;
 }
 
 .walkLocalRec, .walkAllRec{
-height: 300px;
-margin-left: 10px;
+height: 200px;
+margin-left: 5px;
 }
 
 h2{
@@ -104,7 +150,7 @@ margin-left:5px;
 font-family: "JalnanGothic";
 }
 #RecTable{
-width: 580px;
+width: 480px;
 margin: 0 auto;
 text-align: center;
 }
@@ -132,10 +178,110 @@ height:40px;
 </style>
 </head>
 <body>
+<jsp:include page="/main/header.jsp"/>
 <div class="container">
+<div class="walkMap" id="walkMap">
+<div id="walkMapBar"></div>
+<div id="map"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
+<script>
+window.onload=function(){
+	function mapmaker(){
+		console.log(typeof wlat);
+		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = { 
+			
+		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
+		    level: 4 // 지도의 확대 레벨
+		};
+
+		map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		 zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		     
+		}
+		mapmaker();
+	
+		
+			walking = [];
+			 markers = [];
+			$.ajax({
+				url:'walkBoard',
+				type:'post',
+				async:true,
+				success:function(result){
+					walkings = JSON.parse(result);
+
+					imageSrc = '../image/mark1.png'; 
+					imageSize = new kakao.maps.Size(36, 40), 
+					 imageOption = {offset: new kakao.maps.Point(27, 69)};
+				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+				    
+				  
+				   
+					for(var i=0; i<walkings.length;i++){				
+				lats=walkings[i].walkLat;
+				longs=walkings[i].walkLong;
+
+				 positions =  {title:walkings[i].walkNum,
+					latlng: new kakao.maps.LatLng(lats,longs)};	
+				   markers[i] = new kakao.maps.Marker({
+					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
+					    image: markerImage, // 마커이미지 설정 
+					    title: positions.title
+					});
+				 
+				  markers[i].setMap(map);
+				
+				
+				  
+					
+
+				
+					} 
+					
+			
+					
+					for (const marker of markers) {					
+						kakao.maps.event.addListener(marker, "click", function(
+						  ) {
+					 console.log(marker);
+					 console.log(marker.getTitle());
+					 num = marker.getTitle();
+					  window.location.href="http://localhost:9090/test/walking/walkingDetail?walkNum="+num;
+					 
+				});
+					}
+					
+					
+					
+			} //for end
+			
+
+		})
+		
+		
+			
+	}
+
+
+		
+		
+
+
+</script>
+<div id="leftDiv">
 	<div class="backWalkDetail">
 		<div id="exitBtn">
-			<a href="#">X</a>
+			<a href="walkBoard">X</a>
 		</div>
 		<div class="frontWalkDetail">
 			<div class="walkDetail">
@@ -172,6 +318,7 @@ height:40px;
 						</tr>
 						</table>
 					</div>
+					<br>
 					<div class="walkAllRec">
 							<h2>전체 지역 추천</h2>
 													<table id="RecTable">
@@ -208,18 +355,14 @@ height:40px;
 
 		</div>
 	</div>
+	</div>
 </div>
+
+<br><br>
+<div class="walkBtn">
+		<a href="walkingList" id="walkList">LIST</a>
+		<a href="walkWriteForm" id="walkWriteForm">WRITE</a>	
+		</div>
+		</div>
 </body>
-<script>
-$('#exitBtn').on("click",function(){
-$.ajax({
-	url:'walkBoard.jsp',
-	success:function(response){
-		$('#leftDiv').empty();
-		$('#leftDiv').append(`<img id="helpMessage" src="./image/help.png"/>`);
-	}
-	
-})
-})
-</script>
 </html>

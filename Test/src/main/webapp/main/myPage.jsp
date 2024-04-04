@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="dto.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,12 +133,12 @@ body, html {
 .inner-txt {
 	text-align: left;
 	width: 150px;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 700;
 }
 
 .myinfo {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .field1 {
@@ -301,9 +303,9 @@ button:hover {
 			</div>
 			<div class="wel-txt">
 				<div class="hello">
-					<span style="display: flex"> <span
-						style="text-decoration: underline; text-underline-offset: 10px; text-decoration-thickness: 5%; font-family: 'JalnanGothic';">
-							닉네임 </span> <span style="text-decoration: none; font-weight: 900">&nbsp;님</span>
+					<span style="display: flex; text-decoration: underline; text-underline-offset: 10px;
+							text-decoration-thickness: 5%; font-family: 'JalnanGothic';">
+					${user.memNick}<span style="text-decoration: none; font-weight: 900">&nbsp;님</span>
 					</span>
 					<div style="margin-top: 10px; font-weight: 900">다녀오셨어요?</div>
 				</div>
@@ -323,16 +325,17 @@ button:hover {
 
 						<div class="field1">
 							<div class="inner-txt">아이디</div>
-							<div class="myinfo">asd</div>
+							<div class="myinfo">
+							${user.memId}</div>
 						</div>
 						<div class="field1">
 							<div class="inner-txt">닉네임</div>
-							<div class="myinfo">닉네임</div>
+							<div class="myinfo">${user.memNick}</div>
 						</div>
 						<div class="field1">
 							<div class="inner-txt">전화 번호</div>
 							<div class="myinfo">
-								<span id="tel1">전화번호</span>
+								<span id="tel1">${user.memPhone}</span>
 							</div>
 						</div>
 						<div class="field1">
@@ -353,7 +356,7 @@ button:hover {
 						<div class="button-group">
 							<!-- 추가 버튼 -->
 							<button class="add-btn" onclick="addPetInfo()">추가</button>
-							<button class="save-btn" onclick="savePetInfo()">저장</button>
+							<button type="submit"  class="save-btn" onclick="savePetInfo()">저장</button>
 						</div>
 					</div>
 					<div class="petInfo2"
@@ -370,10 +373,11 @@ button:hover {
                   const newPetInfo = document.createElement("div");
                   newPetInfo.classList.add("signup"); // 양식에 클래스 추가
                   newPetInfo.innerHTML = `
+                  <form action="doginfo" method="POST">
             <span class="field">
               <span class="inner-txt">이름</span>
               <div>
-                <input type="text" name="pet-name" />
+                <input type="text" name="dogName" id="dogNum" />
               </div>
             </span>
 
@@ -392,15 +396,15 @@ button:hover {
             <span class="field">
               <span class="inner-txt">나이</span>
               <div>
-                <input class="text"; type="text" name="pet-age" />
+                <input class="text"; type="text" name="dogAge" />
               </div>
             </span>
 
             <!-- 반려동물 사진 -->
             <!-- 프로필 사진 -->
             <div class="field">
-              <div class="inner-title">프로필 사진</div>
-              <div class="inner-input2">
+              <div class="inner-txt">프로필 사진</div>
+              <div>
                 <img
                   id="preview-image"
                   src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
@@ -433,6 +437,7 @@ button:hover {
         
             </span>
             <hr/>
+            </form>
           `;
                   signupContainer.appendChild(newPetInfo);
                 }

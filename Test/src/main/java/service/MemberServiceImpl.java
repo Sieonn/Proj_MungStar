@@ -57,4 +57,11 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 
+	@Override
+	public void getMypage(HttpServletRequest request) throws Exception {
+		Member member=memberDao.selectMember(request.getParameter("memId"));
+		request.setAttribute("member", member);
+		
+	}
+
 }

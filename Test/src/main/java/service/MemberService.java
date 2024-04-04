@@ -7,4 +7,5 @@ public interface MemberService {
 	void signup(HttpServletRequest request) throws Exception;
 	boolean memberIdCheck(String memId) throws Exception;
 	boolean memberNickCheck(String memNick) throws Exception;
+	void getMypage(HttpServletRequest request) throws Exception;
 }
