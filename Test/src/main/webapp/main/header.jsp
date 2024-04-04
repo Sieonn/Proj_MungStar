@@ -121,23 +121,23 @@ a:visited {
 <body>
 	<div class="header">
 		<div class="logo">
-			<a href="${path}/main/main.jsp"> <img
+			<a href="${path}/main/main"> <img
 				src="${path}/image/logo.png" alt="Logo" width="90px" />
 			</a>
 		</div>
 	<c:choose>
-    <c:when test="${pageContext.request.servletPath == '/main/main.jsp'}">
+    <c:when test="${pageContext.request.servletPath == '/main/main'}">
         <div class="center-logo">
             <img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
         </div>
     </c:when>
     <c:otherwise>
         <div class="nav_menu">
-            <a href="${path}/walking/walkingBoard.jsp">산책로</a>
-            <a href="${path}/hospital/hospitalBoard.jsp">24시 동물병원</a>
-            <a href="${path}/freeBoard/freeBoard.jsp">자유게시판</a>
-            <a href="${path}/lost/lostBoard.jsp">미멍보호소</a>
-            <a href="${path}/temp/tempBoard.jsp">임시 보호해요</a>
+            <a href="${path}/walking/walkBoard">산책로</a>
+            <a href="${path}/hospital/hospitalBoard">24시 동물병원</a>
+            <a href="${path}/freeBoard/freeboard">자유게시판</a>
+            <a href="${path}/lost/lostBoard">미멍보호소</a>
+            <a href="${path}/temp/tempBoard">임시 보호해요</a>
         </div>
     </c:otherwise>
 </c:choose>

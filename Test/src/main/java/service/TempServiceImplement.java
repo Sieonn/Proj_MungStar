@@ -40,8 +40,8 @@ public class TempServiceImplement implements TempService {
 		int endPage = startPage + 8 - 1;
 		if (endPage > maxPage)
 			endPage = maxPage;
-
 		int row = (page - 1) * 8;
+		
 		List<Temp> tempList = tempDao.selectTempListWithCgoryAndSearch(row, tempCgory, searchText);
 
 		PageInfo pageInfo = new PageInfo();

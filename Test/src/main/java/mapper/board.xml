@@ -2,24 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.board">
+	<select id="selectBoard" parameterType="Integer" resultType="dto.FBoard">
+		<![CDATA[
+			select * from freeboard where freeNum = #{freeNum}
+		]]>
+	</select>
 	<select id="selectBoardList" parameterType="Integer" resultType="dto.FBoard">
 		<![CDATA[
 			select * from freeboard order by freeNum desc
 			limit #{row}, 10 
 		]]>
 	</select>
-	
 	<select id="selectBoardCount" resultType="Integer">
 		<![CDATA[
 			select count(*) from freeboard
 		]]>
 	</select>
-	
-	<select id="selectBoard" parameterType="Integer" resultType="dto.FBoard">
+	<select id="selectBoardListByTag" parameterType="Map" resultType="dto.FBoard">
 		<![CDATA[
-			select * from freeboard where freeNum = #{freeNum}
+			select * from freeboard where freeTag=#{freeTag} order by freeNum desc
+   			limit #{row}, 10
 		]]>
 	</select>
+	<select id="selectBoardCountByTag" resultType="Integer">
+   		<![CDATA[
+   			select count(*) from freeboard where freeTag=#{freeTag}
+   		]]>
+	</select>
+	
+	<select id="selectBoardListByTagAndSearch" parameterType="Map" resultType="dto.FBoard">
+  		SELECT * FROM freeboard
+  			<where>
+  				<if test="freeTag != null">
+    			AND freeTag = #{freeTag}
+  				</if>
+   				<if test="searchText != null">
+    			AND freeSub like '%${searchText}%'
+  				</if>
+   			</where>
+  		order by freeNum desc
+   		limit #{row}, 10
+	</select>
+	
+	<select id="selectBoardCountByTagAndSearch" parameterType="Map" resultType="Integer">
+  		SELECT count(*) FROM freeboard
+  			<where>
+  				<if test="freeTag != null">
+    			AND freeTag = #{freeTag}
+  				</if>
+   				<if test="searchText != null">
+    			AND freeSub like '%${searchText}%'
+  				</if>
+  			</where>
+	</select>
+	
+
+	
 	
 	<insert id="insertBoard" parameterType="dto.FBoard" useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
@@ -43,4 +81,6 @@
 		update freeboard set freeView = freeView+1 where freeNum=#{freeNum}
 		]]>
 	</update>
+	
+
 </mapper>

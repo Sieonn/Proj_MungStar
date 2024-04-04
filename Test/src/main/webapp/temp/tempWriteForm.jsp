@@ -112,8 +112,7 @@ body,
       }
       .img_box{
       	display: inline-block;
-/*       	background-color: yellow;
- */      	width: 25%; height: 328.7px;
+     	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;

@@ -112,17 +112,15 @@ body,
       }
       .img_box{
       	display: inline-block;
-/*       	background-color: yellow;
- */      	width: 25%; height: 250px;
+      	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
-      .fileLable{
+      .fileImg{
       	display: inline-block;
-      	width: 100%; height: 75.6%;
-  		padding: 8px 0px;
+      	width: 100%; height: 80%;
     	cursor: pointer;
     	background-color: #f9f9f9;
     	border: 1px solid #ccc;
@@ -133,12 +131,11 @@ body,
       }
       .fileInput{
       	position: absolute;
-    	width: 1px;
-    	height: 1px;
+    	display: none;
     	overflow: hidden;
     	clip: rect(0,0,0,0);
       }
-      .fileLable:hover {
+      .fileImg:hover {
     	background-color: #e0e0e0;
     	}
       .dog_Img{
@@ -171,56 +168,57 @@ body,
 		font-weight: bold;
       }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	$(function(){
-		$('#btn').click(function(){
-			console.log($('#dogName').val());
-			let temp={temp:[{dogName:$('#dogName').value,age:40},{name:"손흥민",age:30},{name:"김민재",age:32}]}
-			
-			$.ajax({
-				url:'temp/tempWrite',
-				type:'post',
-				async:true,
-				data:{temp:JSON.stringify(temp)},
-				success:(function(result){
-					alert(result);
-				})
-			})
-		})
+$(function(){
+	$('#lostWrite').submit(function(){
+		alert("submit")
+		var chars='';
+		$('input[class=charInput]').map(function(){
+			chars +=$(this).val()+'@';
+		});
+		$("#lostChar").val(chars);
 	})
+})
 </script>
 </head>
 <body>
-<%@ include file="../main/headerLogin.jsp" %>
-<div class="text">임시보호소</div>
-
+<%@ include file="../main/header.jsp" %>
+<div class="text">미아보호소</div>
+<form action="lostWrite" enctype="multipart/form-data" method="post" id="lostWrite" 
+	onkeypress="if(event.keyCode === 13) {return false;}">
+<input type="hidden" name="lostChar" id="lostChar"/>
 <div class="content_container">
 	<div class="content_box">
 		<div class="content_box2">
 			<div class="write_box">
+				<div class="cgory_container">
+					<select class="category" id="category" name="lostCgory" size="1">
+						<option value="finding">주인을 찾고있어요</option>
+						<option value="finded">주인을 찾았어요</option>
+					</select>
+    			</div>
+				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName" name="lostName">
 				
-				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName">
-				
-				<div><img src="<%=request.getContextPath()%>/image/place.png"><input type="text" placeholder="현재 보호중인 장소" class="address"></div>
+				<div>
+				<img src="<%=request.getContextPath()%>/image/place.png">
+				<input type="text" placeholder="현재 보호중인 장소" class="address" name="lostAddress">
+				</div>
 				
 				<div class="contents char">특징</div>
 				
 				<div class="char_box" id="char_box">
-					<div class="item" contenteditable="true">
-					▶ <input class="charInput" type="text" placeholder="강아지 특징을 써주세요">
-					</div>
-				</div>
-				
-				<div class="contents">임시보호기간</div>
-    			<input class="dateInput" type="date" id="dateInput" name="dateInput">
+					<div class="item">
+					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
+					</div></div>
     			
 				<div class="contents">기타사항</div>
-				<textarea class="etc" placeholder="기타사항 작성란입니다"></textarea>
+				<textarea class="etc" placeholder="기타사항 작성란입니다" name="lostEtc"></textarea>
 				
 			</div>
 			<div class="img_box">
-				<label for="fileInput" class="fileLable">+</label>
-				<input type="file" id="fileInput" class="fileInput">
+				<img class="fileImg" id="preview" src="../image/addFile.png">
+				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
 			</div>
 		</div>
 	</div>
@@ -231,17 +229,31 @@ body,
       	margin-bottom: 150px;">
       	<a href="" class="boardBtn Btn" id="btn">등록</a>
     </div>
+</form>
 </body>
 <script>
 const charBox = document.getElementById('char_box');
 
-function handleKeyPress(event) {
+/* function handleKeyPress(event) {
     if (event.key === 'Enter') {
         addNewItem();
     }
-    if (event.key == 'Backspace'){
-    	remove
-    }
+} */
+
+
+$(".charInput").on('keypress', (function(e) {
+	console.log("charInput");
+	 if (event.key === 'Enter') {
+		 console.log(this.parentNode)
+		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+		 if(this.parentNode == charBox.lastChild) {
+			 addNewItem();
+		 }
+	 }
+})) 
+
+function appendItem(target) {
+	
 }
 
 function addNewItem() {
@@ -249,7 +261,7 @@ function addNewItem() {
     
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-    deleteButton.textContent = '삭제'; // 버튼 텍스트 설정
+    deleteButton.textContent = '-'; // 버튼 텍스트 설정
     deleteButton.onclick = function() {
         removeItem(newItem);
     };
@@ -262,9 +274,19 @@ function addNewItem() {
     itemText.type = 'text'; // input 타입을 text로 지정
     itemText.className = 'charInput';
     itemText.placeholder = '강아지 특징을 써주세요';
+    itemText.onkeypress = function(e) {
+   	 	if (event.key === 'Enter') {
+   		 console.log(this.parentNode)
+   		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+   		 if(this.parentNode ==   charBox.lastChild) {
+   			 addNewItem();
+   		 }
+  		}
+	}
     newItem.appendChild(itemText); // input 요소를 항목에 추가
 
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
+    itemText.focus()
 }
 
 function removeItem(item) {
@@ -272,8 +294,31 @@ function removeItem(item) {
 }
 
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
-charBox.addEventListener('keypress', handleKeyPress);
+//charBox.addEventListener('keypress', handleKeyPress);
 
-$('#')
+let preview=document.querySelector("#preview");
+let fileInput=document.querySelector("#fileInput");
+preview.onclick=function(){
+	fileInput.click();
+}
+
+fileInput.onchange=function(e){
+	let file=e.target.files[0];
+	if(file) {
+		let reader=new FileReader();
+		
+		reader.onload=function(data){
+			console.log(data);
+			preview.src=data.target.result;
+			/* preview.width= 250;
+			preview.height= 250; */
+		}
+			
+		reader.readAsDataURL(file);
+	} else{
+		preview.src="../image/addFile.png";
+	}
+}
+
 </script>
 </html>
