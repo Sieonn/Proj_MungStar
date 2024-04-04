@@ -13,7 +13,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeBoard
  */
-@WebServlet("/freeBoard/freeBoard")
+@WebServlet("/freeBoard/freeboard")
 public class FreeBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,6 +29,8 @@ public class FreeBoard extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		try {
 			FreeService freeService = new FreeServiceImpl();
 			freeService.freeListByPage(request);
@@ -36,7 +38,7 @@ public class FreeBoard extends HttpServlet {
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "게시글 목록조회 실패");
-			request.getRequestDispatcher("/freeBoard/error.jsp").forward(request, response);
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 

@@ -19,11 +19,11 @@
 		margin: 0 auto;
  	}
  	#freeCategory{
-
+ 		width :1024px;
  		margin : 0 auto;	
   	}
   	.listContainer{
-		width : 1280px;
+ 		width :1024px;
  		margin: 0 auto;
  		border-bottom: 2px solid #ddd;
   	}
@@ -60,7 +60,7 @@
       }
 
 	.board {
-		width : 1280px;
+    	width: 1024px;
     	margin: 0 auto;
     	border-collapse: collapse;
     	margin-top: 30px;
@@ -272,7 +272,8 @@
 	<tr>
 		<th>태그
   	  <div style = "display:inline-block;">
-  	  		<select onchange="getPostsByTag(this.value)">
+  	  		<select class="category" id="category" name="category" size="1">
+  	  			<option value="">#전체</option>
 				<option value="daily">#일상</option>
 				<option value="dogCon">#전국갱얼쥐자랑</option>
 				<option value="infoShare">#정보/공유</option>
@@ -281,7 +282,7 @@
 		</div></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>좋아요</th>
 		<c:forEach items = "${freeBoard }" var = "board">
 			<tr>
-				<td>${board.freeTag }</td>
+				<td><a href = "freeboard?freeTag=${board.freeTag }">${board.freeTag }</a></td>
 				<td><a href = "boarddetail?freeNum=${board.freeNum }">${board.freeSub }</a></td>
 				<td>${board.freeNick }</td>
 				<td>${board.freeWriteDate }</td>
@@ -299,7 +300,7 @@
 	<c:forEach begin = "${pageInfo.startPage }" end = "${pageInfo.endPage }" var = "i">
 		<c:choose>
 			<c:when test = "test=${i==psgeInfo.curPage }">
-				<a href = "boardlist?page=${i }" class = "select">${i }</a>
+				<a href = "freeboard?page=${i }" class = "select">${i }</a>
 			</c:when>
 		<c:otherwise>
 			<a href = "boardlist?page=${i }" class = "select">${i }</a>
@@ -312,6 +313,14 @@
 
  </div>
  <script>
+ $(function(){
+		$('#category').val('${freeTag}');
+		$('#category').change(function(){
+			var freeTag=$(this).val()
+			document.location.href="http://localhost:8080/MoongStar/freeBoard/freeboard?freeTag="+freeTag;
+		})
+	})
+ 
 //검색 버튼 클릭 시 검색 기능 구현
 document.getElementById("searchBtn").addEventListener("click", function() {
      var searchTerm = document.querySelector(".searchBox input[type='text']").value;
