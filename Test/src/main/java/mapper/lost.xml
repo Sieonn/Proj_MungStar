@@ -53,7 +53,7 @@
 	<insert id="insertLost" parameterType="dto.Lost" useGeneratedKeys="true" keyProperty="lostNum">
 		<![CDATA[
 			insert into lost (lostName,lostAddress,lostWriteDate,lostChar,lostEtc,lostPhoto,lostCgory,memId)
-			values (#{lostName},#{lostAddress},curdate(), #{lostpChar},#{lostEtc},#{lostPhoto},#{lostCgory},#{memId})
+			values (#{lostName},#{lostAddress},curdate(), #{lostChar},#{lostEtc},#{lostPhoto},#{lostCgory},#{memId})
 		]]>
 	</insert>
 	

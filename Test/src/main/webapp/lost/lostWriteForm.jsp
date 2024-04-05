@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,7 +184,8 @@ $(function(){
 </script>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<jsp:include page="/main/header.jsp"/>
 <div class="text">미아보호소</div>
 <form action="lostWrite" enctype="multipart/form-data" method="post" id="lostWrite" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
@@ -227,7 +229,7 @@ $(function(){
    	 	justify-content: center;
       	align-items: center;
       	margin-bottom: 150px;">
-      	<a href="" class="boardBtn Btn" id="btn">등록</a>
+      	<button class="boardBtn Btn" id="btn">등록</button>
     </div>
 </form>
 </body>

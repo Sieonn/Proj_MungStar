@@ -97,7 +97,7 @@
 	<insert id="insertTempComment" parameterType="dto.Comment">
 		<![CDATA[
 			insert into tempComment (commNick,tempNum,commContent,commDate)
-			values (#{commNick},#{tempNum},#{commContent},curdate())
+			values (#{commNick},#{boardNum},#{commContent},curdate())
 		]]>
 	</insert>
 	

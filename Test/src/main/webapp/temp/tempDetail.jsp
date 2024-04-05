@@ -210,7 +210,9 @@
 
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/main/header.jsp"/>
+
 <div class="text">임시보호소</div>
 
 <div class="content_container">
@@ -218,7 +220,7 @@
 		<div class="content_box2">
 			<div class="write_box">
 				<div class="dogname_box">${temp.tempName}</div>
-				<div><img src="<%=request.getContextPath()%>/image/place.png" style="">${temp.tempAddress}</div>
+				<div><img src="${path}/image/place.png" style="">${temp.tempAddress}</div>
 				<div id="char_box">
 				<div class="contents">특징</div>
 				</div>
@@ -228,7 +230,7 @@
 				<div>${temp.tempEtc}</div>
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="../imageView?num=${temp.tempPhoto}">
+				<img class="dog_Img" src="${path}/imageView?num=${temp.tempPhoto}">
 				
 				<c:choose>
 				<c:when test="${temp.tempCgory eq 'fingding'}">
@@ -251,7 +253,7 @@
 
 <div class="cheader">&nbsp;COMMENT</div>
 <div class="comment_container">
-	<div class="comment_box">
+	<div class="comment_box" id="comment_box">
 	<c:forEach items="${comments}" var="comment">
 	<c:choose>
 	<c:when test="${comment.commNick eq tempNick}">
@@ -264,7 +266,7 @@
 	<c:otherwise>
 	<div class="memComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
-		<span class="commNickname comm">&nbsp;&nbsp;<img  src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent comm" >${comment.commContent}</span>
 	</div>
 	</c:otherwise>
@@ -272,18 +274,18 @@
 	</c:forEach>     
 	</div>
     <div class="inputDiv">
-    <form action="">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
-		<button type="submit" class="commBtn">등록</button>
-	</form>
+		<button class="commBtn" id="commBtn">등록</button>
 	</div>
 </div>
 </body>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+const charBox = document.getElementById('char_box');
+
+
 console.log('${comments[0].commNick}')
 console.log('${tempNick}');
-const charBox = document.getElementById('char_box');
 
 var charString='${temp.tempChar}';
 console.log(charString);
@@ -302,6 +304,86 @@ for (var i = 0; i < chars.length-1; i++) {
 	newItem.textContent = '▶ '+ char; // 버튼 텍스트 설정
 	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }) */
+
+$('#commBtn').on("click",function(){
+	$.ajax({
+		url:"tempCommentList",
+		type:"POST",
+		asnyc:true,
+		data:{commContent:$('#comment').val(), tempNum:'${temp.tempNum}'},
+		success:function(result){
+			let comment=JSON.parse(result);
+			console.log(comment.memNick);
+			
+			if(comment.memNick==='${tempNick}'){
+			let div=`<div class="writeComm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+					<span class="commContent mycomm">\${comment.commContent}</span>
+				</div>`
+				$('#comment_box').append(div);
+			} else{
+				let div=`<div class="memComm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+						<span class="commContent comm" >\${comment.commContent}</span>
+					</div>`
+					$('#comment_box').append(div);
+			}
+			
+			
+			
+			
+			/* const commBox = document.getElementById('comment_box');
+
+			const newItem = document.createElement('div'); // 새로운 div 요소 생성
+			newItem.className = 'writeComm';
+	
+		    const deleteImg = document.createElement('img'); // 새로운 button 요소 생성
+		    deleteImg.className="delete_img";
+		    
+		    const nickSpan = document.createElement('span');
+		    itemText.type = '&nbsp'; // input 타입을 text로 지정
+
+		    
+		    const commentSpan = document.createElement('span');
+		    
+		    // 삭제 버튼 추가
+		    const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
+		    deleteButton.textContent = '-'; // 버튼 텍스트 설정
+		    deleteButton.onclick = function() {
+		        removeItem(newItem);
+		    };
+		    newItem.appendChild(deleteButton); // 버튼 요소를 항목에 추가
+		    
+		    /* newItem.textContent = '▶ ';
+		    newItem.className = 'item'; */
+		    
+		    /* const itemText = document.createElement('input'); // 새로운 input 요소 생성
+		    itemText.type = 'text'; // input 타입을 text로 지정
+		    itemText.className = 'charInput';
+		    itemText.placeholder = '강아지 특징을 써주세요';
+		    itemText.onkeypress = function(e) {
+		   	 	if (event.key === 'Enter') {
+		   		 console.log(this.parentNode)
+		   		 console.log(charBox.childNodes[charBox.childNodes.length - 1])
+		   		 if(this.parentNode ==   charBox.lastChild) {
+		   			 addNewItem();
+		   		 }
+		  		}
+			}
+		    newItem.appendChild(itemText); // input 요소를 항목에 추가
+
+		    charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
+		    itemText.focus()
+			
+			 */
+		},
+		error:function(err){
+			alert("댓글입력 오류입니다.")
+		}	
+	})
+})
 
 </script>
 </html>

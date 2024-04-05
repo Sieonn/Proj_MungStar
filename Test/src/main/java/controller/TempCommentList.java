@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import dto.Comment;
 import service.TempService;
 import service.TempServiceImplement;
@@ -37,10 +40,17 @@ public class TempCommentList extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utr-8");
+		request.setCharacterEncoding("utf-8");
 		
 		try {
 			TempService tempService=new TempServiceImplement();
+			Comment comment=tempService.addTempComment(request);
+//			JSONParser parser=new JSONParser();
+			JSONObject jsonObj=new JSONObject();
+			jsonObj.put("commContent", comment.getCommContent());
+			jsonObj.put("memNick",comment.getCommNick());
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(jsonObj.toJSONString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
