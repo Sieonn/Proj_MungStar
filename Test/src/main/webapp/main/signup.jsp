@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -362,7 +361,7 @@ $(function() {
 </head>
 
 <body>
-	<%@ include file="../main/header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="container">
 			<h2>SIGN UP</h2>
@@ -485,23 +484,24 @@ $(function() {
 				</div>
 				<hr
 					style="border-top: 1px solid rgb(214, 214, 214); margin-top: 10px;" />
-					<div class="centerForm">
-				<span> <a href="#" style="font-size: 12px">개인정보 수집/이용동의</a>
-				</span> &nbsp; <span id="informationConsent"> <a href="#"
-					style="font-size: 12px"> 개인정보 처리방침</a> <!-- 세부내용 중략 -->
-				</span> <br />
-			</div>
-			<div class="centerForm">
-				<span class="agree-check" style="display: flex; font-size: 12px">
-					이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
-					style="width: 30px" />
-				</span>
-			</div>
-			<!-- 6. 가입하기 버튼 -->
-			<div style="display: flex;">
-				<input type="submit" name="submit" id="submit"
-					style="padding: 15px 0; width: 600px; margin: 0 auto;" value="회원가입" />
-			</div>
+				<div class="centerForm">
+					<span> <a href="#" style="font-size: 12px">개인정보 수집/이용동의</a>
+					</span> &nbsp; <span id="informationConsent"> <a href="#"
+						style="font-size: 12px"> 개인정보 처리방침</a> <!-- 세부내용 중략 -->
+					</span> <br />
+				</div>
+				<div class="centerForm">
+					<span class="agree-check" style="display: flex; font-size: 12px">
+						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
+						style="width: 30px" />
+					</span>
+				</div>
+				<!-- 6. 가입하기 버튼 -->
+				<div style="display: flex;">
+					<input type="submit" name="submit" id="submit"
+						style="padding: 15px 0; width: 600px; margin: 0 auto;"
+						value="회원가입" />
+				</div>
 			</form>
 		</div>
 	</div>

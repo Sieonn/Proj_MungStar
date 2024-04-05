@@ -247,7 +247,7 @@ a:hover {
 </style>
 </head>
 <body>
-	<%@ include file="../main/header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="container">
 			<div class="slider">

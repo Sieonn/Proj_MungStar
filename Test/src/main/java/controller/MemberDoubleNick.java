@@ -11,7 +11,7 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 
-@WebServlet("/main/memberDoubleNick")
+@WebServlet("/memberDoubleNick")
 public class MemberDoubleNick extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

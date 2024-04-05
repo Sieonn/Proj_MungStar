@@ -13,11 +13,15 @@ import service.MemberServiceImpl;
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public Signup() {
         super();
     }
-
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/main/signup.jsp").forward(request, response);
 	}
@@ -27,7 +31,7 @@ public class Signup extends HttpServlet {
 		try {
 			MemberService memberService=new MemberServiceImpl();
 			memberService.signup(request);
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("main");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
