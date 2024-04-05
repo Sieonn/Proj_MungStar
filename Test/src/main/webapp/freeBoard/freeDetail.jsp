@@ -183,8 +183,8 @@
 <br>
 <div class = "BtnArray">
 	<button class = "yellowBtn" id="listBtn">목록</button>
- 	<button type = "submit" class = "yellowBtn" onclick="goToModifyPage(${board.freeNum})">수정</button>
- 	<button class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+ 	<button type = "submit" class = "yellowBtn" id="modifyBtn">수정</button>
+ 	<button class = "yellowBtn" type = "submit">삭제</button>
 	<button class="likeButton" onclick="toggleLike(this)"></button>
 	<span id="likeCount">0</span>
 </div>
@@ -194,17 +194,18 @@
 <div class="footer"></div>
 <script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-	$('form').submit(function(e) {
-		window.location.href = "${path}/freeBoard/freemodify";
+	$("#modifyBtn").click(function(e) {
+		e.preventDefault();
+		var freeNum = "${board.freeNum}"; // 게시물의 식별자
+		window.location.href = "${path}/freeBoard/freemodify?freeNum=" + freeNum;
 		
 	})
 	$("#listBtn").click(function(e) {
     	e.preventDefault();
-    	window.location.href = document.referrer; // 브라우저의 이전 페이지로 이동
+    	window.location.href = "${path}/freeBoard/freeboard"; // 브라우저의 이전 페이지로 이동
 	});
-	$("#deleteBtn").click(function(e) {
-		e.preventDefault();
-		confirmDelete();
+	$('form').submit(function(e) {
+		 $('#freeHidden').val('true');
 	})	
 </script>
 <script>
@@ -230,26 +231,6 @@ likeButton.addEventListener('click', function() {
   }
   </script>
   <script type="text/javascript">
-// 삭제 여부를 묻는 팝업 창을 띄우는 함수
-function confirmDelete() {
-    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
-    var result = confirm("정말로 삭제하시겠습니까?");
-    // 사용자가 확인을 눌렀을 경우
-    if (result) {
-        // 삭제 동작을 수행하는 함수를 호출합니다.
-        deletePost();
-    } else {
-        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
-        console.log("삭제 취소");
-    }
-}
-
-// 게시글을 삭제하는 함수
-function deletePost() {
-    // 게시글 삭제 로직을 추가할 수 있습니다.
-    console.log("게시글이 삭제되었습니다.");
-}
-
 //수정 페이지로 이동하는 함수
 function goToModifyPage(freeNum) {
         window.location.href = "freemodify?freeNum=" + freeNum;

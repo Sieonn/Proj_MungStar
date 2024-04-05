@@ -7,6 +7,7 @@ import dto.FBoard;
 public interface FreeService {
 	Integer freeWrite(HttpServletRequest request) throws Exception;
 	void freeListByPage(HttpServletRequest request) throws Exception;
-	FBoard freeDetail(Integer num)throws Exception;
-	Integer freeModify(HttpServletRequest request)throws Exception;
+	FBoard freeDetail(Integer num) throws Exception;
+	Integer freeModify(HttpServletRequest request) throws Exception;
+	boolean deleteBoard(HttpServletRequest request) throws Exception;
 }

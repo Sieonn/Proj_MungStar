@@ -12,13 +12,14 @@ public class FBoard {
 	private Integer freeView;
 	private Date freeWriteDate;
 	private Integer freeLike;
+	private boolean freeHidden;
 	
 	
 	public FBoard() {
 		super();
 	}
 	public FBoard(Integer freeNum, String freeNick, String freeSub, String freeContent, Integer freePhoto,
-			String freeTag, Integer freeView, Date freeWriteDate, Integer freeLike) {
+			String freeTag, Integer freeView, Date freeWriteDate, Integer freeLike, boolean freeHidden) {
 		super();
 		this.freeNum = freeNum;
 		this.freeNick = freeNick;
@@ -29,6 +30,7 @@ public class FBoard {
 		this.freeView = freeView;
 		this.freeWriteDate = freeWriteDate;
 		this.freeLike = freeLike;
+		this.freeHidden = freeHidden;
 	}
 	public Integer getFreeNum() {
 		return freeNum;
@@ -88,7 +90,13 @@ public class FBoard {
 	public String toString() {
 		return "FBoard [freeNum=" + freeNum + ", freeNick=" + freeNick + ", freeSub=" + freeSub + ", freeContent="
 				+ freeContent + ", freePhoto=" + freePhoto + ", freeTag=" + freeTag + ", freeView=" + freeView
-				+ ", freeWriteDate=" + freeWriteDate + ", freeLike=" + freeLike + "]";
+				+ ", freeWriteDate=" + freeWriteDate + ", freeLike=" + freeLike + ", freeHidden=" + freeHidden + "]";
+	}
+	public boolean getFreeHidden() {
+		return freeHidden;
+	}
+	public void setFreeHidden(boolean b) {
+		this.freeHidden = b;
 	}
 	
 	

@@ -88,4 +88,10 @@ public class FreeDAOImpl implements FreeDAO {
 		return sqlSession.selectList("mapper.board.selectBoardListByTagAndSearch",param);
 	}
 
+	@Override
+	public void deleteBoard(FBoard board) throws Exception {
+		sqlSession.update("mapper.board.deleteBoard", board);
+		sqlSession.commit();
+	}
+
 }

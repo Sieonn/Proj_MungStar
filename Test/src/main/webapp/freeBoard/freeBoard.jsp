@@ -187,7 +187,7 @@
 		</c:choose>
 	</c:forEach>
 	<a>&gt;</a>
-  <a href="freeWriteForm" class="yellowBtn" id="writeButton">글쓰기</a>
+  <a href="freeWriteForm" class="yellowBtn" id="writeButton" style="border:0;">글쓰기</a>
 </div>
 
  </div>
