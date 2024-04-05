@@ -112,6 +112,7 @@ font-family: "Georgia";
 </style>
 </head>
 <body>
+  <c:set var="path" value="${pageContext.request.contextPath}"/> 
 <jsp:include page="/main/header.jsp"/>
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar">
@@ -120,7 +121,7 @@ font-family: "Georgia";
 </div>
 <div id="map"></div>
 <div id="leftDiv">
-<img id="helpMessage" src="./image/help.png"/>
+<img id="helpMessage" src="${path }/image/help.png"/>
 </div>
 </div>
 <br><br>
@@ -146,7 +147,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 
 
-var imageSrc = './image/mark1.png',   
+var imageSrc = '${path}/image/mark1.png',   
 imageSize = new kakao.maps.Size(36, 40), 
 imageOption = {offset: new kakao.maps.Point(27, 69)};
 

@@ -147,22 +147,23 @@ h3 {
   </style>
 </head>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
 					<div class="containers">
 					<div class="commentFont">
 						<img id="sticker2"
-							src="<%=request.getContextPath()%>/image/mung.png">
+							src="${path }/image/mung.png">
 							<img
-							id="sticker1" src="<%=request.getContextPath()%>/image/mung.png">
+							id="sticker1" src="${path }/image/mung.png">
 						<img id="sticker3"
-							src="<%=request.getContextPath()%>/image/mung.png">
+							src="${path }/image/mung.png">
 						<h3>COMMENTS</h3>
 					</div>
 					<div id="walkComment">
 						<div class="writeComm">
-							<img src='<c:url value="/image/delete.png"/>'
+							<img src='<c:url value="${path }/image/delete.png"/>'
 								style="width: 18px; height: 18px" class="mycomm"> <span
 								class="commNickname mycomm"><img
-								src='<c:url value="/image/logo.png"/>'
+								src='<c:url value="${path }/image/logo.png"/>'
 								style="width: 15px; height: 15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;</span>
 							<span class="commContent mycomm">댓글내용이 들어가는
 								곳입니다.&nbsp;&nbsp;</span>
@@ -177,10 +178,10 @@ h3 {
 								곳입니다.&nbsp;&nbsp;</span>
 						</div>
 						<div class="memComm">
-							<img src='<c:url value="/image/delete.png"/>'
+							<img src='<c:url value="${path }/image/delete.png"/>'
 								style="width: 18px; height: 18px" class="comm"> <span
 								class="commNickname comm">&nbsp;&nbsp;<img
-								src='<c:url value="/image/logo.png"/>'
+								src='<c:url value="${path }/image/logo.png"/>'
 								style="width: 15px; height: 15px">&nbsp;닉네임이들어가는곳&nbsp;&nbsp;
 							</span> <span class="commContent comm">&nbsp;&nbsp;댓글내용이 들어가는
 								곳입니다.</span>

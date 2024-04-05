@@ -178,6 +178,7 @@ height:40px;
 </style>
 </head>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
 <div class="container">
 <div class="walkMap" id="walkMap">
@@ -220,7 +221,7 @@ window.onload=function(){
 				success:function(result){
 					walkings = JSON.parse(result);
 
-					imageSrc = '../image/mark1.png'; 
+					imageSrc = '${path}/image/mark1.png'; 
 					imageSize = new kakao.maps.Size(36, 40), 
 					 imageOption = {offset: new kakao.maps.Point(27, 69)};
 				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -256,7 +257,7 @@ window.onload=function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:9090/test/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
 					 
 				});
 					}

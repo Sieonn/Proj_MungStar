@@ -188,7 +188,7 @@ left:70px;
 
 </head>
 <body>
-
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
 	<jsp:include page="/main/header.jsp" />
 	<div class="container">
 		<div class="walkMap" id="walkMap">
@@ -196,7 +196,7 @@ left:70px;
 				<button type="button" id='hotplace' name='hotplace'>
 					<p>HOT</p>
 				</button>
-				<div id="hotplaces" style="display:none; background-image: url('../image/list.png')">
+				<div id="hotplaces" style="display:none; background-image: url('${path}/image/list.png')">
 					<table id="allhotplace">			
 					<tr>			
 					<th></th>
@@ -225,7 +225,7 @@ left:70px;
 				<button type="button" id='like' name='like'>
 					<p>LIKE</p>
 				</button>
-				<div id="likes" style="display:none; background-image: url('../image/list.png')">
+				<div id="likes" style="display:none; background-image: url('${path}/image/list.png')">
 					<table id="alllikeplace">			
 					<tr>			
 					<th>User님의 좋아요 목록</th>
@@ -326,7 +326,7 @@ $(document).ready(function(){
 				success:function(result){
 					walkings = JSON.parse(result);
 
-					imageSrc = '../image/mark1.png'; 
+					imageSrc = '${path}/image/mark1.png'; 
 					imageSize = new kakao.maps.Size(36, 40), 
 					 imageOption = {offset: new kakao.maps.Point(27, 69)};
 				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -362,7 +362,7 @@ $(document).ready(function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:9090/test/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
 			
 					 
 				});
@@ -387,7 +387,7 @@ $(document).ready(function(){
 
 </script>
 			<div id="leftDiv">
-				<img id="helpMessage" src="../image/help.png" /> <a
+				<img id="helpMessage" src='${path}/image/help.png' /> <a
 					id="walkingDetail" href=""></a>
 			</div>
 		</div>
@@ -398,6 +398,5 @@ $(document).ready(function(){
 				href="walkWriteForm">WRITE</a>
 		</div>
 	</div>
-
 </body>
 </html>

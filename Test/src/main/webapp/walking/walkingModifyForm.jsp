@@ -211,6 +211,7 @@ a {
 </style>
 </head>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
 	<div class="container">
 		<div class="backWalkDetail">
 			<div id="exitBtn">

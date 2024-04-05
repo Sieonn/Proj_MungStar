@@ -250,6 +250,7 @@ top:50px;
 </style>
 </head>
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
 <div class="container1">
 <div class="walkMap" id="walkMap">
@@ -296,7 +297,7 @@ window.onload=function(){
 				success:function(result){
 					walkings = JSON.parse(result);
 
-					imageSrc = '../image/mark1.png'; 
+					imageSrc = '${path}/image/mark1.png'; 
 					imageSize = new kakao.maps.Size(36, 40), 
 					 imageOption = {offset: new kakao.maps.Point(27, 69)};
 				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -332,7 +333,7 @@ window.onload=function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:9090/test/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
 					 
 				});
 					}
@@ -367,14 +368,14 @@ window.onload=function(){
 							${walking.walkName }
 							<div id="walkLike">
 					<b>Like</b><br>
-					<img src="<%=request.getContextPath()%>/image/none.png" style="width:45px;">
+					<img src="${path }/image/none.png" style="width:45px;">
 				</div>
 						</div>
 							<br>
 							<br>
 						<div class="walkAddress">
 						<div id="detailAddress">
-							<img src="<%=request.getContextPath()%>/image/place.png"
+							<img src="${path}/image/place.png"
 								width="20px">
 								${walking.walkAddress3 }
 								<br>
@@ -402,7 +403,7 @@ window.onload=function(){
 		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
 		<script>
 		$("#walkWriteForm").on("click",function(){
-			window.location.href="http://localhost:9090/test/walking/walkWriteForm";	
+			window.location.href="http://localhost:8080/moongstar/walking/walkWriteForm";	
 		})
 		</script>
 		</div>

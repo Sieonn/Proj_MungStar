@@ -18,7 +18,7 @@ window.onload=function(){
 	    center: new kakao.maps.LatLng(37.54699, 127.09598), 
 	    level: 3
 	};
-	 imageSrc = '../image/mark1.png',   
+	 imageSrc = '${path}/image/mark1.png',   
 	imageSize = new kakao.maps.Size(36, 40), 
 	imageOption = {offset: new kakao.maps.Point(27, 69)};
 
@@ -332,7 +332,8 @@ box-shadow: 0 2px 1px gray;
 </style>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>   
+<jsp:include page="/main/header.jsp"/>
 <div class="container1">
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
@@ -354,7 +355,7 @@ box-shadow: 0 2px 1px gray;
 						<br>
 						<div class="walkAddress">
 						<div id="detailAddress">
-							<img src="<%=request.getContextPath()%>/image/place.png"
+							<img src="${path }/image/place.png"
 								width="20px">
 								<input type="text" id="walkAddress3" name="walkAddress3" placeholder="주소" readOnly />
 								<input type="hidden" id="walkLat" name="walkLat" > <input type="hidden" id="walkLong" name="walkLong">
