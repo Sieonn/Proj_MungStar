@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import dto.Dog;
+import dto.File;
 
 public interface DogDAO {
 
@@ -11,4 +12,5 @@ public interface DogDAO {
 	void updateDog(Dog dog) throws Exception;
 	void deleteDog(Integer dogNum)throws Exception;
 	Dog selectOneDog(Integer dogNum) throws Exception;
+	void insertFile(File file) throws Exception;
 }

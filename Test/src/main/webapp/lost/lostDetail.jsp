@@ -226,7 +226,7 @@
 				<div>${lost.lostEtc}</div>
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="<%=request.getContextPath()%>/image/temp3.jpg">
+				<img class="dog_Img" src="${path}/imageView?num=${lost.lostPhoto}">
 				<div class="state">찾고있어요</div>
 			</div>
 		</div>
@@ -235,8 +235,10 @@
 
 <div class="btn_container">
 	<a href="lostBoard" class="boardBtn Btn">목 록</a>
+	<c:if test="${lost.memId eq user.memId}">
 	<a href="lostModify?lostNum=${lost.lostNum}" class="boardBtn Btn">수 정</a>
 	<a href="lostDelete?lostNum=${lost.lostNum}" class="boardBtn Btn" id="deleteBtn">삭 제</a>
+	</c:if>
 </div>
 
 <div class="cheader">&nbsp;COMMENT</div>
@@ -244,7 +246,7 @@
 	<div class="comment_box" id="comment_box">
 	<c:forEach items="${comments}" var="comment">
 	<c:choose>
-	<c:when test="${comment.commNick eq tempNick}">
+	<c:when test="${comment.commNick eq lostNick}">
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
@@ -285,10 +287,10 @@ for (var i = 0; i < chars.length-1; i++) {
 
 $('#commBtn').on("click",function(){
 	$.ajax({
-		url:"tempCommentList",
+		url:"lostCommentList",
 		type:"POST",
 		asnyc:true,
-		data:{commContent:$('#comment').val(), tempNum:'${temp.tempNum}'},
+		data:{commContent:$('#comment').val(), lostNum:'${lost.lostNum}'},
 		success:function(result){
 			let comment=JSON.parse(result);
 			console.log(comment.memNick);

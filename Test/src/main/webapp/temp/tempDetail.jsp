@@ -247,9 +247,12 @@
 
 <div class="btn_container">
 	<a href="tempBoard" class="boardBtn Btn">목 록</a>
+	<c:if test="${temp.memId eq user.memId}">
 	<a href="tempModify?tempNum=${temp.tempNum}" class="boardBtn Btn">수 정</a>
 	<a href="tempDelete?tempNum=${temp.tempNum}" class="boardBtn Btn" id="deleteBtn">삭 제</a>
+	</c:if>
 </div>
+
 
 <div class="cheader">&nbsp;COMMENT</div>
 <div class="comment_container">

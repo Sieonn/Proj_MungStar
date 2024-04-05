@@ -3,13 +3,16 @@ package service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.LostDao;
 import dao.LostDaoImplement;
+import dto.Comment;
 import dto.Lost;
+import dto.Member;
 import util.PageInfo;
 
 public class LostServiceImplement implements LostService {
@@ -88,7 +91,10 @@ public class LostServiceImplement implements LostService {
 		lost.setLostChar(multi.getParameter("lostChar"));
 		lost.setLostEtc(multi.getParameter("lostEtc"));
 		lost.setLostCgory(multi.getParameter("lostCgory"));
-		lost.setMemId("hong");
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		lost.setMemId(member.getMemId());
 
 		lostDao.insertLost(lost);
 	}
@@ -116,15 +122,18 @@ public class LostServiceImplement implements LostService {
 
 			lost.setLostPhoto(uploadFile.getNum());
 		}
-		
-		lost.setLostName(multi.getParameter("tempName"));
-		lost.setLostAddress(multi.getParameter("tempAddress"));
-
+		lost.setLostNum(Integer.parseInt(multi.getParameter("lostNum")));
+		lost.setLostName(multi.getParameter("lostName"));
+		lost.setLostAddress(multi.getParameter("lostAddress"));
+		System.out.println(lost.getLostAddress());
 		// 문자열 -> Date
-		lost.setLostChar(multi.getParameter("tempChar"));
-		lost.setLostEtc(multi.getParameter("tempEtc"));
-		lost.setLostCgory(multi.getParameter("tempCgory"));
-		lost.setMemId("hong");
+		lost.setLostChar(multi.getParameter("lostChar"));
+		lost.setLostEtc(multi.getParameter("lostEtc"));
+		lost.setLostCgory(multi.getParameter("lostCgory"));
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		lost.setMemId(member.getMemId());
 
 		lostDao.updateLost(lost);
 	}
@@ -133,6 +142,44 @@ public class LostServiceImplement implements LostService {
 	public void lostDelete(Integer lostNum) throws Exception {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Comment> lostCommentList(Integer lostNum) throws Exception {
+		return lostDao.selectLostComment(lostNum);
+	}
+
+	@Override
+	public Comment addLostComment(HttpServletRequest request) throws Exception {
+		Comment comment=new Comment();
+		
+		String commContent=request.getParameter("commContent");
+		Integer lostNum=Integer.parseInt(request.getParameter("lostNum"));
+		
+		System.out.println(commContent);
+		System.out.println(lostNum);
+		if(commContent==null) throw new Exception("댓글을 입력하세요");
+		
+		comment.setCommContent(commContent);
+		comment.setBoardNum(lostNum);
+		System.out.println(comment.getBoardNum());
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		if(member==null) throw new Exception("로그인하세요.");
+		String memNick=lostDao.selectLostNick(member.getMemId());
+		comment.setCommNick(memNick);
+		
+		lostDao.insertLostComment(comment);
+		
+		
+		
+		return comment;
+	}
+
+	@Override
+	public String getLostNick(String memId) throws Exception {
+		return lostDao.selectLostNick(memId);
 	}
 
 }

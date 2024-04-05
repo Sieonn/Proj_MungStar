@@ -2,14 +2,27 @@ package dto;
 
 public class Dog {
 	private String dogName;
-	private int dogNum;
+	private Integer dogNum;
 	private String memId;
-	private int dogAge;
+	private Integer dogAge;
 	private String dogGender;
-	private String dogProfile;
+	private Integer dogProfile;
 
 	public Dog() {}
-	public Dog(String dogName, String memId, int dogAge, String dogGender, String dogProfile) {
+	
+	
+	public Dog(String dogName, Integer dogNum, String memId, Integer dogAge, String dogGender, Integer dogProfile) {
+		super();
+		this.dogName = dogName;
+		this.dogNum = dogNum;
+		this.memId = memId;
+		this.dogAge = dogAge;
+		this.dogGender = dogGender;
+		this.dogProfile = dogProfile;
+	}
+
+
+	public Dog(String dogName, String memId, Integer dogAge, String dogGender, Integer dogProfile) {
 		super();
 		this.memId = memId;
 		this.dogName = dogName;
@@ -26,11 +39,11 @@ public class Dog {
 		this.dogName = dogName;
 	}
 
-	public int getDogNum() {
+	public Integer getDogNum() {
 		return dogNum;
 	}
 
-	public void setDogNum(int dogNum) {
+	public void setDogNum(Integer dogNum) {
 		this.dogNum = dogNum;
 	}
 
@@ -42,11 +55,11 @@ public class Dog {
 		this.memId = memId;
 	}
 
-	public int getDogAge() {
+	public Integer getDogAge() {
 		return dogAge;
 	}
 
-	public void setDogAge(int dogAge) {
+	public void setDogAge(Integer dogAge) {
 		this.dogAge = dogAge;
 	}
 
@@ -58,11 +71,11 @@ public class Dog {
 		this.dogGender = dogGender;
 	}
 
-	public String getDogProfile() {
+	public Integer getDogProfile() {
 		return dogProfile;
 	}
 
-	public void setDogProfile(String dogProfile) {
+	public void setDogProfile(Integer dogProfile) {
 		this.dogProfile = dogProfile;
 	}
 

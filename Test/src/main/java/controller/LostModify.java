@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Temp;
-import service.TempService;
-import service.TempServiceImplement;
+import dto.Lost;
+import service.LostService;
+import service.LostServiceImplement;
 
-@WebServlet("/temp/tempModify")
-public class TempModify extends HttpServlet {
+
+@WebServlet("/lost/lostModify")
+public class LostModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public TempModify() {
+
+    public LostModify() {
         super();
     }
 
@@ -23,25 +24,26 @@ public class TempModify extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		
 		try {
-			TempService tempService=new TempServiceImplement();
-			Temp temp=tempService.tempDetail(Integer.parseInt(request.getParameter("tempNum")));
-			request.setAttribute("temp", temp);
-			request.getRequestDispatcher("tempModifyForm.jsp").forward(request, response);
+			LostService lostService=new LostServiceImplement();
+			Lost lost=lostService.lostDetail(Integer.parseInt(request.getParameter("lostNum")));
+			request.setAttribute("lost", lost);
+			System.out.println(lost);
+			request.getRequestDispatcher("lostModifyForm.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
 		try {
-			TempService tempService=new TempServiceImplement();
-			tempService.tempModify(request);
-			response.sendRedirect("tempBoard");
+			LostService lostService=new LostServiceImplement();
+			lostService.lostModify(request);
+			response.sendRedirect("lostBoard");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

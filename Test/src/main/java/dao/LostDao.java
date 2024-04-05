@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import dto.Comment;
 import dto.File;
 import dto.Lost;
 
@@ -16,4 +17,7 @@ public interface LostDao {
 	void insertFile(File file) throws Exception;
 	
 	void updateLost(Lost lost) throws Exception;
+	List<Comment> selectLostComment(Integer lostNum) throws Exception;
+	String selectLostNick(String memId) throws Exception;
+	void insertLostComment(Comment comment) throws Exception;
 }

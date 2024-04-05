@@ -304,7 +304,8 @@ const handleImgInput = (e) => {
 </script>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/main/header.jsp"/>
 <div class="temp_container" style="">
 	<div class="text">임시보호소</div>
 	<div class="right_container" style="float: right;">

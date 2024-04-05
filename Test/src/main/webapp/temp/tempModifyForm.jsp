@@ -203,7 +203,8 @@ body,
 </script>
 </head>
 <body>
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/main/header.jsp"/>
 <div class="text">임시보호소</div>
 <form action="tempModify" enctype="multipart/form-data" method="post" id="tempModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
@@ -246,7 +247,7 @@ body,
 				
 			</div>
 			<div class="img_box">
-				<img class="fileImg" id="preview" src="../imageView?num=${temp.tempPhoto }">
+				<img class="fileImg" id="preview" src="${path}/imageView?num=${temp.tempPhoto }">
 				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
 			</div>
 		</div>

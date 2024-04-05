@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.Comment;
 import dto.File;
 import dto.Lost;
 import util.MybatisSqlSessionFactory;
@@ -63,6 +64,22 @@ public class LostDaoImplement implements LostDao{
 	@Override
 	public void updateLost(Lost lost) throws Exception {
 		sqlSession.update("mapper.lost.updateLost",lost);
+		sqlSession.commit();		
+	}
+
+	@Override
+	public List<Comment> selectLostComment(Integer lostNum) throws Exception {
+		return sqlSession.selectList("mapper.lost.selectLostComment",lostNum);
+	}
+
+	@Override
+	public String selectLostNick(String memId) throws Exception {
+		return sqlSession.selectOne("mapper.lost.selectLostNick",memId);
+	}
+
+	@Override
+	public void insertLostComment(Comment comment) throws Exception {
+		sqlSession.insert("mapper.lost.insertLostComment",comment);
 		sqlSession.commit();		
 	}
 

@@ -388,7 +388,7 @@ a:hover {
 								<div class="field">
 									<div class="inner-txt">프로필 사진</div>
 									<div class="inner-input">
-										<img src="../image/프로필01.jpg"
+										<img src="${path}/imageView?num=${dog.dogProfile}"
 											style="width: 100px; height: 100px" />
 									</div>
 								</div>

@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -95,7 +93,10 @@ public class TempServiceImplement implements TempService {
 		temp.setTempChar(multi.getParameter("tempChar"));
 		temp.setTempEtc(multi.getParameter("tempEtc"));
 		temp.setTempCgory(multi.getParameter("tempCgory"));
-		temp.setMemId("hong");
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		temp.setMemId(member.getMemId());
 
 		tempDao.insertTemp(temp);
 	}
@@ -132,7 +133,10 @@ public class TempServiceImplement implements TempService {
 		temp.setTempChar(multi.getParameter("tempChar"));
 		temp.setTempEtc(multi.getParameter("tempEtc"));
 		temp.setTempCgory(multi.getParameter("tempCgory"));
-		temp.setMemId("hong");
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		temp.setMemId(member.getMemId());
 
 		tempDao.updateTemp(temp);
 	}

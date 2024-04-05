@@ -274,6 +274,16 @@ a.btn-empty {
 a:hover {
 	cursor: pointer;
 }
+.fileImg{
+	width:40px;height: 40px;
+	
+}
+.fileInput{
+      	position: absolute;
+    	display: none;
+    	overflow: hidden;
+    	clip: rect(0,0,0,0);
+      }
 </style>
 </head>
 
@@ -287,16 +297,16 @@ a:hover {
 			</div>
 
 			<!-- 개인정보 입력 폼 -->
-			<form action="dogmodify" method="post">
-			        <input type="hidden" name="dogNum" value="${dog.memId}" id="dogNum}" /> 
+			<form action="dogmodify" method="post" id="form" enctype="multipart/form-data">
+			        <input type="hidden" name="dogNum" value="${dog.dogNum}" id="dogNum" /> 
 				<div class="signup-container">
 					<!-- 아이디 -->
 					<div class="field">
-						<div class="inner-title">${dog.dogNum} 반려동물 이름</div>
-						${dog.memId}
+						<div class="inner-title">반려동물 이름</div>
+						
 						<div class="inner-input">
 							<input type="text" name="dogName" id="dogName"
-								placeholder="${dog.dogName}" value="${dog.dogName}" />
+								placeholder="${dog.dogName}" value="${dog.dogName}"/>
 						</div>
 					</div>
 
@@ -318,13 +328,44 @@ a:hover {
 								${dog.dogGender == '여' ? "checked" : ''} /> <label for="female">여</label>
 						</div>
 					</div>
+					<div class="img_box">
+						<img class="fileImg" id="preview" src="${path}/imageView?num=${dog.dogProfile }">
+						<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+					</div>
 				</div>
 			</form>
 			<div class="btnSet">
-				<a class="btn-fill" onclick="$('form').submit()">저장</a> <a
-					class="btn-empty" href="${path}/mypage">취소</a>
+				<a class="btn-fill" onclick="$('form').submit()">저장</a> 
+				<a class="btn-empty" href="${path}/mypage">취소</a>
 			</div>
 		</div>
 	</div>
 </body>
+<script   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+let preview=document.querySelector("#preview");
+let fileInput=document.querySelector("#fileInput");
+preview.onclick=function(){
+	fileInput.click();
+}
+
+fileInput.onchange=function(e){
+	let file=e.target.files[0];
+	if(file) {
+		let reader=new FileReader();
+		
+		reader.onload=function(data){
+			console.log(data);
+			preview.src=data.target.result;
+			/* preview.width= 250;
+			preview.height= 250; */
+		}
+			
+		reader.readAsDataURL(file);
+	} else{
+		preview.src="${path}/image/addFile.png";
+	}
+}
+</script>
 </html>

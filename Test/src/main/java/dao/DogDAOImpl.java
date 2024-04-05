@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Dog;
+import dto.File;
 import util.MybatisSqlSessionFactory;
 
 public class DogDAOImpl implements DogDAO{
@@ -29,6 +30,12 @@ public class DogDAOImpl implements DogDAO{
 
 	public Dog selectOneDog(Integer dogNum) throws Exception {
 		return sqlSession.selectOne("mapper.dog.selectOneDog",dogNum);
+	}
+
+	@Override
+	public void insertFile(File file) throws Exception {
+		sqlSession.insert("mapper.file.insertFile",file);
+		sqlSession.commit();
 	}
 
 

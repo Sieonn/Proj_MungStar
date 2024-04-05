@@ -274,6 +274,16 @@ a.btn-empty {
 a:hover {
 	cursor: pointer;
 }
+.fileImg{
+	width:40px;height: 40px;
+	
+}
+.fileInput{
+      	position: absolute;
+    	display: none;
+    	overflow: hidden;
+    	clip: rect(0,0,0,0);
+      }
 </style>
 <script   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -290,7 +300,7 @@ a:hover {
 			</div>
 
 			<!-- 개인정보 입력 폼 -->
-			<form action="doginsert" method="post" id="form">
+			<form action="doginsert" method="post" id="form" enctype="multipart/form-data">
 				<div class="signup-container">
 					<!-- 아이디 -->
 					<div class="field">
@@ -317,6 +327,10 @@ a:hover {
 								name="dogGender" value="여" /> <label for="female">여</label>
 						</div>
 					</div>
+					<div class="img_box">
+						<img class="fileImg" id="preview" src="${path}/image/addFile.png">
+						<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+					</div>
 				</div>
 			</form>
 			<div class="btnSet">
@@ -326,4 +340,29 @@ a:hover {
 		</div>
 	</div>
 </body>
+<script>
+let preview=document.querySelector("#preview");
+let fileInput=document.querySelector("#fileInput");
+preview.onclick=function(){
+	fileInput.click();
+}
+
+fileInput.onchange=function(e){
+	let file=e.target.files[0];
+	if(file) {
+		let reader=new FileReader();
+		
+		reader.onload=function(data){
+			console.log(data);
+			preview.src=data.target.result;
+			/* preview.width= 250;
+			preview.height= 250; */
+		}
+			
+		reader.readAsDataURL(file);
+	} else{
+		preview.src="${path}/image/addFile.png";
+	}
+}
+</script>
 </html>

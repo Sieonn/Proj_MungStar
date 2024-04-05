@@ -72,4 +72,25 @@
 	<delete id="deleteLost" parameterType="Integer">
 		delete 
 	</delete>
+	
+	<select id="selectLostComment" parameterType="Integer"
+		resultType="dto.Comment">
+		<![CDATA[
+			select * from lostComment where lostNum=#{lostNum}
+		]]>
+	</select>
+
+	<insert id="insertLostComment" parameterType="dto.Comment">
+		<![CDATA[
+			insert into lostComment (commNick,lostNum,commContent,commDate)
+			values (#{commNick},#{boardNum},#{commContent},curdate())
+		]]>
+	</insert>
+	
+	<select id="selectLostNick" parameterType="String"
+		resultType="String">
+		<![CDATA[
+			select memNick from member where memId=#{memId}
+		]]>
+	</select>
 </mapper>

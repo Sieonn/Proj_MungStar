@@ -93,5 +93,13 @@ public class Lost {
 	public void setMemId(String memId) {
 		this.memId = memId;
 	}
+
+	@Override
+	public String toString() {
+		return "Lost [lostNum=" + lostNum + ", lostName=" + lostName + ", lostAddress=" + lostAddress
+				+ ", lostWriteDate=" + lostWriteDate + ", lostChar=" + lostChar + ", lostEtc=" + lostEtc
+				+ ", lostPhoto=" + lostPhoto + ", lostCgory=" + lostCgory + ", lostBlind=" + lostBlind + ", memId="
+				+ memId + "]";
+	}
 	
 }

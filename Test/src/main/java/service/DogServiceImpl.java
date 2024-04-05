@@ -1,8 +1,11 @@
 package service;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.DogDAO;
 import dao.DogDAOImpl;
@@ -14,16 +17,31 @@ public class DogServiceImpl implements DogService {
 
 	public void doginsert(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("user");
+		Dog dog = new Dog();
 
-		String dogName = request.getParameter("dogName");
-		int dogAge = Integer.parseInt(request.getParameter("dogAge"));
-		String dogGender = request.getParameter("dogGender");
-		String dogProfile = request.getParameter("dogProfile");
+		String uploadPath = request.getServletContext().getRealPath("upload");
+		int size = 10 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
+				new DefaultFileRenamePolicy());
 
-		Member user = (Member) request.getSession().getAttribute("user");
-		String memId = user.getMemId();
+		dto.File uploadFile = new dto.File();
+		uploadFile.setDirectory(uploadPath);
+		uploadFile.setName(multi.getOriginalFileName(uploadPath));
+		uploadFile.setSize(multi.getFile("file").length());
+		uploadFile.setContenttype(multi.getContentType("file"));
+		dogDao.insertFile(uploadFile);
 
-		Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
+		java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));		
+
+		dog.setDogProfile(uploadFile.getNum());
+		dog.setMemId(member.getMemId());
+		dog.setDogName(multi.getParameter("dogName"));
+		dog.setDogGender(multi.getParameter("dogGender"));
+		dog.setDogAge(Integer.parseInt(multi.getParameter("dogAge")));
+
 		dogDao.insertDog(dog);
 	}
 
@@ -34,19 +52,39 @@ public class DogServiceImpl implements DogService {
 		dogDao.deleteDog(dogNum);
 	}
 
-	public void dogmodify(HttpServletRequest request) throws Exception {		
-		
-		
+	public void dogmodify(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String dogName = request.getParameter("dogName");
-		int dogAge = Integer.parseInt(request.getParameter("dogAge"));
-		String dogGender = request.getParameter("dogGender");
-		String dogProfile = request.getParameter("dogProfile");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("user");
+		
+		Dog dog = new Dog();
 
-		Member user = (Member) request.getSession().getAttribute("user");
-		String memId = user.getMemId();
+		String uploadPath = request.getServletContext().getRealPath("upload");
+		int size = 10 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
+				new DefaultFileRenamePolicy());
+		
+		if (multi.getFile("file") != null) {
+		dto.File uploadFile = new dto.File();
+		uploadFile.setDirectory(uploadPath);
+		uploadFile.setName(multi.getOriginalFileName(uploadPath));
+		uploadFile.setSize(multi.getFile("file").length());
+		uploadFile.setContenttype(multi.getContentType("file"));
+		dogDao.insertFile(uploadFile);
 
-		Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
+		java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));
+
+		dog.setDogProfile(uploadFile.getNum());
+		}
+
+		dog.setMemId(member.getMemId());
+		dog.setDogName(multi.getParameter("dogName"));
+		dog.setDogGender(multi.getParameter("dogGender"));
+		dog.setDogAge(Integer.parseInt(multi.getParameter("dogAge")));
+
+		dog.setDogNum(Integer.parseInt(multi.getParameter("dogNum")));
+		
 		dogDao.updateDog(dog);
 	}
 

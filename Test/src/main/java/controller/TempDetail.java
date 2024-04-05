@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Comment;
+import dto.Member;
 import dto.Temp;
 import service.TempService;
 import service.TempServiceImplement;
@@ -24,7 +26,8 @@ public class TempDetail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
-		
+		HttpSession session=request.getSession();
+		Member memId=(Member)session.getAttribute("user");
 		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
 		System.out.println(tempNum);
 		try {

@@ -14,16 +14,24 @@
 		]]>
 	</select>
 
-	<insert id="insertDog" parameterType="dto.Dog">
+	<insert id="insertDog" parameterType="dto.Dog" useGeneratedKeys="true" keyProperty="dogNum"> 
 	 <![CDATA[
         insert into dog (dogName, memId, dogAge, dogProfile, dogGender)
         values (#{dogName}, #{memId}, #{dogAge}, #{dogProfile}, #{dogGender})
     ]]>
 	</insert>
-	<update id="updateDog">
-		UPDATE dog SET dogName=#{dogName}, dogAge=#{dogAge}, dogProfile=#{dogProfile}, dogGender=#{dogGender}
-		WHERE dogNum=#{dogNum}
+	
+	<update id="updateDog" parameterType="dto.Dog">
+		update dog
+   		<trim prefix="SET" suffixOverrides=",">
+   			<if test="dogName !=null">dogName=#{dogName},</if>
+   			<if test="dogAge !=null">dogAge=#{dogAge},</if>
+   			<if test="dogGender !=null">dogGender=#{dogGender},</if>
+   			<if test="dogProfile !=null">dogProfile=#{dogProfile}</if>
+   		</trim>
+   		where dogNum=#{dogNum}
 	</update>
+	
 	<delete id="deleteDog" parameterType="Integer">
 		DELETE FROM dog WHERE dogNum=#{dogNum}
 	</delete>
