@@ -187,7 +187,7 @@
 		</c:choose>
 	</c:forEach>
 	<a>&gt;</a>
-  <button class="yellowBtn" id="writeButton">글쓰기</button>
+  <a href="freeWriteForm" class="yellowBtn" id="writeButton">글쓰기</a>
 </div>
 
  </div>
@@ -231,13 +231,7 @@ document.getElementById("searchBtn").addEventListener("click", function() {
 displaySearchResults 함수에서는 검색 결과를 받아와서 화면에 표시하는 로직을 작성해야 합니다.*/
 
 </script>
-<script>
-  // 글쓰기 버튼에 대한 클릭 이벤트 핸들러
-  document.getElementById('writeButton').addEventListener('click', function() {
-    // 글쓰기 페이지 URL로 이동
-    window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freeWriteForm.jsp';
-  });
-</script>
+
 <div class="footer"></div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -173,7 +174,7 @@
 	<div class="ContentBackground scroll-box">
 		<div class = "context">${board.freeContent}</div>
 		<c:if test="${board.freePhoto ne null}">
-			<img src="image?num=${board.freePhoto}" width="100px"/>
+			<img src="${path}/imageView?num=${board.freePhoto}" width="100%"/>
 		</c:if>
 	</div>
 	<div class="tag-input" style="color: lightgray;">${board.freeTag}</div>
@@ -181,9 +182,9 @@
 
 <br>
 <div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
+	<button class = "yellowBtn" id="listBtn">목록</button>
  	<button type = "submit" class = "yellowBtn" onclick="goToModifyPage(${board.freeNum})">수정</button>
- 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+ 	<button class = "yellowBtn" onclick="confirmDelete()">삭제</button>
 	<button class="likeButton" onclick="toggleLike(this)"></button>
 	<span id="likeCount">0</span>
 </div>
@@ -191,6 +192,21 @@
 </div>
 <jsp:include page="/freeBoard/boardComment.jsp"></jsp:include>
 <div class="footer"></div>
+<script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$('form').submit(function(e) {
+		window.location.href = "${path}/freeBoard/freemodify";
+		
+	})
+	$("#listBtn").click(function(e) {
+    	e.preventDefault();
+    	window.location.href = document.referrer; // 브라우저의 이전 페이지로 이동
+	});
+	$("#deleteBtn").click(function(e) {
+		e.preventDefault();
+		confirmDelete();
+	})	
+</script>
 <script>
 // 클릭 수를 저장할 변수
 let clickCount = 0;

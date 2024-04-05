@@ -11,7 +11,7 @@ import dao.FreeDAO;
 import dao.FreeDAOImpl;
 import dto.FBoard;
 import dto.File;
-import dto.Temp;
+import dto.Member;
 import util.PageInfo;
 
 public class FreeServiceImpl implements FreeService{
@@ -21,7 +21,7 @@ public class FreeServiceImpl implements FreeService{
 		freeDAO = new FreeDAOImpl();
 	}
 	@Override
-	public void freeWrite(HttpServletRequest request) throws Exception {
+	public Integer freeWrite(HttpServletRequest request) throws Exception {
 		FBoard board = new FBoard();
 		
 		//업로드 경로 & 파일크기
@@ -40,28 +40,22 @@ public class FreeServiceImpl implements FreeService{
 			uploadFile.setContenttype(multi.getContentType("file"));
 			uploadFile.setSize(multi.getFile("file").length());
 			freeDAO.insertFile(uploadFile);
-			
-			//파일번호로 업로드한 파일명 변경
-			java.io.File file = new java.io.File(uploadPath,multi.getFilesystemName("file"));
-			file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));
-			
+	        //2-2. 저장된 파일번호로 업로드한 파일의 변경
+	        java.io.File file=new java.io.File(uploadPath,multi.getFilesystemName("file"));
+	        file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));			
+			board.setFreePhoto(uploadFile.getNum());
 		}
 		
-		//파일 정보 테이블에 저장
-		File uploadFile = new File();
-		uploadFile.setName(multi.getOriginalFileName("file"));
-		uploadFile.setDirectory(uploadPath);
-		uploadFile.setContenttype(multi.getContentType("file"));
-		uploadFile.setSize(multi.getFile("file").length());
-		freeDAO.insertFile(uploadFile);
-	
-		
 	    //3. 파라미터에서 파일 이외의 정보 가져와 Board 객체에 담아 Board 테이블에 삽입
-	    board.setFreeSub(multi.getParameter("freesub"));
-	    board.setFreeContent(multi.getParameter("freecontent"));
-	    board.setFreeNick(multi.getParameter("freeNick"));
+	    board.setFreeSub(multi.getParameter("freeSub"));
+	    System.out.println("service"+multi.getParameter("freeSub"));
+	    board.setFreeContent(multi.getParameter("freeContent"));
+	    Member member = (Member)request.getSession().getAttribute("user");
+	    board.setFreeNick(member.getMemNick());
+	    System.out.println(board);
 	    freeDAO.insertBoard(board);
-		
+	    
+	    return board.getFreeNum();
 	}
 
 	@Override
@@ -133,7 +127,7 @@ public class FreeServiceImpl implements FreeService{
 		return freeDAO.selectBoard(freeNum);
 	}
 	@Override
-	public void freeModify(HttpServletRequest request) throws Exception {
+	public Integer freeModify(HttpServletRequest request) throws Exception {
 		FBoard board = new FBoard();
 	      // 파일업로드
 	      //1-1. 업로드할 경로 설정
@@ -165,6 +159,7 @@ public class FreeServiceImpl implements FreeService{
 
 	      
 	      freeDAO.updateBoard(board);
+	      return board.getFreeNum(); 
 	   }
 	
 }

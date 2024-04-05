@@ -19,7 +19,7 @@ import service.FreeServiceImpl;
 /**
  * Servlet implementation class FreeWrite
  */
-@WebServlet("/freeBoard/freewrite")
+@WebServlet("/freeBoard/freeWriteForm")
 public class FreeWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,11 +44,10 @@ public class FreeWrite extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
 		try {
 			FreeService freeService = new FreeServiceImpl();
-			freeService.freeWrite(request);
-			response.sendRedirect("freeBoard");
+			Integer freeNum = freeService.freeWrite(request);
+			response.sendRedirect(request.getContextPath()+"/freeBoard/boarddetail?freeNum="+freeNum);			
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "게시물 생성 실패");

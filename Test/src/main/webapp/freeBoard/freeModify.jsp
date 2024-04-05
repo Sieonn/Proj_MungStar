@@ -255,7 +255,7 @@
         </div>        
         <div class="scroll-box">
         	<c:if test="${board.freePhoto ne null}">
-				<img src="image?num=${board.freePhoto}" width="100px"/>
+				<img src="${path}/imageView?num=${board.freePhoto}" width="100%"/>
 			</c:if>
 			<div id="imagePreview"></div>
             	<div class = "context"></div>
@@ -282,9 +282,9 @@
 		
 	})
 	$("#listBtn").click(function(e) {
-		e.preventDefault();
-		
-	})
+    	e.preventDefault();
+    	window.location.href = "${path}/freeBoard/freeboard";  // 목록 페이지로 이동
+	});
 	$("#deleteBtn").click(function(e) {
 		e.preventDefault();
 		confirmDelete();
@@ -344,11 +344,13 @@ function handleFiles(event) {
             content.appendChild(imgElement); // 이미지 추가
         };
         reader.readAsDataURL(file);
+    } else {
+    	 console.error("파일이 존재하지 않습니다.");
     }
 }
 
 
-// 저장할 태그들을 보관할 배열
+/* // 저장할 태그들을 보관할 배열
 var tags = [];
 
 // 태그 입력란의 값이 변경될 때마다 호출되는 함수
@@ -359,7 +361,7 @@ function handleTagInput() {
         return tag.trim(); // 공백 제거
     });
     console.log("현재 태그:", tags);
-}
+} */
 
 
 </script>

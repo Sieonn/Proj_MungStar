@@ -84,6 +84,12 @@ public class FBoard {
 	public void setFreeLike(Integer freeLike) {
 		this.freeLike = freeLike;
 	}
+	@Override
+	public String toString() {
+		return "FBoard [freeNum=" + freeNum + ", freeNick=" + freeNick + ", freeSub=" + freeSub + ", freeContent="
+				+ freeContent + ", freePhoto=" + freePhoto + ", freeTag=" + freeTag + ", freeView=" + freeView
+				+ ", freeWriteDate=" + freeWriteDate + ", freeLike=" + freeLike + "]";
+	}
 	
 	
 }

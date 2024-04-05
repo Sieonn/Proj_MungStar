@@ -214,14 +214,14 @@
 <%@ include file="../main/header.jsp" %>
 <br>
 <div class="pageContainer">
-	<form id="freeWrite" method="post" enctype="multipart/form-data">
+	<form id="freeWrite" method="post" enctype="multipart/form-data" action="${path}/freeBoard/freeWriteForm">
 <div class = "freeContainer">
 	<div id = "freeCategory">
 		<h2 style="margin-bottom: 5px;">자유게시판</h2>
 		<h4 style = "font-weight: lighter; margin-top: 0;">게시물작성</h4>
 	</div>
 <div class="writeContainer">
-    <input class="writeTitle" id="freeSub" name="freeSub" type="text" placeholder="  제목  " />
+    <input class="writeTitle" id="freeSub" name="freeSub" type="text" placeholder="  제목  "  required="required"/>
     <br>    
     <div class="content">
         <div class="toolbar">
@@ -239,7 +239,7 @@
     		<img src="../image/quote.png" class = "imgBtn" onclick="quoteText()">
     		<div class="imgBtn"></div>
     		<img src="../image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
-    		<input type="file" id="fileInput" id="freePhoto" name="freePhoto" style="display: none;" accept="image/*" onchange="handleFiles(event)">
+    		<input type="file" id="fileInput" id="freePhoto" name="file" style="display: none;" accept="image/*" onchange="handleFiles(event)">
    
     		<img src="../image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
     		<div class="imgBtn"></div>
@@ -258,7 +258,8 @@
         </div>
         <div class="scroll-box">
             <div id="imagePreview"></div>
-            <div id="editor freeContent" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">
+            <input type="hidden" id="freeContent" name="freeContent"/> 
+            <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">
            
             </div>
         </div>
@@ -267,7 +268,7 @@
 </div>
 	<br>
 	<div class = "BtnArray">
-	<button class="yellowBtn" type="submit">저 장</button>
+	<button name="submit" class="yellowBtn" type="submit">저장</button>
 	</div>
 </div>
 </form>
@@ -319,25 +320,7 @@ function handleFiles(event) {
     }
   </script>
 <script>
-/* document.getElementById('saveButton').addEventListener('click', function() {
-    // 작성된 글을 어딘가에 저장하는 코드
-    var title = document.querySelector('.writeTitle').value; // 제목 가져오기
-    var content = document.querySelector('#editor').innerHTML; // 내용 가져오기
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'saveDataServlet', true); // 저장을 처리하는 서블릿 주소로 POST 요청 보냄
-    xhr.setRequestHeader('Content-Type', 'application/json'); // 요청 헤더 설정
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // 저장이 완료되면 목록 페이지로 이동
-            window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freeBoard.jsp';
-        } else {
-            console.error('저장 실패:', xhr.statusText);
-        }
-    };
-    // JSON 형태로 데이터 전송
-    xhr.send(JSON.stringify({ title: title, content: content }));
-}); */
 
 </script>
 <script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
