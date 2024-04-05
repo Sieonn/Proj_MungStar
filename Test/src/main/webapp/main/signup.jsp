@@ -44,6 +44,44 @@ function findAddr() {
         }
     }).open();
 }
+
+$(function() {
+	   $("#checkedemail").click(function(e) {
+	      e.preventDefault();
+	      var email = $('input[name=memEmail]').val()+'@'+$('select[name=domain]').val();
+	      $.ajax({
+	         url:'joinauth',
+	         type:'post',
+	         data:{memEmail:memEmail},
+	         success:function(result) {
+	            alert(result);
+	         }
+	      })
+	   })
+	   //이메일 인증 여부 메시지를 표시 할 요소
+	   var checkEmailCondition = $('#permitemail');
+	   //메일체크
+	   $("#checkauth").click(function(e) {
+	      e.preventDefault();
+	      var authcode = $("#authcode").val();
+	      $.ajax({
+	         url:'checkauth',
+	         type:'post',
+	         data:{authcode:authcode},
+	         success:function(result) {
+	            if (result == 'true') {
+	               console.log('인증번호가 일치합니다.')
+	               checkEmailCondition.text('인증번호가 일치합니다.');
+	                checkEmailCondition.css('color', 'green');
+	            } else {
+	               console.log('인증번호가 일치하지 않습니다.')
+	                checkEmailCondition.text('인증번호가 일치하지 않습니다.');
+	                checkEmailCondition.css('color', 'red');
+	            }
+	         }
+	      })
+	   })
+	})
 </script>
 
 <style>
@@ -432,8 +470,8 @@ $(function() {
 							</div>
 							<div class="inner-input">
 								<div style="display: flex">
-									<input class="diy-width" type="email" placeholder="인증번호를 입력하세요" />
-									<input type="button" onclick="()" value="확인" />
+									<input class="diy-width" id="permitemail" type="email" placeholder="인증번호를 입력하세요" />
+									<input type="button" onclick="()" value="확인" id="checkedemail"  name="checkedemail"/>
 								</div>
 							</div>
 						</div>
