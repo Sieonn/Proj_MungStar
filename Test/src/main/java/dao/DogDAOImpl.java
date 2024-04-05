@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Dog;
@@ -13,15 +15,15 @@ public class DogDAOImpl implements DogDAO{
 		sqlSession.commit();
 	}
 
-	public Dog selectDog(String memId) throws Exception {
-		return sqlSession.selectOne("mapper.dog.selectDog",memId);
+	public List<Dog> selectDog(String memId) throws Exception {
+		return sqlSession.selectList("mapper.dog.selectDog",memId);
 	}
 	public void updateDog(Dog dog) throws Exception {
 		sqlSession.update("mapper.dog.update", dog);
 		sqlSession.commit();
 	}
-	public void deleteDog(Dog dog)throws Exception  {
-		sqlSession.delete("mapper.dog.delete", dog);
+	public void deleteDog(Integer dogNum)throws Exception  {
+		sqlSession.delete("mapper.dog.deleteDog", dogNum);
 		sqlSession.commit();
 	}
 

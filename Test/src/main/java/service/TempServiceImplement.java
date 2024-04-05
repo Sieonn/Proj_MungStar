@@ -3,6 +3,10 @@ package service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -10,6 +14,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.TempDao;
 import dao.TempDaoImplement;
 import dto.Comment;
+import dto.Member;
 import dto.Temp;
 import util.PageInfo;
 
@@ -135,7 +140,6 @@ public class TempServiceImplement implements TempService {
 	@Override
 	public void tempDelete(Integer tempNum) throws Exception {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -146,6 +150,34 @@ public class TempServiceImplement implements TempService {
 	@Override
 	public String getTempNick(String memId) throws Exception {
 		return tempDao.selectTempNick(memId);
+	}
+
+	@Override
+	public Comment addTempComment(HttpServletRequest request) throws Exception {
+		Comment comment=new Comment();
+		
+		String commContent=request.getParameter("commContent");
+		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
+		
+		System.out.println(commContent);
+		System.out.println(tempNum);
+		if(commContent==null) throw new Exception("댓글을 입력하세요");
+		
+		comment.setCommContent(commContent);
+		comment.setBoardNum(tempNum);
+		System.out.println(comment.getBoardNum());
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		
+		String memNick=tempDao.selectTempNick(member.getMemId());
+		comment.setCommNick(memNick);
+		
+		tempDao.insertTempComment(comment);
+		
+		
+		
+		return comment;
 	}
 
 	

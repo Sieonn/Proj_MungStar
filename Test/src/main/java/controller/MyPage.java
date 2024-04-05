@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import service.MemberService;
 import service.MemberServiceImpl;
 
-@WebServlet("/main/mypage")
+@WebServlet("/mypage")
 public class MyPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,5 +35,6 @@ public class MyPage extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 }

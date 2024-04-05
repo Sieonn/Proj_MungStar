@@ -118,7 +118,7 @@
       	border-color: darkgrey;
       	border-radius: 10px; 	
     }
-    .tempImg{
+    .photo{
     	width: 100%; height: 250px;
     	border-radius: 10px;
     	display: inline-block;

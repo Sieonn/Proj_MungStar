@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 import service.DogService;
 import service.DogServiceImpl;
 
-@WebServlet("/doginsert")
-public class DogInsert extends HttpServlet {
+@WebServlet("/dogdelete")
+public class DogDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    public DogInsert() {
+       
+    public DogDelete() {
         super();
+
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/main/dogInsert.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			DogService dogService=new DogServiceImpl();
-			dogService.doginsert(request);
-			response.sendRedirect("/main/myPage.jsp");
+			dogService.dogdelete(request);
+			response.sendRedirect("/main/myPage");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
@@ -35,3 +35,4 @@ public class DogInsert extends HttpServlet {
 	}
 
 }
+

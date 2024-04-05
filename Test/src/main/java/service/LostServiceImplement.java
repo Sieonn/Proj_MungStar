@@ -81,13 +81,13 @@ public class LostServiceImplement implements LostService {
 		file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));
 
 		lost.setLostPhoto(uploadFile.getNum());
-		lost.setLostName(multi.getParameter("tempName"));
-		lost.setLostAddress(multi.getParameter("tempAddress"));
+		lost.setLostName(multi.getParameter("lostName"));
+		lost.setLostAddress(multi.getParameter("lostAddress"));
 
 		// 문자열 -> Date
-		lost.setLostChar(multi.getParameter("tempChar"));
-		lost.setLostEtc(multi.getParameter("tempEtc"));
-		lost.setLostCgory(multi.getParameter("tempCgory"));
+		lost.setLostChar(multi.getParameter("lostChar"));
+		lost.setLostEtc(multi.getParameter("lostEtc"));
+		lost.setLostCgory(multi.getParameter("lostCgory"));
 		lost.setMemId("hong");
 
 		lostDao.insertLost(lost);

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -64,9 +66,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getMypage(HttpServletRequest request) throws Exception {
-		Member member=memberDao.selectMember(request.getParameter("memId"));
-		request.setAttribute("member", member);
-		Dog dog=dogDao.selectDog(request.getParameter("memId"));
-		request.setAttribute("dog", dog);
+		Member member = (Member)request.getSession().getAttribute("user");
+		if(member==null) throw new Exception("로그인 하세요");
+		List<Dog> dogs=dogDao.selectDog(member.getMemId());
+		request.setAttribute("dogs", dogs);
 	}
 }

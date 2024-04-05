@@ -15,4 +15,5 @@ public interface TempService {
 	void tempDelete(Integer tempNum) throws Exception;
 	List<Comment> tempCommentList(Integer tempNum) throws Exception;
 	String getTempNick(String memId) throws Exception;
+	Comment addTempComment(HttpServletRequest request) throws Exception;
 }
