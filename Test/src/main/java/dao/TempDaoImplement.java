@@ -74,7 +74,7 @@ public class TempDaoImplement implements TempDao{
 	}
 	@Override
 	public void insertTempComment(Comment comment) throws Exception {
-		sqlSession.insert("mapper.temp.insertTempComment");
+		sqlSession.insert("mapper.temp.insertTempComment",comment);
 		sqlSession.commit();
 	}
 	@Override

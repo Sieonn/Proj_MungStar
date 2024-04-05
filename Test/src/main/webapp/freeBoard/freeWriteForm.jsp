@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 
@@ -83,7 +85,6 @@
   		max-width: 880px;
 	}
     .yellowBtn {
-    	text-align: center;
 		font-weight: bold;
 		margin: 0 auto;
 		background-color: #FED74B;
@@ -93,6 +94,9 @@
   		border : 0;
   		box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.1);
 	}
+	.BtnArray {
+  		 text-align: center;
+  	}
     .footer {
   		height: 200px;
   	}
@@ -150,26 +154,6 @@
     margin-right: 5px;
 }
 
-.bold-button {
-	font-size: 17px;
-    font-weight: bold;
-    display:
-}
-
-.italic-button {
-	font-size: 17px;
-    font-style: italic;
-}
-
-.underline-button {
-	font-size: 17px;
-    text-decoration: underline;
-}
-.strike-button {
-	font-size: 17px; 
-    text-decoration: line-through;
-}
-
 .font-size-select {
 	margin-left: 10px;
  	border-radius: 3px;
@@ -178,10 +162,18 @@
     outline: none;
 }
 .imgBtn {
+	cursor: pointer;
 	margin-left: 8px;
 	margin-right: 8px;
 	width: 20px;
 	height: 20px;
+}
+.imgBtn2 {
+	cursor: pointer;
+	margin-left: 8px;
+	margin-right: 8px;
+	width: 15px;
+	height: 15px;
 }
 .colorPicker{
 	text-align: center;
@@ -222,13 +214,14 @@
 <%@ include file="../main/header.jsp" %>
 <br>
 <div class="pageContainer">
+	<form id="freeWrite" method="post" enctype="multipart/form-data" action="${path}/freeBoard/freeWriteForm">
 <div class = "freeContainer">
 	<div id = "freeCategory">
 		<h2 style="margin-bottom: 5px;">자유게시판</h2>
 		<h4 style = "font-weight: lighter; margin-top: 0;">게시물작성</h4>
 	</div>
 <div class="writeContainer">
-    <input class="writeTitle" type="text" placeholder="  제목  " />
+    <input class="writeTitle" id="freeSub" name="freeSub" type="text" placeholder="  제목  "  required="required"/>
     <br>    
     <div class="content">
         <div class="toolbar">
@@ -239,14 +232,14 @@
         		<option value="4">Very Large</option>
     		</select>
     		<div class="imgBtn"></div>
-    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, null);">B</button>
-    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, null);">I</button>
-    		<button class="toolbar-button underline-button" onclick="document.execCommand('underline', false, '');">U</button>
-    		<button class="toolbar-button strike-button" onclick="document.execCommand('strikeThrough', false, '');">S</button>
+    		<img src="../image/b.png" class="imgBtn2 " onclick="document.execCommand('bold', false, null);">
+    		<img src="../image/italic.png" class="imgBtn2 " onclick="document.execCommand('italic', false, null);">
+    		<img src="../image/underline.png" class="imgBtn2 " onclick="document.execCommand('underline', false, '');">
+    		<img src="../image/line.png" class="imgBtn2 " onclick="document.execCommand('strikeThrough', false, '');">
     		<img src="../image/quote.png" class = "imgBtn" onclick="quoteText()">
     		<div class="imgBtn"></div>
     		<img src="../image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
-    		<input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFiles(event)">
+    		<input type="file" id="fileInput" id="freePhoto" name="file" style="display: none;" accept="image/*" onchange="handleFiles(event)">
    
     		<img src="../image/link-icon.png" class="imgBtn" style="width:auto;hight:50%;" onclick="addLink()">
     		<div class="imgBtn"></div>
@@ -265,15 +258,20 @@
         </div>
         <div class="scroll-box">
             <div id="imagePreview"></div>
-            <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;"></div>
+            <input type="hidden" id="freeContent" name="freeContent"/> 
+            <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">
+           
+            </div>
         </div>
-        <input type="text" class="tag-input" placeholder="#태그를 입력하세요 (쉼표로 구분)">
+        <input type="text" class="tag-input" id="freeTag" name="freeTag" placeholder="#태그를 입력하세요 (쉼표로 구분)">
     </div>
 </div>
 	<br>
-	<div class="yellowBtn" id="saveButton">저 장</div>
-
+	<div class = "BtnArray">
+	<button name="submit" class="yellowBtn" type="submit">저장</button>
+	</div>
 </div>
+</form>
  <script>
  // 인용구 추가 함수
 function quoteText() {
@@ -322,25 +320,15 @@ function handleFiles(event) {
     }
   </script>
 <script>
-document.getElementById('saveButton').addEventListener('click', function() {
-    // 작성된 글을 어딘가에 저장하는 코드
-    var title = document.querySelector('.writeTitle').value; // 제목 가져오기
-    var content = document.querySelector('#editor').innerHTML; // 내용 가져오기
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'saveDataServlet', true); // 저장을 처리하는 서블릿 주소로 POST 요청 보냄
-    xhr.setRequestHeader('Content-Type', 'application/json'); // 요청 헤더 설정
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // 저장이 완료되면 목록 페이지로 이동
-            window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freeBoard.jsp';
-        } else {
-            console.error('저장 실패:', xhr.statusText);
-        }
-    };
-    // JSON 형태로 데이터 전송
-    xhr.send(JSON.stringify({ title: title, content: content }));
-});
+
+</script>
+<script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$('form').submit(function(e) {
+		$('#freeContent').val($("#editor").html())
+		
+	})	
 </script>
 </div>
 <div class="footer"></div>	

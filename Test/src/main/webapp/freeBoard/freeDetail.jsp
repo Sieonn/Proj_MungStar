@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,7 +102,17 @@
     vertical-align: middle; /* 수직 정렬을 위해 추가 */
     margin-right: 10px; /* 좌우 여백 추가 */
 }
-	
+	.tag-input {
+    	align-item: center;
+    	margin-left: 10px;
+    	margin-bottom: 3px;
+    	border: 0;
+  		background-color: transparent;
+  		border-radius: 5px;
+  		transition: width 0.2s;
+  		width: 200px; /* 초기 너비 설정 */
+  		max-width: 880px;
+	}
   	.footer {
   		height: 200px;
   	}
@@ -134,7 +145,91 @@
 }
 
 </style>
-<script type="text/javascript">
+
+</head>
+
+
+<body>
+<%@ include file="../main/header.jsp" %>
+<br>
+<div class = "pageContainer">
+<div class="freeContainer">
+	<div id="freeCategory">
+		<h2 style="margin-bottom: 5px;">자유게시판</h2>
+		<br><br>
+	</div>
+	</div>
+<div class="wrap">
+	<div>
+		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
+		<span class = "titleInfo">${board.freeWriteDate}&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span class = "titleInfo">좋아요 : ${board.freeLike}&nbsp;</span>
+		<span class = "titleInfo">조회수 : ${board.freeView}&nbsp;</span>
+		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;${board.freeNick }</div>
+	</div>
+</div>
+	<br>
+<div class="wrap">
+	<div class="ContentBackground scroll-box">
+		<div class = "context">${board.freeContent}</div>
+		<c:if test="${board.freePhoto ne null}">
+			<img src="${path}/imageView?num=${board.freePhoto}" width="100%"/>
+		</c:if>
+	</div>
+	<div class="tag-input" style="color: lightgray;">${board.freeTag}</div>
+</div>
+
+<br>
+<div class = "BtnArray">
+	<button class = "yellowBtn" id="listBtn">목록</button>
+ 	<button type = "submit" class = "yellowBtn" onclick="goToModifyPage(${board.freeNum})">수정</button>
+ 	<button class = "yellowBtn" onclick="confirmDelete()">삭제</button>
+	<button class="likeButton" onclick="toggleLike(this)"></button>
+	<span id="likeCount">0</span>
+</div>
+<br>
+</div>
+<jsp:include page="/freeBoard/boardComment.jsp"></jsp:include>
+<div class="footer"></div>
+<script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$('form').submit(function(e) {
+		window.location.href = "${path}/freeBoard/freemodify";
+		
+	})
+	$("#listBtn").click(function(e) {
+    	e.preventDefault();
+    	window.location.href = document.referrer; // 브라우저의 이전 페이지로 이동
+	});
+	$("#deleteBtn").click(function(e) {
+		e.preventDefault();
+		confirmDelete();
+	})	
+</script>
+<script>
+// 클릭 수를 저장할 변수
+let clickCount = 0;
+
+// 버튼 요소 가져오기
+const likeButton = document.getElementById('likeButton');
+
+// 클릭 이벤트 리스너 추가
+likeButton.addEventListener('click', function() {
+  // 버튼이 활성화되어 있는지 확인
+  const isActive = likeButton.classList.contains('active');
+  
+  // 활성화되어 있으면 비활성화 상태로 변경하고 클릭 수 감소
+  if (isActive) {
+    likeButton.classList.remove('active');
+    clickCount--;
+  } else {
+    // 비활성화 상태면 활성화 상태로 변경하고 클릭 수 증가
+    likeButton.classList.add('active');
+    clickCount++;
+  }
+  </script>
+  <script type="text/javascript">
 // 삭제 여부를 묻는 팝업 창을 띄우는 함수
 function confirmDelete() {
     // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
@@ -165,85 +260,6 @@ function toggleLike(button) {
 	  button.classList.toggle('active');
 	}
 </script>
-</head>
-
-
-
-
-
-<body>
-<script>
-// 스크롤 상자의 스크롤 이벤트를 처리하는 함수
-document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
-    // 스크롤 상자의 스크롤 위치를 가져옵니다.
-    var scrollTop = event.target.scrollTop;
-    console.log("스크롤 위치:", scrollTop);
-    // 여기서 원하는 추가 동작을 수행할 수 있습니다.
-});
-</script>
-<%@ include file="../main/header.jsp" %>
-<br>
-<div class = "pageContainer">
-<div class="freeContainer">
-	<div id="freeCategory">
-		<h2 style="margin-bottom: 5px;">자유게시판</h2>
-		<br><br>
-	</div>
-	</div>
-<div class="wrap">
-	<div>
-		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
-		<span class = "titleInfo">${board.freeWriteDate}&nbsp;&nbsp;&nbsp;</span>
-		<br>
-		<span class = "titleInfo">좋아요 : ${board.freeLike}&nbsp;</span>
-		<span class = "titleInfo">조회수 : ${board.freeView}&nbsp;</span>
-		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;${board.freeNick }</div>
-	</div>
-</div>
-	<br>
-<div class="wrap">
-	<div class="ContentBackground scroll-box">
-		<div class = "context">${board.freeContent}</div>
-		<c:if test="${board.freePhoto ne null}">
-			<img src="image?num=${board.freePhoto}" width="100px"/>
-		</c:if>
-	</div>
-</div>
-
-<br>
-<div class = "BtnArray">
-	<button type = "submit" class = "yellowBtn" onclick="window.history.back()">목록</button>
- 	<button type = "submit" class = "yellowBtn" onclick="goToModifyPage(${board.freeNum})">수정</button>
- 	<button type = "submit" class = "yellowBtn" onclick="confirmDelete()">삭제</button>
-	<button class="likeButton" onclick="toggleLike(this)"></button>
-	<span id="likeCount">0</span>
-</div>
-<br>
-</div>
-<jsp:include page="/freeBoard/boardComment.jsp"></jsp:include>
-<div class="footer"></div>
-<script>
-// 클릭 수를 저장할 변수
-let clickCount = 0;
-
-// 버튼 요소 가져오기
-const likeButton = document.getElementById('likeButton');
-
-// 클릭 이벤트 리스너 추가
-likeButton.addEventListener('click', function() {
-  // 버튼이 활성화되어 있는지 확인
-  const isActive = likeButton.classList.contains('active');
-  
-  // 활성화되어 있으면 비활성화 상태로 변경하고 클릭 수 감소
-  if (isActive) {
-    likeButton.classList.remove('active');
-    clickCount--;
-  } else {
-    // 비활성화 상태면 활성화 상태로 변경하고 클릭 수 증가
-    likeButton.classList.add('active');
-    clickCount++;
-  }
-  </script>
  <!-- 
   <script>
   // 클릭 수 출력

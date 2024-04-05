@@ -54,8 +54,8 @@ public class FreeModify extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 	       try {
 	          FreeService boardService = new FreeServiceImpl();
-	          boardService.freeModify(request);
-	          //response.sendRedirect("freeDetail.jsp");
+	          Integer freeNum = boardService.freeModify(request);
+	          response.sendRedirect(request.getContextPath()+"/freeBoard/boarddetail?freeNum="+freeNum);
 	       } catch (Exception e) {
 	          e.printStackTrace();
 	          request.setAttribute("err", "게시글 수정 실패");

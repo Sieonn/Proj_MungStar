@@ -230,7 +230,7 @@ body,
 				<input type="text" placeholder="강아지 이름" class="dogname_box" id="dogName" name="tempName" required="required" value="${temp.tempName}">
 				
 				<div>
-				<img src="<%=request.getContextPath()%>/image/place.png">
+				<img src="${path}/image/place.png">
 				<input type="text" placeholder="현재 보호중인 장소" id="address" class="address" name="tempAddress" required="required" value="${temp.tempAddress}">
 				</div>
 				
