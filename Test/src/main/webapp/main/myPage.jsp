@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="dto.Member"%>
-<c:set var="path" value = "${pageContext.request.contextPath}"/>
+<%@ page import="dto.Dog"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -317,7 +318,7 @@ button:hover {
 		<div class="mypage-container">
 			<div class="wel-Img">
 				<div class="inner_profile">
-					<img src="../image/프로필01.jpg" />
+					<img src="${path}/image/프로필01.jpg" />
 				</div>
 			</div>
 			<div class="wel-txt">
@@ -342,7 +343,7 @@ button:hover {
 					<div class="actTitle">개인 정보</div>
 					<div class="petInfo" style="text-align: center">
 						<!-- <hr /> -->
-
+						<input type="hidden" name="memid" value="${dog.memId}" />
 						<div class="field1">
 							<div class="inner-txt">아이디</div>
 							<div class="myinfo">${user.memId}</div>
@@ -363,7 +364,7 @@ button:hover {
 						</div>
 						<div class="field1">
 							<div class="inner-txt">주소</div>
-							<div class="myinfo">${user.memAddress1} ${user.memAddress2}
+							<div class="myinfo">${user.memAddress1}${user.memAddress2}
 							</div>
 						</div>
 					</div>
@@ -375,41 +376,43 @@ button:hover {
 						<span>추가 프로필</span>
 						<div class="header-line"></div>
 					</div>
+					<c:forEach items="${dogs}" var="dog">
 					<div class="petInfo"
 						style="text-align: center; border-width: 3px 0 0 0">
 						<div class="signup-container">
 							<!-- 아이디 -->
-								<div class="field">
-									<div class="inner-txt">반려동물 이름</div>
-									<div class="inner-input">${dog.dogName}</div>
-								</div>
+							<div class="field">
+								<div class="inner-txt">반려동물 이름</div>
+								<div class="inner-input">${dog.dogName}</div>
+							</div>
 
-								<!-- 닉네임 -->
-								<div class="field">
-									<div class="inner-txt">반려견 나이</div>
-									<div class="inner-input">${dog.dogAge}</div>
-								</div>
+							<!-- 닉네임 -->
+							<div class="field">
+								<div class="inner-txt">반려견 나이</div>
+								<div class="inner-input">${dog.dogAge}</div>
+							</div>
 
-								<div class="field">
-									<div class="inner-txt">성별</div>
-									<div class="inner-input">${dog.dogGender}</div>
-								</div>
+							<div class="field">
+								<div class="inner-txt">성별</div>
+								<div class="inner-input">${dog.dogGender}</div>
+							</div>
 
-								<div class="field">
-									<div class="inner-txt">프로필 사진</div>
-									<div class="inner-input">
-										<img src="../image/프로필01.jpg"
-											style="width: 100px; height: 100px" />
-									</div>
+							<div class="field">
+								<div class="inner-txt">프로필 사진</div>
+								<div class="inner-input">
+									<img src="../image/프로필01.jpg"
+										style="width: 100px; height: 100px" />
 								</div>
+							</div>
 						</div>
 						<div class="btnSet">
-						<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
-							<a class="btn-fill" href="${path}/dogmodify?id=${user.memId }">수정</a> <a
-								class="btn-fill"
-								onclick="if( confirm('정말 삭제하시겠습니까?') ){ href='delete.cu?id=${vo.id }' }">삭제</a>
+							<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
+							<a class="btn-fill" href="${path}/dogmodify?id=${user.memId }">수정</a>
+							<a class="btn-fill"
+								onclick="if( confirm('정말 삭제하시겠습니까?') ){ href='${path}/dogdelete?dogNum=${dog.dogNum }' }">삭제</a>
 						</div>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 
@@ -422,7 +425,10 @@ button:hover {
 					<div class="petInfo">
 						<div style="margin: 5% 7%">
 							<div class="act-btn" style="display: flex">
-								<button class="actBtn" id="">산책로 추천</button>
+								<button class="actBtn">
+									<a href="${path}/walkBoard?id=${user.memId }">산책로
+										추천</a>
+								</button>
 								<button class="actBtn" id="">자유게시판</button>
 							</div>
 							<div class="act-btn" style="display: flex">

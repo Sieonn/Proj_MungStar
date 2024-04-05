@@ -25,5 +25,10 @@ public class DogServiceImpl implements DogService {
         dogDao.insertDog(dog);
     }
 
-    
+	public void dogdelete(HttpServletRequest request)throws Exception {
+	    request.setCharacterEncoding("utf-8");
+		Integer dogNum=Integer.parseInt(request.getParameter("dogNum"));   
+		System.out.println(dogNum);
+	    dogDao.deleteDog(dogNum);
+	}
 }

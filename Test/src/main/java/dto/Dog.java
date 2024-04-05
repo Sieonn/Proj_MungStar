@@ -19,7 +19,6 @@ public class Dog {
 		this.dogProfile = dogProfile;
 	}
 
-
 	public String getDogName() {
 		return dogName;
 	}
@@ -67,5 +66,12 @@ public class Dog {
 	public void setDogProfile(String dogProfile) {
 		this.dogProfile = dogProfile;
 	}
+
+	@Override
+	public String toString() {
+		return "Dog [dogName=" + dogName + ", dogNum=" + dogNum + ", memId=" + memId + ", dogAge=" + dogAge
+				+ ", dogGender=" + dogGender + ", dogProfile=" + dogProfile + "]";
+	}
+	
 }
 	

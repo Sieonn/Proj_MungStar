@@ -15,11 +15,11 @@
         values (#{dogName}, #{memId}, #{dogAge}, #{dogProfile}, #{dogGender})
     ]]>
 	</insert>
-	<update id="updateDog">
+	<update id="updateDog" parameterType="dto.Dog">
 		UPDATE dog SET dogName=#{dogName} dogAge=#{dogAge} dogProfile=#{dogProfile} dogGender=#{dogGender}
 		WHERE memId=#{memId}
 	</update>
-	<delete id="deleteDog">
-		DELETE FROM dog WHERE memId=#{memId}
+	<delete id="deleteDog" parameterType="Integer">
+		DELETE FROM dog WHERE dogNum=#{dogNum}
 	</delete>
 </mapper>
