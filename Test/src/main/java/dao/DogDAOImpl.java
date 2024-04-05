@@ -27,10 +27,10 @@ public class DogDAOImpl implements DogDAO{
 		sqlSession.commit();
 	}
 
-	@Override
-	public Dog selectOneDog(int dogNum) throws Exception {
-		return sqlSession.selectOne("mapper.dog.selectDog",dogNum);
+	public Dog selectOneDog(Integer dogNum) throws Exception {
+		return sqlSession.selectOne("mapper.dog.selectOneDog",dogNum);
 	}
+
 
 
 }

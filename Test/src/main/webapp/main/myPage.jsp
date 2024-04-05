@@ -394,7 +394,7 @@ a:hover {
 								</div>
 							</div>
 							<div class="btnSet">
-								<a class="btn-fill" href="${path}/dogmodify?id=${dog.dogNum}">수정</a>
+								<a class="btn-fill" href="${path}/dogmodify?dogNum=${dog.dogNum}">수정</a>
 								<button class="btn-fill delBtn" data-num="${dog.dogNum}">삭제</button>
 							</div>
 						</div>

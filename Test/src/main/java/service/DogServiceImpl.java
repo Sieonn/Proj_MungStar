@@ -35,9 +35,7 @@ public class DogServiceImpl implements DogService {
 	}
 
 	public void dogmodify(HttpServletRequest request) throws Exception {		
-		request.setCharacterEncoding("utf-8");
-		Integer dogNum = Integer.parseInt(request.getParameter("dogNum"));
-		dogDao.selectOneDog(dogNum);
+		
 		
 		request.setCharacterEncoding("utf-8");
 		String dogName = request.getParameter("dogName");
@@ -50,5 +48,10 @@ public class DogServiceImpl implements DogService {
 
 		Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
 		dogDao.updateDog(dog);
+	}
+
+	@Override
+	public Dog getDog(Integer dogNum) throws Exception {
+		return dogDao.selectOneDog(dogNum);
 	}
 }

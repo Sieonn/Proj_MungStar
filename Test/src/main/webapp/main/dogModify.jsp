@@ -288,12 +288,11 @@ a:hover {
 
 			<!-- 개인정보 입력 폼 -->
 			<form action="dogmodify" method="post">
-			        <input type="hidden" name="dogNum" value="${dog.memId}" id="${dog.dogNum}" /> 
+			        <input type="hidden" name="dogNum" value="${dog.memId}" id="dogNum}" /> 
 				<div class="signup-container">
 					<!-- 아이디 -->
 					<div class="field">
-					${dog.dogNum}
-						<div class="inner-title">반려동물 이름</div>
+						<div class="inner-title">${dog.dogNum} 반려동물 이름</div>
 						${dog.memId}
 						<div class="inner-input">
 							<input type="text" name="dogName" id="dogName"

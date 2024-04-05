@@ -8,7 +8,7 @@
 			select * from dog where memId=#{memId}
 		]]>
 	</select>
-	<select id="selectOneDog" parameterType="int">
+	<select id="selectOneDog" parameterType="Integer" resultType="dto.Dog">
 		<![CDATA[
 			select * from dog where dogNum=#{dogNum}
 		]]>
