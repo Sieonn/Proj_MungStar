@@ -118,26 +118,6 @@
     margin-right: 5px;
 }
 
-.bold-button {
-	font-size: 17px;
-    font-weight: bold;
-    display:
-}
-
-.italic-button {
-	font-size: 17px;
-    font-style: italic;
-}
-
-.underline-button {
-	font-size: 17px;
-    text-decoration: underline;
-}
-.strike-button {
-	font-size: 17px; 
-    text-decoration: line-through;
-}
-
 .font-size-select {
 	margin-left: 10px;
  	border-radius: 3px;
@@ -150,6 +130,13 @@
 	margin-right: 8px;
 	width: 20px;
 	height: 20px;
+}
+.imgBtn2 {
+	cursor: pointer;
+	margin-left: 8px;
+	margin-right: 8px;
+	width: 15px;
+	height: 15px;
 }
 .colorPicker{
 	text-align: center;
@@ -242,10 +229,10 @@
         		<option value="4">Very Large</option>
     		</select>
     		<div class="imgBtn"></div>
-    		<button class="toolbar-button bold-button" onclick="document.execCommand('bold', false, null);">B</button>
-    		<button class="toolbar-button italic-button" onclick="document.execCommand('italic', false, null);">I</button>
-    		<button class="toolbar-button underline-button" onclick="document.execCommand('underline', false, '');">U</button>
-    		<button class="toolbar-button strike-button" onclick="document.execCommand('strikeThrough', false, '');">S</button>
+    		<img src="../image/b.png" class="imgBtn2 " onclick="document.execCommand('bold', false, null);">
+    		<img src="../image/italic.png" class="imgBtn2 " onclick="document.execCommand('italic', false, null);">
+    		<img src="../image/underline.png" class="imgBtn2 " onclick="document.execCommand('underline', false, '');">
+    		<img src="../image/line.png" class="imgBtn2 " onclick="document.execCommand('strikeThrough', false, '');">
     		<img src="../image/quote.png" class = "imgBtn" onclick="quoteText()">
     		<div class="imgBtn"></div>
     		<img src="../image/image.png" class = "imgBtn" onclick="document.getElementById('fileInput').click()">
@@ -272,7 +259,7 @@
 			</c:if>
 			<div id="imagePreview"></div>
             	<div class = "context"></div>
-            <input type="hidden" name="freeContent" id="freeContent"/>	
+            <input type="hidden" name="freeContent" id="freeContent"/>
 			<div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">${board.freeContent}</div>
         </div>
 			<input type="text" class="tag-input" placeholder="${board.freeTag}" value="${board.freeTag }" id="tag" name="freeTag">
@@ -291,7 +278,7 @@
 <script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 	$('form').submit(function(e) {
-		$('#freeContent').val($("#editor").text())
+		$('#freeContent').val($("#editor").html())
 		
 	})
 	$("#listBtn").click(function(e) {
@@ -306,15 +293,14 @@
 </div>
 <script>
 // 스크롤 상자의 스크롤 이벤트를 처리하는 함수
-document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
+/* document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
     // 스크롤 상자의 스크롤 위치를 가져옵니다.
     var scrollTop = event.target.scrollTop;
     console.log("스크롤 위치:", scrollTop);
     // 여기서 원하는 추가 동작을 수행할 수 있습니다.
-});
+}); */
 </script>
 <script type="text/javascript">
-// 게시글을 저장하고 확인하는 페이지로 이동하는 함수
 
 //인용구 추가 함수
 function quoteText() {
@@ -375,15 +361,6 @@ function handleTagInput() {
     console.log("현재 태그:", tags);
 }
 
-
-// 게시글을 저장하는 함수 (예: 서버에 전송)
-function savePost() {
-    // 게시글 내용과 태그를 전송하는 로직을 추가할 수 있습니다.
-    var freeContent = '${board.freeNum}';
-    var freeTag = '${board.freeTag}';
-    console.log("게시글 내용:", freeContent);
-    console.log("태그:", freeTag);
-}
 
 </script>
 <script type="text/javascript">

@@ -101,7 +101,17 @@
     vertical-align: middle; /* 수직 정렬을 위해 추가 */
     margin-right: 10px; /* 좌우 여백 추가 */
 }
-	
+	.tag-input {
+    	align-item: center;
+    	margin-left: 10px;
+    	margin-bottom: 3px;
+    	border: 0;
+  		background-color: transparent;
+  		border-radius: 5px;
+  		transition: width 0.2s;
+  		width: 200px; /* 초기 너비 설정 */
+  		max-width: 880px;
+	}
   	.footer {
   		height: 200px;
   	}
@@ -134,53 +144,11 @@
 }
 
 </style>
-<script type="text/javascript">
-// 삭제 여부를 묻는 팝업 창을 띄우는 함수
-function confirmDelete() {
-    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
-    var result = confirm("정말로 삭제하시겠습니까?");
-    // 사용자가 확인을 눌렀을 경우
-    if (result) {
-        // 삭제 동작을 수행하는 함수를 호출합니다.
-        deletePost();
-    } else {
-        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
-        console.log("삭제 취소");
-    }
-}
 
-// 게시글을 삭제하는 함수
-function deletePost() {
-    // 게시글 삭제 로직을 추가할 수 있습니다.
-    console.log("게시글이 삭제되었습니다.");
-}
-
-//수정 페이지로 이동하는 함수
-function goToModifyPage(freeNum) {
-        window.location.href = "freemodify?freeNum=" + freeNum;
-    }
-
-
-function toggleLike(button) {
-	  button.classList.toggle('active');
-	}
-</script>
 </head>
 
 
-
-
-
 <body>
-<script>
-// 스크롤 상자의 스크롤 이벤트를 처리하는 함수
-document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
-    // 스크롤 상자의 스크롤 위치를 가져옵니다.
-    var scrollTop = event.target.scrollTop;
-    console.log("스크롤 위치:", scrollTop);
-    // 여기서 원하는 추가 동작을 수행할 수 있습니다.
-});
-</script>
 <%@ include file="../main/header.jsp" %>
 <br>
 <div class = "pageContainer">
@@ -208,6 +176,7 @@ document.querySelector('.scroll-box').addEventListener('scroll', function(event)
 			<img src="image?num=${board.freePhoto}" width="100px"/>
 		</c:if>
 	</div>
+	<div class="tag-input" style="color: lightgray;">${board.freeTag}</div>
 </div>
 
 <br>
@@ -244,6 +213,37 @@ likeButton.addEventListener('click', function() {
     clickCount++;
   }
   </script>
+  <script type="text/javascript">
+// 삭제 여부를 묻는 팝업 창을 띄우는 함수
+function confirmDelete() {
+    // confirm 함수를 사용하여 삭제 여부를 묻는 팝업 창을 띄움
+    var result = confirm("정말로 삭제하시겠습니까?");
+    // 사용자가 확인을 눌렀을 경우
+    if (result) {
+        // 삭제 동작을 수행하는 함수를 호출합니다.
+        deletePost();
+    } else {
+        // 사용자가 취소를 눌렀을 경우 아무 동작도 수행하지 않습니다.
+        console.log("삭제 취소");
+    }
+}
+
+// 게시글을 삭제하는 함수
+function deletePost() {
+    // 게시글 삭제 로직을 추가할 수 있습니다.
+    console.log("게시글이 삭제되었습니다.");
+}
+
+//수정 페이지로 이동하는 함수
+function goToModifyPage(freeNum) {
+        window.location.href = "freemodify?freeNum=" + freeNum;
+    }
+
+
+function toggleLike(button) {
+	  button.classList.toggle('active');
+	}
+</script>
  <!-- 
   <script>
   // 클릭 수 출력

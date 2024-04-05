@@ -235,7 +235,7 @@ displaySearchResults 함수에서는 검색 결과를 받아와서 화면에 표
   // 글쓰기 버튼에 대한 클릭 이벤트 핸들러
   document.getElementById('writeButton').addEventListener('click', function() {
     // 글쓰기 페이지 URL로 이동
-    window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freewrite';
+    window.location.href = 'http://localhost:8080/MoongStar/freeBoard/freeWriteForm.jsp';
   });
 </script>
 <div class="footer"></div>
