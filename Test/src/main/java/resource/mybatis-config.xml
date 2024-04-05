@@ -24,5 +24,6 @@
       <mapper  resource="mapper/tempComment.xml"/>
       <mapper  resource="mapper/lost.xml"/>
       <mapper  resource="mapper/file.xml"/>
+      <mapper resource="mapper/walking.xml"/>
    </mappers>
 </configuration>
