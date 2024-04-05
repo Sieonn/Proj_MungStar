@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,22 +282,22 @@ a:hover {
 	<div class="content">
 		<div class="container">
 			<h2>추가정보 수정</h2>
-
 			<div class="title">
-				<span style="color: blue;">${user.memNick }</span>님 정보 수정
+				<span style="color: blue;">${user.memNick}</span>님 정보 수정
 			</div>
 
 			<!-- 개인정보 입력 폼 -->
-			<form action="doginfo" method="post">
-				<input type="hidden" name="memid" value="${dog.memId}" />
-				<input type="hidden" name="dogNum" value="${dog.dogNum}" />
+			<form action="dogmodify" method="post">
+			        <input type="hidden" name="dogNum" value="${dog.memId}" id="${dog.dogNum}" /> 
 				<div class="signup-container">
 					<!-- 아이디 -->
 					<div class="field">
+					${dog.dogNum}
 						<div class="inner-title">반려동물 이름</div>
+						${dog.memId}
 						<div class="inner-input">
 							<input type="text" name="dogName" id="dogName"
-								placeholder=" 2~10자" value="${dog.dogName }" />
+								placeholder="${dog.dogName}" value="${dog.dogName}" />
 						</div>
 					</div>
 
@@ -304,7 +306,7 @@ a:hover {
 						<div class="inner-title">반려견 나이</div>
 						<div class="inner-input">
 							<input type="text" name="dogAge" id="dogAge"
-								value="${dog.dogAge }" />
+								value="${dog.dogAge}" />
 						</div>
 					</div>
 
@@ -312,17 +314,16 @@ a:hover {
 						<div class="inner-title">성별</div>
 						<div class="gender" style="margin-left: 10px">
 							<input type="radio" id="male" name="dogGender" value="남"
-								${dog.dogGender == '남' ? "checked" : '' } /> <label for="male">남</label>
+								${dog.dogGender == '남' ? "checked" : ''} /> <label for="male">남</label>
 							<input type="radio" id="female" name="dogGender" value="여"
-								${dog.dogGender == '여' ? "checked" : '' } /> <label
-								for="female">여</label>
+								${dog.dogGender == '여' ? "checked" : ''} /> <label for="female">여</label>
 						</div>
 					</div>
 				</div>
 			</form>
 			<div class="btnSet">
 				<a class="btn-fill" onclick="$('form').submit()">저장</a> <a
-					class="btn-empty" href="detail.cu?id=${user.memId }">취소</a>
+					class="btn-empty" href="${path}/mypage">취소</a>
 			</div>
 		</div>
 	</div>

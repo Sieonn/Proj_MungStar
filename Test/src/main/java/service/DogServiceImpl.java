@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dao.DogDAO;
@@ -8,27 +10,45 @@ import dto.Dog;
 import dto.Member;
 
 public class DogServiceImpl implements DogService {
-    DogDAO dogDao = new DogDAOImpl();
-    
-    public void doginsert(HttpServletRequest request) throws Exception {
-        request.setCharacterEncoding("utf-8");
+	DogDAO dogDao = new DogDAOImpl();
 
-        String dogName = request.getParameter("dogName");
-        int dogAge = Integer.parseInt(request.getParameter("dogAge"));
-        String dogGender = request.getParameter("dogGender");
-        String dogProfile = request.getParameter("dogProfile");
+	public void doginsert(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
 
-        Member user =(Member)request.getSession().getAttribute("user");
-        String memId = user.getMemId();
-        
-        Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
-        dogDao.insertDog(dog);
-    }
+		String dogName = request.getParameter("dogName");
+		int dogAge = Integer.parseInt(request.getParameter("dogAge"));
+		String dogGender = request.getParameter("dogGender");
+		String dogProfile = request.getParameter("dogProfile");
 
-	public void dogdelete(HttpServletRequest request)throws Exception {
-	    request.setCharacterEncoding("utf-8");
-		Integer dogNum=Integer.parseInt(request.getParameter("dogNum"));   
+		Member user = (Member) request.getSession().getAttribute("user");
+		String memId = user.getMemId();
+
+		Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
+		dogDao.insertDog(dog);
+	}
+
+	public void dogdelete(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		Integer dogNum = Integer.parseInt(request.getParameter("dogNum"));
 		System.out.println(dogNum);
-	    dogDao.deleteDog(dogNum);
+		dogDao.deleteDog(dogNum);
+	}
+
+	public void dogmodify(HttpServletRequest request) throws Exception {		
+		request.setCharacterEncoding("utf-8");
+		Integer dogNum = Integer.parseInt(request.getParameter("dogNum"));
+		dogDao.selectOneDog(dogNum);
+		
+		request.setCharacterEncoding("utf-8");
+		String dogName = request.getParameter("dogName");
+		int dogAge = Integer.parseInt(request.getParameter("dogAge"));
+		String dogGender = request.getParameter("dogGender");
+		String dogProfile = request.getParameter("dogProfile");
+
+		Member user = (Member) request.getSession().getAttribute("user");
+		String memId = user.getMemId();
+
+		Dog dog = new Dog(dogName, memId, dogAge, dogGender, dogProfile);
+		dogDao.updateDog(dog);
 	}
 }

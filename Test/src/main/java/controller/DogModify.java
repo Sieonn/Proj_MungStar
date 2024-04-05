@@ -9,14 +9,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import service.DogService;
 import service.DogServiceImpl;
 
 @WebServlet("/dogmodify")
 public class DogModify extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
+	public DogModify() {
+		super();
+	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/main/dogModify.jsp").forward(request, response);
+	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			DogService dogService=new DogServiceImpl();
+			dogService.dogmodify(request);
+			response.sendRedirect("mypage");
+		} catch(Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("/main/error.jsp").forward(request, response);
+		}
+	}
 
-   
-    }
-
+}

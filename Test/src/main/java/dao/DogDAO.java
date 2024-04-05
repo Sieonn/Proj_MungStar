@@ -10,4 +10,5 @@ public interface DogDAO {
 	 List<Dog> selectDog(String memId) throws Exception;
 	void updateDog(Dog dog) throws Exception;
 	void deleteDog(Integer dogNum)throws Exception;
+	Dog selectOneDog(int dogNum) throws Exception;
 }

@@ -26,11 +26,10 @@ public class DogDelete extends HttpServlet {
 		try {
 			DogService dogService=new DogServiceImpl();
 			dogService.dogdelete(request);
-			response.sendRedirect("/main/myPage");
+			response.getWriter().write("true");
 		} catch(Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("/main/error.jsp").forward(request, response);
+			response.getWriter().write(e.getMessage());
 		}
 	}
 

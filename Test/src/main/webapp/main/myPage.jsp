@@ -129,7 +129,8 @@ body, html {
 .actTitle {
 	font-size: 25px;
 	font-weight: 700;
-	margin: 5% 0;
+	margin: 20px 10px 10px 10px;
+	display: flex;
 }
 
 .inner-txt {
@@ -214,11 +215,26 @@ body, html {
 }
 
 .btnSet {
-	margin-top: 15px;
+	margin-top: 10px;
 	text-align: center;
 }
 
 a.btn-fill, a.btn-empty {
+	font-size: 11px;
+	text-align: center;
+	padding: 5px 15px;
+	border-radius: 3px;
+	border: 1px solid #404650;
+	text-decoration: none;
+	/* box-shadow: 0 1px 1px #404650;*/
+	text-decoration: none;
+	/* 오른쪽, 아래쪽, 번진 정도 */
+}
+
+.delBtn {
+	font-size: 10px;
+	background-color: #fff;
+	font-color: black;
 	text-align: center;
 	padding: 5px 15px;
 	border-radius: 3px;
@@ -247,69 +263,39 @@ a:hover {
 	cursor: pointer;
 }
 
-button:hover {
-	box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px
-		20px 0px rgba(128, 128, 128, 0.133), 4px 4px 5px 0px #0001;
+.delBtn:hover {
+	cursor: pointer;
+	font-weight: bold;
 }
 </style>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-        function previewFile() {
-          var preview = document.querySelector("img");
-          var file = document.querySelector("input[type=file]").files[0];
-          var reader = new FileReader();
+	$(function() {
+		$(".delBtn").click(function() {
+			var petInfo = $(this).parents(".petInfo");
+			if (confirm('정말 삭제하시겠습니까?')) {
+				$.ajax({
+					url : "${path}/dogdelete",
+					type : "post",
+					async : true,
+					data : {
+						dogNum : $(this).data('num')
+					},
+					success : function(result) {
+						if (result == "true") {
+							petInfo.remove();
+						} else {
+							alert(result)
+						}
+					}
+				})
+			} else {
 
-          reader.addEventListener(
-            "load",
-            function () {
-              preview.src = reader.result;
-            },
-            false
-          );
+			}
+		})
+	})
+</script>
 
-          if (file) {
-            reader.readAsDataURL(file);
-          }
-        }
-        $(function () {
-          $("#profile-image1").on("click", function () {
-            $("#profile-image-upload").click();
-          });
-        });
-      }
-    </script>
-<script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const previewImage = document.getElementById("preview-image");
-        const fileInput = document.getElementById("file-input");
-        const uploadButton = document.getElementById("upload-btn");
-        const deleteButton = document.getElementById("delete-btn");
-
-        // 파일 선택 시 미리보기 업데이트
-        fileInput.addEventListener("change", function (event) {
-          const file = event.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              previewImage.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-
-        // 이미지 업로드 버튼 클릭 시 input 클릭 이벤트 발생
-        uploadButton.addEventListener("click", function () {
-          fileInput.click();
-        });
-
-        // 이미지 삭제 버튼 클릭 시 미리보기 초기화
-        deleteButton.addEventListener("click", function () {
-          previewImage.src =
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-          fileInput.value = null;
-        });
-      });
-    </script>
 </head>
 <body>
 	<%@ include file="../main/header.jsp"%>
@@ -371,47 +357,47 @@ button:hover {
 
 					<!-- 펫 정보(추가/ 삭제) -->
 					<!-- <div class="actTitle">반려동물 정보</div> -->
-					<div class="actTitle"
-						style="display: flex; justify-content: space-between; align-items: center;">
+					<div class="actTitle">
 						<span>추가 프로필</span>
+						<div style="font-size: 12px; margin-top: 15px; margin-left:290px;">
+							<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
+						</div>
 						<div class="header-line"></div>
 					</div>
 					<c:forEach items="${dogs}" var="dog">
-					<div class="petInfo"
-						style="text-align: center; border-width: 3px 0 0 0">
-						<div class="signup-container">
-							<!-- 아이디 -->
-							<div class="field">
-								<div class="inner-txt">반려동물 이름</div>
-								<div class="inner-input">${dog.dogName}</div>
-							</div>
+						<div class="petInfo" id="${dog.dogNum}"
+							style="text-align: center; border-width: 3px 0 0 0">
+							<div class="signup-container">
+								<!-- 아이디 -->
+								<div class="field">
+									<div class="inner-txt">반려동물 이름</div>
+									<div class="inner-input">${dog.dogName}</div>
+								</div>
 
-							<!-- 닉네임 -->
-							<div class="field">
-								<div class="inner-txt">반려견 나이</div>
-								<div class="inner-input">${dog.dogAge}</div>
-							</div>
+								<!-- 닉네임 -->
+								<div class="field">
+									<div class="inner-txt">반려견 나이</div>
+									<div class="inner-input">${dog.dogAge}</div>
+								</div>
 
-							<div class="field">
-								<div class="inner-txt">성별</div>
-								<div class="inner-input">${dog.dogGender}</div>
-							</div>
+								<div class="field">
+									<div class="inner-txt">성별</div>
+									<div class="inner-input">${dog.dogGender}</div>
+								</div>
 
-							<div class="field">
-								<div class="inner-txt">프로필 사진</div>
-								<div class="inner-input">
-									<img src="../image/프로필01.jpg"
-										style="width: 100px; height: 100px" />
+								<div class="field">
+									<div class="inner-txt">프로필 사진</div>
+									<div class="inner-input">
+										<img src="../image/프로필01.jpg"
+											style="width: 100px; height: 100px" />
+									</div>
 								</div>
 							</div>
+							<div class="btnSet">
+								<a class="btn-fill" href="${path}/dogmodify?id=${dog.dogNum}">수정</a>
+								<button class="btn-fill delBtn" data-num="${dog.dogNum}">삭제</button>
+							</div>
 						</div>
-						<div class="btnSet">
-							<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
-							<a class="btn-fill" href="${path}/dogmodify?id=${user.memId }">수정</a>
-							<a class="btn-fill"
-								onclick="if( confirm('정말 삭제하시겠습니까?') ){ href='${path}/dogdelete?dogNum=${dog.dogNum }' }">삭제</a>
-						</div>
-					</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -426,8 +412,7 @@ button:hover {
 						<div style="margin: 5% 7%">
 							<div class="act-btn" style="display: flex">
 								<button class="actBtn">
-									<a href="${path}/walkBoard?id=${user.memId }">산책로
-										추천</a>
+									<a href="${path}/walkBoard?id=${user.memId}">산책로 추천</a>
 								</button>
 								<button class="actBtn" id="">자유게시판</button>
 							</div>
@@ -442,4 +427,6 @@ button:hover {
 		</div>
 	</div>
 </body>
+
+
 </html>

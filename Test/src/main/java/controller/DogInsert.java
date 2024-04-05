@@ -26,7 +26,7 @@ public class DogInsert extends HttpServlet {
 		try {
 			DogService dogService=new DogServiceImpl();
 			dogService.doginsert(request);
-			response.sendRedirect("/main/myPage.jsp");
+			response.sendRedirect("mypage");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

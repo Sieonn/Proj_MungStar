@@ -19,12 +19,17 @@ public class DogDAOImpl implements DogDAO{
 		return sqlSession.selectList("mapper.dog.selectDog",memId);
 	}
 	public void updateDog(Dog dog) throws Exception {
-		sqlSession.update("mapper.dog.update", dog);
+		sqlSession.update("mapper.dog.updateDog", dog);
 		sqlSession.commit();
 	}
 	public void deleteDog(Integer dogNum)throws Exception  {
 		sqlSession.delete("mapper.dog.deleteDog", dogNum);
 		sqlSession.commit();
+	}
+
+	@Override
+	public Dog selectOneDog(int dogNum) throws Exception {
+		return sqlSession.selectOne("mapper.dog.selectDog",dogNum);
 	}
 
 

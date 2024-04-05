@@ -8,6 +8,11 @@
 			select * from dog where memId=#{memId}
 		]]>
 	</select>
+	<select id="selectOneDog" parameterType="int">
+		<![CDATA[
+			select * from dog where dogNum=#{dogNum}
+		]]>
+	</select>
 
 	<insert id="insertDog" parameterType="dto.Dog">
 	 <![CDATA[
@@ -15,9 +20,9 @@
         values (#{dogName}, #{memId}, #{dogAge}, #{dogProfile}, #{dogGender})
     ]]>
 	</insert>
-	<update id="updateDog" parameterType="dto.Dog">
-		UPDATE dog SET dogName=#{dogName} dogAge=#{dogAge} dogProfile=#{dogProfile} dogGender=#{dogGender}
-		WHERE memId=#{memId}
+	<update id="updateDog">
+		UPDATE dog SET dogName=#{dogName}, dogAge=#{dogAge}, dogProfile=#{dogProfile}, dogGender=#{dogGender}
+		WHERE dogNum=#{dogNum}
 	</update>
 	<delete id="deleteDog" parameterType="Integer">
 		DELETE FROM dog WHERE dogNum=#{dogNum}

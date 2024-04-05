@@ -6,10 +6,9 @@ public class Dog {
 	private String memId;
 	private int dogAge;
 	private String dogGender;
-	private String dogProfile;;
-	
+	private String dogProfile;
+
 	public Dog() {}
-	
 	public Dog(String dogName, String memId, int dogAge, String dogGender, String dogProfile) {
 		super();
 		this.memId = memId;
@@ -72,6 +71,5 @@ public class Dog {
 		return "Dog [dogName=" + dogName + ", dogNum=" + dogNum + ", memId=" + memId + ", dogAge=" + dogAge
 				+ ", dogGender=" + dogGender + ", dogProfile=" + dogProfile + "]";
 	}
-	
+
 }
-	
