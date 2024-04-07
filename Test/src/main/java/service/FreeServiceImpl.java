@@ -173,7 +173,7 @@ public class FreeServiceImpl implements FreeService{
 
 	    // 예시로 반환하지만, 실제로는 데이터베이스에서 해당 게시물의 freeHidden 값을 업데이트하는 등의 작업을 수행해야 함
 	    freeDAO.updateBoard(board);
-	    return board.getFreeNum();
+	    return true;
 	}
 	
 }

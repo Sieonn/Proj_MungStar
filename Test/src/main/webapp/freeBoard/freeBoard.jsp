@@ -131,19 +131,24 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 </head>
 <body>
-     <%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/main/header.jsp"/>
 <br><br>
 <div class="pageContainer">
 	<div class="freeContainer">
     <div id="freeCategory">
         <h2 style="margin-bottom: 5px;">자유게시판</h2>
 		<br><br>
+		
 		<div class="searchContainer">
+		<form action="" method="get" style="display: inline-block;">
             <span class="searchBox">
-                <input type="text" placeholder="  검색..." />
-            	<button id="searchBtn">검색</button>
+                <input type="text" name="searchText" placeholder="  검색..."  value="" />
+            	<button id="searchBtn" type="submit">검색</button>
             </span>
+            </form>
         </div>
+        
 	</div>
 	</div>
 <div class = "listContainer">
@@ -153,10 +158,10 @@
   	  <div style = "display:inline-block;">
   	  		<select class="category" id="category" name="category" size="1">
   	  			<option value="">#전체보기</option>
-				<option value="daily">#일상</option>
-				<option value="dogCon">#전국갱얼쥐자랑</option>
-				<option value="infoShare">#정보/공유</option>
-				<option value="Question">#질문</option>
+				<option value="#일상">#일상</option>
+				<option value="#전국갱얼쥐자랑">#전국갱얼쥐자랑</option>
+				<option value="#정보/공유">#정보/공유</option>
+				<option value="#질문">#질문</option>
 			</select>
 		</div></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>좋아요</th>
 		<c:forEach items = "${freeBoard }" var = "board">
@@ -196,11 +201,12 @@
 		$('#category').val('${freeTag}');
 		$('#category').change(function(){
 			var freeTag=$(this).val()
+			freeTag = encodeURIComponent(freeTag);
 			document.location.href="http://localhost:8080/MoongStar/freeBoard/freeboard?freeTag="+freeTag;
 		})
 	})
  
-//검색 버튼 클릭 시 검색 기능 구현
+/* //검색 버튼 클릭 시 검색 기능 구현
 document.getElementById("searchBtn").addEventListener("click", function() {
      var searchTerm = document.querySelector(".searchBox input[type='text']").value;
      
@@ -225,7 +231,7 @@ document.getElementById("searchBtn").addEventListener("click", function() {
  function displaySearchResults(results) {
      // 결과를 받아와서 화면에 표시하는 로직을 작성
      console.log("검색 결과:", results);
- }
+ } */
  /*위 코드에서 search?q= 부분은 검색어를 서버에 전달하는 부분으로, 
 실제 서버의 검색 기능을 호출하는 API 엔드포인트로 변경해야 합니다. 또한, 
 displaySearchResults 함수에서는 검색 결과를 받아와서 화면에 표시하는 로직을 작성해야 합니다.*/
