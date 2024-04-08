@@ -89,4 +89,9 @@ public class LostDaoImplement implements LostDao{
 		sqlSession.commit();
 	}
 
+	@Override
+	public List<Lost> selectLostListOnMain() throws Exception {
+		return sqlSession.selectList("mapper.lost.selectLostListOnMain");
+	}
+
 }

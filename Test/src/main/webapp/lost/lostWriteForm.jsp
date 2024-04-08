@@ -111,17 +111,25 @@ body,
       	margin-bottom:10px; margin-top: 10px;
       	padding-bottom: 3px;
       }
-      .img_box{
+      .lostImg{
       	display: inline-block;
-      	width: 25%; height: 328.7px;
+     	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
+      	overflow: hidden;
+      }
+      .img_box{
+      	display: inline-block;
+     	width: 100%; height:264px;
+      	float: right;
+      	border-radius: 10px;
+      	overflow: hidden;
       }
       .fileImg{
       	display: inline-block;
-      	width: 100%; height: 80%;
+      	width: 100%; height: 264px;
     	cursor: pointer;
     	background-color: #f9f9f9;
     	border: 1px solid #ccc;
@@ -172,14 +180,14 @@ body,
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(function(){
-	$('#lostWrite').submit(function(){
+/* 	$('#lostWrite').submit(function(){
 		alert("submit")
 		var chars='';
 		$('input[class=charInput]').map(function(){
 			chars +=$(this).val()+'@';
 		});
 		$("#lostChar").val(chars);
-	})
+	}) */
 })
 </script>
 </head>
@@ -187,8 +195,6 @@ $(function(){
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/main/header.jsp"/>
 <div class="text">미아보호소</div>
-<form action="lostWrite" enctype="multipart/form-data" method="post" id="lostWrite" 
-	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="lostChar" id="lostChar"/>
 <div class="content_container">
 	<div class="content_box">
@@ -204,7 +210,7 @@ $(function(){
 				
 				<div>
 				<img src="<%=request.getContextPath()%>/image/place.png">
-				<input type="text" placeholder="현재 보호중인 장소" class="address" name="lostAddress">
+				<input type="text" placeholder="현재 보호중인 장소" id="address" class="address" name="lostAddress">
 				</div>
 				
 				<div class="contents char">특징</div>
@@ -215,12 +221,14 @@ $(function(){
 					</div></div>
     			
 				<div class="contents">기타사항</div>
-				<textarea class="etc" placeholder="기타사항 작성란입니다" name="lostEtc"></textarea>
+				<textarea class="etc" placeholder="기타사항 작성란입니다" id="etc" name="lostEtc"></textarea>
 				
 			</div>
+			<div class="lostImg">
 			<div class="img_box">
 				<img class="fileImg" id="preview" src="../image/addFile.png">
 				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+			</div>
 			</div>
 		</div>
 	</div>
@@ -229,9 +237,8 @@ $(function(){
    	 	justify-content: center;
       	align-items: center;
       	margin-bottom: 150px;">
-      	<button class="boardBtn Btn" id="btn">등록</button>
+      	<button class="boardBtn Btn" id="btn" onclick="submit()">등록</button>
     </div>
-</form>
 </body>
 <script>
 const charBox = document.getElementById('char_box');
@@ -298,7 +305,7 @@ function removeItem(item) {
 // 입력 가능한 상자에 이벤트 리스너 추가하여 키보드 입력 이벤트 감지
 //charBox.addEventListener('keypress', handleKeyPress);
 
-let preview=document.querySelector("#preview");
+/* let preview=document.querySelector("#preview");
 let fileInput=document.querySelector("#fileInput");
 preview.onclick=function(){
 	fileInput.click();
@@ -312,15 +319,130 @@ fileInput.onchange=function(e){
 		reader.onload=function(data){
 			console.log(data);
 			preview.src=data.target.result;
-			/* preview.width= 250;
-			preview.height= 250; */
+			preview.width= 250;
+			preview.height= 250;
 		}
 			
 		reader.readAsDataURL(file);
 	} else{
 		preview.src="../image/addFile.png";
 	}
+} */
+
+let imageBox=document.querySelector(".img_box");
+let preview=document.querySelector("#preview");
+let fileInput=document.querySelector("#fileInput");
+preview.onclick=function(){
+	fileInput.click();
 }
+
+const resizeImage = (settings) => {
+	const file = settings.file;
+	const maxSize = settings.maxSize;
+	const reader = new FileReader();
+	const image = new Image();
+	const canvas = document.createElement("canvas");
+
+	const resize = () => {
+		let width = image.width;
+	    let height = image.height;
+		console.log(width)
+		console.log(height)
+	    if (width > height) {
+	        if (width > maxSize) {
+	        	height *= maxSize / width;
+	        	width = maxSize;
+	      	}
+	    } else {
+	        if (height > maxSize) {
+	        	width *= maxSize / height;
+	        	height = maxSize;
+	        }
+	    }
+	    canvas.width = width;
+	    canvas.height = height;
+	    canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+	 	return canvas
+	};
+
+	return new Promise((ok, no) => {
+		if (!file) {
+	      return;
+	    }
+	    if (!file.type.match(/image.*/)) {
+	      no(new Error("Not an image"));
+	      return;
+	    }
+	    reader.onload = (readerEvent) => {
+	      image.onload = () => {
+	        return ok(resize());
+	      };
+	      image.src = readerEvent.target.result;
+	    };
+	    reader.readAsDataURL(file);
+	});
+};
+let imageBlob = null;
+fileInput.onchange=function(e){
+ 	const config = {
+		file: e.target.files[0],
+		maxSize: 390,
+	};
+	resizeImage(config)
+		.then((resizedImage) => {
+		    resizedImage.toBlob( blob=> {
+				const url = window.URL.createObjectURL(blob);
+				/* const img = document.createElement("img"); */
+				preview.setAttribute("src", url);
+				preview.className = "profile-img";
+				preview.style.display = "block";
+				preview.onload = () => {
+					const widthDiff = (preview.clientWidth - imageBox.offsetWidth) / 2;
+			    	const heightDiff = (preview.clientHeight - imageBox.offsetHeight) / 2;
+
+			    	preview.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+				};    	      
+			    	      
+				imageBox.innerHTML = "";
+				imageBox.appendChild(preview);
+				imageBlob = blob;
+				console.log(imageBlob)
+			}, 'image/webp')
+		})
+		.catch((err) => {
+			console.log(err);
+		});	 
+}
+
+async function submit() {
+	var chars='';		
+	$('input[class=charInput]').map(function(){
+		chars +=$(this).val()+'@';
+	});
+
+	let formData = new FormData();
+    formData.append("lostName", $("#dogName").val());
+    formData.append("lostChar", chars);
+    formData.append("lostAddress",$("#address").val());
+    formData.append("lostEtc", $("#etc").val());
+    formData.append("lostCgory", $("select[name=lostCgory]").val());
+
+    formData.append("file", imageBlob, "image.webp");
+    let response = await fetch('/MoongStar/lost/lostWrite', {
+      method: 'POST',
+      body: formData
+    });
+
+    // 전송이 잘 되었다는 응답이 오고 이미지 사이즈가 얼럿창에 출력됩니다.
+    let result = await response.json();
+    console.log(result.res);
+    if(result.res=="true") {
+    	document.location.href="/MoongStar/lost/lostBoard";
+    } else {
+    	alert("등록 실패");
+    }
+  }
+
 
 </script>
 </html>

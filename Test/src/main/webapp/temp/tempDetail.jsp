@@ -82,9 +82,13 @@
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
-      .dog_Img{
+      .tempImg{
       	width: 100%; height: 265px;
-      	border-radius: 10px;
+      	overflow: hidden;
+      	      	border-radius: 10px;
+      	
+      }
+      .photo{
       }
       .state{
       	color: green;
@@ -246,8 +250,9 @@
 				<div>${temp.tempEtc}</div>
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="${path}/imageView?num=${temp.tempPhoto}">
-				
+				<div class="tempImg" >
+				<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
+				</div>
 				<c:choose>
 				<c:when test="${temp.tempCgory eq 'fingding'}">
 				<div class="state">주인이 필요해요</div>
@@ -323,6 +328,51 @@ for (var i = 0; i < chars.length-1; i++) {
 	newItem.textContent = '▶ '+ char; // 버튼 텍스트 설정
 	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }) */
+
+$(function(){
+	$(".photo").load(function(e) {
+		var imageBox = document.querySelector(".tempImg");
+		const widthDiff = (this.clientWidth - imageBox.offsetWidth) / 2;
+    	const heightDiff = (this.clientHeight - imageBox.offsetHeight) / 2;
+    	
+    	console.log(widthDiff)
+    	this.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+	})
+})
+
+let imageBlob = null;
+
+const handleImgInput = (e) => {
+  const config = {
+    file: e.target.files[0],
+    maxSize: 200,
+  };
+  resizeImage(config)
+    .then((resizedImage) => {   
+    	resizedImage.toBlob( blob=> {
+    	      const url = window.URL.createObjectURL(blob);
+    	      const img = document.createElement("img");
+    	      img.setAttribute("src", url);
+    	      img.className = "profile-img";
+    	      img.style.display = "block";
+    	      img.onload = () => {
+    	        const widthDiff = (img.clientWidth - imgTag.offsetWidth) / 2;
+    	        const heightDiff = (img.clientHeight - imgTag.offsetHeight) / 2;
+
+    	        img.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+    	      };    	      
+    	      
+    	      imgTag.innerHTML = "";
+    	      imgTag.appendChild(img);
+    	      imageBlob = blob;
+    	      console.log(imageBlob)
+    	}, 'image/webp')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 $('#commBtn').on("click",function(){
 	$.ajax({

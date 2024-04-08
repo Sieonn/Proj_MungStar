@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import service.LostService;
 import service.LostServiceImplement;
 
@@ -27,14 +29,16 @@ public class LostWrite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-
+		JSONObject jsonRes = new JSONObject();
 		try {
 			LostService lostService = new LostServiceImplement();
 			lostService.lostWrite(request);
-			response.sendRedirect("lostBoard");
+			jsonRes.put("res", "true");
 		} catch (Exception e) {
 			e.printStackTrace();
+			jsonRes.put("res", "false");
 		}
+		response.getWriter().write(jsonRes.toJSONString());
 	}
 
 }

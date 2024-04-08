@@ -180,4 +180,10 @@ public class LostServiceImplement implements LostService {
 	public void lostDelete(Integer lostNum) throws Exception {
 		lostDao.updateLostBlind(lostNum);
 	}
+
+	@Override
+	public List<Lost> lostlistOnMain() throws Exception {
+		List<Lost> lostList=lostDao.selectLostListOnMain();
+		return lostList;
+	}
 }

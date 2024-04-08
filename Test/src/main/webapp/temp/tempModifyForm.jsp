@@ -112,18 +112,25 @@ body,
       	margin-bottom:10px; margin-top: 10px;
       	padding-bottom: 3px;
       }
-      .img_box{
+      .tempImg{
       	display: inline-block;
-/*       	background-color: yellow;
- */      	width: 25%; height: 328.7px;
+     	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
+      	overflow: hidden;
+      }
+      .img_box{
+      	display: inline-block;
+     	width: 100%; height:264px;
+      	float: right;
+      	border-radius: 10px;
+      	overflow: hidden;
       }
       .fileImg{
       	display: inline-block;
-      	width: 100%; height: 80%;
+      	width: 100%; height: 264px;
     	cursor: pointer;
     	background-color: #f9f9f9;
     	border: 1px solid #ccc;
@@ -246,9 +253,11 @@ body,
 				<textarea id="etc" class="etc" placeholder="기타사항 작성란입니다" name="tempEtc" required="required">${temp.tempEtc}</textarea>
 				
 			</div>
+			<div class="tempImg">
 			<div class="img_box">
 				<img class="fileImg" id="preview" src="${path}/imageView?num=${temp.tempPhoto }">
 				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+			</div>
 			</div>
 		</div>
 	</div>
@@ -366,6 +375,7 @@ fileInput.onchange=function(e){
 		preview.src="../image/addFile.png";
 	}
 }
+
 
 </script>
 </html>

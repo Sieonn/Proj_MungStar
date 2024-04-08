@@ -16,4 +16,6 @@ public interface LostService {
 	Comment addLostComment(HttpServletRequest request) throws Exception;
 	String getLostNick(String memId) throws Exception;
 	void lostDelete(Integer lostNum) throws Exception;
+	List<Lost> lostlistOnMain() throws Exception;
+	
 }

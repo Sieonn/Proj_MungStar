@@ -110,4 +110,10 @@
 			update tempshelter set tempBlind="blind" where tempNum=#{tempNum}
 		]]>
 	</update>
+	
+	<select id="selectTempListOnMain" resultType="dto.Temp">
+		<![CDATA[
+			SELECT * FROM tempshelter ORDER BY tempNum DESC LIMIT 5;
+		]]>
+	</select>
 </mapper>

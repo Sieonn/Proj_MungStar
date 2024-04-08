@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import service.TempService;
 import service.TempServiceImplement;
 
@@ -25,13 +27,17 @@ public class TempWrite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		JSONObject jsonRes = new JSONObject();
 		try {
 			TempService tempService=new TempServiceImplement();
 			tempService.tempWrite(request);
-			response.sendRedirect("tempBoard");
+			//response.sendRedirect("tempBoard");
+			jsonRes.put("res", "true");
 		} catch(Exception e) {
 			e.printStackTrace();
+			jsonRes.put("res", "false");
 		}
+		response.getWriter().write(jsonRes.toJSONString());
 	}
 
 }

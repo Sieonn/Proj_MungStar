@@ -96,7 +96,8 @@ public class TempServiceImplement implements TempService {
 		
 		HttpSession session=request.getSession();
 		Member member=(Member)session.getAttribute("user");
-		temp.setMemId(member.getMemId());
+//		temp.setMemId(member.getMemId());
+		temp.setMemId("hong");
 
 		tempDao.insertTemp(temp);
 	}
@@ -182,6 +183,12 @@ public class TempServiceImplement implements TempService {
 	@Override
 	public void tempDelete(Integer tempNum) throws Exception {
 		tempDao.updateTempBlind(tempNum);
+	}
+
+	@Override
+	public List<Temp> tempListOnMain() throws Exception {
+		List<Temp> tempList = tempDao.selectTempListOnMain();
+		return tempList;
 	}
 
 	

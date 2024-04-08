@@ -100,4 +100,10 @@
 			update lost set lostBlind="blind" where lostNum=#{lostNum}
 		]]>
 	</update>
+	
+	<select id="selectLostListOnMain" resultType="dto.Lost">
+		<![CDATA[
+			SELECT * FROM lost ORDER BY lostNum DESC LIMIT 5;
+		]]>
+	</select>
 </mapper>

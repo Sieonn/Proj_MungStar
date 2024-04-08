@@ -124,9 +124,14 @@
       	border-color: darkgrey;
       	border-radius: 10px; 	
     }
-    .photo{
+    .tempImg {
     	width: 100%; height: 250px;
+    	overflow: hidden; 
     	border-radius: 10px;
+    }
+    
+    .photo{
+    	/* width: 100%; height: 250px; */
     	display: inline-block;
     	overflow: hidden;
     }
@@ -141,7 +146,7 @@
     }
     .address{
     	display: inline-block;
-    	height: 19px; width: 164px;
+    	height: 19px; width: 154px;
     	overflow: hidden;
     	text-overflow: ellipsis;
     	white-space: nowrap;
@@ -184,90 +189,18 @@ $(function(){
 		var tempCgory=$(this).val()
 		document.location.href="http://localhost:8080/MoongStar/temp/tempBoard?tempCgory="+tempCgory;
 	})
-/* 	$('.album').click(function(e) {
-		e.preventDefault();
-		$.ajax({
-			url:'tempDetail',
-			type:'GET',
-			async:true,
-			dataType:'text',
-			data:{tempNum:$(this).attr("id")},
-			success:function(result){
-				
-			},
-			error:function(result){
-				
-			}
-		})
-	}) */
+	
+	$(".photo").load(function(e) {
+		var imageBox = document.querySelector(".tempImg");
+		const widthDiff = (this.clientWidth - imageBox.offsetWidth) / 2;
+    	const heightDiff = (this.clientHeight - imageBox.offsetHeight) / 2;
+    	
+    	console.log(widthDiff)
+    	this.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+	})
 })
 
-const realInput = document.querySelector(".tempImg");
-const imgTag = document.querySelector(".photo");
 
-realInput.addEventListener("change", handleImgInput);
-
-const resizeImage = (settings) => {
-  const file = settings.file;
-  const maxSize = settings.maxSize;
-  const reader = new FileReader();
-  const image = new Image();
-  const canvas = document.createElement("canvas");
-
-  // dataURL 을 Blob 로 변경,  아래 코드는 canvas.toBlob 로 대신
-  const dataURLtoBlob = (dataURL) => {
-    const bytes =
-      dataURL.split(",")[0].indexOf("base64") >= 0
-        ? atob(dataURL.split(",")[1])
-        : unescape(dataURL.split(",")[1]);
-    const mime = dataURL.split(",")[0].split(":")[1].split(";")[0];
-    const max = bytes.length;
-    const ia = new Uint8Array(max);
-    for (let i = 0; i < max; i++) ia[i] = bytes.charCodeAt(i);
-    return new Blob([ia], { type: mime });
-  };
-
-  const resize = () => {
-    let width = image.width;
-    let height = image.height;
-    if (width > height) {
-      if (width > maxSize) {
-        height *= maxSize / width;
-        width = maxSize;
-      }
-    } else {
-      if (height > maxSize) {
-        width *= maxSize / height;
-        height = maxSize;
-      }
-    }
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-/* 
-	const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
- 	return dataURLtoBlob(dataUrl);
- */
- 	return canvas
-  };
-
-  return new Promise((ok, no) => {
-    if (!file) {
-      return;
-    }
-    if (!file.type.match(/image.*/)) {
-      no(new Error("Not an image"));
-      return;
-    }
-    reader.onload = (readerEvent) => {
-      image.onload = () => {
-        return ok(resize());
-      };
-      image.src = readerEvent.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-};
 
 let imageBlob = null;
 
@@ -331,14 +264,21 @@ const handleImgInput = (e) => {
     
     <div class="tempImg" >
     <a href="tempDetail?tempNum=${temp.tempNum}">
-    <img class="photo" src="../imageView?num=${temp.tempPhoto}">
+    <img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
     </a>
     </div>
     
     <div class="boardContainer">
     	
         <a href="tempDetail?tempNum=${temp.tempNum}" class="dogName">${temp.tempName}</a>
-        <a href="tempDetail?tempNum=${temp.tempNum}" class="state">${temp.tempCgory }</a><br>
+        <c:choose>
+        <c:when test="${temp.tempCgory eq 'finded'}">
+        <a href="tempDetail?tempNum=${temp.tempNum}" class="state">주인만남</a><br>
+        </c:when>
+        <c:otherwise>
+        <a href="tempDetail?tempNum=${temp.tempNum}" class="state">    </a><br>
+        </c:otherwise>
+        </c:choose>
         <a href="tempDetail?tempNum=${temp.tempNum}" class="address">${temp.tempAddress}</a>
         
     </div>
@@ -377,4 +317,6 @@ const handleImgInput = (e) => {
 </div>
 
 </body>
+
+#
 </html>

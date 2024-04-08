@@ -118,9 +118,13 @@
       	border-color: darkgrey;
       	border-radius: 10px; 	
     }
-    .photo{
+    .lostImg {
     	width: 100%; height: 250px;
+    	overflow: hidden; 
     	border-radius: 10px;
+    }
+    photo{
+    	/* width: 100%; height: 250px; */
     	display: inline-block;
     	overflow: hidden;
     }
@@ -135,7 +139,7 @@
     }
     .address{
     	display: inline-block;
-    	height: 19px; width: 164px;
+    	height: 19px; width: 154px;
     	overflow: hidden;
     	text-overflow: ellipsis;
     	white-space: nowrap;
@@ -178,11 +182,54 @@ $(function(){
 		var lostCgory=$(this).val()
 		document.location.href="http://localhost:8080/MoongStar/lost/lostBoard?lostCgory="+lostCgory;
 	})
+	
+	$(".photo").load(function(e) {
+		var imageBox = document.querySelector(".lostImg");
+		const widthDiff = (this.clientWidth - imageBox.offsetWidth) / 2;
+    	const heightDiff = (this.clientHeight - imageBox.offsetHeight) / 2;
+    	
+    	console.log(widthDiff)
+    	this.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+	})
 })
+
+let imageBlob = null;
+
+const handleImgInput = (e) => {
+  const config = {
+    file: e.target.files[0],
+    maxSize: 200,
+  };
+  resizeImage(config)
+    .then((resizedImage) => {   
+    	resizedImage.toBlob( blob=> {
+    	      const url = window.URL.createObjectURL(blob);
+    	      const img = document.createElement("img");
+    	      img.setAttribute("src", url);
+    	      img.className = "profile-img";
+    	      img.style.display = "block";
+    	      img.onload = () => {
+    	        const widthDiff = (img.clientWidth - imgTag.offsetWidth) / 2;
+    	        const heightDiff = (img.clientHeight - imgTag.offsetHeight) / 2;
+
+    	        img.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+    	      };    	      
+    	      
+    	      imgTag.innerHTML = "";
+    	      imgTag.appendChild(img);
+    	      imageBlob = blob;
+    	      console.log(imageBlob)
+    	}, 'image/webp')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 </script>
 </head>
 <body> 
-<%@ include file="../main/header.jsp" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/main/header.jsp"/>
 <div class="temp_container">
 	<div class="text">미아보호소</div>
 	<div class="right_container" style="float: right;">
@@ -214,7 +261,14 @@ $(function(){
     
     <div class="boardContainer">
         <a class="dogName" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostName}</a>
-        <a class="state" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostCgory}</a><br>
+        <c:choose>
+        <c:when test="${lost.lostCgory eq 'finded'}">
+        <a href="lostDetail?lostNum=${lost.lostNum}" class="state">주인만남</a><br>
+        </c:when>
+        <c:otherwise>
+        <a href="lostDetail?lostNum=${lost.lostNum}" class="state">    </a><br>
+        </c:otherwise>
+        </c:choose>
         <a class="address" href="lostDetail?lostNum=${lost.lostNum}">${lost.lostAddress}</a>
     </div>
     </div>

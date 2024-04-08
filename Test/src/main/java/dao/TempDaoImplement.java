@@ -86,5 +86,9 @@ public class TempDaoImplement implements TempDao{
 		sqlSession.update("mapper.temp.updateTempBlind",tempNum);
 		sqlSession.commit();
 	}
+	@Override
+	public List<Temp> selectTempListOnMain() throws Exception {
+		return sqlSession.selectList("mapper.temp.selectTempListOnMain");
+	}
 
 }

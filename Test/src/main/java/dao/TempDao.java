@@ -26,4 +26,6 @@ public interface TempDao {
 	
 	String selectTempNick(String memId) throws Exception;
 	void updateTempBlind(Integer tempNum) throws Exception;
+	
+	List<Temp> selectTempListOnMain() throws Exception;
 }
