@@ -351,21 +351,43 @@ $(function() {
 	         type:'post',
 	         data:{authcode:authcode},
 	         success:function(result) {
-	            if (result == 'true') {
-	               console.log('인증번호가 일치합니다.')
-	               alert('인증번호가 일치합니다.')
-/* 	               checkEmailCondition.text('인증번호가 일치합니다.');
-	                checkEmailCondition.css('color', 'green'); */
+	            if (result == 'true'){
+	            	$('#authcode').val('인증번호가 일치합니다.');
+	            	  $('#authcode').prop('readonly', true);
+/* 	              		 console.log('인증번호가 일치합니다.')
+	               		 alert('인증번호가 일치합니다.') */
+	            	  $('#authcode').css({
+	            		    'color': 'green', // 폰트 색상 변경
+	            		    'font-size': '12px', // 폰트 크기 변경
+	            		    'background-color': 'light-dark'
+	            		});
 	            } else {
-	               console.log('인증번호가 일치하지 않습니다.')
-	               alert('인증번호가 일치하지 않습니다.')
-/* 	                checkEmailCondition.text('인증번호가 일치하지 않습니다.');
-	                checkEmailCondition.css('color', 'red'); */
+	            	$('#authcode').val('인증번호가 일치하지 않습니다.');
+	               /* alert('인증번호가 일치하지 않습니다.')
+					checkEmailCondition.text('인증번호가 일치하지 않습니다.');
+	                checkEmailCondition.css('color', 'red');  */
+	            	 $('#authcode').css({
+	            		    'color': 'red', // 폰트 색상 변경
+	            		    'font-size': '12px', // 폰트 크기 변경
+	            		});
 	            }
 	         }
 	      })
 	   })
-	})
+	});
+	
+$(function(){//비밀번호 확인	
+	$('#PwCheck').blur(function(){	   
+		if($('#memPw').val() != $('#PwCheck').val()){	    	
+			if($('#PwCheck').val()!=''){ 
+				alert("비밀번호가 일치하지 않습니다.");	    	    
+				$('#PwCheck').val('');	          
+				$('#PwCheck').focus();	       
+				}	    
+				}	
+	})  	   
+	});
+
 </script>
 </head>
 <body>
@@ -402,7 +424,7 @@ $(function() {
 								* 비밀번호 8~20자 영문 소문자, 특수기호만 사용</div>
 						</div>
 					</div>
-					<!-- 비밀버호 확인 -->
+					<!-- 비밀번호 확인 -->
 					<div class="field">
 						<div class="inner-title">비밀번호 확인</div>
 						<div style="width: 230px">
@@ -434,14 +456,14 @@ $(function() {
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="nate.com">nate.com</option>
 									<option value="kakao.com">kakao.com</option>
-								</select> <input type="button"  value="인증번호 받기"
-									id="checkedemail" name="checkedemail" />
+								</select> <input type="button" value="인증번호 받기" id="checkedemail"
+									name="checkedemail" />
 							</div>
 							<div class="inner-input">
 								<div style="display: flex">
 									<input class="diy-width" id="authcode" type="email"
-										placeholder="인증번호를 입력하세요" /> <input type="button"
-										value="확인" id="checkauth" name="checkauth" />
+										placeholder="인증번호를 입력하세요" /> <input type="button" value="확인"
+										id="checkauth" name="checkauth" />
 								</div>
 							</div>
 						</div>
