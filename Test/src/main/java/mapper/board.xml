@@ -58,7 +58,11 @@
   			</where>
 	</select>
 	
-
+	<update id="updateBoardViewCount" parameterType="Integer">
+      <![CDATA[
+      update freeboard set freeView = freeView+1 where freeNum=#{freeNum}
+      ]]>
+   </update>
 	
 	
 	<insert id="insertBoard" parameterType="dto.FBoard" useGeneratedKeys="true" keyProperty="freeNum">
