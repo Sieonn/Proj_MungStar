@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.Comment;
 import dto.FBoard;
 import dto.File;
 import util.MybatisSqlSessionFactory;
@@ -92,6 +93,23 @@ public class FreeDAOImpl implements FreeDAO {
 	public void deleteBoard(FBoard board) throws Exception {
 		sqlSession.update("mapper.board.deleteBoard", board);
 		sqlSession.commit();
+	}
+
+	@Override
+	public List<Comment> selectFreeComment(Integer freeNum) throws Exception {
+		return sqlSession.selectList("mapper.board.selectFreeComment",freeNum);
+	}
+
+	@Override
+	public void insertFreeComment(Comment comment) throws Exception {
+		sqlSession.insert("mapper.board.insertFreeComment",comment);
+		sqlSession.commit();
+		
+	}
+
+	@Override
+	public String selectFreeNick(String memId) throws Exception {
+		return sqlSession.selectOne("mapper.board.selectMemNick",memId);
 	}
 
 }
