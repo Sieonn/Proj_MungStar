@@ -167,18 +167,11 @@ public class FreeServiceImpl implements FreeService{
 	      return board.getFreeNum(); 
 	   }
 	@Override
-	public boolean deleteBoard (HttpServletRequest request) throws Exception {
-	    // 받아온 게시물 번호를 사용하여 게시물을 조회하고
-	    FBoard board = new FBoard();
+	public void deleteBoard (Integer freeNum) throws Exception {
 	    // 요청에서 삭제할 게시물의 번호를 파라미터로 받아옴
-	 	Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
-	 	// freeHidden 값을 true로 설정
-	    board.setFreeNum(freeNum);
-	    board.setFreeHidden(true);
 
 	    // 예시로 반환하지만, 실제로는 데이터베이스에서 해당 게시물의 freeHidden 값을 업데이트하는 등의 작업을 수행해야 함
-	    freeDAO.updateBoard(board);
-	    return true;
+	    freeDAO.deleteBoard(freeNum);
 	}
 	@Override
 	public List<Comment> freeCommentList(Integer freeNum) throws Exception {
@@ -202,7 +195,7 @@ public class FreeServiceImpl implements FreeService{
 		
 		HttpSession session=request.getSession();
 		Member member=(Member)session.getAttribute("user");
-		
+		if(member==null) throw new Exception("로그인하세요.");
 		String memNick=freeDAO.selectFreeNick(member.getMemId());
 		comment.setCommNick(memNick);
 		

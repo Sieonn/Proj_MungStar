@@ -90,8 +90,8 @@ public class FreeDAOImpl implements FreeDAO {
 	}
 
 	@Override
-	public void deleteBoard(FBoard board) throws Exception {
-		sqlSession.update("mapper.board.deleteBoard", board);
+	public void deleteBoard(Integer freeNum) throws Exception {
+		sqlSession.update("mapper.board.deleteBoard", freeNum);
 		sqlSession.commit();
 	}
 

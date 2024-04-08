@@ -3,6 +3,7 @@ package dto;
 import java.sql.Date;
 
 public class FBoard {
+	private String memId;
 	private Integer freeNum;
 	private String freeNick;
 	private String freeSub;
@@ -18,9 +19,11 @@ public class FBoard {
 	public FBoard() {
 		super();
 	}
-	public FBoard(Integer freeNum, String freeNick, String freeSub, String freeContent, Integer freePhoto,
+	
+	public FBoard(String memId,Integer freeNum, String freeNick, String freeSub, String freeContent, Integer freePhoto,
 			String freeTag, Integer freeView, Date freeWriteDate, Integer freeLike, boolean freeHidden) {
 		super();
+		this.memId = memId;
 		this.freeNum = freeNum;
 		this.freeNick = freeNick;
 		this.freeSub = freeSub;
@@ -31,6 +34,12 @@ public class FBoard {
 		this.freeWriteDate = freeWriteDate;
 		this.freeLike = freeLike;
 		this.freeHidden = freeHidden;
+	}
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
 	public Integer getFreeNum() {
 		return freeNum;

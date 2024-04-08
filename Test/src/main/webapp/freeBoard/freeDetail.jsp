@@ -150,7 +150,7 @@
 
 
 <body>
-<%@ include file="../main/header.jsp" %>
+<jsp:include page="/main/header.jsp"/>
 <br>
 <div class = "pageContainer">
 <div class="freeContainer">
@@ -184,7 +184,7 @@
 <div class = "BtnArray">
 	<button class = "yellowBtn" id="listBtn">목록</button>
  	<button type = "submit" class = "yellowBtn" id="modifyBtn">수정</button>
- 	<button class = "yellowBtn" type = "submit">삭제</button>
+ 	<button id="deleteBtn" class = "yellowBtn" type = "submit">삭제</button>
 	<button class="likeButton" onclick="toggleLike(this)"></button>
 	<span id="likeCount">0</span>
 </div>
@@ -204,9 +204,16 @@
     	e.preventDefault();
     	window.location.href = "${path}/freeBoard/freeboard"; // 브라우저의 이전 페이지로 이동
 	});
-	$('form').submit(function(e) {
+	/* $('form').submit(function(e) {
 		 $('#freeHidden').val('true');
-	})	
+	})	 */
+	$('#deleteBtn').click(function(){
+		 if (confirm("게시물을 삭제하시겠습니까??") == true){    //확인
+		     window.location.href="freeDelete?freeNum=${board.freeNum}"
+		 }else{   //취소
+		     return false;
+		 }
+	})
 </script>
 <script>
 // 클릭 수를 저장할 변수

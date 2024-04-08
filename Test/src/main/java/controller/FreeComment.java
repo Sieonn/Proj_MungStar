@@ -21,7 +21,7 @@ import service.TempServiceImplement;
 @WebServlet("/freeBoard/freecomment")
 public class FreeComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
     /**
      * @see HttpServlet#HttpServlet()
      */

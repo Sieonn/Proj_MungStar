@@ -33,6 +33,7 @@
 	<select id="selectBoardListByTagAndSearch" parameterType="Map" resultType="dto.FBoard">
   		SELECT * FROM freeboard
   			<where>
+  				freeHidden is false
   				<if test="freeTag != null">
     			AND freeTag = #{freeTag}
   				</if>
@@ -47,6 +48,7 @@
 	<select id="selectBoardCountByTagAndSearch" parameterType="Map" resultType="Integer">
   		SELECT count(*) FROM freeboard
   			<where>
+  				freeHidden is false
   				<if test="freeTag != null">
     			AND freeTag = #{freeTag}
   				</if>
@@ -77,7 +79,7 @@
 		where freeNum = #{freeNum}
 	</update>
 	
-	<update id="deleteBoard" parameterType="dto.FBoard">
+	<update id="deleteBoard" parameterType="Integer">
 		<![CDATA[
 			update freeboard 
 			set freeHidden = true
@@ -85,14 +87,7 @@
 		]]>
 	</update>
 	
-	<update id="updateBoardViewCount" parameterType="Integer">
-		<![CDATA[
-		update freeboard set freeView = freeView+1 where freeNum=#{freeNum}
-		]]>
-	</update>
-	
-	<select id="selectFreeComment" parameterType="Integer"
-		resultType="dto.Comment">
+	<select id="selectFreeComment" parameterType="Integer" resultType="dto.Comment">
 		<![CDATA[
 			select * from freeComment where freeNum=#{freeNum}
 		]]>
@@ -100,16 +95,17 @@
 
 	<insert id="insertFreeComment" parameterType="dto.Comment">
 		<![CDATA[
-			insert into freeComment (commNick,freeNum,commContent,commDate)
-			values (#{commNick},#{freeNum},#{commContent},curdate())
+			insert into freeComment (commNick,tempNum,commContent,commDate)
+			values (#{commNick},#{boardNum},#{commContent},curdate())
 		]]>
 	</insert>
 	
-	<select id="selectMemNick" parameterType="String"
-		resultType="String">
+	<select id="selectFreeNick" parameterType="String" resultType="String">
 		<![CDATA[
 			select memNick from member where memId=#{memId}
 		]]>
 	</select>
+	
+
 
 </mapper>

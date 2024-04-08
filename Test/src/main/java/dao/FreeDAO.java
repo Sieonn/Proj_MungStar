@@ -12,7 +12,7 @@ public interface FreeDAO {
 	   void insertFile(File file) throws Exception;
 	   void updateBoard(FBoard board) throws Exception;
 	   void updateBoardViewCount(Integer freeNum) throws Exception;
-	   void deleteBoard(FBoard board) throws Exception;
+	   void deleteBoard(Integer freeNum) throws Exception;
 	   
 	   FBoard selectBoard(Integer freeNum) throws Exception;
 	   Integer selectBoardCount() throws Exception;

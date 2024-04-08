@@ -12,7 +12,7 @@ public interface FreeService {
 	void freeListByPage(HttpServletRequest request) throws Exception;
 	FBoard freeDetail(Integer num) throws Exception;
 	Integer freeModify(HttpServletRequest request) throws Exception;
-	boolean deleteBoard(HttpServletRequest request) throws Exception;
+	void deleteBoard(Integer freeNum) throws Exception;
 	List<Comment> freeCommentList(Integer freeNum) throws Exception;
 	String getFreeNick(String memId) throws Exception;
 	Comment addFreeComment(HttpServletRequest request) throws Exception;
