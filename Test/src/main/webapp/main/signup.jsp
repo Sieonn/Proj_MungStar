@@ -387,7 +387,23 @@ $(function(){//비밀번호 확인
 				}	
 	})  	   
 	});
+$("#memId").focusout(function() {
+	if ($("#memId").val() == "") {
+		$("#check").text("이름을 입력해주세요.");
+		$("#check").css("color", "red");
+	} else {
+		$("#check").hide();
+	}
+});
 
+$("#email").focusout(function() {
+	if ($("#email").val() == "") {
+		$("#check").text("이메일을 입력해주세요");
+		$("#check").css("color", "red");
+	} else {
+		$("#check").hide();
+	}
+});
 </script>
 </head>
 <body>
@@ -408,8 +424,10 @@ $(function(){//비밀번호 확인
 						<div class="inner-title">아이디</div>
 						<div class="inner-input">
 							<input type="text" name="memId" id="memId"
-								placeholder="아이디 입력(4~25자)" /> <input type="button"
-								onclick="()" id="doubleId" name="doubleId" value="중복조회" />
+								placeholder="아이디 입력(4~25자)" />
+							<p class="check" id="check"></p>
+							<input type="button" onclick="()" id="doubleId" name="doubleId"
+								value="중복조회" />
 						</div>
 					</div>
 
