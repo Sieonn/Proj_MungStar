@@ -81,5 +81,10 @@ public class TempDaoImplement implements TempDao{
 	public String selectTempNick(String memId) throws Exception {
 		return sqlSession.selectOne("mapper.temp.selectTempNick",memId);
 	}
+	@Override
+	public void updateTempBlind(Integer tempNum) throws Exception {
+		sqlSession.update("mapper.temp.updateTempBlind",tempNum);
+		sqlSession.commit();
+	}
 
 }

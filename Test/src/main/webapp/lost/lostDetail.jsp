@@ -33,7 +33,7 @@
       .content_box{
       	background-color: white;
       	margin: 0 auto;
-      	width: 92%; height: 85%;
+      	width: 1180px; height: 530px;
       	border-radius: 20px;
       	overflow: auto;
       }
@@ -124,14 +124,31 @@
   	}
   	.comment_box{
   		background-color: white;
-  		margin: 0 4%; margin-bottom: 15px;
-  		padding: 20px 10px 20px 10px;
+  		width: 1160px; max-height: 500px;
+  		margin: 0 50px 15px 50px;
+  		padding: 10px 10px 10px 10px;
       	border-radius: 20px;
+      	display: inline-block;
+      	overflow: auto;
   	}
+  	.comment_box::-webkit-scrollbar{
+      	width: 10px;
+      	max-height: 460px;
+    }
+    .comment_box::-webkit-scrollbar-thumb{
+      	background-color: #D9D9D9;
+      	min-height: 10px;
+      	border-radius: 10px;
+      	background-clip: padding-box;
+    }
+    .comment_box::-webkit-scrollbar-track{
+      	background-color: transparent;
+      	border-radius: 10px;
+    }
   	.writeComm{
-  		width: 70%; 
+  		width: 70%;
+  		margin: 5px 0 5px 0; 
   		float: right;
- 		margin-bottom: 10px;
   		padding: 5px;
   		overflow: hidden;
   	}
@@ -141,7 +158,7 @@
   		margin-bottom: 10px;
   		padding: 5px;
   		overflow: hidden;  	
-  	}
+  	} 
   	.commContent{
   		padding-top: 5px; padding-bottom: 5px;
   		padding-left: 10px; padding-right: 7px;
@@ -237,7 +254,7 @@
 	<a href="lostBoard" class="boardBtn Btn">목 록</a>
 	<c:if test="${lost.memId eq user.memId}">
 	<a href="lostModify?lostNum=${lost.lostNum}" class="boardBtn Btn">수 정</a>
-	<a href="lostDelete?lostNum=${lost.lostNum}" class="boardBtn Btn" id="deleteBtn">삭 제</a>
+	<span class="boardBtn Btn" id="deleteBtn">삭 제</span>
 	</c:if>
 </div>
 
@@ -315,6 +332,14 @@ $('#commBtn').on("click",function(){
 			alert("댓글입력 오류입니다.")
 		}	
 	})
+})
+
+$('#deleteBtn').click(function(){
+	 if (confirm("게시물을 삭제하시겠습니까??") == true){    //확인
+	     window.location.href="lostDelete?lostNum=${lost.lostNum}"
+	 }else{   //취소
+	     return false;
+	 }
 })
 </script>
 </html>

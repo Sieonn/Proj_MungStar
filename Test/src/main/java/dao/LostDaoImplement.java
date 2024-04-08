@@ -83,4 +83,10 @@ public class LostDaoImplement implements LostDao{
 		sqlSession.commit();		
 	}
 
+	@Override
+	public void updateLostBlind(Integer lostNum) throws Exception {
+		sqlSession.update("mapper.lost.updateLostBlind",lostNum);
+		sqlSession.commit();
+	}
+
 }

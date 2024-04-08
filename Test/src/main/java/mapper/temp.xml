@@ -7,7 +7,7 @@
 	
   		SELECT * FROM tempshelter
   		<where>
-  				
+  				tempBlind is null
   			<if test="tempCgory != null">
     			AND tempCgory = #{tempCgory}
   			</if>
@@ -22,6 +22,7 @@
 	<select id="selectTempCountWithCgoryAndSearch" parameterType="Map" resultType="Integer">
   		SELECT count(*) FROM tempshelter
   		<where>
+  				tempBlind is null
   			<if test='tempCgory != null'>
     			AND tempCgory = #{tempCgory}
   			</if>
@@ -83,10 +84,6 @@
    		where tempNum=#{tempNum}
 	</update>
 	
-	<delete id="deleteTemp" parameterType="Integer">
-		delete 
-	</delete>
-	
 	<select id="selectTempComment" parameterType="Integer"
 		resultType="dto.Comment">
 		<![CDATA[
@@ -107,4 +104,10 @@
 			select memNick from member where memId=#{memId}
 		]]>
 	</select>
+	
+	<update id="updateTempBlind" parameterType="Integer">
+		<![CDATA[
+			update tempshelter set tempBlind="blind" where tempNum=#{tempNum}
+		]]>
+	</update>
 </mapper>
