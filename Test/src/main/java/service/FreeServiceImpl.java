@@ -106,13 +106,13 @@ public class FreeServiceImpl implements FreeService{
 			freeTag = null;
 		int boardCount = freeDAO.selectBoardCountByTagAndSearch(freeTag, searchText);
 
-		int maxPage = (int) Math.ceil((double) boardCount / 8);
-		int startPage = (page - 1) / 8 * 8 + 1;
-		int endPage = startPage + 8 - 1;
+		int maxPage = (int) Math.ceil((double) boardCount / 12);
+		int startPage = ((page - 1) / 12) * 12 + 1;
+		int endPage = startPage + (12 - 1);
 		if (endPage > maxPage)
 			endPage = maxPage;
 
-		int row = (page - 1) * 8;
+		int row = (page - 1) * 12;
 		List<FBoard> boardList = freeDAO.selectBoardListByTagAndSearch(row, freeTag, searchText);
 
 		PageInfo pageInfo = new PageInfo();

@@ -10,7 +10,7 @@
 	<select id="selectBoardList" parameterType="Integer" resultType="dto.FBoard">
 		<![CDATA[
 			select * from freeboard order by freeNum desc
-			limit #{row}, 10 
+			limit #{row}, 12 
 		]]>
 	</select>
 	<select id="selectBoardCount" resultType="Integer">
@@ -21,7 +21,7 @@
 	<select id="selectBoardListByTag" parameterType="Map" resultType="dto.FBoard">
 		<![CDATA[
 			select * from freeboard where freeTag=#{freeTag} order by freeNum desc
-   			limit #{row}, 10
+   			limit #{row}, 12
 		]]>
 	</select>
 	<select id="selectBoardCountByTag" resultType="Integer">
@@ -41,7 +41,7 @@
   				</if>
    			</where>
   		order by freeNum desc
-   		limit #{row}, 10
+   		limit #{row}, 12
 	</select>
 	
 	<select id="selectBoardCountByTagAndSearch" parameterType="Map" resultType="Integer">
