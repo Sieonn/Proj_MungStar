@@ -7,31 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.LostService;
+import service.LostServiceImplement;
 import service.TempService;
 import service.TempServiceImplement;
 
-@WebServlet("/temp/tempDelete")
-public class TempDelete extends HttpServlet {
+@WebServlet("/lost/lostDelete")
+public class LostDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-    public TempDelete() {
+    public LostDelete() {
         super();
     }
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer tempNum=Integer.parseInt(request.getParameter("tempNum"));
+		Integer lostNum=Integer.parseInt(request.getParameter("lostNum"));
 		try {
-			TempService tempService=new TempServiceImplement();
-			tempService.tempDelete(tempNum);
-			response.sendRedirect("tempBoard");
+			LostService lostService=new LostServiceImplement();
+			lostService.lostDelete(lostNum);
+			response.sendRedirect("lostBoard");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }

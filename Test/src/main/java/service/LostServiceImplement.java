@@ -139,12 +139,6 @@ public class LostServiceImplement implements LostService {
 	}
 
 	@Override
-	public void lostDelete(Integer lostNum) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public List<Comment> lostCommentList(Integer lostNum) throws Exception {
 		return lostDao.selectLostComment(lostNum);
 	}
@@ -182,4 +176,8 @@ public class LostServiceImplement implements LostService {
 		return lostDao.selectLostNick(memId);
 	}
 
+	@Override
+	public void lostDelete(Integer lostNum) throws Exception {
+		lostDao.updateLostBlind(lostNum);
+	}
 }

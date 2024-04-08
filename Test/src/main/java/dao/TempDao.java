@@ -25,4 +25,5 @@ public interface TempDao {
 	void insertTempComment(Comment comment) throws Exception;
 	
 	String selectTempNick(String memId) throws Exception;
+	void updateTempBlind(Integer tempNum) throws Exception;
 }

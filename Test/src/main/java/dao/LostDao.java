@@ -20,4 +20,5 @@ public interface LostDao {
 	List<Comment> selectLostComment(Integer lostNum) throws Exception;
 	String selectLostNick(String memId) throws Exception;
 	void insertLostComment(Comment comment) throws Exception;
+	void updateLostBlind(Integer lostNum) throws Exception;
 }

@@ -142,11 +142,6 @@ public class TempServiceImplement implements TempService {
 	}
 
 	@Override
-	public void tempDelete(Integer tempNum) throws Exception {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public List<Comment> tempCommentList(Integer tempNum) throws Exception {
 		return tempDao.selectTempComment(tempNum);
 	}
@@ -182,6 +177,11 @@ public class TempServiceImplement implements TempService {
 		
 		
 		return comment;
+	}
+
+	@Override
+	public void tempDelete(Integer tempNum) throws Exception {
+		tempDao.updateTempBlind(tempNum);
 	}
 
 	
