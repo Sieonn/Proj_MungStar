@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import dto.Comment;
 import dto.FBoard;
 import dto.File;
 
@@ -21,5 +22,9 @@ public interface FreeDAO {
 	   List<FBoard> selectBoardList(Integer row) throws Exception;
 	   List<FBoard> selectBoardListByTag(Integer row, String freeTag) throws Exception;
 	   List<FBoard> selectBoardListByTagAndSearch(Integer row, String freeTag,String searchText) throws Exception;
+	   
+	   List<Comment> selectFreeComment(Integer freeNum) throws Exception;
+	   void insertFreeComment(Comment comment) throws Exception;
+	   String selectFreeNick(String memId) throws Exception;
 	   
 }

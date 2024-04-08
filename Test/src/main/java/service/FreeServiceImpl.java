@@ -3,12 +3,14 @@ package service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.FreeDAO;
 import dao.FreeDAOImpl;
+import dto.Comment;
 import dto.FBoard;
 import dto.File;
 import dto.Member;
@@ -50,6 +52,7 @@ public class FreeServiceImpl implements FreeService{
 	    board.setFreeSub(multi.getParameter("freeSub"));
 	    System.out.println("service"+multi.getParameter("freeSub"));
 	    board.setFreeContent(multi.getParameter("freeContent"));
+	    board.setFreeTag(multi.getParameter("freeTag"));
 	    Member member = (Member)request.getSession().getAttribute("user");
 	    board.setFreeNick(member.getMemNick());
 	    System.out.println(board);
@@ -88,11 +91,13 @@ public class FreeServiceImpl implements FreeService{
 //	    request.setAttribute("freeBoard", boardList);
 //	    request.setAttribute("pageInfo", pageInfo);
 
+		// 요청 파라미터에서 페이지 번호를 가져옵니다.
 		String paramPage = request.getParameter("page");
 		Integer page = 1;
 		if (paramPage != null) {
 			page = Integer.parseInt(paramPage);
 		}
+		// 요청 파라미터에서 검색어와 태그를 가져옵니다.
 		String searchText = request.getParameter("searchText");
 		String freeTag = request.getParameter("freeTag");
 		System.out.println(freeTag);
@@ -174,6 +179,38 @@ public class FreeServiceImpl implements FreeService{
 	    // 예시로 반환하지만, 실제로는 데이터베이스에서 해당 게시물의 freeHidden 값을 업데이트하는 등의 작업을 수행해야 함
 	    freeDAO.updateBoard(board);
 	    return true;
+	}
+	@Override
+	public List<Comment> freeCommentList(Integer freeNum) throws Exception {
+		return freeDAO.selectFreeComment(freeNum);
+	}
+	@Override
+	public String getFreeNick(String memId) throws Exception {
+		return freeDAO.selectFreeNick(memId);
+	}
+	@Override
+	public Comment addFreeComment(HttpServletRequest request) throws Exception {
+		Comment comment=new Comment();
+		
+		String commContent = request.getParameter("commContent");
+		Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
+		
+		if(commContent==null) throw new Exception("댓글을 입력하세요");
+		
+		comment.setCommContent(commContent);
+		comment.setBoardNum(freeNum);
+		
+		HttpSession session=request.getSession();
+		Member member=(Member)session.getAttribute("user");
+		
+		String memNick=freeDAO.selectFreeNick(member.getMemId());
+		comment.setCommNick(memNick);
+		
+		freeDAO.insertFreeComment(comment);
+		
+		
+		
+		return comment;
 	}
 	
 }

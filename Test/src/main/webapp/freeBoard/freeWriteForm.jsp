@@ -263,7 +263,7 @@
            
             </div>
         </div>
-        <input type="text" class="tag-input" id="freeTag" name="freeTag" placeholder="#태그를 입력하세요 (쉼표로 구분)">
+        <input type="text" class="tag-input" id="tag" name="freeTag" placeholder="#태그를 입력하세요 ">
     </div>
 </div>
 	<br>

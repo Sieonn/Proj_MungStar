@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">	
+	@font-face {
+        font-family: "JalnanGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
 		body,html {
         margin: 0;
         padding: 0;
@@ -31,7 +38,7 @@
   	.searchContainer {
     	float: right;
     	display: inline-block;
-		align-item: center;
+		align-items: center;
 		margin-bottom: 30px;
    }
      
@@ -163,7 +170,7 @@
 				<option value="#정보/공유">#정보/공유</option>
 				<option value="#질문">#질문</option>
 			</select>
-		</div></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>좋아요</th>
+		</div></th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>좋아요</th>
 		<c:forEach items = "${freeBoard }" var = "board">
 			<tr>
 				<td><a href = "freeboard?freeTag=${board.freeTag }">${board.freeTag }</a></td>
@@ -187,7 +194,7 @@
 				<a href = "freeboard?page=${i }" class = "select">${i }</a>
 			</c:when>
 		<c:otherwise>
-			<a href = "boardlist?page=${i }" class = "select">${i }</a>
+			<a href = "freeboard?page=${i }" class = "select">${i }</a>
 		</c:otherwise>
 		</c:choose>
 	</c:forEach>
@@ -206,36 +213,6 @@
 		})
 	})
  
-/* //검색 버튼 클릭 시 검색 기능 구현
-document.getElementById("searchBtn").addEventListener("click", function() {
-     var searchTerm = document.querySelector(".searchBox input[type='text']").value;
-     
-     // AJAX를 이용하여 서버에 검색어를 전달하고 결과를 받아옴
-     var xhr = new XMLHttpRequest();
-     xhr.open("GET", "search?q=" + searchTerm, true);
-     xhr.onreadystatechange = function() {
-         if (xhr.readyState === XMLHttpRequest.DONE) {
-             if (xhr.status === 200) {
-                 var response = xhr.responseText;
-                 // 서버에서 받아온 검색 결과를 처리하여 화면에 표시
-                 displaySearchResults(response);
-             } else {
-                 console.error("서버 오류:", xhr.status);
-             }
-         }
-     };
-     xhr.send();
- });
-
- // 검색 결과를 처리하여 화면에 표시하는 함수
- function displaySearchResults(results) {
-     // 결과를 받아와서 화면에 표시하는 로직을 작성
-     console.log("검색 결과:", results);
- } */
- /*위 코드에서 search?q= 부분은 검색어를 서버에 전달하는 부분으로, 
-실제 서버의 검색 기능을 호출하는 API 엔드포인트로 변경해야 합니다. 또한, 
-displaySearchResults 함수에서는 검색 결과를 받아와서 화면에 표시하는 로직을 작성해야 합니다.*/
-
 </script>
 
 <div class="footer"></div>

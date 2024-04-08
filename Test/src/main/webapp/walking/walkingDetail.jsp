@@ -333,7 +333,7 @@ window.onload=function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
 					 
 				});
 					}
@@ -403,7 +403,7 @@ window.onload=function(){
 		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
 		<script>
 		$("#walkWriteForm").on("click",function(){
-			window.location.href="http://localhost:8080/moongstar/walking/walkWriteForm";	
+			window.location.href="http://localhost:8080/MoongStar/walking/walkWriteForm";	
 		})
 		</script>
 		</div>
