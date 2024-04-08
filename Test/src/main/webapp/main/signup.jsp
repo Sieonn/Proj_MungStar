@@ -235,7 +235,7 @@ hr {
 	margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
 }
 
-#ValidationMsg {
+.ValidationMsg {
 	font-size: 12px;
 	margin-left: 10px;
 	color: red;
@@ -282,7 +282,7 @@ function findAddr() {
 }
 </script>
 <script>
-$(function(){
+/* $(function(){
 		$('#doubleId').click(function(e) {
 			e.preventDefault();
 			$.ajax({
@@ -305,8 +305,8 @@ $(function(){
 			
 		})
 });
-
-$(function(){
+ */
+/* $(function(){
 		$('#doubleNick').click(function(e) {
 			e.preventDefault();
 			$.ajax({
@@ -326,7 +326,7 @@ $(function(){
 				}
 			})
 		})
-});
+}); */
 
 </script>
 <script>
@@ -357,8 +357,6 @@ $(function() {
 	            if (result == 'true'){
 	            	$('#authcode').val('인증번호가 일치합니다.');
 	            	  $('#authcode').prop('readonly', true);
-/* 	              		 console.log('인증번호가 일치합니다.')
-	               		 alert('인증번호가 일치합니다.') */
 	            	  $('#authcode').css({
 	            		    'color': 'green', // 폰트 색상 변경
 	            		    'font-size': '12px', // 폰트 크기 변경
@@ -366,9 +364,6 @@ $(function() {
 	            		});
 	            } else {
 	            	$('#authcode').val('인증번호가 일치하지 않습니다.');
-	               /* alert('인증번호가 일치하지 않습니다.')
-					checkEmailCondition.text('인증번호가 일치하지 않습니다.');
-	                checkEmailCondition.css('color', 'red');  */
 	            	 $('#authcode').css({
 	            		    'color': 'red', // 폰트 색상 변경
 	            		    'font-size': '12px', // 폰트 크기 변경
@@ -378,19 +373,7 @@ $(function() {
 	      })
 	   })
 	});
-	
-$(function(){//비밀번호 확인	
-	$('#PwCheck').blur(function(){
-		  e.preventDefault();  
-		if($('#memPw').val() != $('#PwCheck').val()){	    	
-			if($('#PwCheck').val()!=''){ 
-				alert("비밀번호가 일치하지 않습니다.");	    	    
-				$('#PwCheck').val('');	          
-				$('#PwCheck').focus();	       
-				}	    
-				}	
-	})  	   
-	});
+
 $(function() {
     $('#memId').on('input', function() {
         var memId = $(this).val();
@@ -398,18 +381,132 @@ $(function() {
         // 영어 소문자와 숫자를 포함하는지 검사하는 정규표현식
         var idRegex = /^[a-z0-9]+$/;
         if (!idRegex.test(memId)) {
-            $('#ValidationMsg').text("아이디는 영어 소문자와 숫자로만 이루어져야 합니다.");
+            $('#idMsg').text("아이디는 영어 소문자와 숫자로만 이루어져야 합니다.");
             return;
         }
         
         // 길이 검사
         if (memId.length < 6 || memId.length > 20) {
-            $('#ValidationMsg').text("아이디는 6자에서 20자 사이여야 합니다.");
+            $('#idMsg').text("아이디는 6자에서 20자 사이여야 합니다.");
+            return;
+        } else{
+        
+        // 모든 조건을 만족할 경우 유효성 검사 메시지 제거
+        $('#idMsg').text("");
+    		$('#doubleId').click(function(e) {
+    			e.preventDefault();
+    			$.ajax({
+    				url:'memberDoubleId',
+    				type:'post',
+    				async:true,
+    				dataType:'text',
+    				data:{memId:$('#memId').val()},
+    				success:function(result) {
+    					if(result=='true') {
+    			             $('#idMsg').text("아이디가 중복됩니다");
+    					} else {
+    						  $('#idMsg').text("사용가능한 아이디입니다.");
+     			             $('#idMsg').css('color', 'green');
+    					}
+    				},
+    				error:function(result) {
+    					
+    				}
+    			})
+    			
+    		})
+        }
+    });
+});
+
+$(function() {
+    $('#memPw').on('input', function() {
+        var memPw = $(this).val();
+        // 길이 검사
+        if (memPw.length < 8 || memPw.length > 20) {
+            $('#pwMsg').text("8자 이상 입력해주세요.");
             return;
         }
         
         // 모든 조건을 만족할 경우 유효성 검사 메시지 제거
-        $('#ValidationMsg').text("");
+        $('#pwMsg').text("");
+    });
+});
+
+$(function() {
+    $('#PwCheck').on('input', function() {
+    	var memPw = $('#memPw').val();
+        var PwCheck = $(this).val();
+        
+        if (memPw !== PwCheck) {
+            $('#pwCMsg').text("비밀번호가 일치하지 않습니다.");
+        } else {
+            $('#pwCMsg').text("비밀번호가 일치합니다.");
+            $('#pwCMsg').css('color', 'green');
+        }
+    });
+});
+$(function() {
+    $('#memNick').on('input', function() {
+        var memNick = $(this).val(); 
+        // 한글 자음만으로 구성되거나 특수문자와 띄어쓰기를 포함하는지 검사
+        var nickRegex = /^[ㄱ-ㅎ]*$|[\s~`!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]+/;
+        if (nickRegex.test(memNick)) {
+            $('#nickMsg').text("옳지 않은 닉네임입니다.");
+            if($('#memNick').val() == ""){
+                $('#nickMsg').text("");
+            }
+            // 닉네임 중복 체크 메시지 초기화
+            $('#doubleNickMsg').text("");
+        } else {
+            // 모든 조건을 만족할 경우 유효성 검사 메시지 제거
+            $('#nickMsg').text("");
+            // 닉네임 중복 체크 ajax 호출
+            $('#doubleNick').click(function(e) {
+			e.preventDefault();
+            $.ajax({
+                url:'memberDoubleNick',
+                type:'post',
+                async:true,
+                dataType:'text',
+                data:{memNick:$('#memNick').val()},
+                success:function(result) {
+                    if(result=='true') {
+                        $('#nickMsg').text("닉네임이 중복됩니다");
+                    } else {
+                        $('#nickMsg').text("사용 가능한 닉네임입니다");
+			             $('#nickMsg').css('color', 'green');
+                    }
+                },
+                error:function(result) {
+                    $('#doubleNickMsg').text("");
+                }
+            });
+            });
+        }
+    });
+});
+$(function() {
+    $('#submit').click(function(e) {
+        // 이용약관 동의 체크 여부 확인
+        if (!$('#agreeCheckbox').is(':checked')) {
+            e.preventDefault();
+            alert("이용약관에 동의해주세요.");
+        }
+        var memId = $('#memId').val();
+        var memPw = $('#memPw').val();
+        var PwCheck = $('#PwCheck').val();
+        var memNick = $('#memNick').val();
+        var memEmail = $('#memEmail').val();
+        var memPhone = $('#memPhone').val();
+        var postcode = $('#postcode').val();
+        var memAddress1 = $('#memAddress1').val();
+        var memAddress2 = $('#memAddress2').val();
+        
+        if (memId === "" || memPw === "" || PwCheck === "" || memNick === "" || memEmail === "" || memPhone === "" || postcode === "" || memAddress1 === "" || memAddress2 === "") {
+            e.preventDefault();
+            alert("모든 항목을 입력해주세요.");
+        }
     });
 });
 </script>
@@ -436,7 +533,7 @@ $(function() {
 									placeholder="아이디 입력(4~25자)" /> <input type="button"
 									id="doubleId" name="doubleId" value="중복조회" />
 							</div>
-							<div id="ValidationMsg" ></div>
+							<div class="ValidationMsg" id="idMsg"></div>
 						</div>
 					</div>
 
@@ -447,18 +544,19 @@ $(function() {
 							<div style="width: 230px">
 								<input id="memPw" type="password" name="memPw" />
 							</div>
-							<div id="warn" style="font-size: 12px; margin-left: 10px">
-								* 비밀번호 8~20자 영문 소문자, 특수기호만 사용</div>
+							<div class="ValidationMsg" id="pwMsg"></div>
 						</div>
 					</div>
 					<!-- 비밀번호 확인 -->
 					<div class="field">
 						<div class="inner-title">비밀번호 확인</div>
-						<div style="width: 230px">
-							<input id="PwCheck" type="password" name="passwordcheck" />
+						<div class="inner-input2">
+							<div style="width: 230px">
+								<input id="PwCheck" type="password" name="passwordcheck" />
+							</div>
+							<div class="ValidationMsg" id="pwCMsg"></div>
 						</div>
 					</div>
-
 					<!-- 닉네임 -->
 					<div class="field">
 						<div class="inner-title">닉네임</div>
@@ -467,6 +565,7 @@ $(function() {
 								placeholder="2~11자 입력" /> <input type="button" id="doubleNick"
 								name="doubleNick" value="중복조회" />
 						</div>
+						<div class="ValidationMsg" id="nickMsg"></div>
 					</div>
 
 					<!-- 이메일 -->
@@ -548,7 +647,7 @@ $(function() {
 				</div>
 				<div class="centerForm">
 					<span class="agree-check" style="display: flex; font-size: 12px">
-						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
+						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox" id="agreeCheckbox"
 						style="width: 30px" />
 					</span>
 				</div>
