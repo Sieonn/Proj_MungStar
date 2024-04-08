@@ -382,12 +382,14 @@ $(function() {
         var idRegex = /^[a-z0-9]+$/;
         if (!idRegex.test(memId)) {
             $('#idMsg').text("아이디는 영어 소문자와 숫자로만 이루어져야 합니다.");
+             $('#idMsg').css('color', 'red');
             return;
         }
         
         // 길이 검사
         if (memId.length < 6 || memId.length > 20) {
             $('#idMsg').text("아이디는 6자에서 20자 사이여야 합니다.");
+            $('#idMsg').css('color', 'red');
             return;
         } else{
         
@@ -404,6 +406,7 @@ $(function() {
     				success:function(result) {
     					if(result=='true') {
     			             $('#idMsg').text("아이디가 중복됩니다");
+    			             $('#idMsg').css('color', 'red');
     					} else {
     						  $('#idMsg').text("사용가능한 아이디입니다.");
      			             $('#idMsg').css('color', 'green');
@@ -425,6 +428,7 @@ $(function() {
         // 길이 검사
         if (memPw.length < 8 || memPw.length > 20) {
             $('#pwMsg').text("8자 이상 입력해주세요.");
+            $('#pwMsg').css('color', 'red');
             return;
         }
         
@@ -440,6 +444,7 @@ $(function() {
         
         if (memPw !== PwCheck) {
             $('#pwCMsg').text("비밀번호가 일치하지 않습니다.");
+            $('#pwMsg').css('color', 'red');
         } else {
             $('#pwCMsg').text("비밀번호가 일치합니다.");
             $('#pwCMsg').css('color', 'green');
@@ -453,6 +458,7 @@ $(function() {
         var nickRegex = /^[ㄱ-ㅎ]*$|[\s~`!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?]+/;
         if (nickRegex.test(memNick)) {
             $('#nickMsg').text("옳지 않은 닉네임입니다.");
+            $('#nickMsg').css('color', 'red');
             if($('#memNick').val() == ""){
                 $('#nickMsg').text("");
             }
@@ -473,6 +479,7 @@ $(function() {
                 success:function(result) {
                     if(result=='true') {
                         $('#nickMsg').text("닉네임이 중복됩니다");
+                        $('#nickMsg').css('color', 'red');
                     } else {
                         $('#nickMsg').text("사용 가능한 닉네임입니다");
 			             $('#nickMsg').css('color', 'green');
