@@ -32,12 +32,13 @@ public class AccountMailController extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.setCharacterEncoding("utf-8");
       response.setCharacterEncoding("utf-8");
-      String email = request.getParameter("email");
+      System.out.println("AAA");
+      String memEmail = request.getParameter("memEmail");
       NaverMailSend naverMailSend = new NaverMailSend();
+		System.out.println(memEmail);
       try {
-         String authCode = naverMailSend.sendEmail(email);
-         System.out.println();
-         response.getWriter().write(email+"로 인증번호를 전송했습니다");
+         String authCode = naverMailSend.sendEmail(memEmail);
+         response.getWriter().write(memEmail+"로 인증번호를 전송했습니다");
          request.getSession().setAttribute("authCode", authCode);
          System.out.println(request.getSession().getAttribute("authCode"));
       } catch(Exception e) {

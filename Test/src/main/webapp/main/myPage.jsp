@@ -60,8 +60,8 @@ body, html {
 }
 
 .inner_profile {
-	width: 100%;
-	height: 100%;
+	width: 260px;
+	height: 260px;
 	padding: 30px;
 	border-radius: 50%;
 	box-sizing: border-box;
@@ -174,22 +174,7 @@ body, html {
 .signup-container {
 	margin: 0 10%;
 }
-/*
-      .actBtn {
-        flex: 1;
-        padding: 25px 15px;
-        margin: 5px;
-        font-weight: 700;
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        border-radius: 10px;
-        background-color: #275efe;
-        color: #fff;
-        box-shadow: 0px 3px 3px rgb(179, 179, 179);
-      }*/
+
 .actBtn {
 	flex: 1;
 	padding: 20px 15px;
@@ -267,6 +252,38 @@ a:hover {
 	cursor: pointer;
 	font-weight: bold;
 }
+
+.fileImg {
+	width: 40px;
+	height: 40px;
+}
+
+.fileInput {
+	position: absolute;
+	display: none;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
+#my_modal {
+	display: none;
+	width: 600px;
+	height: 600px;
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 3px;
+	background-color: #fefefe;
+	width: 500px;
+	width: 500px;
+	background-color: #fefefe;
+	padding: 30px;
+}
+
+#my_modal .modal_close_btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -302,11 +319,99 @@ a:hover {
 	<div class="container">
 		<!-- 인삿말 -->
 		<div class="mypage-container">
+			<div id="my_modal">
+				<form action="profile" method="POST" name="myPageFrm"
+					id="profileFrm" enctype="multipart/form-data">
+					<div class="wel-Img"
+						style="display: flex; justify-content: center; margin-top: 70px;">
+						<div class="inner_profile" style="align-items: center;">
+							<c:if test="${empty user.memProfile}">
+								<img class="btn-open-modal" id="preview"
+									src="${path}/imageView?num=6">
+								<input type="file" id="fileInput" class="fileInput" name="file"
+									accept="image/*">
+							</c:if>
+							<c:if test="${!empty user.memProfile}">
+								<img src="${loginMember.profileImage}" id="profileImage">
+							</c:if>
+						</div>
+					</div>
+					<a class="modal_close_btn">닫기</a>
+				</form>
+			</div>
+
 			<div class="wel-Img">
 				<div class="inner_profile">
-					<img src="${path}/image/프로필01.jpg" />
+					<img class="btn-open-modal" id="popup_open_btn"
+						src="${path}/imageView?num=6">
 				</div>
 			</div>
+			<script>
+				function modal(id) {
+					var zIndex = 9999;
+					var modal = document.getElementById(id);
+
+					// 모달 div 뒤에 희끄무레한 레이어
+					var bg = document.createElement('div');
+					bg.setStyle({
+						position : 'fixed',
+						zIndex : zIndex,
+						left : '0px',
+						top : '0px',
+						width : '100%',
+						height : '100%',
+						overflow : 'auto',
+						// 레이어 색갈은 여기서 바꾸면 됨
+						backgroundColor : 'rgba(0,0,0,0.4)'
+					});
+					document.body.append(bg);
+
+					// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+					modal.querySelector('.modal_close_btn').addEventListener(
+							'click', function() {
+								bg.remove();
+								modal.style.display = 'none';
+							});
+
+					modal
+							.setStyle({
+								position : 'fixed',
+								display : 'block',
+								boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+								// 시꺼먼 레이어 보다 한칸 위에 보이기
+								zIndex : zIndex + 1,
+
+								// div center 정렬
+								top : '50%',
+								left : '50%',
+								transform : 'translate(-50%, -50%)',
+								msTransform : 'translate(-50%, -50%)',
+								webkitTransform : 'translate(-50%, -50%)'
+							});
+				}
+
+				// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+				Element.prototype.setStyle = function(styles) {
+					for ( var k in styles)
+						this.style[k] = styles[k];
+					return this;
+				};
+
+				document.getElementById('popup_open_btn').addEventListener(
+						'click', function() {
+							// 모달창 띄우기
+							modal('my_modal');
+						});
+			</script>
+			<!-- 			<div class="wel-Img">
+				<div class="inner_profile">
+					<img class="btn-open-modal" id="preview"
+						src="${path}/imageView?num=6"> <input type="file"
+						id="fileInput" class="fileInput" name="file" accept="image/*">
+				</div>
+			</div> -->
+
 			<div class="wel-txt">
 				<div class="hello">
 					<span
@@ -359,7 +464,8 @@ a:hover {
 					<!-- <div class="actTitle">반려동물 정보</div> -->
 					<div class="actTitle">
 						<span>추가 프로필</span>
-						<div style="font-size: 12px; margin-top: 15px; margin-left:290px;">
+						<div
+							style="font-size: 12px; margin-top: 15px; margin-left: 290px;">
 							<a class="btn-fill" href="${path}/doginsert?id=${user.memId }">추가</a>
 						</div>
 						<div class="header-line"></div>
@@ -394,7 +500,8 @@ a:hover {
 								</div>
 							</div>
 							<div class="btnSet">
-								<a class="btn-fill" href="${path}/dogmodify?dogNum=${dog.dogNum}">수정</a>
+								<a class="btn-fill"
+									href="${path}/dogmodify?dogNum=${dog.dogNum}">수정</a>
 								<button class="btn-fill delBtn" data-num="${dog.dogNum}">삭제</button>
 							</div>
 						</div>
@@ -427,6 +534,30 @@ a:hover {
 		</div>
 	</div>
 </body>
+<script>
+	let preview = document.querySelector("#preview");
+	let fileInput = document.querySelector("#fileInput");
+	preview.onclick = function() {
+		fileInput.click();
+	}
 
+	fileInput.onchange = function(e) {
+		let file = e.target.files[0];
+		if (file) {
+			let reader = new FileReader();
+
+			reader.onload = function(data) {
+				console.log(data);
+				preview.src = data.target.result;
+				/* preview.width= 250;
+				preview.height= 250; */
+			}
+
+			reader.readAsDataURL(file);
+		} else {
+			preview.src = "${path}/image/addFile.png";
+		}
+	}
+</script>
 
 </html>

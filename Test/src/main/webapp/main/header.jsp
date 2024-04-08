@@ -120,29 +120,29 @@ a:visited {
 </head>
 <body>
 	<div class="header">
-	
+
 		<div class="logo">
-			<a href="${path}/main"> <img
-				src="${path}/image/logo.png" alt="Logo" width="90px" />
+			<a href="${path}/main"> <img src="${path}/image/logo.png"
+				alt="Logo" width="90px" />
 			</a>
 		</div>
-		
-	<c:choose>
-    <c:when test="${pageContext.request.servletPath == '/main/main.jsp'}">
-        <div class="center-logo">
-            <img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
-        </div>
-    </c:when>
-    <c:otherwise>
-        <div class="nav_menu">
-            <a href="${path}/walking/walkBoard">산책로</a>
-            <a href="${path}/hospital/hospitalBoard">24시 동물병원</a>
-            <a href="${path}/freeBoard/freeboard">자유게시판</a>
-            <a href="${path}/lost/lostBoard">미멍보호소</a>
-            <a href="${path}/temp/tempBoard">임시 보호해요</a>
-        </div>
-    </c:otherwise>
-</c:choose>
+
+		<c:choose>
+			<c:when test="${pageContext.request.servletPath == '/main/main.jsp'}">
+				<div class="center-logo">
+					<img src="${path}/image/cen_logo.png" alt="Cen Logo" width="90px" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="nav_menu">
+					<a href="${path}/walking/walkBoard">산책로</a> <a
+						href="${path}/hospital/hospitalBoard">24시 동물병원</a> <a
+						href="${path}/freeBoard/freeboard">자유게시판</a> <a
+						href="${path}/lost/lostBoard">미멍보호소</a> <a
+						href="${path}/temp/tempBoard">임시 보호해요</a>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		<div class="userPro">
 			<div class="user-info">
 				<c:choose>
@@ -155,6 +155,15 @@ a:visited {
 							height="50px" />
 					</c:otherwise>
 				</c:choose>
+
+				<!-- <c:if test="${user != null }">
+					<li class="nav-item"><a href="/blog/user?cmd=profileUpload">
+							<img style="border-radius: 50%;"
+							onerror="this.src ='/blog/image/userProfile.png'"
+							src="${sessionScope.principal.userProfile}" width="40px"
+							height="40px" />
+					</a></li>
+				</c:if> -->
 			</div>
 
 			<div class="user-info">

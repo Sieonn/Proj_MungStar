@@ -10,8 +10,8 @@
 	
 	<insert id="insertMember" parameterType="dto.Member">
 		<![CDATA[
-			insert into member (memId,memPw,memNick,memPhone,memAddress1,memAddress2,memEmail)
-			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail})
+			insert into member (memId,memPw,memNick,memPhone,memAddress1,memAddress2,memEmail,memProfile)
+			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail},#{memProfile})
 		]]>
 	</insert>
 </mapper>

@@ -31,8 +31,10 @@ public class AccountCheckAuth extends HttpServlet {
       request.setCharacterEncoding("utf-8");
       response.setCharacterEncoding("utf-8");
       String authCode = request.getParameter("authcode");
+      System.out.println("param:"+authCode);
       HttpSession session = request.getSession();
       String sessionAuthCode = (String)session.getAttribute("authCode");
+      System.out.println("session:"+sessionAuthCode);
       if(sessionAuthCode == null || !sessionAuthCode.trim().equals(authCode.trim())) {
          response.getWriter().write("false");
       } else {

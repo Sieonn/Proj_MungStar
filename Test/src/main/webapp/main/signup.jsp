@@ -5,85 +5,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>회원가입</title>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<script>
-function findAddr() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
-
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우
-                addr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일 때
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-                document.getElementById("memAddress2").value = extraAddr;
-            
-            } else {
-                document.getElementById("memAddress2").value = '';
-            }
-
-            document.getElementById('postcode').value = data.zonecode;
-            document.getElementById("memAddress1").value = addr;
-            document.getElementById("memAddress1").focus(); // 주소 입력란으로 포커스 이동
-        }
-    }).open();
-}
-
-$(function() {
-	   $("#checkedemail").click(function(e) {
-	      e.preventDefault();
-	      var email = $('input[name=memEmail]').val()+'@'+$('select[name=domain]').val();
-	      $.ajax({
-	         url:'joinauth',
-	         type:'post',
-	         data:{memEmail:memEmail},
-	         success:function(result) {
-	            alert(result);
-	         }
-	      })
-	   })
-	   //이메일 인증 여부 메시지를 표시 할 요소
-	   var checkEmailCondition = $('#permitemail');
-	   //메일체크
-	   $("#checkauth").click(function(e) {
-	      e.preventDefault();
-	      var authcode = $("#authcode").val();
-	      $.ajax({
-	         url:'checkauth',
-	         type:'post',
-	         data:{authcode:authcode},
-	         success:function(result) {
-	            if (result == 'true') {
-	               console.log('인증번호가 일치합니다.')
-	               checkEmailCondition.text('인증번호가 일치합니다.');
-	                checkEmailCondition.css('color', 'green');
-	            } else {
-	               console.log('인증번호가 일치하지 않습니다.')
-	                checkEmailCondition.text('인증번호가 일치하지 않습니다.');
-	                checkEmailCondition.css('color', 'red');
-	            }
-	         }
-	      })
-	   })
-	})
-</script>
-
 <style>
 @font-face {
 	font-family: "JalnanGothic";
@@ -315,6 +236,45 @@ hr {
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function findAddr() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일 때
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                document.getElementById("memAddress2").value = extraAddr;
+            
+            } else {
+                document.getElementById("memAddress2").value = '';
+            }
+
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("memAddress1").value = addr;
+            document.getElementById("memAddress1").focus(); // 주소 입력란으로 포커스 이동
+        }
+    }).open();
+}
+</script>
 <script>
 $(function(){
 		$('#doubleId').click(function(e) {
@@ -340,7 +300,7 @@ $(function(){
 		})
 });
 
-$(function() {
+$(function(){
 		$('#doubleNick').click(function(e) {
 			e.preventDefault();
 			$.ajax({
@@ -363,41 +323,51 @@ $(function() {
 			
 		})
 });
-/*
-		$("input[type=submit]").click(function () {
-			var member = {}
-			member.memId = $("#memId").val();
-			member.memPw= $("#memPw").val();
-			member.memNick = $("#memNick").val();
-			member.memEmail= $("#memEmail").val();
-			member.memPhone= $("#memPhone").val();
-			member.memAddress1= $("#memAddress1").val();
-			member.memAddress2= $("#memAddress2").val();
-			console.log(member);
-			
-			$.ajax({
-				url : "signup",
-				type : "post",
-				async : true,
-				data : {
-					member : JSON.stringify(member)
-				},
-				success : function(result) {
-					if(result=='true'){
-					location.href  = "main";
-					}else {
-						alert(result)
-					}
-				},
-				error : function(err) {
-					alert("회원가입에 실패했습니다.")
-				}
-			})
-		});*/
 
 </script>
-</head>
+<script>
+$(function() {
+	   $("#checkedemail").click(function(e) {
+	      e.preventDefault();
+	      var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
+	      alert(email)
+	      $.ajax({
+	         url:'joinauth',
+	         type:'post',
+	         async:true,
+	         data:{memEmail:email},
+	         success:function(result) {
+	            alert(result);
+	         }
+	      }) 
+	   })
 
+	   //메일체크
+	   $("#checkauth").click(function(e) {
+	      e.preventDefault();
+	      var authcode = $("#authcode").val();
+	      $.ajax({
+	         url:'checkauth',
+	         type:'post',
+	         data:{authcode:authcode},
+	         success:function(result) {
+	            if (result == 'true') {
+	               console.log('인증번호가 일치합니다.')
+	               alert('인증번호가 일치합니다.')
+/* 	               checkEmailCondition.text('인증번호가 일치합니다.');
+	                checkEmailCondition.css('color', 'green'); */
+	            } else {
+	               console.log('인증번호가 일치하지 않습니다.')
+	               alert('인증번호가 일치하지 않습니다.')
+/* 	                checkEmailCondition.text('인증번호가 일치하지 않습니다.');
+	                checkEmailCondition.css('color', 'red'); */
+	            }
+	         }
+	      })
+	   })
+	})
+</script>
+</head>
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="content">
@@ -446,7 +416,7 @@ $(function() {
 						<div class="inner-input">
 							<input type="text" name="memNick" id="memNick"
 								placeholder="2~11자 입력" /> <input type="button" onclick="()"
-								id="doubleNick" value="중복검사" />
+								id="doubleNick" name="doubleNick" value="중복조회" />
 						</div>
 					</div>
 
@@ -464,14 +434,14 @@ $(function() {
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="nate.com">nate.com</option>
 									<option value="kakao.com">kakao.com</option>
-								</select>
-
-								<button value="인증번호 받기">인증번호 받기</button>
+								</select> <input type="button"  value="인증번호 받기"
+									id="checkedemail" name="checkedemail" />
 							</div>
 							<div class="inner-input">
 								<div style="display: flex">
-									<input class="diy-width" id="permitemail" type="email" placeholder="인증번호를 입력하세요" />
-									<input type="button" onclick="()" value="확인" id="checkedemail"  name="checkedemail"/>
+									<input class="diy-width" id="authcode" type="email"
+										placeholder="인증번호를 입력하세요" /> <input type="button"
+										value="확인" id="checkauth" name="checkauth" />
 								</div>
 							</div>
 						</div>
@@ -495,7 +465,6 @@ $(function() {
             }
           });
         </script>
-
 					<!-- 휴대전화 -->
 					<div class="field tel-number">
 						<div class="inner-title">휴대전화</div>

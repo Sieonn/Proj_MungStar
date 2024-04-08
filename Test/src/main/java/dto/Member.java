@@ -8,7 +8,16 @@ public class Member {
 	private String memPhone;
 	private String memAddress1;
 	private String memAddress2;
+	private Integer memProfile;
 	
+	public Integer getMemProfile() {
+		return memProfile;
+	}
+
+	public void setMemProfile(Integer memProfile) {
+		this.memProfile = memProfile;
+	}
+
 	public Member() {}
 	
 	public Member(String memId, String memNick, String memPw, String memEmail, String memPhone, String memAddress1, String memAddress2) {

@@ -16,7 +16,7 @@ public final class NaverMailSend {
 
    private final String host = "smtp.naver.com"; // SMTP 서버명
    private final String user = "hosi_js@naver.com"; // 발신자의 이메일 계정
-   private final String password = "wlqrkffo18!@"; // 발신자의 SMTP 패스워드
+   private final String password = "P2CPLPH2DGJ1"; // 발신자의 SMTP 패스워드
 
    public String sendEmail(String to) throws Exception {
       System.out.println(to);
