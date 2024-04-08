@@ -109,7 +109,7 @@ public class FreeDAOImpl implements FreeDAO {
 
 	@Override
 	public String selectFreeNick(String memId) throws Exception {
-		return sqlSession.selectOne("mapper.board.selectMemNick",memId);
+		return sqlSession.selectOne("mapper.board.selectFreeNick",memId);
 	}
 
 }

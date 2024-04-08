@@ -36,7 +36,7 @@ public class FreeBlind extends HttpServlet {
 		try {
 			FreeService freeService=new FreeServiceImpl();
 			FBoard board = freeService.freeDetail(freeNum);
-			freeService.deleteBoard(request);
+			freeService.deleteBoard(freeNum);
 	        request.setAttribute("board", board);
 	        request.getRequestDispatcher("freeBoard.jsp").forward(request, response);
 		} catch (Exception e) {
