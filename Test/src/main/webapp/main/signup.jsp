@@ -234,6 +234,12 @@ hr {
 	border-top: 2px solid rgb(221, 224, 224);
 	margin-top: 10px; /* 선과 헤더 사이의 여백 조정 */
 }
+
+#ValidationMsg {
+	font-size: 12px;
+	margin-left: 10px;
+	color: red;
+}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
@@ -317,10 +323,8 @@ $(function(){
 					}
 				},
 				error:function(result) {
-					
 				}
 			})
-			
 		})
 });
 
@@ -330,7 +334,7 @@ $(function() {
 	   $("#checkedemail").click(function(e) {
 	      e.preventDefault();
 	      var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
-	      alert(email)
+	      $('input[name=memEmail]').val(email);
 	      $.ajax({
 	         url:'joinauth',
 	         type:'post',
@@ -340,8 +344,7 @@ $(function() {
 	            alert(result);
 	         }
 	      }) 
-	   })
-
+	   });
 	   //메일체크
 	   $("#checkauth").click(function(e) {
 	      e.preventDefault();
@@ -377,7 +380,8 @@ $(function() {
 	});
 	
 $(function(){//비밀번호 확인	
-	$('#PwCheck').blur(function(){	   
+	$('#PwCheck').blur(function(){
+		  e.preventDefault();  
 		if($('#memPw').val() != $('#PwCheck').val()){	    	
 			if($('#PwCheck').val()!=''){ 
 				alert("비밀번호가 일치하지 않습니다.");	    	    
@@ -387,22 +391,26 @@ $(function(){//비밀번호 확인
 				}	
 	})  	   
 	});
-$("#memId").focusout(function() {
-	if ($("#memId").val() == "") {
-		$("#check").text("이름을 입력해주세요.");
-		$("#check").css("color", "red");
-	} else {
-		$("#check").hide();
-	}
-});
-
-$("#email").focusout(function() {
-	if ($("#email").val() == "") {
-		$("#check").text("이메일을 입력해주세요");
-		$("#check").css("color", "red");
-	} else {
-		$("#check").hide();
-	}
+$(function() {
+    $('#memId').on('input', function() {
+        var memId = $(this).val();
+        
+        // 영어 소문자와 숫자를 포함하는지 검사하는 정규표현식
+        var idRegex = /^[a-z0-9]+$/;
+        if (!idRegex.test(memId)) {
+            $('#ValidationMsg').text("아이디는 영어 소문자와 숫자로만 이루어져야 합니다.");
+            return;
+        }
+        
+        // 길이 검사
+        if (memId.length < 6 || memId.length > 20) {
+            $('#ValidationMsg').text("아이디는 6자에서 20자 사이여야 합니다.");
+            return;
+        }
+        
+        // 모든 조건을 만족할 경우 유효성 검사 메시지 제거
+        $('#ValidationMsg').text("");
+    });
 });
 </script>
 </head>
@@ -422,12 +430,13 @@ $("#email").focusout(function() {
 					<!-- 아이디 -->
 					<div class="field">
 						<div class="inner-title">아이디</div>
-						<div class="inner-input">
-							<input type="text" name="memId" id="memId"
-								placeholder="아이디 입력(4~25자)" />
-							<p class="check" id="check"></p>
-							<input type="button" onclick="()" id="doubleId" name="doubleId"
-								value="중복조회" />
+						<div style="display: grid">
+							<div class="inner-input">
+								<input type="text" name="memId" id="memId"
+									placeholder="아이디 입력(4~25자)" /> <input type="button"
+									id="doubleId" name="doubleId" value="중복조회" />
+							</div>
+							<div id="ValidationMsg" ></div>
 						</div>
 					</div>
 
@@ -455,8 +464,8 @@ $("#email").focusout(function() {
 						<div class="inner-title">닉네임</div>
 						<div class="inner-input">
 							<input type="text" name="memNick" id="memNick"
-								placeholder="2~11자 입력" /> <input type="button" onclick="()"
-								id="doubleNick" name="doubleNick" value="중복조회" />
+								placeholder="2~11자 입력" /> <input type="button" id="doubleNick"
+								name="doubleNick" value="중복조회" />
 						</div>
 					</div>
 

@@ -40,6 +40,9 @@ public class MemberServiceImpl implements MemberService {
 		if(smember!=null) throw new Exception("아이디 중복 오류");
 		
 		String memNick=request.getParameter("memNick");
+		Member nmember=memberDao.selectMemberN(memNick);
+		if(nmember!=null) throw new Exception("닉네임 중복 오류");
+		
 		String memPw=request.getParameter("memPw");
 		String memEmail=request.getParameter("memEmail");
 		String memPhone= request.getParameter("memPhone");
@@ -59,7 +62,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public boolean memberNickCheck(String memNick) throws Exception {
-		Member member=memberDao.selectMember(memNick);
+		Member member=memberDao.selectMemberN(memNick);
 		if(member==null) return false;
 		return true;
 	}

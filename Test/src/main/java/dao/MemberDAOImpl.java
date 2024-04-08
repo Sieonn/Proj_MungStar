@@ -18,4 +18,9 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("mapper.member.selectMember",memId);
 	}
 
+	@Override
+	public Member selectMemberN(String memNick) throws Exception {
+		return sqlSession.selectOne("mapper.member.selectMemberN",memNick);
+	}
+
 }

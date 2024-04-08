@@ -126,7 +126,8 @@ a:hover {
 						style="font-family: 'JalnanGothic'; font-size: 24px">
 						아이디 찾기</p>
 					<input type="text" name="name" id="name" class="form-control"
-						placeholder="이름" required autofocus /><br /> <input
+						placeholder="이름" required autofocus /><br />
+						 <input
 						type="email" name="email" id="email" class="form-control"
 						placeholder="이메일" required /><br />
 					<p class="check" id="check"></p>

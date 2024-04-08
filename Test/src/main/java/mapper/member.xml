@@ -7,6 +7,11 @@
 			select * from member where memId=#{memId}
 		]]>
 	</select>
+		<select id="selectMemberN" parameterType="String" resultType="dto.Member">
+		<![CDATA[
+			select * from member where memNick=#{memNick}
+		]]>
+	</select>
 	
 	<insert id="insertMember" parameterType="dto.Member">
 		<![CDATA[
