@@ -333,8 +333,7 @@ function findAddr() {
 $(function() {
 	   $("#checkedemail").click(function(e) {
 	      e.preventDefault();
-	      var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
-	      $('input[name=memEmail]').val(email);
+		      var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
 	      $.ajax({
 	         url:'joinauth',
 	         type:'post',
@@ -462,6 +461,11 @@ $(function() {
             if($('#memNick').val() == ""){
                 $('#nickMsg').text("");
             }
+            if (memNick.length < 2|| memNick.length > 20) {
+                $('#nickMsg').text("2자 이상 입력해주세요.");
+                $('#nickMsg').css('color', 'red');
+                return;
+            }
             // 닉네임 중복 체크 메시지 초기화
             $('#doubleNickMsg').text("");
         } else {
@@ -486,7 +490,7 @@ $(function() {
                     }
                 },
                 error:function(result) {
-                    $('#doubleNickMsg').text("");
+                    $('#nickMsg').text("");
                 }
             });
             });
@@ -514,6 +518,16 @@ $(function() {
             e.preventDefault();
             alert("모든 항목을 입력해주세요.");
         }
+        if ($('#idMsg').text() === "") {
+            e.preventDefault();
+            alert("아이디 중복 조회를 해주세요.");
+        }
+        if ($('#nickMsg').text() === "") {
+            e.preventDefault();
+            alert("닉네임 중복조회를 해주세요.");
+        }
+  	  var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
+	  $('input[name=memEmail]').val(email);
     });
 });
 </script>
