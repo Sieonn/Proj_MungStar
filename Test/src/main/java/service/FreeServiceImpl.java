@@ -206,5 +206,27 @@ public class FreeServiceImpl implements FreeService{
 		List<FBoard> freeList=freeDAO.selectFreeListOnMain();
 		return freeList;
 	}
+	@Override
+	   public boolean freeLike(String memId, Integer freeNum) throws Exception {
+	      Integer num = freeDAO.selectFreeLike(memId, freeNum);
+	      if(num==null) return false;
+	      return true;
+	   }
+
+	   @Override
+	   public boolean togleFreeLike(String memId, Integer freeNum) throws Exception {
+	      boolean isBoardLike = freeLike(memId, freeNum);
+	      if(isBoardLike) {
+	    	  freeDAO.deleteFreeLike(memId, freeNum);
+	         return false;
+	      } else {
+	    	  freeDAO.insertFreeLike(memId, freeNum);
+	         return true;
+	      }
+	   }
+	@Override
+	public Integer selectFreeLikeCount(Integer likecount) throws Exception {
+		return freeDAO.selectFreeLikeCount(likecount);
+	}
 	
 }

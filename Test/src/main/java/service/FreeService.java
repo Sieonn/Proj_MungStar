@@ -16,4 +16,7 @@ public interface FreeService {
 	List<Comment> freeCommentList(Integer freeNum) throws Exception;
 	Comment addFreeComment(HttpServletRequest request) throws Exception;
 	List<FBoard> freeListOnMain() throws Exception;
+	boolean freeLike(String memId, Integer freeNum) throws Exception;
+	boolean togleFreeLike(String memId, Integer freeNum) throws Exception;
+	Integer selectFreeLikeCount(Integer likecount)throws Exception;
 }
