@@ -145,117 +145,122 @@
 }
 
 </style>
- <style>
-     .comment{
-        width: 1024px;
-       	margin:0 auto;
+<style type="text/css">
+      .cheader{
+      	margin: 20px auto 0 auto;
+      	width: 1280px;
         font-size: 18px;
-        font-family: "Pretendard";    
+        font-family: "JalnanGothic";  	
         }
-     .comment_container{
-        background-color: #f5f5f5;
-  		width: 990px;
-		padding: 10px;
-  		margin: 10px auto;
+  	.comment_container{
+      	margin: 0 auto 160px auto;
+      	width: 1280px;
+  		padding-top: 30px; padding-bottom:30px;
+      	background-color: #f5f5f5;
+      	border-radius: 20px;
+  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  	}
+  	.comment_box{
+  		background-color: white;
+  		width: 1160px; max-height: 500px;
+  		margin: 0 50px 15px 50px;
+  		padding: 10px 10px 10px 10px;
+      	border-radius: 20px;
+      	display: inline-block;
+      	overflow: auto;
+  	}
+  	.comment_box::-webkit-scrollbar{
+      	width: 10px;
+      	max-height: 460px;
+    }
+    .comment_box::-webkit-scrollbar-thumb{
+      	background-color: #D9D9D9;
+      	min-height: 10px;
+      	border-radius: 10px;
+      	background-clip: padding-box;
+    }
+    .comment_box::-webkit-scrollbar-track{
+      	background-color: transparent;
+      	border-radius: 10px;
+    }
+  	.writeComm{
+  		width: 70%;
+  		margin: 5px 0 5px 0; 
+  		float: right;
+  		padding: 5px;
+  		overflow: hidden;
+  	}
+  	.memComm{
+		width: 763.86px; 
+  		margin: 5px 365px 5px 0;
+  		padding: 5px;
+  		overflow: hidden;  	
+  	}
+  	.commContent{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+  		background-color: #FED74B;
+  		border-radius: 7px;
+  		text-align: right;
+		font-size: 15px;
+  	}
+  	.commNickname{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+		text-align: right;
+		font-size: 12px;
+		font-weight: bold;
+		color: gray;
+  	}
+  	
+  	
+  	
+  	.inputDiv{
+  		margin: 0 4%;
+  		padding: 4px;
+  		background-color: white;
+  		border-style : solid;
+  		border-color: #EFC940;
+  		border-width: 4px;
   		border-radius: 20px;
-  		box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.1);;
-     }
-     .comment_box{
-        background-color: #ffffff;
-  		width: 900px;
-		padding: 10px;
-  		margin: 10px auto;
+  		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  	}
+  	.inputComment{
+  		display: inline-block;
+  		width: 80%;
+  		height: 40px;
+   		margin-left: 5px;
+  		margin-right: 70px; 
+  		border-style: none;
+  		outline: none;
+  		font-size: 15px;
+  	}
+  	
+  	
+  	.commBtn{
+  		margin:10px;
+		background-color: #FED74B;
+  		border: none;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
   		border-radius: 20px;
-     }
-     .writeComm{
-        width: 60%; 
-        float: right;
-        margin-bottom: 10px;
-        padding: 5px;
-        overflow: hidden;
-     }
-     .memComm{
-        width: 763.86px; 
-        margin-right: 365px;
-        margin-bottom: 10px;
-        padding: 5px;
-        overflow: hidden;     
-     }
-     .memcommContent{
-        padding-top: 5px; padding-bottom: 5px;
-        padding-left: 10px; padding-right: 7px;
-        background-color: #f5f5f5;
-        overflow:auto;
-        border-radius: 7px;
-        text-align: left;
-      	font-size: 14px;
-     }
-     .commContent{
-        padding-top: 5px; padding-bottom: 5px;
-        padding-left: 10px; padding-right: 7px;
-        background-color: #FED74B;
-        overflow:auto;
-        border-radius: 7px;
-        text-align: left;
-      	font-size: 14px;
-     }
-     .commNickname{
-        padding-top: 5px; padding-bottom: 5px;
-        padding-left: 10px; padding-right: 7px;
-      	text-align: right;
-      	font-size: 12px;
-      	font-weight: bold;
-      	color: gray;
-     }
-     
-     
-     
-     .inputDiv{
-        margin: 0 4%;
-        padding: 4px;
-        background-color: white;
-        border-style : solid;
-        border-color: #EFC940;
-        border-width: 4px;
-        border-radius: 20px;
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-     }
-     .inputComment{
-        display: inline-block;
-        width: 80%;
-        height: 40px;
-        margin-left: 5px;
-        margin-right: 70px; 
-        border-style: none;
-        outline: none;
-        font-size: 15px;
-     }
-     
-     
-     .commBtn{
-        margin:10px;
-      	background-color: #FED74B;
-        border: none;
-      	box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
-        border-radius: 20px;
-      	padding-left: 20px;
-      	padding-right: 20px;
-      	padding-bottom: 5px;
-      	padding-top: 5px;
-      	font-size: 15px;
-      	font-weight: bold;
-     }
-     
-     .mycomm{
-        float: right;
-     }
-     .comm{
-        float: left;
-     }
-     .delete_img{
-        padding: 5px;
-     }
-  </style>
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		font-size: 15px;
+		font-weight: bold;
+  	}
+  	
+  	.mycomm{
+  		float: right;
+  	}
+  	.comm{
+  		float: left;
+  	}
+  	.delete_img{
+  		padding: 5px;
+  	}
+</style>
 </head>
 
 
@@ -306,7 +311,7 @@
 	<div class="comment_box" id="comment_box">
 	<c:forEach items="${comments}" var="comment">
 	<c:choose>
-	<c:when test="${comment.commNick eq freeNick}">
+	<c:when test="${comment.commNick eq board.freeNick}">
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>

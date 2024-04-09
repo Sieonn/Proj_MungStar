@@ -99,7 +99,7 @@
 
 	<insert id="insertFreeComment" parameterType="dto.Comment">
 		<![CDATA[
-			insert into freeComment (commNick,tempNum,commContent,commDate)
+			insert into freeComment (commNick,freeNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())
 		]]>
 	</insert>

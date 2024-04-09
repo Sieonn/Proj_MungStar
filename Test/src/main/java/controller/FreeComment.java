@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import dto.Comment;
-import service.TempService;
-import service.TempServiceImplement;
+import service.FreeService;
+import service.FreeServiceImpl;
 
 /**
  * Servlet implementation class FreeComment
@@ -35,11 +35,11 @@ public class FreeComment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer tempNum=Integer.parseInt(request.getParameter("freeNum"));
+		Integer freeNum=Integer.parseInt(request.getParameter("freeNum"));
 		
 		try {
-			TempService tempService=new TempServiceImplement();
-			List<Comment> comments= tempService.tempCommentList(tempNum);
+			FreeService freeService=new FreeServiceImpl();
+			List<Comment> comments= freeService.freeCommentList(freeNum);
 			request.setAttribute("comments", comments);
 			request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 		} catch(Exception e) {
@@ -54,8 +54,8 @@ public class FreeComment extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		try {
-			TempService tempService=new TempServiceImplement();
-			Comment comment=tempService.addTempComment(request);
+			FreeService freeService=new FreeServiceImpl();
+			Comment comment=freeService.addFreeComment(request);
 //			JSONParser parser=new JSONParser();
 			JSONObject jsonObj=new JSONObject();
 			jsonObj.put("commContent", comment.getCommContent());
