@@ -34,6 +34,18 @@
 	font-weight: 400;
 	font-style: normal;
 }
+#hosListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
+
 
 body, html {
 	margin: 0;
@@ -303,8 +315,7 @@ $(document).ready(function(){
 		<br>
 		<br>
 		<div class="hosBtn">
-			<a href="hospitalList" id="walkList">LIST</a> <a id="hosWriteForm"
-				href="hosWriteForm">WRITE</a>
+			<a href="hospitalList" id="hosListLogout">LIST</a> 
 		</div>
 	</div>
 	
