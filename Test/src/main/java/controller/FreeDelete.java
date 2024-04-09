@@ -47,7 +47,7 @@ public class FreeDelete extends HttpServlet {
 			 try {
 				 String memNick = (String) session.getAttribute("user");
 				 FreeService freeService=new FreeServiceImpl();
-				 FBoard board = freeService.getBoardByFreeNum(freeNum);
+				 FBoard board = freeService.freeDetail(freeNum);
 	            if (board != null && board.getFreeNick().equals(memNick)) {
                     freeService.deleteBoard(freeNum);
                     response.sendRedirect("freeboard");
