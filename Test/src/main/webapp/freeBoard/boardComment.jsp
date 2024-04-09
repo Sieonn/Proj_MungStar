@@ -18,7 +18,7 @@
 		padding: 10px;
   		margin: 10px auto;
   		border-radius: 20px;
-  		box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.1);;
+  		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
      }
      .comment_box{
         background-color: #ffffff;
@@ -96,7 +96,7 @@
         margin:10px;
       	background-color: #FED74B;
         border: none;
-      	box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+      	box-shadow: 1px 2px 0px rgba(0, 0, 0, 0.4);
         border-radius: 20px;
       	padding-left: 20px;
       	padding-right: 20px;

@@ -21,44 +21,53 @@
 		margin : 0 auto;
  	}
  	#freeCategory {
- 		width :1000px;
- 		margin : 0 auto;	
+ 		width :1280px;
+ 		margin: 10px 0;	
+ 		font-size: 22px;
+        font-family: "JalnanGothic";
+  	}
+  	.listContainer{
+ 		width :1280px;
+ 		margin: 0 auto;
+
   	}
   	.wrap{
   		background-color: #f5f5f5;
-  		width: 990px;
+  		width: 1260px;
 		padding: 10px;
-  		margin: 10px auto;
+  		margin-top: 10px;
   		border-radius: 20px;
   		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
   	 }
   	 
   	 .ContentBackground{
   		background-color: #ffffff;
-  		width: 900px;
+  		width: 1160px;
+  		margin-top: 5px;
 		padding: 10px;
   		margin: 10px auto;
   		border-radius: 20px;
   	 }
   	 .title{
-  	 	width: 800px; 
+  	 	width: 1000px; 
   	 	padding: 2px;
   		overflow: hidden; 
-  		font-size : 15px;
+  		font-size : 17px;
   		font-weight: bold;
   	 }
   	 .titleInfo {
+  	 	padding-right: 5px;
   	  	float : right;
-  	  	font-size : 12px; 
+  	  	font-size : 14px; 
   	  	position: relative;
     	bottom: 0;
     	color : gray;
   	 }
   	 .writeNick{
-  		font-size : 12px;
+  		font-size : 15px;
   	}
   	.context{
-  		font-size : 14px;
+  		font-size : 16px;
   	}
   	.contextImg{
   		float : right;
@@ -158,7 +167,7 @@
   		padding-top: 30px; padding-bottom:30px;
       	background-color: #f5f5f5;
       	border-radius: 20px;
-  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1)
   	}
   	.comment_box{
   		background-color: white;
@@ -278,12 +287,13 @@
 <jsp:include page="/main/header.jsp"/>
 <br>
 <div class = "pageContainer">
-<div class="freeContainer">
+	<div class="freeContainer">
 	<div id="freeCategory">
-		<h2 style="margin-bottom: 5px;">자유게시판</h2>
+		<h2 style="margin-bottom: 5px; font-weight: lighter;">자유게시판</h2>
 		<br><br>
 	</div>
 	</div>
+	<div class = "listContainer">
 <div class="wrap">
 	<div>
 		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
@@ -304,7 +314,7 @@
 	</div>
 	<div class="tag-input" style="color: lightgray;">${board.freeTag}</div>
 </div>
-
+</div>
 <br>
 <div class = "BtnArray">
 	<button class = "yellowBtn" id="listBtn">목록</button>
