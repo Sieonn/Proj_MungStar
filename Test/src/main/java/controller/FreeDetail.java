@@ -2,14 +2,18 @@ package controller;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dto.Comment;
 import dto.FBoard;
+import dto.Member;
 import service.FreeService;
 import service.FreeServiceImpl;
 
@@ -36,25 +40,18 @@ public class FreeDetail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		 // 클라이언트로부터 전달된 게시글 번호 파라미터를 읽어옵니다.
+		HttpSession session=request.getSession();
+		Member memId=(Member)session.getAttribute("user");
 	    Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	    
 	    try {
 	        FreeService freeService = new FreeServiceImpl();
 	        FBoard board = (FBoard) freeService.freeDetail(freeNum);
+	        List<Comment> comments=freeService.freeCommentList(freeNum);
 
-	        // forward 이전에 파일을 열도록 이동합니다.
-//	        String pnum = request.getParameter("num");
-//	        String path = request.getServletContext().getRealPath("upload");
-//	        FileInputStream fis = new FileInputStream(new File(path, pnum));
-//	        OutputStream out = response.getOutputStream();
-//	        byte[] buff = new byte[4096];
-	        
-//	        int len = 0;
-//	        while ((len = fis.read(buff)) > 0) {
-//	            out.write(buff, 0, len);
-//	        }
-//	        fis.close();
 	        request.setAttribute("board", board);
+	        request.setAttribute("comments", comments);
+
 	        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 	    } catch (Exception e) {
 	        e.printStackTrace();

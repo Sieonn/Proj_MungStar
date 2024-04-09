@@ -25,6 +25,5 @@ public interface FreeDAO {
 	   
 	   List<Comment> selectFreeComment(Integer freeNum) throws Exception;
 	   void insertFreeComment(Comment comment) throws Exception;
-	   String selectFreeNick(String memId) throws Exception;
 	   
 }

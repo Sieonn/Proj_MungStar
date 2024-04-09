@@ -14,6 +14,5 @@ public interface FreeService {
 	Integer freeModify(HttpServletRequest request) throws Exception;
 	void deleteBoard(Integer freeNum) throws Exception;
 	List<Comment> freeCommentList(Integer freeNum) throws Exception;
-	String getFreeNick(String memId) throws Exception;
 	Comment addFreeComment(HttpServletRequest request) throws Exception;
 }

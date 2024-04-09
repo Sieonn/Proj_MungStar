@@ -67,8 +67,8 @@
 	
 	<insert id="insertBoard" parameterType="dto.FBoard" useGeneratedKeys="true" keyProperty="freeNum">
 		<![CDATA[
-			insert into freeboard (freeNick,freeSub,freeContent,freePhoto,freeTag,freeWriteDate)
-			values (#{freeNick},#{freeSub}, #{freeContent}, #{freePhoto},#{freeTag},curdate())
+			insert into freeboard (memId,freeNick,freeSub,freeContent,freePhoto,freeTag,freeWriteDate)
+			values (#{memId},#{freeNick},#{freeSub}, #{freeContent}, #{freePhoto},#{freeTag},curdate())
 		]]>
 	</insert>
 	

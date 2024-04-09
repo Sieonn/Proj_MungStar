@@ -50,11 +50,11 @@ public class FreeServiceImpl implements FreeService{
 		
 	    //3. 파라미터에서 파일 이외의 정보 가져와 Board 객체에 담아 Board 테이블에 삽입
 	    board.setFreeSub(multi.getParameter("freeSub"));
-	    System.out.println("service"+multi.getParameter("freeSub"));
 	    board.setFreeContent(multi.getParameter("freeContent"));
 	    board.setFreeTag(multi.getParameter("freeTag"));
 	    Member member = (Member)request.getSession().getAttribute("user");
 	    board.setFreeNick(member.getMemNick());
+	    board.setMemId(member.getMemId());
 	    System.out.println(board);
 	    freeDAO.insertBoard(board);
 	    
@@ -177,10 +177,7 @@ public class FreeServiceImpl implements FreeService{
 	public List<Comment> freeCommentList(Integer freeNum) throws Exception {
 		return freeDAO.selectFreeComment(freeNum);
 	}
-	@Override
-	public String getFreeNick(String memId) throws Exception {
-		return freeDAO.selectFreeNick(memId);
-	}
+	
 	@Override
 	public Comment addFreeComment(HttpServletRequest request) throws Exception {
 		Comment comment=new Comment();
@@ -196,8 +193,7 @@ public class FreeServiceImpl implements FreeService{
 		HttpSession session=request.getSession();
 		Member member=(Member)session.getAttribute("user");
 		if(member==null) throw new Exception("로그인하세요.");
-		String memNick=freeDAO.selectFreeNick(member.getMemId());
-		comment.setCommNick(memNick);
+		comment.setCommNick(member.getMemNick());
 		
 		freeDAO.insertFreeComment(comment);
 		
