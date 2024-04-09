@@ -47,5 +47,9 @@ public class WalkingDAOImpl implements WalkingDAO {
 	public String selectWalkNick(String memId) throws Exception {
 		return sqlSession.selectOne("mapper.walking.selectWalkNick",memId);
 	}
+	@Override
+	public List<Walking> selectWalkListOnMain() throws Exception {
+		return sqlSession.selectList("mapper.walking.selectWalkListOnMain");
+	}
 	
 }

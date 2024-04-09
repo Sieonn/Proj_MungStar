@@ -13,12 +13,15 @@ import javax.servlet.http.HttpSession;
 import dto.FBoard;
 import dto.Lost;
 import dto.Temp;
+import dto.Walking;
 import service.FreeService;
 import service.FreeServiceImpl;
 import service.LostService;
 import service.LostServiceImplement;
 import service.TempService;
 import service.TempServiceImplement;
+import service.WalkingService;
+import service.WalkingServiceImpl;
 
 
 @WebServlet("/main")
@@ -40,13 +43,15 @@ public class Main extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		try {
+			WalkingService walkingService=new WalkingServiceImpl();
 			FreeService freeService=new FreeServiceImpl();
 			TempService tempService=new TempServiceImplement();
 			LostService lostService=new LostServiceImplement();
+			List<Walking> walks=walkingService.walkListOnMain();
 			List<FBoard> frees=freeService.freeListOnMain();
-			System.out.println(frees);
 			List<Temp> temps=tempService.tempListOnMain();
 			List<Lost> losts=lostService.lostlistOnMain();
+			request.setAttribute("walks", walks);
 			request.setAttribute("frees", frees);
 			request.setAttribute("temps", temps);
 			request.setAttribute("losts", losts);

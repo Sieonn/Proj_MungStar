@@ -298,38 +298,17 @@ a:hover {
 				style="font-size: 12px; margin-right: 60px;">더보기</a></span>
 		</div>
 		<div class="loc">
-			<div class="plac">
-				<img src="../image/loc_1.jpg" alt="Image 1" />
-				<div class="text">
-					경북 의성 펫월드<br />
+			<c:forEach items="${walks}" var="walk">
+				<div class="plac">
+					<a href="${path}/walking/walkingDetail?walkNum=${walk.walkNum}"><img src="${path}/image/loc_1.jpg" alt="Image 1" /></a>
+					<div class="text">
+						${walk.walkName}<br/>
 					<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
-						경북 의성 단북면 안계길</div>
+						${walk.walkAddress3}
+					</div>
+					</div>
 				</div>
-			</div>
-			<div class="plac">
-				<img src="../image/loc_2.jpg" alt="Image 2" />
-				<div class="text" style="font-size: 18px">
-					인천 반려동물 놀이터
-					<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
-						인천 남동구 무네미로</div>
-				</div>
-			</div>
-			<div class="plac">
-				<img src="../image/loc_3.jpg" alt="Image 3" />
-				<div class="text" style="font-size: 18px">
-					반려동물 테마파크
-					<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
-						경기 오산시 오산로</div>
-				</div>
-			</div>
-			<div class="plac">
-				<img src="../image/loc_4.jpg" alt="Image 4" />
-				<div class="text" style="font-size: 18px">
-					임실 오수의경관광지
-					<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
-						전북 임실군 오수면 금암리</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 		<div class="free">
 			<div class="free_b">
