@@ -54,10 +54,17 @@
 		]]>
 	</select>
 	
-	<select id="selectWalkListOnMain" resultType="dto.Walking">
-		<![CDATA[
-			SELECT * FROM walking where walkBlind is false ORDER BY walkNum DESC LIMIT 4;
-		]]>
+	<select id="searchWalking" parameterType="Map" resultType="dto.Walking">
+  		SELECT * FROM walking
+  			<where>
+  				walkBlind is false
+  				<if test="walkAddress3 != walkAddress3">
+    			AND walkAddress3 = #{walkAddress3}
+  				</if>
+   				<if test="searchText != null">
+    			AND walkAddress3 like '%${searchText}%'
+  				</if>
+   			</where>
+  		order by walkNum desc
 	</select>
-	
 </mapper>
