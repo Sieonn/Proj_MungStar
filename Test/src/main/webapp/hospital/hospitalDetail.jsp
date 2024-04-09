@@ -13,6 +13,124 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&autoload=true&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <style type="text/css">
+#walkListLogout{
+z-index:9998;
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:120px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
+	.comment{
+	z-index:9998;
+  	width:1280px;
+  	margin:0 auto;
+
+  	}
+   .cheader{
+   z-index:8888;
+      	width: 1280px;
+        font-size: 18px;
+        font-family: "JalnanGothic";  	
+        }
+  	.comment_container{
+      	margin: 0 auto 160px auto;
+      	width: 1280px;
+  		padding-top: 30px; padding-bottom:30px;
+      	background-color: #f5f5f5;
+      	border-radius: 20px;
+  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  	}
+  	.comment_box{
+  		background-color: white;
+  		margin: 0 4%; margin-bottom: 15px;
+  		padding: 20px 10px 20px 10px;
+      	border-radius: 20px;
+  	}
+  	.writeComm{
+  		width: 70%; 
+  		float: right;
+ 		margin-bottom: 10px;
+  		padding: 5px;
+  		overflow: hidden;
+  	}
+  	.memComm{
+		width: 763.86px; 
+  		margin-right: 365px;
+  		margin-bottom: 10px;
+  		padding: 5px;
+  		overflow: hidden;  	
+  	}
+  	.commContent{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+  		background-color: #f5f5f5;
+  		border-radius: 7px;
+  		text-align: right;
+		font-size: 15px;
+  	}
+  	.commNickname{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+		text-align: right;
+		font-size: 12px;
+		font-weight: bold;
+		color: gray;
+  	}
+  	
+  	
+  	
+  	.inputDiv{
+  		margin: 0 4%;
+  		padding: 4px;
+  		background-color: white;
+  		border-style : solid;
+  		border-color: #EFC940;
+  		border-width: 4px;
+  		border-radius: 20px;
+  		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  	}
+  	.inputComment{
+  		display: inline-block;
+  		width: 80%;
+  		height: 40px;
+   		margin-left: 5px;
+  		margin-right: 70px; 
+  		border-style: none;
+  		outline: none;
+  		font-size: 15px;
+  	}
+  	
+  	
+  	.commBtn{
+  		margin:10px;
+		background-color: #FED74B;
+  		border: none;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+  		border-radius: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		font-size: 15px;
+		font-weight: bold;
+  	}
+  	
+  	.mycomm{
+  		float: right;
+  	}
+  	.comm{
+  		float: left;
+  	}
+  	.delete_img{
+  		padding: 5px;
+
+  </style>
 <style>
  @font-face {
         font-family: "JalnanGothic";
@@ -244,9 +362,11 @@ box-shadow: 0 2px 1px gray;
 	margin-top:6px;
 }
 
-.comment{
-top:50px;
-}
+  	.comment{
+  	position:relative;
+  	top:120px;
+  	z-index:9999;
+  	}
 </style>
 </head>
 <body>
@@ -270,7 +390,7 @@ window.onload=function(){
 		mapOption = { 
 			
 		    center: new kakao.maps.LatLng(center.longs, center.lats), // 지도의 중심좌표
-		    level: 7 // 지도의 확대 레벨
+		    level: 1 // 지도의 확대 레벨
 		};
 
 		map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -296,7 +416,7 @@ window.onload=function(){
 				type:'post',
 				async:true,
 				success:function(result){
-					walkings = JSON.parse(result);
+					hospitals = JSON.parse(result);
 
 					imageSrc = '${path}/image/hospital.png'; 
 					imageSize = new kakao.maps.Size(36, 40), 
@@ -435,14 +555,82 @@ window.onload=function(){
 
 </div>
 </div>
-<br><br>
-<div class="hosBtn">
-
-		</div>
 </div>
-			<div class="comment">
-			<%@ include file="mapComment.jsp" %>
-			</div>	
+<br><br>
+			<div class="ememem" style="display:flex; top:700px; height:30px; width:1280px; ">
+			</div>
+<div class="comment">
+			<div class="cheader">&nbsp;COMMENT</div>
+<div class="comment_container">
+	<div class="comment_box" id="comment_box">
+	<c:forEach items="${comments}" var="comment">
+	<c:choose>
+	<c:when test="${comment.commNick eq walkWriter}">
+	<div class="writeComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commContent mycomm">${comment.commContent}</span>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="memComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commContent comm" >${comment.commContent}</span>
+	</div>
+	</c:otherwise>
+	</c:choose>
+	</c:forEach>     
+	</div>
+    <div class="inputDiv">
+    	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
+		<button class="commBtn" id="commBtn" style="z-index:9999;">등록</button>
+	</div>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$('#commBtn').on("click",function(){
+	$.ajax({
+		url:"hosCommentList",
+		type:"POST",
+		asnyc:true,
+		data:{commContent:$('#comment').val(), hosNum:'${hospital.hosNum}'},
+		success:function(result){
+			let comment=JSON.parse(result);
+			console.log(comment.memNick);
+			
+			if(comment.memNick==='${hosNick}'){
+			let div=`<div class="writeComm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+					<span class="commContent mycomm">\${comment.commContent}</span>
+				</div>`
+				$('#comment_box').append(div);
+			} else{
+				let div=`<div class="memComm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+						<span class="commContent comm" >\${comment.commContent}</span>
+					</div>`
+					$('#comment_box').append(div);
+			}
+			
+			
+			
+			
+			
+		},
+		error:function(err){
+			alert("댓글입력 오류입니다.")
+		}	
+	})
+})
+)
+
+</script>
+</div>
+</div>
+		
+		
 			
 </body>
 
