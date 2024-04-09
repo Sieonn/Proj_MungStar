@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dto.File;
+import dto.Comment;
 import dto.Walking;
 import util.MybatisSqlSessionFactory;
 
@@ -24,18 +24,28 @@ public class WalkingDAOImpl implements WalkingDAO {
 		
 		
 	}
+	public void updateWalking(Walking walk) throws Exception{
+		sqlSession.update("mapper.walking.updateWalking",walk);
+		sqlSession.commit();
+	}
+	
 	
 	public Walking selectWalking(Integer walkNum) throws Exception{
 		return sqlSession.selectOne("mapper.walking.selectWalking",walkNum);
 	}
 	
 	@Override
-	public void insertFile(File file) throws Exception {
-		sqlSession.insert("mapper.file.insertFile", file);
-	    sqlSession.commit();
-	    // dto에 있는 파일 import
-		
+	public List<Comment> selectWalkComment(Integer walkNum) throws Exception {
+		return sqlSession.selectList("mapper.walking.selectWalkComment",walkNum);
 	}
-	
+	@Override
+	public void insertWalkComment(Comment comment) throws Exception {
+		sqlSession.insert("mapper.walking.insertWalkComment",comment);
+		sqlSession.commit();
+	}
+	@Override
+	public String selectWalkNick(String memId) throws Exception {
+		return sqlSession.selectOne("mapper.walking.selectWalkNick",memId);
+	}
 	
 }
