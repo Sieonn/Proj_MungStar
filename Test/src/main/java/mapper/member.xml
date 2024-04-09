@@ -26,8 +26,13 @@
 			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail},curdate(),#{memProfile})
 		]]>
 	</insert>
-	
-	<update id="reInsertPw"  parameterType="dto.Dog">
-		update dog where dogNum=#{dogNum}
+	<select id="selectFindPw" parameterType="Map"
+		resultType="String">
+    <![CDATA[
+        SELECT memPw FROM member WHERE memId = #{memId} AND memEmail = #{memEmail}
+    ]]>
+	</select>
+	<update id="reInsertPw"  parameterType="dto.Member">
+		update member where memPw=#{memPw}
 	</update>
 </mapper>

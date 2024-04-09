@@ -14,19 +14,12 @@ import org.json.simple.JSONObject;
 import service.MemberService;
 import service.MemberServiceImpl;
 
-/**
- * Servlet implementation class FindPw
- */
 @WebServlet("/findpw")
 public class FindPw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public FindPw() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,15 +33,17 @@ public class FindPw extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String memId = request.getParameter("memId");
-        String memEmail = request.getParameter("memEmail");
-        MemberService memberService = new MemberServiceImpl();
-        boolean isValidUser;
+		request.setCharacterEncoding("utf-8");
+		System.out.println(request.getParameter("memId"));
+		System.out.println(request.getParameter("memEmail"));
+        JSONObject jsonRes = new JSONObject();
 		try {
-			isValidUser = memberService.validateUser(memId, memEmail);
-			
+			MemberService memberService = new MemberServiceImpl();
+			String findpw = memberService.findpw(request.getParameter("memId"), request.getParameter("memEmail"));
+			response.getWriter().write(findpw);
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.getWriter().write("");
 		}
 	}
 

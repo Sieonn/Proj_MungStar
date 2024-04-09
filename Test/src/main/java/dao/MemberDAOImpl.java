@@ -41,9 +41,9 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public String selectFindPw(String memId, String memEmail) throws Exception {
 		Map<String, String> param = new HashMap<>();
-		param.put("memNick", memId);
-		param.put("memPhone", memEmail);
+		param.put("memId", memId);
+		param.put("memEmail", memEmail);
 		
-		  return sqlSession.selectOne("mapper.member.selectFindId", param);
+		  return sqlSession.selectOne("mapper.member.selectFindPw", param);
 	}
 }

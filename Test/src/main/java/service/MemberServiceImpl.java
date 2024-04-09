@@ -1,9 +1,12 @@
 package service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import dao.DogDAO;
 import dao.DogDAOImpl;
@@ -91,7 +94,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean validateUser(String memId, String memEmail) {
-		return false;
+	public String findpw(String memId, String memEmail) throws Exception {
+		String memPw = memberDao.selectFindPw(memId, memEmail);
+		if (memPw == null)
+			return "";
+		return memPw;
 	}
-}
+	}

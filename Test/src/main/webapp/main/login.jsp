@@ -155,8 +155,8 @@ a:hover {
 			</form>
 			<div class="links">
 				<a href="${path}/findid">아이디 찾기</a> | <a
-					href="../main/findPassword.jsp">비밀번호 찾기</a> | <a
-					href="../main/signup.jsp">회원가입</a>
+					href="${path}/findpw">비밀번호 찾기</a> | <a
+					href="${path}/signup">회원가입</a>
 			</div>
 		</div>
 	</div>

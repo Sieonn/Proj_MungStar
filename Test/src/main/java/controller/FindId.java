@@ -30,7 +30,6 @@ public class FindId extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		System.out.println(request.getParameter("memNick"));
 		System.out.println(request.getParameter("memPhone"));
-		@SuppressWarnings("unused")
 		JSONObject jsonRes = new JSONObject();
 		try {
 			MemberService memberService = new MemberServiceImpl();

@@ -2,6 +2,8 @@ package service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+
 public interface MemberService {
 	void login(HttpServletRequest request) throws Exception;
 	void signup(HttpServletRequest request) throws Exception;
@@ -9,6 +11,6 @@ public interface MemberService {
 	boolean memberNickCheck(String memNick) throws Exception;
 	void getMypage(HttpServletRequest request) throws Exception;
 	String findId(String memNick, String memPhone) throws Exception;
-	boolean validateUser(String memId, String memEmail) throws Exception;
+	String findpw(String memId, String memEmail)throws Exception;
 	}
 

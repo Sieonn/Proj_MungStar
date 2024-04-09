@@ -18,7 +18,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous" />
-<title>멍뭉별 | 아이디 찾기</title>
+<title>멍뭉별 | 비밀번호 찾기</title>
 <style>
 @font-face {
 	font-family: "JalnanGothic";
@@ -126,13 +126,33 @@ placeholder {
 }
 </style>
 <script>
+
+
 $(function() {
-	$("form").submit(function(e) {
-		e.preventDefault();
+	// 이메일 인증 버튼 비활성화
+	$("#checkedemail").prop("disabled", true);
+	
+	// memId 입력란 이벤트
+	$("#memId").on("input", function() {
+		checkMemberInfo(); // 회원 정보 확인 함수 호출
+	});
+	
+	// memEmail 입력란 이벤트
+	$("#memEmail").on("input", function() {
+		checkMemberInfo(); // 회원 정보 확인 함수 호출
+	});
+	
+	// 회원 정보 확인 함수
+	function checkMemberInfo() {
 		var memId = $("#memId").val();
 		var memEmail = $("#memEmail").val();
 
-		// AJAX를 통해 서버로 닉네임과 전화번호 값을 전달하여 아이디를 찾음
+		// 입력값이 빈 문자열인 경우 확인하지 않음
+		if (memId === "" || memEmail === "") {
+			$("#check").text(""); // 메시지 초기화
+			return; // 함수 종료
+		}
+
 		$.ajax({
 			url : '${path}/findpw', // 아이디 찾기 처리를 하는 서블릿 주소
 			type : 'post',
@@ -146,25 +166,23 @@ $(function() {
 					// DB에서 일치하는 아이디를 찾지 못한 경우
 					$("#check").text("일치하는 항목이 없습니다.");
 					$("#check").css("color", "red");
-					$("#result").css("color", "black"); // result의 텍스트 색상을 기본 값으로 변경
+					$("#checkedemail").prop("disabled", true); // 이메일 인증 버튼 비활성화
 				} else {
 					// DB에서 일치하는 아이디를 찾은 경우
-					$("#check").text("아이디는 " + result + "입니다.");
+					$("#check").text("회원정보가 일치합니다.");
 					$("#check").css("color", "green");
-					// result의 텍스트 색상을 초록색으로 변경
+					$("#checkedemail").prop("disabled", false); // 이메일 인증 버튼 활성화
 				}
 			},
 			error : function() {
 				alert("아이디를 찾는 중에 오류가 발생했습니다.");
 			}
 		});
-	});
-});
-
+	}
 	$(function() {
 		   $("#checkedemail").click(function(e) {
 		      e.preventDefault();
-			    var email = $('input[name=memEmail]').val();
+			      var email = $('input[name=memEmail]').val();
 		      $.ajax({
 		         url:'joinauth',
 		         type:'post',
@@ -172,8 +190,11 @@ $(function() {
 		         data:{memEmail:email},
 		         success:function(result) {
 		            alert(result);
+		          	$('#authcode').val('');
+		            $('#authcode').prop('readonly', false);
+		            $("#check").text("인증을 진행해주세요.");
 		         }
-		      }) 
+		      }); 
 		   });
 		   //메일체크
 		   $("#checkauth").click(function(e) {
@@ -192,6 +213,7 @@ $(function() {
 		            		    'font-size': '12px', // 폰트 크기 변경
 		            		    'background-color': 'light-dark'
 		            		});
+		            	  	$("#check").text("비밀번호 재설정이 가능합니다.");
 		            } else {
 		            	$('#authcode').val('인증번호가 일치하지 않습니다.');
 		            	 $('#authcode').css({
@@ -201,8 +223,40 @@ $(function() {
 		            }
 		         }
 		      })
-		   })
+		   });
 		});
+	// 제출 버튼 클릭 시 이벤트
+	$("#btn-Yes").click(function(e) {
+		e.preventDefault();
+		
+		var memId = $("#memId").val();
+		var memEmail = $("#memEmail").val();
+		
+		// memId와 memEmail이 일치하는지 확인
+		$.ajax({
+			url : '${path}/findpw',
+			type : 'post',
+			async : true,
+			data : {
+				memId : memId,
+				memEmail : memEmail
+			},
+			success : function(result) {
+				if (result == "") {
+					// DB에서 일치하는 아이디를 찾지 못한 경우
+					alert("이메일 인증을 먼저 진행해주세요.");
+				} else {
+					// DB에서 일치하는 아이디를 찾은 경우
+					$("#btn-Yes").prop("disabled", false); // 제출 버튼 활성화
+					
+				}
+			},
+			error : function() {
+				alert("비밀번호를 찾는 중에 오류가 발생했습니다.");
+			}
+		});
+	});
+});
 </script>
 </head>
 
