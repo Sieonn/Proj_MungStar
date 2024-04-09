@@ -2,19 +2,29 @@ package dto;
 
 
 public class Like {
+	private Integer num;
 	private String memId;
 	private Integer boardNum;
-	private boolean likeOrnot;
+	
 
 	public Like() {
 		super();
 	}
 
-	public Like(String memId, Integer boardNum, boolean likeOrnot) {
+	public Like(Integer num, String memId, Integer boardNum ) {
 		super();
 		this.memId = memId;
 		this.boardNum = boardNum;
-		this.likeOrnot = likeOrnot;
+		this.num = num;
+	}
+	
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 
 	public String getMemId() {
@@ -33,13 +43,6 @@ public class Like {
 		this.boardNum = boardNum;
 	}
 
-	public boolean isLikeOrnot() {
-		return likeOrnot;
-	}
-
-	public void setLikeOrnot(boolean likeOrnot) {
-		this.likeOrnot = likeOrnot;
-	}
 	
 	
 	

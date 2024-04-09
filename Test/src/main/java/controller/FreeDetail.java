@@ -41,17 +41,19 @@ public class FreeDetail extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		 // 클라이언트로부터 전달된 게시글 번호 파라미터를 읽어옵니다.
 		HttpSession session=request.getSession();
-		Member memId=(Member)session.getAttribute("user");
+		Member member=(Member)session.getAttribute("user");
 	    Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	    
 	    try {
 	        FreeService freeService = new FreeServiceImpl();
 	        FBoard board = (FBoard) freeService.freeDetail(freeNum);
 	        List<Comment> comments=freeService.freeCommentList(freeNum);
-
+	        Integer likecount = freeService.selectFreeLikeCount(freeNum);
+	        Boolean isLike = freeService.freeLike(member.getMemId(),freeNum);
 	        request.setAttribute("board", board);
 	        request.setAttribute("comments", comments);
-
+	        request.setAttribute("likecount", likecount);
+	        request.setAttribute("isLike", isLike);
 	        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 	    } catch (Exception e) {
 	        e.printStackTrace();

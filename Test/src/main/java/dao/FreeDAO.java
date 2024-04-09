@@ -5,7 +5,6 @@ import java.util.List;
 import dto.Comment;
 import dto.FBoard;
 import dto.File;
-import dto.Like;
 
 public interface FreeDAO {
 
@@ -28,6 +27,8 @@ public interface FreeDAO {
 	   void insertFreeComment(Comment comment) throws Exception;
 	   List<FBoard> selectFreeListOnMain() throws Exception;
 	   
-	   void insertFreeLike(Like like) throws Exception;
-	   void updateFreeLike(String memId) throws Exception;
+	   void insertFreeLike(String memId, Integer freeNum) throws Exception;
+	   void deleteFreeLike(String memId, Integer freeNum) throws Exception;
+	   Integer selectFreeLike(String memId, Integer freeNum) throws Exception;
+	   Integer selectFreeLikeCount(Integer likecount) throws Exception;
 }

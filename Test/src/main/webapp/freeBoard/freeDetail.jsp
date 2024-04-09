@@ -289,7 +289,7 @@
 		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
 		<span class = "titleInfo">${board.freeWriteDate}&nbsp;&nbsp;&nbsp;</span>
 		<br>
-		<span class = "titleInfo">좋아요 : ${board.freeLike}&nbsp;</span>
+		<span class = "titleInfo">좋아요 : <span id="likecount">${likecount}</span>&nbsp;</span>
 		<span class = "titleInfo">조회수 : ${board.freeView}&nbsp;</span>
 		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;${board.freeNick }</div>
 	</div>
@@ -310,8 +310,21 @@
 	<button class = "yellowBtn" id="listBtn">목록</button>
  	<button type = "submit" class = "yellowBtn" id="modifyBtn">수정</button>
  	<button id="deleteBtn" class = "yellowBtn" type = "submit">삭제</button>
-	<button id="likeCount" class="likeButton" onclick="toggleLike(this)"></button>
+<%-- 	
+ 	<button id="likeCount" class="likeButton" onclick="toggleLike(this)"></button>
 	<span class="likeCount">${board.freeLike}</span>
+ --%>
+	<c:if test="${user ne Empty}">
+      <c:choose>
+         <c:when test="${isLike eq 'true'}">
+            <img src="../image/하트(핑).png" width="40px" height="40px" style="margin_top :5px" id="like"/>
+         </c:when>
+         <c:otherwise>
+            <img src="../image/하트(회)수정.png" width="40px" height="40px" style="margin_top :5px" id="like"/>
+         </c:otherwise>
+      </c:choose>
+   </c:if>
+
 </div>
 <br>
 </div>
@@ -412,24 +425,26 @@ function toggleLike(button) {
 </script>
  
 <script>
- 
 $(function(){
-	$('#likeCount').click(function(){
-		$.ajax({
-			url : 'freelike',
-			type : 'post',
-			async : true,
-			data :{like:JSON.stringify({memberID:"${board.freeNick}",boardNum:"${board.freeNum}"})},
-			success : function(result) {
-				if(result == 'true') {
-					$('#likeCount').attr("src","../image/하트(회)수정.png")
-				} else {
-					$('#likeCount').attr("src","../image/하트(핑)수정.png")
-				}
-			}
-		})
-	})
-})
+    $('#like').click(function(){
+       $.ajax({
+          url:'${path}/freelike',
+          type:'post',
+          async:true,
+          data:{like:JSON.stringify({memId:"${user.memId}", freeNum:"${board.freeNum}"})},
+          success:function(result){
+             if(result=='true'){
+                $('#like').attr("src","../image/하트(핑).png")
+                
+                $("#likecount").text(+$("#likecount").text()+1)
+             } else{
+                $('#like').attr("src","../image/하트(회)수정.png")
+                $("#likecount").text(+$("#likecount").text()-1)
+             }
+          },
+       })
+    })
+ })
 
 </script>
 

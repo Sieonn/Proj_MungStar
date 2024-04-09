@@ -292,6 +292,15 @@ a:hover {
 			}
 		})
 	})
+	
+	async function submit() {
+		let formData = new FormData();
+
+    	formData.append("file", imageBlob, "image.webp");
+    	let response = await fetch('/MoongStar/temp/tempWrite', {
+      		method: 'POST',
+      		body: formData
+    });
 </script>
 
 </head>
@@ -303,9 +312,8 @@ a:hover {
 		
 			<div class="wel-Img">
 				<div class="inner_profile">
-					<img class="btn-open-modal" id="preview"
-						src="${path}/imageView?num=6"> <input type="file"
-						id="fileInput" class="fileInput" name="file" accept="image/*">
+					<img class="btn-open-modal" id="preview" src="${path}/imageView?num=${member.memProfile}"> 
+					<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
 				</div>
 			</div> 
 

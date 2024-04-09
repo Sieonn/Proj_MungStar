@@ -114,16 +114,34 @@ public class FreeDAOImpl implements FreeDAO {
 	}
 	
 	@Override
-	public void insertFreeLike(Like like) throws Exception {
-		sqlSession.insert("mapper.board.insertFreeLike",like);
+	public void insertFreeLike(String memId, Integer freeNum) throws Exception {
+		Map<String, Object> param=new HashMap<>();
+		param.put("memId", memId);
+		param.put("freeNum",freeNum);
+		sqlSession.insert("mapper.board.insertFreeLike",param);
 		sqlSession.commit();
-		
 	}
 
 	@Override
-	public void updateFreeLike(String memId) throws Exception{
-		sqlSession.update("mapper.board.updateFreeLike",  memId); 
+	public void deleteFreeLike(String memId, Integer freeNum) throws Exception{
+		Map<String, Object> param=new HashMap<>();
+		param.put("memId", memId);
+		param.put("freeNum",freeNum);
+		sqlSession.delete("mapper.board.deleteFreeLike",param);
 		sqlSession.commit();
+	}
+	@Override
+	public Integer selectFreeLike(String memId, Integer freeNum) throws Exception {
+		Map<String, Object> param=new HashMap<>();
+		param.put("memId", memId);
+		param.put("freeNum",freeNum);
+		return sqlSession.selectOne("mapper.board.selectFreeLike",param);
+
+	}
+
+	@Override
+	public Integer selectFreeLikeCount(Integer likecount) throws Exception {
+		return sqlSession.selectOne("mapper.board.CountFreeLike",likecount);
 	}
 
 }

@@ -282,7 +282,7 @@
 	<c:choose>
 	<c:when test="${comment.commNick eq tempNick}">
 	<div class="writeComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="deleteComm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent mycomm">${comment.commContent}</span>
 	</div>
@@ -386,7 +386,7 @@ $('#commBtn').on("click",function(){
 			
 			if(comment.memNick==='${tempNick}'){
 			let div=`<div class="writeComm">
-					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="deleteComm">
 					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 					<span class="commContent mycomm">\${comment.commContent}</span>
 				</div>`
@@ -462,5 +462,12 @@ $('#deleteBtn').click(function(){
 	 }
 })
 
+$('#deleteComm').click(function(){
+	 if (confirm("댓글을 삭제하시겠습니까??") == true){    //확인
+	     window.location.href="tempCommentDelete?commNum=${temp.tempNum}"
+	 }else{   //취소
+	     return false;
+	 }
+})
 </script>
 </html>

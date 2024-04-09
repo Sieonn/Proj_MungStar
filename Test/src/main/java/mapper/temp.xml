@@ -113,7 +113,7 @@
 	
 	<select id="selectTempListOnMain" resultType="dto.Temp">
 		<![CDATA[
-			SELECT * FROM tempshelter ORDER BY tempNum DESC LIMIT 5;
+			SELECT * FROM tempshelter where tempBlind is null ORDER BY tempNum DESC LIMIT 5;
 		]]>
 	</select>
 </mapper>
