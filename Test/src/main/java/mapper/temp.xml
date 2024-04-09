@@ -91,12 +91,18 @@
 		]]>
 	</select>
 
-	<insert id="insertTempComment" parameterType="dto.Comment">
+	<insert id="insertTempComment" parameterType="dto.Comment" useGeneratedKeys="true" keyProperty="commNum">
 		<![CDATA[
 			insert into tempComment (commNick,tempNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())
 		]]>
 	</insert>
+	
+	<delete id="deleteTempComment" parameterType="Integer">
+		<![CDATA[
+			delete from tempcomment where commNum=#{commNum}
+		]]>
+	</delete>
 	
 	<select id="selectTempNick" parameterType="String"
 		resultType="String">
@@ -114,6 +120,12 @@
 	<select id="selectTempListOnMain" resultType="dto.Temp">
 		<![CDATA[
 			SELECT * FROM tempshelter where tempBlind is null ORDER BY tempNum DESC LIMIT 5;
+		]]>
+	</select>
+	
+	<select id="selectTempListByMemId" resultType="dto.Temp">
+		<![CDATA[
+			SELECT * FROM tempshelter where tempBlind is null and memId=#{memId} ORDER BY tempNum desc;
 		]]>
 	</select>
 </mapper>

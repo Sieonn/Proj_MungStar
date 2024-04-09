@@ -90,5 +90,14 @@ public class TempDaoImplement implements TempDao{
 	public List<Temp> selectTempListOnMain() throws Exception {
 		return sqlSession.selectList("mapper.temp.selectTempListOnMain");
 	}
+	@Override
+	public void deleteTempComment(Integer commNum) throws Exception {
+		sqlSession.delete("mapper.temp.deleteTempComment",commNum);
+		sqlSession.commit();
+	}
+	@Override
+	public List<Temp> selectTempListByMemId(String memId) throws Exception {
+		return sqlSession.selectList("mapper.temp.selectTempListByMemId",memId);
+	}
 
 }

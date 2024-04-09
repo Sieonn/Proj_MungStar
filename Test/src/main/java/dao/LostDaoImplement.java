@@ -94,4 +94,15 @@ public class LostDaoImplement implements LostDao{
 		return sqlSession.selectList("mapper.lost.selectLostListOnMain");
 	}
 
+	@Override
+	public void deleteLostComment(Integer commNum) throws Exception {
+		sqlSession.delete("mapper.lost.deleteLostComment",commNum);
+		sqlSession.commit();
+	}
+
+	@Override
+	public List<Lost> selectLostListByMemId(String memId) throws Exception {
+		return sqlSession.selectList("mapper.lost.selectLostListByMemId",memId);
+	}
+
 }

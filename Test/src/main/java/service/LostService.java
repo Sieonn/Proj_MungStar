@@ -17,5 +17,6 @@ public interface LostService {
 	String getLostNick(String memId) throws Exception;
 	void lostDelete(Integer lostNum) throws Exception;
 	List<Lost> lostlistOnMain() throws Exception;
-	
+	void lostCommentDelete(Integer commNum) throws Exception;
+	List<Lost> lostListByMemId(String memId) throws Exception;
 }

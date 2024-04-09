@@ -18,4 +18,6 @@ public interface TempService {
 	void tempDelete(Integer tempNum) throws Exception;
 	
 	List<Temp> tempListOnMain() throws Exception;
+	void tempCommentDelete(Integer commNum) throws Exception;
+	List<Temp> tempListByMemId(String memId) throws Exception;
 }

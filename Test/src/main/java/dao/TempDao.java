@@ -28,4 +28,6 @@ public interface TempDao {
 	void updateTempBlind(Integer tempNum) throws Exception;
 	
 	List<Temp> selectTempListOnMain() throws Exception;
+	void deleteTempComment(Integer commNum) throws Exception;
+	List<Temp> selectTempListByMemId(String memId) throws Exception;
 }

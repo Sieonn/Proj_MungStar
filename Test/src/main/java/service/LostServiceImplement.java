@@ -13,6 +13,7 @@ import dao.LostDaoImplement;
 import dto.Comment;
 import dto.Lost;
 import dto.Member;
+import dto.Temp;
 import util.PageInfo;
 
 public class LostServiceImplement implements LostService {
@@ -185,5 +186,16 @@ public class LostServiceImplement implements LostService {
 	public List<Lost> lostlistOnMain() throws Exception {
 		List<Lost> lostList=lostDao.selectLostListOnMain();
 		return lostList;
+	}
+
+	@Override
+	public void lostCommentDelete(Integer commNum) throws Exception {
+		lostDao.deleteLostComment(commNum);
+	}
+
+	@Override
+	public List<Lost> lostListByMemId(String memId) throws Exception {
+		List<Lost> lostList=lostDao.selectLostListByMemId(memId);
+		return null;
 	}
 }

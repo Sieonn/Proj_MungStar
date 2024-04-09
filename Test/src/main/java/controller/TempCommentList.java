@@ -48,6 +48,7 @@ public class TempCommentList extends HttpServlet {
 			JSONObject jsonObj=new JSONObject();
 			jsonObj.put("commContent", comment.getCommContent());
 			jsonObj.put("memNick",comment.getCommNick());
+			jsonObj.put("commNum",comment.getCommNum());
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(jsonObj.toJSONString());
 		} catch (Exception e) {

@@ -88,6 +88,12 @@
 		]]>
 	</insert>
 	
+	<delete id="deleteLostComment" parameterType="Integer">
+		<![CDATA[
+			delete from lostcomment where commNum=#{commNum}
+		]]>
+	</delete>
+	
 	<select id="selectLostNick" parameterType="String"
 		resultType="String">
 		<![CDATA[
@@ -104,6 +110,12 @@
 	<select id="selectLostListOnMain" resultType="dto.Lost">
 		<![CDATA[
 			SELECT * FROM lost ORDER BY lostNum DESC LIMIT 5;
+		]]>
+	</select>
+	
+	<select id="selectLostListByMemId" resultType="dto.Lost">
+		<![CDATA[
+			SELECT * FROM lost where lostBlind is null and memId=#{memId} ORDER BY tempNum desc;
 		]]>
 	</select>
 </mapper>

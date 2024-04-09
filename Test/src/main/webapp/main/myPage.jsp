@@ -340,14 +340,12 @@ a:hover {
 					<div class="petInfo">
 						<div style="margin: 5% 7%">
 							<div class="act-btn" style="display: flex">
-								<button class="actBtn">
-									<a href="${path}/walkBoard?id=${user.memId}">산책로 추천</a>
-								</button>
-								<button class="actBtn" id="">자유게시판</button>
+								<button class="actBtn" value="walk">산책로 추천</button>
+								<button class="actBtn" id="" value="free">자유게시판</button>
 							</div>
 							<div class="act-btn" style="display: flex">
-								<button id="" class="actBtn">임시 보호소</button>
-								<button id="" class="actBtn">미멍 보호소</button>
+								<button value="temp" id="" class="actBtn">임시 보호소</button>
+								<button value="lost" id="" class="actBtn">미멍 보호소</button>
 							</div>
 						</div>
 					</div>
@@ -463,6 +461,18 @@ a:hover {
 			preview.src = "${path}/image/addFile.png";
 		}
 	}
+	
+	
+	
+</script>
+
+<script>
+$.ajax({
+	url:'myWalkList',
+	type='get'
+})
+
+
 </script>
 
 </html>
