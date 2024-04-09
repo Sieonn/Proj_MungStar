@@ -21,7 +21,10 @@
 		<mapper resource="mapper/dog.xml" />
 		<mapper resource="mapper/member.xml" />
 		<mapper resource="mapper/walking.xml" />
+		<mapper resource="mapper/walkComment.xml"/>
+		<mapper resource="mapper/walkingLike.xml"/>
 		<mapper resource="mapper/hospital.xml" />
+		<mapper resource="mapper/hospitalComment.xml"/>
 		<mapper resource="mapper/board.xml" />
 		<mapper resource="mapper/boardlike.xml" />
 		<mapper resource="mapper/temp.xml" />
