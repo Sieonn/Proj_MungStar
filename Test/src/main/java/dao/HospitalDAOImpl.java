@@ -1,11 +1,14 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Comment;
 import dto.Hospital;
+import dto.Walking;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDAOImpl implements HospitalDAO {
@@ -38,5 +41,11 @@ public class HospitalDAOImpl implements HospitalDAO {
 	public String selectHosNick(String memId) throws Exception {
 		return sqlSession.selectOne("mapper.hospital.selectHosNick",memId);
 	}
-	
+	public List<Hospital> searchHospital(String hosAddress3, String searchText)
+			throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		param.put("hosAddress3",hosAddress3);
+		param.put("searchText", searchText);
+		return sqlSession.selectList("mapper.hospital.searchHospital",param);
+	}
 }
