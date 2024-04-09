@@ -32,10 +32,14 @@ public class WalkingServiceImpl implements WalkingService {
 	public List<Walking> allWalkingInfo() throws Exception{
 	List<Walking> walkingList = walkDAO.selectWalkingList();
 	return walkingList;
-	
+	}
+	public List<Walking> searchWalking(HttpServletRequest request) throws Exception{
+		String searchText = request.getParameter("searchText");
+		String walkAddress3=request.getParameter("walkAddress3");
+		System.out.println("service의"+searchText);
+		List<Walking> walkings = walkDAO.searchWalking(walkAddress3,searchText);
+		return walkings;
 		
-		
-	
 	}
 
 	public Walking walkingDetail(Integer walkNum) throws Exception{
@@ -110,12 +114,6 @@ public class WalkingServiceImpl implements WalkingService {
 		
 		
 		return comment;
-	}
-
-	@Override
-	public List<Walking> walkListOnMain() throws Exception {
-		List<Walking> walkList=walkDAO.selectWalkListOnMain();
-		return walkList;
 	}
 	
 }
