@@ -204,6 +204,16 @@
   		text-align: right;
 		font-size: 15px;
   	}
+  	.memcommContent{
+        padding-top: 5px; padding-bottom: 5px;
+        padding-left: 10px; padding-right: 7px;
+        background-color: #f5f5f5;
+        overflow:auto;
+        border-radius: 7px;
+        text-align: left;
+      	font-size: 14px;
+     }
+  	
   	.commNickname{
   		padding-top: 5px; padding-bottom: 5px;
   		padding-left: 10px; padding-right: 7px;
@@ -322,7 +332,7 @@
 	<div class="memComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
-		<span class="commContent comm" >${comment.commContent}</span>
+		<span class="memcommContent comm" >${comment.commContent}</span>
 	</div>
 	</c:otherwise>
 	</c:choose>
