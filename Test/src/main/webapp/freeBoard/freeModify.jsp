@@ -201,6 +201,132 @@
         border-radius: 10px;
     }
 </style>
+<style type="text/css">
+      .cheader{
+      	margin: 20px auto 0 auto;
+      	width: 1280px;
+        font-size: 18px;
+        font-family: "JalnanGothic";  	
+        }
+  	.comment_container{
+      	margin: 0 auto 160px auto;
+      	width: 1280px;
+  		padding-top: 30px; padding-bottom:30px;
+      	background-color: #f5f5f5;
+      	border-radius: 20px;
+  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  	}
+  	.comment_box{
+  		background-color: white;
+  		width: 1160px; max-height: 500px;
+  		margin: 0 50px 15px 50px;
+  		padding: 10px 10px 10px 10px;
+      	border-radius: 20px;
+      	display: inline-block;
+      	overflow: auto;
+  	}
+  	.comment_box::-webkit-scrollbar{
+      	width: 10px;
+      	max-height: 460px;
+    }
+    .comment_box::-webkit-scrollbar-thumb{
+      	background-color: #D9D9D9;
+      	min-height: 10px;
+      	border-radius: 10px;
+      	background-clip: padding-box;
+    }
+    .comment_box::-webkit-scrollbar-track{
+      	background-color: transparent;
+      	border-radius: 10px;
+    }
+  	.writeComm{
+  		width: 70%;
+  		margin: 5px 0 5px 0; 
+  		float: right;
+  		padding: 5px;
+  		overflow: hidden;
+  	}
+  	.memComm{
+		width: 763.86px; 
+  		margin: 5px 365px 5px 0;
+  		padding: 5px;
+  		overflow: hidden;  	
+  	}
+  	.commContent{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+  		background-color: #FED74B;
+  		border-radius: 7px;
+  		text-align: right;
+		font-size: 15px;
+  	}
+  	.memcommContent{
+        padding-top: 5px; padding-bottom: 5px;
+        padding-left: 10px; padding-right: 7px;
+        background-color: #f5f5f5;
+        overflow:auto;
+        border-radius: 7px;
+        text-align: left;
+      	font-size: 14px;
+     }
+  	
+  	.commNickname{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+		text-align: right;
+		font-size: 12px;
+		font-weight: bold;
+		color: gray;
+  	}
+  	
+  	
+  	
+  	.inputDiv{
+  		margin: 0 4%;
+  		padding: 4px;
+  		background-color: white;
+  		border-style : solid;
+  		border-color: #EFC940;
+  		border-width: 4px;
+  		border-radius: 20px;
+  		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  	}
+  	.inputComment{
+  		display: inline-block;
+  		width: 80%;
+  		height: 40px;
+   		margin-left: 5px;
+  		margin-right: 70px; 
+  		border-style: none;
+  		outline: none;
+  		font-size: 15px;
+  	}
+  	
+  	
+  	.commBtn{
+  		margin:10px;
+		background-color: #FED74B;
+  		border: none;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+  		border-radius: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		font-size: 15px;
+		font-weight: bold;
+  	}
+  	
+  	.mycomm{
+  		float: right;
+  	}
+  	.comm{
+  		float: left;
+  	}
+  	.delete_img{
+  		padding: 5px;
+  	}
+</style>
 </head>
 <body>
 
@@ -273,7 +399,35 @@
 	<button class = "yellowBtn" id="deleteBtn">삭제</button>
 </div>
 	</form>
-<%@ include file="boardComment.jsp" %>
+
+<div class="cheader">&nbsp;COMMENT</div>
+<div class="comment_container">
+	<div class="comment_box" id="comment_box">
+	<c:forEach items="${comments}" var="comment">
+	<c:choose>
+	<c:when test="${comment.commNick eq board.freeNick}">
+	<div class="writeComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commContent mycomm">${comment.commContent}</span>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="memComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="memcommContent comm" >${comment.commContent}</span>
+	</div>
+	</c:otherwise>
+	</c:choose>
+	</c:forEach>     
+	</div>
+    <div class="inputDiv">
+    	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
+		<button class="commBtn" id="commBtn">등록</button>
+	</div>
+</div>
+
 <div class="footer"></div>
 <script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
@@ -292,13 +446,35 @@
 </script>
 </div>
 <script>
-// 스크롤 상자의 스크롤 이벤트를 처리하는 함수
-/* document.querySelector('.scroll-box').addEventListener('scroll', function(event) {
-    // 스크롤 상자의 스크롤 위치를 가져옵니다.
-    var scrollTop = event.target.scrollTop;
-    console.log("스크롤 위치:", scrollTop);
-    // 여기서 원하는 추가 동작을 수행할 수 있습니다.
-}); */
+$('#commBtn').on("click",function(){
+	$.ajax({
+		url:"freecomment",
+		type:"POST",
+		asnyc:true,
+		data:{commContent:$('#comment').val(), freeNum:'${board.freeNum}'},
+		success:function(result){
+			let comment=JSON.parse(result);
+			if(comment.memNick==='${board.freeNick}'){
+			let div=`<div class="writeComm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+					<span class="commContent mycomm">\${comment.commContent}</span>
+				</div>`
+				$('#comment_box').append(div);
+			} else{
+				let div=`<div class="memComm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+						<span class="commContent comm" >\${comment.commContent}</span>
+					</div>`
+					$('#comment_box').append(div);
+			}
+		},
+		error:function(err){
+			alert("댓글입력 오류입니다.")
+		}	
+	})
+})
 </script>
 <script type="text/javascript">
 

@@ -97,7 +97,7 @@
   		background-image: url('../image/하트(핑).png'); /* 활성화된 상태의 이미지 */
 	}
 	
-	#likeCount {
+	.likeCount {
     display: inline-block; /* 인라인 요소로 변경하여 텍스트와 버튼이 한 줄에 정렬되도록 변경 */
     vertical-align: middle; /* 수직 정렬을 위해 추가 */
     margin-right: 10px; /* 좌우 여백 추가 */
@@ -310,8 +310,8 @@
 	<button class = "yellowBtn" id="listBtn">목록</button>
  	<button type = "submit" class = "yellowBtn" id="modifyBtn">수정</button>
  	<button id="deleteBtn" class = "yellowBtn" type = "submit">삭제</button>
-	<button class="likeButton" onclick="toggleLike(this)"></button>
-	<span id="likeCount">0</span>
+	<button id="likeCount" class="likeButton" onclick="toggleLike(this)"></button>
+	<span class="likeCount">${board.freeLike}</span>
 </div>
 <br>
 </div>
@@ -410,17 +410,13 @@ function toggleLike(button) {
 	  button.classList.toggle('active');
 	}
 </script>
- <!-- 
-  <script>
-  // 클릭 수 출력
-  console.log('클릭 수:', clickCount);
-});
-
-<script type="text/javascript">
+ 
+<script>
+ 
 $(function(){
 	$('#likeCount').click(function(){
 		$.ajax({
-			url : 'boardlike',
+			url : 'freelike',
 			type : 'post',
 			async : true,
 			data :{like:JSON.stringify({memberID:"${board.freeNick}",boardNum:"${board.freeNum}"})},
@@ -436,6 +432,6 @@ $(function(){
 })
 
 </script>
- -->
+
 </body>
 </html>

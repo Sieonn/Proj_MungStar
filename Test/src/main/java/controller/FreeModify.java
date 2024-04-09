@@ -1,13 +1,18 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dto.Comment;
 import dto.FBoard;
+import dto.Member;
 import service.FreeService;
 import service.FreeServiceImpl;
 
@@ -32,11 +37,15 @@ public class FreeModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-	      Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
+		HttpSession session=request.getSession();
+		Member memId=(Member)session.getAttribute("user");
+	    Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
 	      try {
 	         FreeService boardService = new FreeServiceImpl();
 	         FBoard board = boardService.freeDetail(freeNum);
+	         List<Comment> comments=boardService.freeCommentList(freeNum);
 	         request.setAttribute("board", board);
+	         request.setAttribute("comments", comments);
 	         request.getRequestDispatcher("freeModify.jsp").forward(request, response);
 	      } catch(Exception e) {
 	         e.printStackTrace();

@@ -13,11 +13,11 @@ import org.json.simple.parser.JSONParser;
 import service.BoardLikeServiceImpl;
 import service.BoardLikeService;
 
-@WebServlet("/boardlike")
-public class BoardLike extends HttpServlet {
+@WebServlet("/freelike")
+public class FreeLike extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
-    public BoardLike() {
+    public FreeLike() {
         super();
     }
    
@@ -28,11 +28,11 @@ public class BoardLike extends HttpServlet {
       JSONParser parser=new JSONParser();
       try {
          JSONObject jobj=(JSONObject)parser.parse(jsonParam);
-         String memberId=(String)jobj.get("memberId");
-         String boardNum=(String)jobj.get("boardNum");
+         String memId=(String)jobj.get("memId");
+         String freeNum=(String)jobj.get("freeNum");
          
          BoardLikeService boardLikeServie=new BoardLikeServiceImpl();
-         boolean like=boardLikeServie.togleBoardLike(memberId,Integer.parseInt(boardNum));
+         boolean like=boardLikeServie.togleBoardLike(memId,Integer.parseInt(freeNum));
          response.getWriter().write(String.valueOf(like));
       } catch(Exception e){
          e.printStackTrace();
