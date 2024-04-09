@@ -17,6 +17,28 @@
 <script src="http://code.jquery.com/jquery-Latest.min.js"></script>
 
 <style>
+.searchBar{
+position:absolute;
+width:1280px;
+top:140px;
+left:250px;
+}
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
 @font-face {
 	font-family: "JalnanGothic";
 	src:
@@ -324,6 +346,10 @@ function geocodeAddress(address) {
 }
 
 </script>
+<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색" value=""/>
+			<button class="searchBtn Btn" type="submit">검색</button>
+			</div>
 <div id="map"></div>
 <script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>

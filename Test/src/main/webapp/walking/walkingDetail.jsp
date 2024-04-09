@@ -631,6 +631,7 @@ window.onload=function(){
 		</div>
 </div>
 <br><br>
+<!-- 여기서부터 코멘트창 -->
 			<div class="ememem" style="display:flex; top:700px; height:30px; width:1280px; ">
 			</div>
 <div class="comment">
@@ -639,7 +640,7 @@ window.onload=function(){
 	<div class="comment_box" id="comment_box">
 	<c:forEach items="${comments}" var="comment">
 	<c:choose>
-	<c:when test="${comment.commNick eq walkWriter}">
+	<c:when test="${comment.commNick eq walkNick}">
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
@@ -667,7 +668,7 @@ $('#commBtn').on("click",function(){
 		url:"walkCommentList",
 		type:"POST",
 		asnyc:true,
-		data:{commContent:$('#comment').val(), walkNum:'${walk.walkNum}'},
+		data:{commContent:$('#comment').val(), walkNum:'${walking.walkNum}'},
 		success:function(result){
 			let comment=JSON.parse(result);
 			console.log(comment.memNick);
@@ -701,7 +702,7 @@ $('#commBtn').on("click",function(){
 
 $('#deleteBtn').click(function(){
 	 if (confirm("게시물을 삭제하시겠습니까??") == true){    //확인
-	     window.location.href="walkingDelete?walkNum=${walk.tempNum}"
+	     window.location.href="walkingDelete?walkNum=${walking.walkNum}"
 	 }else{   //취소
 	     return false;
 	 }
