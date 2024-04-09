@@ -70,6 +70,7 @@ body, html {
 .form-control {
 	flex: 1;	
 	margin-left: 10px;
+	height: 40px;
 }
 
 .lname {
