@@ -22,7 +22,17 @@ padding:0;
 .container{
 margin: 0 auto;
 width:1280px;}
-
+#walkListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
 #map{
 width:570px;height:600px;
 margin-top:85px;
@@ -327,8 +337,17 @@ window.onload=function(){
 
 <br><br>
 <div class="walkBtn">
-		<a href="walkingList" id="walkList">LIST</a>
-		<a href="walkWriteForm" id="walkWriteForm">WRITE</a>	
+		<c:choose>
+		<c:when test="${user ne null }">
+					<a href="walkingList" id="walkList">LIST</a>
+			<a id="walkWriteForm"
+				href="walkWriteForm">WRITE</a>
+				</c:when>
+				<c:otherwise>
+					<a href="walkingList" id="walkListLogout">LIST</a>
+				</c:otherwise>
+		</c:choose>
+
 		</div>
 		</div>
 </body>
