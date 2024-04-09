@@ -36,4 +36,17 @@
 			select memNick from member where memId=#{memId}
 		]]>
 	</select>
+		<select id="searchHospital" parameterType="Map" resultType="dto.Hospital">
+  		SELECT * FROM hospital
+  			<where>
+  				hosBlind is false
+  				<if test="hosAddress3 != hosAddress3">
+    			AND hosAddress3 = #{hosAddress3}
+  				</if>
+   				<if test="searchText != null">
+    			AND hosAddress3 like '%${searchText}%'
+  				</if>
+   			</where>
+  		order by hosNum desc
+	</select>
 </mapper>
