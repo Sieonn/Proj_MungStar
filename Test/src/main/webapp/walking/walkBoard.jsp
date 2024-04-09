@@ -18,10 +18,11 @@
 
 <style>
 .searchBar{
-position:absolute;
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
 width:1280px;
-top:140px;
-left:250px;
 }
    .searchInput{
 		padding-bottom: 8px; padding-top: 8px;
@@ -224,6 +225,28 @@ left:70px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 	<jsp:include page="/main/header.jsp" />
+	<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+
+				$.ajax({
+				url:'walkingSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					console.log(result);
+					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 	<div class="container">
 		<div class="walkMap" id="walkMap">
 			<div id="walkMapBarOpen" style="display: none;">
@@ -346,10 +369,6 @@ function geocodeAddress(address) {
 }
 
 </script>
-<div class="searchBar">
-    		<input type="text" class="searchInput" id="comment" name="searchText" placeholder="검색" value=""/>
-			<button class="searchBtn Btn" type="submit">검색</button>
-			</div>
 <div id="map"></div>
 <script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
