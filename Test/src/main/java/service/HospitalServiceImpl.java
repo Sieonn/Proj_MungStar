@@ -10,6 +10,7 @@ import dao.HospitalDAOImpl;
 import dto.Comment;
 import dto.Hospital;
 import dto.Member;
+import dto.Walking;
 
 public class HospitalServiceImpl implements HospitalService {
 	private HospitalDAO hosDAO = new HospitalDAOImpl();
@@ -36,7 +37,14 @@ public class HospitalServiceImpl implements HospitalService {
 	public String getHosNick(String memId) throws Exception {
 		return hosDAO.selectHosNick(memId);
 	}
-
+	public List<Hospital> searchHospital(HttpServletRequest request) throws Exception{
+		String searchText = request.getParameter("searchText");
+		String hosAddress3=request.getParameter("hosAddress3");
+		System.out.println("service의"+searchText);
+		List<Hospital> hospitals = hosDAO.searchHospital(hosAddress3,searchText);
+		return hospitals;
+		
+	}
 
 	@Override
 	public Comment addHosComment(HttpServletRequest request) throws Exception {
