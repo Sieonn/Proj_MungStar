@@ -132,7 +132,8 @@ placeholder {
 $(function() {
 	// 이메일 인증 버튼 비활성화
 	$("#checkedemail").prop("disabled", true);
-	
+	$("#checkauth").prop("disabled", true);
+    $('#authcode').prop('readonly', true);
 	// memId 입력란 이벤트
 	$("#memId").on("input", function() {
 		checkMemberInfo(); // 회원 정보 확인 함수 호출
@@ -168,6 +169,7 @@ $(function() {
 					$("#check").text("일치하는 항목이 없습니다.");
 					$("#check").css("color", "red");
 					$("#checkedemail").prop("disabled", true); // 이메일 인증 버튼 비활성화
+					$("#checkauth").prop("disabled", true); // 이메일 인증 버튼 비활성화
 				} else {
 					// DB에서 일치하는 아이디를 찾은 경우
 					$("#check").text("회원정보가 일치합니다.");
@@ -191,6 +193,7 @@ $(function() {
 		         data:{memEmail:email},
 		         success:function(result) {
 		            alert(result);
+					$("#checkauth").prop("disabled", false); 
 		          	$('#authcode').val('');
 		            $('#authcode').prop('readonly', false);
 		            $("#check").text("인증을 진행해주세요.");
@@ -228,34 +231,22 @@ $(function() {
 		});
 	// 제출 버튼 클릭 시 이벤트
 	$("#btn-Yes").click(function(e) {
-		e.preventDefault();
-		
-		var memId = $("#memId").val();
-		var memEmail = $("#memEmail").val();
-		
-		// memId와 memEmail이 일치하는지 확인
-		$.ajax({
-			url : '${path}/findpw',
-			type : 'post',
-			async : true,
-			data : {
-				memId : memId,
-				memEmail : memEmail
-			},
-			success : function(result) {
-				if (result == "") {
-					// DB에서 일치하는 아이디를 찾지 못한 경우
-					alert("이메일 인증을 먼저 진행해주세요.");
-				} else {
-					// DB에서 일치하는 아이디를 찾은 경우
-					$("#btn-Yes").prop("disabled", false); // 제출 버튼 활성화
-					
-				}
-			},
-			error : function() {
-				alert("비밀번호를 찾는 중에 오류가 발생했습니다.");
-			}
-		});
+	    e.preventDefault();
+	    if ($("#check").text() === "비밀번호 재설정이 가능합니다.") {
+	        var memId = $("#memId").val();
+	        var encodedMemId = encodeURIComponent(memId); // memId 값을 인코딩
+	        
+	        // 인코딩된 memId 값을 포함하여 URL로 이동
+	        window.location.href = '${path}/repw?memId=' + encodedMemId;
+	    } else {
+	        if($("#memId").val() ===  ""){
+	            alert("아이디를 입력해주세요.")
+	        } else if ($("#memEmail").val() === "" ) {
+	            alert("이메일을 입력해주세요.")
+	        } else if ($("#authcode").val() === "" ) {
+	            alert("이메일인증을 진행해주세요.")
+	        }
+	    }
 	});
 });
 </script>
