@@ -13,6 +13,124 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&autoload=true&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style type="text/css">
+#walkListLogout{
+z-index:9999;
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:120px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
+	.comment{
+	z-index:9999;
+	position:relative;
+  	width:1280px;
+  	margin:0 auto;
+
+  	}
+   .cheader{
+      	width: 1280px;
+        font-size: 18px;
+        font-family: "JalnanGothic";  	
+        }
+  	.comment_container{
+      	margin: 0 auto 160px auto;
+      	width: 1280px;
+  		padding-top: 30px; padding-bottom:30px;
+      	background-color: #f5f5f5;
+      	border-radius: 20px;
+  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  	}
+  	.comment_box{
+  		background-color: white;
+  		margin: 0 4%; margin-bottom: 15px;
+  		padding: 20px 10px 20px 10px;
+      	border-radius: 20px;
+  	}
+  	.writeComm{
+  		width: 70%; 
+  		float: right;
+ 		margin-bottom: 10px;
+  		padding: 5px;
+  		overflow: hidden;
+  	}
+  	.memComm{
+		width: 763.86px; 
+  		margin-right: 365px;
+  		margin-bottom: 10px;
+  		padding: 5px;
+  		overflow: hidden;  	
+  	}
+  	.commContent{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+  		background-color: #f5f5f5;
+  		border-radius: 7px;
+  		text-align: right;
+		font-size: 15px;
+  	}
+  	.commNickname{
+  		padding-top: 5px; padding-bottom: 5px;
+  		padding-left: 10px; padding-right: 7px;
+		text-align: right;
+		font-size: 12px;
+		font-weight: bold;
+		color: gray;
+  	}
+  	
+  	
+  	
+  	.inputDiv{
+  		margin: 0 4%;
+  		padding: 4px;
+  		background-color: white;
+  		border-style : solid;
+  		border-color: #EFC940;
+  		border-width: 4px;
+  		border-radius: 20px;
+  		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  	}
+  	.inputComment{
+  		display: inline-block;
+  		width: 80%;
+  		height: 40px;
+   		margin-left: 5px;
+  		margin-right: 70px; 
+  		border-style: none;
+  		outline: none;
+  		font-size: 15px;
+  	}
+  	
+  	
+  	.commBtn{
+  		margin:10px;
+		background-color: #FED74B;
+  		border: none;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+  		border-radius: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		font-size: 15px;
+		font-weight: bold;
+  	}
+  	
+  	.mycomm{
+  		float: right;
+  	}
+  	.comm{
+  		float: left;
+  	}
+  	.delete_img{
+  		padding: 5px;
+
+  </style>
 <style>
  @font-face {
         font-family: "JalnanGothic";
@@ -76,16 +194,33 @@ background-color:#FED74B;
 color:white;
 text-align:center;
 box-shadow: 0 3px 1px gray;
+font-size:15px;
+}
+#walkModifyForm,#walkingDelete{
+position:relative;
+top:-20px;
+left:520px;
+width:70px;
+height:20px;
+border: 0;
+border-radius: 30px;
+background-color:#FED74B;
+color:white;
+text-align:center;
+box-shadow: 0 3px 1px gray;
+font-size:15px;
 }
 
 .walkBtn{
 position:relative;
 top:10px;
-left: 230px;
+left: 220px;
 float: left;
 width:1280px;
 height:40px;
+
 }
+
 #walkMapBar{
 position:absolute;
 float:left;
@@ -258,18 +393,19 @@ top:50px;
 <div id="map"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 <script>
-wlat = JSON.parse(${walking.walkLat });
-wlong = JSON.parse(${walking.walkLong });
 window.onload=function(){
-	console.log(wlat);
-	console.log(typeof wlat);
+	center ={lats:37.54699, longs:127.09598};
+	
 	function mapmaker(){
-		console.log(typeof wlat);
+		console.log(center.lats);
+		center.lats=${walking.walkLat };
+		console.log(typeof center.lats);
+		center.longs=${walking.walkLong };
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 			
-		    center: new kakao.maps.LatLng(wlat, wlong), // 지도의 중심좌표
-		    level: 4 // 지도의 확대 레벨
+		    center: new kakao.maps.LatLng(center.longs, center.lats), // 지도의 중심좌표
+		    level: 7 // 지도의 확대 레벨
 		};
 
 		map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -307,13 +443,16 @@ window.onload=function(){
 					for(var i=0; i<walkings.length;i++){				
 				lats=walkings[i].walkLat;
 				longs=walkings[i].walkLong;
+				
+				
 
 				 positions =  {title:walkings[i].walkNum,
 					latlng: new kakao.maps.LatLng(lats,longs)};	
 				   markers[i] = new kakao.maps.Marker({
 					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
 					    image: markerImage, // 마커이미지 설정 
-					    title: positions.title
+					    title: positions.title,
+					    walkBlind: walkings[i].walkBlind // 데이터 저장
 					});
 				 
 				  markers[i].setMap(map);
@@ -332,12 +471,20 @@ window.onload=function(){
 						  ) {
 					 console.log(marker);
 					 console.log(marker.getTitle());
+					 
 					 num = marker.getTitle();
+					 
 					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
+					  
 					 
 				});
+
+						$("#walkModifyForm").on("click",function(){
+							 window.location.href="http://localhost:8080/test/walking/walkingModifyForm?walkNum="+num;	
+						})
 					}
 					
+
 					
 					
 			} //for end
@@ -367,8 +514,45 @@ window.onload=function(){
 						<div class="walkSubject">
 							${walking.walkName }
 							<div id="walkLike">
-					<b>Like</b><br>
+							<b>${walking.walkLike }</b><br>
+	<c:choose>
+							<c:when test="${like eq 'true' }">
+					
 					<img src="${path }/image/none.png" style="width:45px;">
+					<img id="like" src="${path }/image/like.png" width="45px"/>
+		</c:when>
+		<c:otherwise>
+		<img id="like" src="${path }/image/none.png" width="45px"/>
+		<script>
+		
+		</script>
+		</c:otherwise>
+		</c:choose>
+
+					<script>
+					<script type="text/javascript">
+					$(function(){
+					$('#like').click(function(){
+						$.ajax({
+							url:'walkLike',
+							type:'post',
+							async:true,
+							data:{like:JSON.stringify({memId:"${user.memId }",walkNum:"${walking.walkNum }"})},
+							success:function(result){
+								if(result=='true'){
+								$('#like').attr("src","image?num=like.png")
+								
+							} else {
+								$('#like').attr("src","image?num=none.png")}
+							},
+							error:function(result){
+								
+							}
+						})
+					})	
+					})
+
+					</script>
 				</div>
 						</div>
 							<br>
@@ -393,24 +577,140 @@ window.onload=function(){
 				</div>
 			</div>
 		</div>
-
-
 </div>
 </div>
 <br><br>
 <div class="walkBtn">
-		<a id="walkList" href="walkingList">LIST</a>
+<c:if test="${user eq null }">
+		<a id="walkListLogout" href="walkingList">LIST</a>
+		</c:if>
+		
+					<c:if test="${user ne Empty }">
+					<a id="walkList" href="walkingList">LIST</a>
 		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
 		<script>
 		$("#walkWriteForm").on("click",function(){
 			window.location.href="http://localhost:8080/MoongStar/walking/walkWriteForm";	
 		})
 		</script>
+		
+		
+				<c:if test="${user.memId eq walking.walkWriter }">
+		<a href="walkModifyForm?walkNum=${walking.walkNum }" id="walkModifyForm">MODIFY</a>
+				<script>
+	$("#walkModifyForm").on("click",function(){
+		var url = "http://localhost:8080/test/MoongStar/walkModifyForm?walkNum=" + num;
+		window.location.assign(url);
+	})
+		</script>
+		<button  onclick="showConfirmation()" id="walkingDelete">DELETE</button>
+		<script>
+	    function showConfirmation() {
+	    	var result = confirm("삭제하시겠습니까?");
+	    	if(result){
+				$.ajax({
+					url:'walkingDelete',
+					type:'POST',
+					async:true,
+					data:{walkNum:${walking.walkNum} },
+					success:function(result){
+						console.log(result);
+					}
+				
+					
+				})
+				alert("삭제되었습니다")
+			} else{
+			
+			};
+	    }
+		
+		</script>
+		</c:if>		
+		</c:if>
 		</div>
 </div>
-			<div class="comment">
-			<%@ include file="mapComment.jsp" %>
-			</div>	
+<br><br>
+			<div class="walkTopEmpty">
+		</div>
+<div class="comment">
+			<div class="cheader">&nbsp;COMMENT</div>
+<div class="comment_container">
+	<div class="comment_box" id="comment_box">
+	<c:forEach items="${comments}" var="comment">
+	<c:choose>
+	<c:when test="${comment.commNick eq walkWriter}">
+	<div class="writeComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commContent mycomm">${comment.commContent}</span>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class="memComm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
+		<span class="commContent comm" >${comment.commContent}</span>
+	</div>
+	</c:otherwise>
+	</c:choose>
+	</c:forEach>     
+	</div>
+    <div class="inputDiv">
+    	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
+		<button class="commBtn" id="commBtn">등록</button>
+	</div>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$('#commBtn').on("click",function(){
+	$.ajax({
+		url:"walkCommentList",
+		type:"POST",
+		asnyc:true,
+		data:{commContent:$('#comment').val(), walkNum:'${walk.walkNum}'},
+		success:function(result){
+			let comment=JSON.parse(result);
+			console.log(comment.memNick);
+			
+			if(comment.memNick==='${walkNick}'){
+			let div=`<div class="writeComm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+					<span class="commContent mycomm">\${comment.commContent}</span>
+				</div>`
+				$('#comment_box').append(div);
+			} else{
+				let div=`<div class="memComm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
+						<span class="commContent comm" >\${comment.commContent}</span>
+					</div>`
+					$('#comment_box').append(div);
+			}
+			
+			
+			
+			
+			
+		},
+		error:function(err){
+			alert("댓글입력 오류입니다.")
+		}	
+	})
+})
+
+$('#deleteBtn').click(function(){
+	 if (confirm("게시물을 삭제하시겠습니까??") == true){    //확인
+	     window.location.href="walkingDelete?walkNum=${walk.tempNum}"
+	 }else{   //취소
+	     return false;
+	 }
+})
+
+</script>
+</div>
+</div>
+		
 			
 </body>
 

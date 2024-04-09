@@ -86,6 +86,18 @@ a {
 	box-shadow: 0 3px 1px gray;
 }
 
+#walkListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
+
 .walkBtn {
 	position: relative;
 	top: 10px;
@@ -286,16 +298,43 @@ else{
 }
 })
 </script>
-			<div id="map"></div>
-			<script type="text/javascript"
+<div id="usersAddress" data-value="${user.memAddress1 }"></div>
+<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services"></script>
+<script>
+usersAddress = document.getElementById("usersAddress").getAttribute("data-value");
+
+function geocodeAddress(address) {
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(address, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            // 좌표를 이용하여 지도 이동
+            map.setCenter(coords);
+            
+            // 마커 표시
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+        }
+    });
+}
+
+</script>
+<div id="map"></div>
+<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 			<script>
 $(document).ready(function(){
-		
-	function mapmaker(){
+
+
+	
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
-		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
+		    center: new kakao.maps.LatLng(37.583933,127.019813), // 지도의 중심좌표
 		    level: 4 // 지도의 확대 레벨
 		};
 
@@ -311,12 +350,60 @@ $(document).ready(function(){
 		 zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		     
-		}
-		mapmaker();
 	
 		
-		window.onload=function(){
 
+		
+		
+		if(usersAddress != null){
+			
+			// 로그인한 사람의 주소
+			function geocodeAddress(address) {
+	            var geocoder = new kakao.maps.services.Geocoder();
+
+	            // 주소로 좌표를 검색합니다
+	            geocoder.addressSearch(address, function(result, status) {
+	                if (status === kakao.maps.services.Status.OK) {
+	                     coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	                    lat = result[0].y;
+	                    lng = result[0].x;
+	                    map.setCenter(coords);
+	                }
+	            });
+	        }
+			
+			geocodeAddress(usersAddress);
+			
+			
+			
+			
+		} else{
+			// 현재 위치받아오기
+			function getCurrentLocation() {
+			    // HTML5의 Geolocation API를 사용하여 현재 위치를 받아옵니다.
+			    navigator.geolocation.getCurrentPosition(
+			        function(position) {
+			            // 현재 위치의 위도와 경도를 받아옵니다.
+			            var lat = position.coords.latitude;
+			            var lng = position.coords.longitude;
+			            
+			            // 받아온 현재 위치를 지도의 중심으로 설정합니다.
+			            var currentPosition = new kakao.maps.LatLng(lat, lng);
+			            map.setCenter(currentPosition);
+			        },
+			        function(error) {
+			            // 위치 정보를 받아오지 못할 경우의 처리
+			            console.error('Error getting geolocation:', error);
+			        }
+			    );
+			}
+		}
+	
+		
+		
+		window.onload=function(){
+			
+			
 			walking = [];
 			 markers = [];
 			$.ajax({
@@ -333,25 +420,24 @@ $(document).ready(function(){
 				    
 				  
 				   
-					for(var i=0; i<walkings.length;i++){				
+					for(var i=0; i<walkings.length;i++){	
+						
 				lats=walkings[i].walkLat;
 				longs=walkings[i].walkLong;
+				
+				
 
 				 positions =  {title:walkings[i].walkNum,
 					latlng: new kakao.maps.LatLng(lats,longs)};	
 				   markers[i] = new kakao.maps.Marker({
 					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
 					    image: markerImage, // 마커이미지 설정 
-					    title: positions.title
+					    title: positions.title,
+					    walkBlind: walkings[i].walkBlind // 데이터 저장
 					});
 				 
 				  markers[i].setMap(map);
-				
-				
-				  
-					
 
-				
 					} 
 					
 			
@@ -359,30 +445,25 @@ $(document).ready(function(){
 					for (const marker of markers) {					
 						kakao.maps.event.addListener(marker, "click", function(
 						  ) {
-					 console.log(marker);
-					 console.log(marker.getTitle());
-					 num = marker.getTitle();
-					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
-			
 					 
+					 num = marker.getTitle();
+					 
+					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
+					  console.log(marker);
+						 console.log(marker.getTitle());
+						
 				});
 					}
 					
 					
 					
 			} //for end
-			
-
-		})
-		
 		
 			
-	}
+	})
+		}
 		
 })
-
-		
-		
 
 
 </script>
@@ -394,8 +475,17 @@ $(document).ready(function(){
 		<br>
 		<br>
 		<div class="walkBtn">
-			<a href="walkingList" id="walkList">LIST</a> <a id="walkWriteForm"
+		<c:choose>
+		<c:when test="${user ne null }">
+					<a href="walkingList" id="walkList">LIST</a>
+			<a id="walkWriteForm"
 				href="walkWriteForm">WRITE</a>
+				</c:when>
+				<c:otherwise>
+					<a href="walkingList" id="walkListLogout">LIST</a>
+				</c:otherwise>
+		</c:choose>
+
 		</div>
 	</div>
 </body>

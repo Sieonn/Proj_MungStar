@@ -26,14 +26,26 @@ window.onload=function(){
 	markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
 
 
-	var marker = new kakao.maps.Marker({
+	 marker = new kakao.maps.Marker({
 	position: markerPosition, 
 	image: markerImage
 	});
-	var map = new kakao.maps.Map(mapContainer, mapOption);
+	 
+	 
+	 map = new kakao.maps.Map(mapContainer, mapOption);
+	 
+	 mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		 zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	
 }
- 
+
 
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function daumPostcode() {
@@ -68,14 +80,28 @@ window.onload=function(){
 	              geocoder.addressSearch(addr,function(result,status){
 		           	   if(status === kakao.maps.services.Status.OK){
 		           		   
-		           		  var walkLat = document.getElementById('walkLat');
+		           		   walkLat = document.getElementById('walkLat');
 		           		  walkLat.value=result[0].y;
-		           		  var walkLong = document.getElementById('walkLong');
+		           		 walkLong = document.getElementById('walkLong');
 		           		  walkLong.value=result[0].x;
 		           		  console.log(result[0]);
 			                    
-			                  
-	      	  
+			                  if(walkLat != null && walkLong != null){
+			                	  map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
+			                	  imageSrc = '${path}/image/tempmark.jpg',   
+			                		imageSize = new kakao.maps.Size(36, 40), 
+			                		imageOption = {offset: new kakao.maps.Point(27, 69)};
+
+			                		 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+			                		markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
+
+
+			                		 marker = new kakao.maps.Marker({
+			                		position: new kakao.maps.LatLng(result[0].y, result[0].x), 
+			                		image: markerImage
+			                		});
+			                  }
+	      	
 	           
 	             
 
@@ -86,8 +112,9 @@ window.onload=function(){
 	      
 	      }).open();
 		   
-
-      
+	
+	
+	      
 	     
 	  }
 
@@ -332,6 +359,8 @@ box-shadow: 0 2px 1px gray;
 </style>
 </head>
 <body>
+<c:choose>
+<c:when test="${user ne null }">
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
 <div class="container1">
@@ -349,6 +378,7 @@ box-shadow: 0 2px 1px gray;
 					<div id="walkTopEmpty"></div>
 					<div id="walkContent">
 						<div class="walkSubject">
+						<input type="hidden" id="walkWriter" name="walkWriter" value="${user.memId }">
 							<input type="text" id="walkName" name="walkName" placeholder="장소 이름을 입력해 주세요">
 						</div>
 						<br>
@@ -360,6 +390,7 @@ box-shadow: 0 2px 1px gray;
 								<input type="text" id="walkAddress3" name="walkAddress3" placeholder="주소" readOnly />
 								<input type="hidden" id="walkLat" name="walkLat" > <input type="hidden" id="walkLong" name="walkLong">
 								<br>
+
 						</div>
 						</div>
 
@@ -392,6 +423,17 @@ box-shadow: 0 2px 1px gray;
 		<a href="walkWriteForm" id="walkWriteForm">WRITE</a>	
 		</div>
 		</div>
+		</c:when>
+		<c:otherwise>
+		<script>
+		window.onload=function(){
+			alert('잘못된 경로입니다')
+			window.location.href="http://localhost:8080/MoongStar/walking/walkBoard"
+			
+		}
+		</script>
+		</c:otherwise>
+		</c:choose>
 </body>
 
 
