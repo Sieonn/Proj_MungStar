@@ -9,5 +9,6 @@ public interface MemberService {
 	boolean memberNickCheck(String memNick) throws Exception;
 	void getMypage(HttpServletRequest request) throws Exception;
 	String findId(String memNick, String memPhone) throws Exception;
+	boolean validateUser(String memId, String memEmail) throws Exception;
 	}
 

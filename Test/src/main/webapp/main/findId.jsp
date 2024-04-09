@@ -79,7 +79,7 @@ body, html {
 
 .card-body {
 	width: 400px;
-	padding: 40px;
+	padding: 30px;
 }
 
 button, input {
@@ -113,55 +113,63 @@ a:hover {
 .findname, .findtel {
 	display: flex;
 }
-.check{
- margin-bottom: 10px;
- font-size: 18px;
- font-family: "JalnanGothic";
- text-align: center;
+
+.check {
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-family: "JalnanGothic";
+	text-align: center;
+}
+
+placeholder {
+	font-size: 10px;
 }
 </style>
 <script>
-    $(function() {
-        $("form").submit(function(e) {
-            e.preventDefault();
-            var memNick = $("#memNick").val();
-            var memPhone = $("#memPhone").val();
+	$(function() {
+		$("form").submit(function(e) {
+			e.preventDefault();
+			var memNick = $("#memNick").val();
+			var memPhone = $("#memPhone").val();
 
-            // AJAX를 통해 서버로 닉네임과 전화번호 값을 전달하여 아이디를 찾음
-            $.ajax({
-                url: '${path}/findid', // 아이디 찾기 처리를 하는 서블릿 주소
-                type: 'post',
-                async: true,
-                data: {
-                    memNick: memNick,
-                    memPhone: memPhone
-                },
-                success: function(result) {
-                	 if (result == "") {
-                         // DB에서 일치하는 아이디를 찾지 못한 경우
-                         $("#check").text("일치하는 항목이 없습니다.");
-                         $("#check").css("color", "red");
-                         $("#result").css("color", "black"); // result의 텍스트 색상을 기본 값으로 변경
-                     } else {
-                         // DB에서 일치하는 아이디를 찾은 경우
-                         $("#check").text("아이디는 " + result + "입니다.");
-                         $("#check").css("color", "green");
-                       // result의 텍스트 색상을 초록색으로 변경
-                     }
-                },
-                error: function() {
-                    alert("아이디를 찾는 중에 오류가 발생했습니다.");
-                }
-            });
-        });
-    });
+			// AJAX를 통해 서버로 닉네임과 전화번호 값을 전달하여 아이디를 찾음
+			$.ajax({
+				url : '${path}/findid', // 아이디 찾기 처리를 하는 서블릿 주소
+				type : 'post',
+				async : true,
+				data : {
+					memNick : memNick,
+					memPhone : memPhone
+				},
+				success : function(result) {
+					if (result == "") {
+						// DB에서 일치하는 아이디를 찾지 못한 경우
+						$("#check").text("일치하는 항목이 없습니다.");
+						$("#check").css("color", "red");
+						$("#result").css("color", "black"); // result의 텍스트 색상을 기본 값으로 변경
+					} else {
+						// DB에서 일치하는 아이디를 찾은 경우
+						$("#check").text("아이디는 " + result + "입니다.");
+						$("#check").css("color", "green");
+						// result의 텍스트 색상을 초록색으로 변경
+					}
+				},
+				error : function() {
+					alert("아이디를 찾는 중에 오류가 발생했습니다.");
+				}
+			});
+		});
+	});
 </script>
 </head>
 
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="content">
-		<div class="card">
+		<div class="card" style="width: 25rem;">
+			<div class="card-title">
+				<h2 class="card-title" style="color: #0155b7"></h2>
+			</div>
 			<div class="card-body">
 				<form action="findId" class="form-signin" method="POST">
 					<p class="text2"
@@ -169,48 +177,28 @@ a:hover {
 
 					<div class="findname">
 						<label class="lname">닉네임</label> <input type="text" id="memNick"
-							name="memNick" class="form-control" placeholder="닉네임" required
-							autofocus />
-						
+							name="memNick" class="form-control" placeholder="닉네임을 입력해주세요."
+							required autofocus />
 					</div>
 					<br />
 					<div class="findtel">
 						<label class="lname">전화번호</label> <input type="tel" id="memPhone"
-							name="memPhone" class="form-control" placeholder="전화번호" required />
-						
+							name="memPhone" class="form-control" placeholder="전화번호를 입력해주세요."
+							required />
 					</div>
 					<br />
-						<div class="check" id="check"></div>
+					<div class="check" id="check"></div>
 					<button id="btn-Yes" class="btn btn-lg btn-primary btn-block"
 						type="submit" style="font-weight: 900">아 이 디 찾 기</button>
 
 				</form>
 			</div>
 			<div class="links">
-				<a href="${path}/findPw.jsp">비밀번호 찾기</a> | <a href="${path}/login">로그인</a>
+				<a href="${path}/findpw">비밀번호 찾기</a> | <a href="${path}/login">로그인</a>
 				| <a href="${path}/signup">회원가입</a>
 			</div>
 		</div>
 	</div>
 </body>
-<!-- <script type="text/javascript">
-	$("#name").focusout(function() {
-		if ($("#name").val() == "") {
-			$("#check").text("전화번호를 입력해주세요.");
-			$("#check").css("color", "red");
-		} else {
-			$("#check").hide();
-		}
-	});
-
-	$("#email").focusout(function() {
-		if ($("#email").val() == "") {
-			$("#check").text("이메일을 입력해주세요");
-			$("#check").css("color", "red");
-		} else {
-			$("#check").hide();
-		}
-	});
-</script> -->
 </html>
 

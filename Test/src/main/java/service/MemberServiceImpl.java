@@ -83,10 +83,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public 	String  findId(String memNick, String memPhone) throws Exception {
+	public String findId(String memNick, String memPhone) throws Exception {
 		String memId = memberDao.selectFindId(memNick, memPhone);
 		if (memId == null)
 			return "";
 		return memId;
+	}
+
+	@Override
+	public boolean validateUser(String memId, String memEmail) {
+		return false;
 	}
 }

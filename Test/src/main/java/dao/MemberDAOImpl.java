@@ -37,4 +37,13 @@ public class MemberDAOImpl implements MemberDAO{
 	    // sqlSession을 이용하여 DB에서 아이디를 조회한 후 결과를 반환합니다.
 	    return sqlSession.selectOne("mapper.member.selectFindId", param);
 	}
+
+	@Override
+	public String selectFindPw(String memId, String memEmail) throws Exception {
+		Map<String, String> param = new HashMap<>();
+		param.put("memNick", memId);
+		param.put("memPhone", memEmail);
+		
+		  return sqlSession.selectOne("mapper.member.selectFindId", param);
+	}
 }

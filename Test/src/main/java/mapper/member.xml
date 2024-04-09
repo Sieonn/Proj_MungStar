@@ -26,4 +26,8 @@
 			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail},curdate(),#{memProfile})
 		]]>
 	</insert>
+	
+	<update id="reInsertPw"  parameterType="dto.Dog">
+		update dog where dogNum=#{dogNum}
+	</update>
 </mapper>

@@ -7,4 +7,5 @@ public interface MemberDAO {
 	Member selectMember(String memId) throws Exception;
 	Member selectMemberN(String memNick) throws Exception;
 	String selectFindId(String memNick, String memPhone) throws Exception;
+	String selectFindPw(String memId, String memEmail) throws Exception;
 }
