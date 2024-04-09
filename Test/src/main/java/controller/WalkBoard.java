@@ -17,9 +17,9 @@ import service.WalkingService;
 import service.WalkingServiceImpl;
 
 /**
- * Servlet implementation class WalkingWrite
+ * Servlet implementation class walkBoard
  */
-@WebServlet(name = "walkBoard", urlPatterns = { "/walking/walkBoard" })
+@WebServlet("/walking/walkBoard")
 public class WalkBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
