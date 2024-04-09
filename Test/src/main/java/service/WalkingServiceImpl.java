@@ -94,6 +94,7 @@ public class WalkingServiceImpl implements WalkingService {
 		if(commContent==null) throw new Exception("댓글을 입력하세요");
 		
 		comment.setCommContent(commContent);
+		System.out.println(commContent);
 		comment.setBoardNum(walkNum);
 		System.out.println(comment.getBoardNum());
 		
@@ -101,6 +102,7 @@ public class WalkingServiceImpl implements WalkingService {
 		Member member=(Member)session.getAttribute("user");
 		
 		String memNick=walkDAO.selectWalkNick(member.getMemId());
+		System.out.println(memNick);
 		comment.setCommNick(memNick);
 		
 		walkDAO.insertWalkComment(comment);

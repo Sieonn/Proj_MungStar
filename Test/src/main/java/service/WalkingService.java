@@ -15,6 +15,7 @@ public interface WalkingService {
 	void walkingDelete(Integer walkNum) throws Exception;
 	 List<Walking> allWalkingInfo() throws Exception;
 	 Walking walkingDetail(Integer walkNum) throws Exception;
+	 
 		List<Comment> walkCommentList(Integer walkNum) throws Exception;
 		String getWalkNick(String memId) throws Exception;
 		Comment addWalkComment(HttpServletRequest request) throws Exception;
