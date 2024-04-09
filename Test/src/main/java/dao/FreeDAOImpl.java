@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import dto.Comment;
 import dto.FBoard;
 import dto.File;
+import dto.Like;
 import util.MybatisSqlSessionFactory;
 
 public class FreeDAOImpl implements FreeDAO {
@@ -111,7 +112,18 @@ public class FreeDAOImpl implements FreeDAO {
 	public List<FBoard> selectFreeListOnMain() throws Exception {
 		return sqlSession.selectList("mapper.board.selectFreeListOnMain");
 	}
+	
+	@Override
+	public void insertFreeLike(Like like) throws Exception {
+		sqlSession.insert("mapper.board.insertFreeLike",like);
+		sqlSession.commit();
+		
+	}
 
-
+	@Override
+	public void updateFreeLike(String memId) throws Exception{
+		sqlSession.update("mapper.board.updateFreeLike",  memId); 
+		sqlSession.commit();
+	}
 
 }
