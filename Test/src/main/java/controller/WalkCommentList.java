@@ -46,7 +46,6 @@ public class WalkCommentList extends HttpServlet {
 		try {
 			WalkingService walkingService=new WalkingServiceImpl();
 			Comment comment=walkingService.addWalkComment(request);
-//			JSONParser parser=new JSONParser();
 			JSONObject jsonObj=new JSONObject();
 			jsonObj.put("commContent", comment.getCommContent());
 			jsonObj.put("memNick",comment.getCommNick());

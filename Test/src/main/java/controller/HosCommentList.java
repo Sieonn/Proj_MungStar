@@ -8,61 +8,53 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import dto.Comment;
-import dto.Hospital;
-import dto.Member;
-import dto.Walking;
 import service.HospitalService;
 import service.HospitalServiceImpl;
-import service.WalkingService;
-import service.WalkingServiceImpl;
+import service.TempService;
+import service.TempServiceImplement;
 
-/**
- * Servlet implementation class HospitalDetail
- */
-@WebServlet("/hospital/hospitalDetail")
-public class HospitalDetail extends HttpServlet {
+@WebServlet("/hospital/hosCommentList")
+public class HosCommentList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public HospitalDetail() {
+
+    public HosCommentList() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("utf-8");
-		HttpSession session=request.getSession();
-		Member memId=(Member)session.getAttribute("user");
+		request.setCharacterEncoding("utf-8");
 		Integer hosNum=Integer.parseInt(request.getParameter("hosNum"));
+		
 		try {
 			HospitalService hospitalService = new HospitalServiceImpl();
-			Hospital hospital=hospitalService.hospitalDetail(hosNum);
-			List<Comment> comments=hospitalService.hosCommentList(hosNum);
-			request.setAttribute("hospital", hospital);
+			List<Comment> comments= hospitalService.hosCommentList(hosNum);
 			request.setAttribute("comments", comments);
 			request.getRequestDispatcher("hospitalDetail.jsp").forward(request, response);
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		try {
+			HospitalService hospitalService = new HospitalServiceImpl();
+			Comment comment=hospitalService.addHosComment(request);
+//			JSONParser parser=new JSONParser();
+			JSONObject jsonObj=new JSONObject();
+			jsonObj.put("commContent", comment.getCommContent());
+			jsonObj.put("memNick",comment.getCommNick());
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write(jsonObj.toJSONString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
