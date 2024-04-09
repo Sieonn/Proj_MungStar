@@ -7,8 +7,8 @@ public class Hospital {
 	private Double hosLong;
 	private String hosAddress3;
 	private String hosDial;
-	private Integer walkLike;
-	private Boolean walkBlind;
+	private Integer hosLike;
+	private Boolean hosBlind;
 	
 	public Integer getHosNum() {
 		return hosNum;
@@ -46,20 +46,20 @@ public class Hospital {
 	public void setHosDial(String hosDial) {
 		this.hosDial = hosDial;
 	}
-	public Integer getWalkLike() {
-		return walkLike;
+	public Integer getHosLike() {
+		return hosLike;
 	}
-	public void setWalkLike(Integer walkLike) {
-		this.walkLike = walkLike;
+	public void setHosLike(Integer hosLike) {
+		this.hosLike = hosLike;
 	}
-	public Boolean getWalkBlind() {
-		return walkBlind;
+	public Boolean getHosBlind() {
+		return hosBlind;
 	}
-	public void setWalkBlind(Boolean walkBlind) {
-		this.walkBlind = walkBlind;
+	public void setHosBlind(Boolean hosBlind) {
+		this.hosBlind = hosBlind;
 	}
 	public Hospital(Integer hosNum, String hosName, Double hosLat, Double hosLong, String hosAddress3, String hosDial,
-			Integer walkLike, Boolean walkBlind) {
+			Integer hosLike, Boolean hosBlind) {
 		super();
 		this.hosNum = hosNum;
 		this.hosName = hosName;
@@ -67,8 +67,8 @@ public class Hospital {
 		this.hosLong = hosLong;
 		this.hosAddress3 = hosAddress3;
 		this.hosDial = hosDial;
-		this.walkLike = walkLike;
-		this.walkBlind = walkBlind;
+		this.hosLike = hosLike;
+		this.hosBlind = hosBlind;
 	}
 	
 	public Hospital() {
