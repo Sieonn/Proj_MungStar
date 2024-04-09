@@ -119,7 +119,7 @@
       	border-radius: 10px; 	
     }
     .lostImg {
-    	width: 100%; height: 250px;
+    	width: 100%; height: 258px;
     	overflow: hidden; 
     	border-radius: 10px;
     }

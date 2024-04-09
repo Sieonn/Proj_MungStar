@@ -125,7 +125,7 @@
       	border-radius: 10px; 	
     }
     .tempImg {
-    	width: 100%; height: 250px;
+    	width: 100%; height: 258px;
     	overflow: hidden; 
     	border-radius: 10px;
     }

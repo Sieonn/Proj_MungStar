@@ -43,9 +43,11 @@ public class Main extends HttpServlet {
 			FreeService freeService=new FreeServiceImpl();
 			TempService tempService=new TempServiceImplement();
 			LostService lostService=new LostServiceImplement();
-			List<FBoard> fBoards=freeService.freeListOnMain();
+			List<FBoard> frees=freeService.freeListOnMain();
+			System.out.println(frees);
 			List<Temp> temps=tempService.tempListOnMain();
 			List<Lost> losts=lostService.lostlistOnMain();
+			request.setAttribute("frees", frees);
 			request.setAttribute("temps", temps);
 			request.setAttribute("losts", losts);
 			request.getRequestDispatcher("/main/main.jsp").forward(request, response);

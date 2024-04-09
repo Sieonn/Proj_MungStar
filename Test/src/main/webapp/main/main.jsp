@@ -205,7 +205,7 @@ body, html {
 
 .photo {
 	width: calc(( 100% - 80px)/5);
-	height: 230px;
+	height: 280px;
 	border-radius: 10px;
 	background-color: #ffffff;
 	border: 1px solid #969090;
@@ -213,7 +213,7 @@ body, html {
 
 .inner_photo {
 	width: 100%;
-	height: 160px;
+	height: 240px;
 	padding: 10px;
 	box-sizing: border-box;
 }
@@ -335,14 +335,14 @@ a:hover {
 			<div class="free_b">
 				<div class="headline-container">
 					<span class="headline"> 자유게시판 </span> <span class="more"> <a
-						href="../freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
+						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
 				</div>
 				<div class="free_box">
-					<c:forEach items="frees" var="free">
+					<c:forEach items="${frees}" var="free">
 					<div>
-						
+						<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"  class="dogName">${free.freeSub}</a>
 					</div>
-					</c:forEach>
+					</c:forEach> 
 				</div>
 			</div>
 		</div>
