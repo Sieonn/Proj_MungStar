@@ -25,5 +25,6 @@ public interface FreeDAO {
 	   
 	   List<Comment> selectFreeComment(Integer freeNum) throws Exception;
 	   void insertFreeComment(Comment comment) throws Exception;
+	   List<FBoard> selectFreeListOnMain() throws Exception;
 	   
 }

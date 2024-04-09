@@ -201,5 +201,10 @@ public class FreeServiceImpl implements FreeService{
 		
 		return comment;
 	}
+	@Override
+	public List<FBoard> freeListOnMain() throws Exception {
+		List<FBoard> freeList=freeDAO.selectFreeListOnMain();
+		return freeList;
+	}
 	
 }

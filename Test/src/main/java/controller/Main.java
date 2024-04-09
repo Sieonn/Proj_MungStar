@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dto.FBoard;
 import dto.Lost;
 import dto.Temp;
+import service.FreeService;
+import service.FreeServiceImpl;
 import service.LostService;
 import service.LostServiceImplement;
 import service.TempService;
@@ -37,8 +40,10 @@ public class Main extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		try {
+			FreeService freeService=new FreeServiceImpl();
 			TempService tempService=new TempServiceImplement();
 			LostService lostService=new LostServiceImplement();
+			List<FBoard> fBoards=freeService.freeListOnMain();
 			List<Temp> temps=tempService.tempListOnMain();
 			List<Lost> losts=lostService.lostlistOnMain();
 			request.setAttribute("temps", temps);

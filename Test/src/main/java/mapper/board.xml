@@ -110,6 +110,11 @@
 		]]>
 	</select>
 	
+	<select id="selectFreeListOnMain" resultType="dto.FBoard">
+		<![CDATA[
+			SELECT * FROM freeboard ORDER BY freeNum DESC LIMIT 5;
+		]]>
+	</select>
 
 
 </mapper>

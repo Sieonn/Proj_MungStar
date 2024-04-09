@@ -15,4 +15,5 @@ public interface FreeService {
 	void deleteBoard(Integer freeNum) throws Exception;
 	List<Comment> freeCommentList(Integer freeNum) throws Exception;
 	Comment addFreeComment(HttpServletRequest request) throws Exception;
+	List<FBoard> freeListOnMain() throws Exception;
 }

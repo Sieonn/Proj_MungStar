@@ -337,7 +337,13 @@ a:hover {
 					<span class="headline"> 자유게시판 </span> <span class="more"> <a
 						href="../freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
 				</div>
-				<div class="free_box"></div>
+				<div class="free_box">
+					<c:forEach items="frees" var="free">
+					<div>
+						
+					</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 

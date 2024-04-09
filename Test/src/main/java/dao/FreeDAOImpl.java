@@ -107,6 +107,11 @@ public class FreeDAOImpl implements FreeDAO {
 		
 	}
 
+	@Override
+	public List<FBoard> selectFreeListOnMain() throws Exception {
+		return sqlSession.selectList("mapper.board.selectFreeListOnMain");
+	}
+
 
 
 }
