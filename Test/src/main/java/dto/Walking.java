@@ -75,12 +75,22 @@ public class Walking {
 	}
 	
 	
-	public Walking(String walkName, Double walkLat, Double walkLong, String walkAddress3,
+	public Walking(String walkWriter, String walkName, Double walkLat, Double walkLong, String walkAddress3,
 			String walkReason) {
 		super();
+		this.walkWriter = walkWriter;
 		this.walkName = walkName;
 		this.walkLat = walkLat;
 		this.walkLong = walkLong;
+		this.walkAddress3 = walkAddress3;
+		this.walkReason = walkReason;
+	}
+	public Walking(Integer walkNum,String walkWriter, String walkName, String walkAddress3,
+			String walkReason) {
+		super();
+		this.walkNum=walkNum;
+		this.walkWriter = walkWriter;
+		this.walkName = walkName;
 		this.walkAddress3 = walkAddress3;
 		this.walkReason = walkReason;
 	}
