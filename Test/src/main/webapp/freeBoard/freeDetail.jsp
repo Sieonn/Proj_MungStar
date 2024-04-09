@@ -289,7 +289,7 @@
 		<span class= "title" >&nbsp;&nbsp;&nbsp;${board.freeSub }</span>
 		<span class = "titleInfo">${board.freeWriteDate}&nbsp;&nbsp;&nbsp;</span>
 		<br>
-		<span class = "titleInfo">좋아요 : <span id="likecount">${likecount}</span>&nbsp;</span>
+		<span class = "titleInfo">좋아요 : <span id="likecount">${board.freeLike}</span>&nbsp;</span>
 		<span class = "titleInfo">조회수 : ${board.freeView}&nbsp;</span>
 		<div class = "writeNick">&nbsp;&nbsp;&nbsp;&nbsp;${board.freeNick }</div>
 	</div>

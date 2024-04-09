@@ -144,4 +144,17 @@ public class FreeDAOImpl implements FreeDAO {
 		return sqlSession.selectOne("mapper.board.CountFreeLike",likecount);
 	}
 
+	@Override
+	public void updateBoardLikeCountPlus(Integer freeNum) throws Exception {
+		sqlSession.update("mapper.board.updateBoardLikeCountPlus", freeNum);
+		sqlSession.commit();
+	}
+
+	@Override
+	public void updateBoardLikeCountMinus(Integer freeNum) throws Exception {
+		sqlSession.update("mapper.board.updateBoardLikeCountMinus", freeNum);
+		sqlSession.commit();
+
+	}
+
 }

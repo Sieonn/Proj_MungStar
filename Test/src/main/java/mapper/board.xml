@@ -65,6 +65,18 @@
    </update>
 	
 	
+	<update id="updateBoardLikeCountPlus" parameterType="Integer">
+      <![CDATA[
+      update freeboard set freeLike = freeLike+1 where freeNum=#{freeNum}
+      ]]>
+   </update>
+   	
+	<update id="updateBoardLikeCountMinus" parameterType="Integer">
+      <![CDATA[
+      update freeboard set freeLike = freeLike-1 where freeNum=#{freeNum}
+      ]]>
+   </update>
+
 	<insert id="insertBoard" parameterType="dto.FBoard" useGeneratedKeys="true" keyProperty="freeNum">
 		<![CDATA[
 			insert into freeboard (memId,freeNick,freeSub,freeContent,freePhoto,freeTag,freeWriteDate)

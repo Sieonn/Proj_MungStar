@@ -48,11 +48,9 @@ public class FreeDetail extends HttpServlet {
 	        FreeService freeService = new FreeServiceImpl();
 	        FBoard board = (FBoard) freeService.freeDetail(freeNum);
 	        List<Comment> comments=freeService.freeCommentList(freeNum);
-	        Integer likecount = freeService.selectFreeLikeCount(freeNum);
 	        Boolean isLike = freeService.freeLike(member.getMemId(),freeNum);
 	        request.setAttribute("board", board);
 	        request.setAttribute("comments", comments);
-	        request.setAttribute("likecount", likecount);
 	        request.setAttribute("isLike", isLike);
 	        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 	    } catch (Exception e) {

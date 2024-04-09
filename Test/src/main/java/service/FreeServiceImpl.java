@@ -120,7 +120,7 @@ public class FreeServiceImpl implements FreeService{
 		pageInfo.setAllPage(maxPage);
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
-
+		System.out.println(boardList);
 		request.setAttribute("freeBoard", boardList);
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("freeTag", freeTag);
@@ -216,11 +216,14 @@ public class FreeServiceImpl implements FreeService{
 	   @Override
 	   public boolean togleFreeLike(String memId, Integer freeNum) throws Exception {
 	      boolean isBoardLike = freeLike(memId, freeNum);
+	      System.out.println(isBoardLike);
 	      if(isBoardLike) {
 	    	  freeDAO.deleteFreeLike(memId, freeNum);
+	    	  freeDAO.updateBoardLikeCountMinus(freeNum);
 	         return false;
 	      } else {
 	    	  freeDAO.insertFreeLike(memId, freeNum);
+	    	  freeDAO.updateBoardLikeCountPlus(freeNum);
 	         return true;
 	      }
 	   }

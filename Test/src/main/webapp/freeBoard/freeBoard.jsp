@@ -178,7 +178,7 @@
 				<td>${board.freeNick }</td>
 				<td>${board.freeWriteDate }</td>
 				<td>${board.freeView }</td>
-				<td>${board.freeLike }<span class="like-icon"></span></td>
+				<td>${board.freeLike}<span class="like-icon"></span></td>
 			</tr>
 		</c:forEach>
 	</tr>

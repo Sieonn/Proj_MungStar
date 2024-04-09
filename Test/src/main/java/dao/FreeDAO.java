@@ -31,4 +31,7 @@ public interface FreeDAO {
 	   void deleteFreeLike(String memId, Integer freeNum) throws Exception;
 	   Integer selectFreeLike(String memId, Integer freeNum) throws Exception;
 	   Integer selectFreeLikeCount(Integer likecount) throws Exception;
+	   
+	   void updateBoardLikeCountPlus(Integer freeNum) throws Exception;
+	   void updateBoardLikeCountMinus(Integer freeNum) throws Exception;
 }
