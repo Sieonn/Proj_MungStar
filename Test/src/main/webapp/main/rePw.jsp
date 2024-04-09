@@ -66,7 +66,6 @@ body, html {
 
 .form-control {
 	flex: 1;	
-	margin-left: 10px;
 	height: 40px;
 }
 
@@ -127,7 +126,10 @@ placeholder {
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="content">
-		<div class="card align-middle" style="width: 25rem">
+		<div class="card" style="width: 25rem">
+		<div class="card-title">
+				<h2 class="card-title" style="color: #0155b7"></h2>
+			</div>
 			<div class="card-body">
 				<form action="resetPw" class="form-signin" method="POST">
 					<p class="text2"
