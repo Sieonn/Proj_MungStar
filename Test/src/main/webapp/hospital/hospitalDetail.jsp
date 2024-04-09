@@ -565,7 +565,7 @@ window.onload=function(){
 	<div class="comment_box" id="comment_box">
 	<c:forEach items="${comments}" var="comment">
 	<c:choose>
-	<c:when test="${comment.commNick eq walkWriter}">
+	<c:when test="${comment.commNick eq hosNick}">
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
@@ -595,7 +595,7 @@ $('#commBtn').on("click",function(){
 		asnyc:true,
 		data:{commContent:$('#comment').val(), hosNum:'${hospital.hosNum}'},
 		success:function(result){
-			let comment=JSON.parse(result);
+			 comment=JSON.parse(result);
 			console.log(comment.memNick);
 			
 			if(comment.memNick==='${hosNick}'){
@@ -624,7 +624,7 @@ $('#commBtn').on("click",function(){
 		}	
 	})
 })
-)
+
 
 </script>
 </div>
