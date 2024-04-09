@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "mapper.walkingLike">
+	<insert id="insertWalkingLike" parameterType = "java.util.Map">
+		<![CDATA[
+		insert into walkingLike (memId, walkNum) values (#{memId},#{walkNum}) 
+		]]>	
+	</insert>
+	
+	<delete id="deleteWalkingLike" parameterType = "java.util.Map">
+		<![CDATA[
+		delete from walkingLike where memId =#{memId} and walkNum=#{walkNum} 
+		]]>
+	</delete>
+	
+	<select id="seleteWalkingLike" parameterType = "java.util.Map" resultType ="Integer">
+		<![CDATA[
+		selete num from walkingLike where memId =#{memId} and walkNum=#{walkNum} 
+		]]>
+	</select>
+</mapper>

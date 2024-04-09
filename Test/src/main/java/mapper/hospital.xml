@@ -15,4 +15,25 @@
 		]]>
 		
 	</select>
+	
+		<select id="selectHosComment" parameterType="Integer"
+		resultType="dto.Comment">
+		<![CDATA[
+			select * from hospitalComment where hosNum=#{hosNum}
+		]]>
+	</select>
+
+	<insert id="insertHosComment" parameterType="dto.Comment">
+		<![CDATA[
+			insert into hospitalComment (commNick,hosNum,commContent,commDate)
+			values (#{commNick},#{boardNum},#{commContent},curdate())
+		]]>
+	</insert>
+	
+	<select id="selectHosNick" parameterType="String"
+		resultType="String">
+		<![CDATA[
+			select memNick from member where memId=#{memId}
+		]]>
+	</select>
 </mapper>
