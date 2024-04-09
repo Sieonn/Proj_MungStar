@@ -6,13 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">	
-	@font-face {
-        font-family: "JalnanGothic";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
-          format("woff");
-        font-weight: normal;
-        font-style: normal;
-      }
 		body,html {
         margin: 0;
         padding: 0;
@@ -26,11 +19,14 @@
 		margin: 0 auto;
  	}
  	#freeCategory{
- 		width :1024px;
- 		margin : 0 auto;	
+ 		width :1280px;
+ 		margin: 10px 0;
+ 		font-size: 22px;
+        font-family: "JalnanGothic";
+
   	}
   	.listContainer{
- 		width :1024px;
+ 		width :1280px;
  		margin: 0 auto;
  		border-bottom: 2px solid #ddd;
   	}
@@ -67,7 +63,7 @@
       }
 
 	.board {
-    	width: 1024px;
+    	width: 1280px;
     	margin: 0 auto;
     	border-collapse: collapse;
     	margin-top: 30px;
@@ -140,11 +136,11 @@
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <jsp:include page="/main/header.jsp"/>
-<br><br>
+<br>
 <div class="pageContainer">
 	<div class="freeContainer">
     <div id="freeCategory">
-        <h2 style="margin-bottom: 5px;">자유게시판</h2>
+        <h2 style="margin-bottom: 5px; font-weight: lighter;">자유게시판</h2>
 		<br><br>
 		
 		<div class="searchContainer">
