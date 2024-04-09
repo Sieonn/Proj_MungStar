@@ -2,21 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.member">
-	<select id="selectMember" parameterType="String" resultType="dto.Member">
+	<select id="selectMember" parameterType="String"
+		resultType="dto.Member">
 		<![CDATA[
 			select * from member where memId=#{memId}
 		]]>
 	</select>
-		<select id="selectMemberN" parameterType="String" resultType="dto.Member">
+	<select id="selectMemberN" parameterType="String"
+		resultType="dto.Member">
 		<![CDATA[
 			select * from member where memNick=#{memNick}
 		]]>
 	</select>
-	
+	<select id="selectFindId" parameterType="Map"
+		resultType="String">
+    <![CDATA[
+        SELECT memId FROM member WHERE memNick = #{memNick} AND memPhone = #{memPhone}
+    ]]>
+	</select>
 	<insert id="insertMember" parameterType="dto.Member">
 		<![CDATA[
-			insert into member (memId,memPw,memNick,memPhone,memAddress1,memAddress2,memEmail,memProfile)
-			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail},#{memProfile})
+			insert into member (memId,memPw,memNick,memPhone,memAddress1,memAddress2,memEmail,memDate,memProfile)
+			values (#{memId},#{memPw},#{memNick},#{memPhone},#{memAddress1},#{memAddress2},#{memEmail},curdate(),#{memProfile})
 		]]>
 	</insert>
 </mapper>

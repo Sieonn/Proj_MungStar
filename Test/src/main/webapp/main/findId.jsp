@@ -59,27 +59,27 @@ body, html {
 }
 
 .form-signin .form-control {
-	position: relative;
+	/* position: relative;
 	height: auto;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 10px;
+	box-sizing: border-box; */
 	font-size: 16px;
 }
 
-.card-title {
-	margin-left: 30px;
+.form-control {
+	width: 250px;
+	margin-left: 10px;
 }
 
-.form-signin .form-control {
-	position: relative;
-	height: auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 10px;
-	font-size: 16px;
+.lname {
+	width: 70px;
+	margin-top: 10px;
+}
+
+.card-body {
+	width: 400px;
+	padding: 40px;
 }
 
 button, input {
@@ -109,44 +109,94 @@ a:hover {
 	color: black;
 	font-weight: 700;
 }
+
+.findname, .findtel {
+	display: flex;
+}
+.check{
+ margin-bottom: 10px;
+ font-size: 18px;
+ font-family: "JalnanGothic";
+ text-align: center;
+}
 </style>
+<script>
+    $(function() {
+        $("form").submit(function(e) {
+            e.preventDefault();
+            var memNick = $("#memNick").val();
+            var memPhone = $("#memPhone").val();
+
+            // AJAX를 통해 서버로 닉네임과 전화번호 값을 전달하여 아이디를 찾음
+            $.ajax({
+                url: '${path}/findid', // 아이디 찾기 처리를 하는 서블릿 주소
+                type: 'post',
+                async: true,
+                data: {
+                    memNick: memNick,
+                    memPhone: memPhone
+                },
+                success: function(result) {
+                	 if (result == "") {
+                         // DB에서 일치하는 아이디를 찾지 못한 경우
+                         $("#check").text("일치하는 항목이 없습니다.");
+                         $("#check").css("color", "red");
+                         $("#result").css("color", "black"); // result의 텍스트 색상을 기본 값으로 변경
+                     } else {
+                         // DB에서 일치하는 아이디를 찾은 경우
+                         $("#check").text("아이디는 " + result + "입니다.");
+                         $("#check").css("color", "green");
+                       // result의 텍스트 색상을 초록색으로 변경
+                     }
+                },
+                error: function() {
+                    alert("아이디를 찾는 중에 오류가 발생했습니다.");
+                }
+            });
+        });
+    });
+</script>
 </head>
 
 <body>
-	<%@ include file="../main/header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="card">
-			<div class="card-title">
-				<h2 class="card-title" style="color: #0155b7"></h2>
-			</div>
-
 			<div class="card-body">
 				<form action="findId" class="form-signin" method="POST">
 					<p class="text2"
-						style="font-family: 'JalnanGothic'; font-size: 24px">
-						아이디 찾기</p>
-					<input type="text" name="name" id="name" class="form-control"
-						placeholder="이름" required autofocus /><br />
-						 <input
-						type="email" name="email" id="email" class="form-control"
-						placeholder="이메일" required /><br />
-					<p class="check" id="check"></p>
+						style="font-family: 'JalnanGothic'; font-size: 24px">아이디 찾기</p>
+
+					<div class="findname">
+						<label class="lname">닉네임</label> <input type="text" id="memNick"
+							name="memNick" class="form-control" placeholder="닉네임" required
+							autofocus />
+						
+					</div>
+					<br />
+					<div class="findtel">
+						<label class="lname">전화번호</label> <input type="tel" id="memPhone"
+							name="memPhone" class="form-control" placeholder="전화번호" required />
+						
+					</div>
+					<br />
+						<div class="check" id="check"></div>
 					<button id="btn-Yes" class="btn btn-lg btn-primary btn-block"
-						type="submit" style="font-weight: 900">아 이
-						디 찾 기</button>
+						type="submit" style="font-weight: 900">아 이 디 찾 기</button>
+
 				</form>
 			</div>
 			<div class="links">
-				<a href="${path}/findPw.jsp">비밀번호 찾기</a> | <a href="${path}/login">로그인</a> | <a
-					href="${path}/signup">회원가입</a>
+				<a href="${path}/findPw.jsp">비밀번호 찾기</a> | <a href="${path}/login">로그인</a>
+				| <a href="${path}/signup">회원가입</a>
 			</div>
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$("#name").focusout(function() {
 		if ($("#name").val() == "") {
-			$("#check").text("이름을 입력해주세요.");
+			$("#check").text("전화번호를 입력해주세요.");
 			$("#check").css("color", "red");
 		} else {
 			$("#check").hide();
@@ -161,6 +211,6 @@ a:hover {
 			$("#check").hide();
 		}
 	});
-</script>
+</script> -->
 </html>
 

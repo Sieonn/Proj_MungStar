@@ -8,4 +8,6 @@ public interface MemberService {
 	boolean memberIdCheck(String memId) throws Exception;
 	boolean memberNickCheck(String memNick) throws Exception;
 	void getMypage(HttpServletRequest request) throws Exception;
-}
+	String findId(String memNick, String memPhone) throws Exception;
+	}
+

@@ -526,9 +526,9 @@ $(function() {
             e.preventDefault();
             alert("닉네임 중복조회를 해주세요.");
         }
-  	  var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
-	  $('input[name=memEmail]').val(email);
     });
+	  var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
+	  $('input[name=memEmail]').val(email);
 });
 </script>
 </head>

@@ -265,25 +265,6 @@ a:hover {
 	clip: rect(0, 0, 0, 0);
 }
 
-#my_modal {
-	display: none;
-	width: 600px;
-	height: 600px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	background-color: #fefefe;
-	width: 500px;
-	width: 500px;
-	background-color: #fefefe;
-	padding: 30px;
-}
-
-#my_modal .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
 </style>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -315,102 +296,18 @@ a:hover {
 
 </head>
 <body>
-	<%@ include file="../main/header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div class="container">
 		<!-- 인삿말 -->
 		<div class="mypage-container">
-			<div id="my_modal">
-				<form action="profile" method="POST" name="myPageFrm"
-					id="profileFrm" enctype="multipart/form-data">
-					<div class="wel-Img"
-						style="display: flex; justify-content: center; margin-top: 70px;">
-						<div class="inner_profile" style="align-items: center;">
-							<c:if test="${empty user.memProfile}">
-								<img class="btn-open-modal" id="preview"
-									src="${path}/imageView?num=6">
-								<input type="file" id="fileInput" class="fileInput" name="file"
-									accept="image/*">
-							</c:if>
-							<c:if test="${!empty user.memProfile}">
-								<img src="${loginMember.profileImage}" id="profileImage">
-							</c:if>
-						</div>
-					</div>
-					<a class="modal_close_btn">닫기</a>
-				</form>
-			</div>
-
+		
 			<div class="wel-Img">
-				<div class="inner_profile">
-					<img class="btn-open-modal" id="popup_open_btn"
-						src="${path}/imageView?num=6">
-				</div>
-			</div>
-			<script>
-				function modal(id) {
-					var zIndex = 9999;
-					var modal = document.getElementById(id);
-
-					// 모달 div 뒤에 희끄무레한 레이어
-					var bg = document.createElement('div');
-					bg.setStyle({
-						position : 'fixed',
-						zIndex : zIndex,
-						left : '0px',
-						top : '0px',
-						width : '100%',
-						height : '100%',
-						overflow : 'auto',
-						// 레이어 색갈은 여기서 바꾸면 됨
-						backgroundColor : 'rgba(0,0,0,0.4)'
-					});
-					document.body.append(bg);
-
-					// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-					modal.querySelector('.modal_close_btn').addEventListener(
-							'click', function() {
-								bg.remove();
-								modal.style.display = 'none';
-							});
-
-					modal
-							.setStyle({
-								position : 'fixed',
-								display : 'block',
-								boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-								// 시꺼먼 레이어 보다 한칸 위에 보이기
-								zIndex : zIndex + 1,
-
-								// div center 정렬
-								top : '50%',
-								left : '50%',
-								transform : 'translate(-50%, -50%)',
-								msTransform : 'translate(-50%, -50%)',
-								webkitTransform : 'translate(-50%, -50%)'
-							});
-				}
-
-				// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-				Element.prototype.setStyle = function(styles) {
-					for ( var k in styles)
-						this.style[k] = styles[k];
-					return this;
-				};
-
-				document.getElementById('popup_open_btn').addEventListener(
-						'click', function() {
-							// 모달창 띄우기
-							modal('my_modal');
-						});
-			</script>
-			<!-- 			<div class="wel-Img">
 				<div class="inner_profile">
 					<img class="btn-open-modal" id="preview"
 						src="${path}/imageView?num=6"> <input type="file"
 						id="fileInput" class="fileInput" name="file" accept="image/*">
 				</div>
-			</div> -->
+			</div> 
 
 			<div class="wel-txt">
 				<div class="hello">
@@ -428,8 +325,28 @@ a:hover {
 		<!-- 내 활동 -->
 
 		<div class="mypage-container2">
+					<div class="myactive"
+				style="width: 100%; height: 100%; padding: 0 5%">
+				<div class="actGrid">
+					<div class="actTitle">내 활동</div>
+					<div class="petInfo">
+						<div style="margin: 5% 7%">
+							<div class="act-btn" style="display: flex">
+								<button class="actBtn">
+									<a href="${path}/walkBoard?id=${user.memId}">산책로 추천</a>
+								</button>
+								<button class="actBtn" id="">자유게시판</button>
+							</div>
+							<div class="act-btn" style="display: flex">
+								<button id="" class="actBtn">임시 보호소</button>
+								<button id="" class="actBtn">미멍 보호소</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="myactive"
-				style="width: 100%; padding: 0 5%; border-right: 2px solid rgb(199, 199, 199);">
+				style="width: 100%; padding: 0 5%;border-left: 2px solid rgb(199, 199, 199);">
 				<div class="actGrid">
 					<div class="actTitle">개인 정보</div>
 					<div class="petInfo" style="text-align: center">
@@ -455,7 +372,7 @@ a:hover {
 						</div>
 						<div class="field1">
 							<div class="inner-txt">주소</div>
-							<div class="myinfo">${user.memAddress1}${user.memAddress2}
+							<div class="myinfo">${user.memAddress1}<br>${user.memAddress2}
 							</div>
 						</div>
 					</div>
@@ -511,26 +428,6 @@ a:hover {
 
 			<!--왜 안먹어 이시키야
         -->
-			<div class="myactive"
-				style="width: 100%; height: 100%; padding: 0 5%">
-				<div class="actGrid">
-					<div class="actTitle">내 활동</div>
-					<div class="petInfo">
-						<div style="margin: 5% 7%">
-							<div class="act-btn" style="display: flex">
-								<button class="actBtn">
-									<a href="${path}/walkBoard?id=${user.memId}">산책로 추천</a>
-								</button>
-								<button class="actBtn" id="">자유게시판</button>
-							</div>
-							<div class="act-btn" style="display: flex">
-								<button id="" class="actBtn">임시 보호소</button>
-								<button id="" class="actBtn">미멍 보호소</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </body>
