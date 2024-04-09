@@ -5,8 +5,8 @@
 	
 <insert id="insertWalking" parameterType="dto.Walking" useGeneratedKeys="true" keyProperty="walkNum">
 	<![CDATA[ 
-	insert into walking(walkName,walkLat,walkLong,walkAddress3,walkReason)
-	values(#{walkName},#{walkLat},#{walkLong},#{walkAddress3},#{walkReason})
+	insert into walking(walkWriter,walkName,walkLat,walkLong,walkAddress3,walkReason)
+	values(#{walkWriter},#{walkName},#{walkLat},#{walkLong},#{walkAddress3},#{walkReason})
 	]]>
 </insert>
 
@@ -22,4 +22,36 @@
 		]]>
 		
 	</select>
+	
+		<update id="updateWalking" parameterType="dto.Walking">
+		update walking
+   		<trim prefix="SET" suffixOverrides=",">
+   			<if test="walkName !=null">walkName=#{walkName},</if>
+   			<if test="walkReason !=null">walkReason=#{walkReason},</if>
+   			<if test="walkBlind !=null">walkBlind=1</if>
+   		</trim>
+   		where walkNum=#{walkNum}
+	</update>
+	
+	<select id="selectWalkComment" parameterType="Integer"
+		resultType="dto.Comment">
+		<![CDATA[
+			select * from walkComment where walkNum=#{walkNum}
+		]]>
+	</select>
+
+	<insert id="insertWalkComment" parameterType="dto.Comment">
+		<![CDATA[
+			insert into walkComment (commNick,walkNum,commContent,commDate)
+			values (#{commNick},#{boardNum},#{commContent},curdate())
+		]]>
+	</insert>
+	
+	<select id="selectWalkNick" parameterType="String"
+		resultType="String">
+		<![CDATA[
+			select memNick from member where memId=#{memId}
+		]]>
+	</select>
+	
 </mapper>
