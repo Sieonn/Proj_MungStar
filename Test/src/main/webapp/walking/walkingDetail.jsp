@@ -15,7 +15,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
 #walkListLogout{
-z-index:9999;
+z-index:9998;
 width: 90px;
 	height: 20px;
 	border: 0;
@@ -27,13 +27,13 @@ width: 90px;
 	box-shadow: 0 3px 1px gray;
 }
 	.comment{
-	z-index:9999;
-	position:relative;
+	z-index:9998;
   	width:1280px;
   	margin:0 auto;
 
   	}
    .cheader{
+   z-index:8888;
       	width: 1280px;
         font-size: 18px;
         font-family: "JalnanGothic";  	
@@ -631,8 +631,8 @@ window.onload=function(){
 		</div>
 </div>
 <br><br>
-			<div class="walkTopEmpty">
-		</div>
+			<div class="ememem" style="display:flex; top:700px; height:30px; width:1280px; ">
+			</div>
 <div class="comment">
 			<div class="cheader">&nbsp;COMMENT</div>
 <div class="comment_container">
@@ -658,7 +658,7 @@ window.onload=function(){
 	</div>
     <div class="inputDiv">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
-		<button class="commBtn" id="commBtn">등록</button>
+		<button class="commBtn" id="commBtn" style="z-index:9999;">등록</button>
 	</div>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
