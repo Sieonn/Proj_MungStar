@@ -20,4 +20,5 @@ public interface WalkingService {
 		List<Comment> walkCommentList(Integer walkNum) throws Exception;
 		String getWalkNick(String memId) throws Exception;
 		Comment addWalkComment(HttpServletRequest request) throws Exception;
+		List<Walking> walkListOnMain() throws Exception;
 }

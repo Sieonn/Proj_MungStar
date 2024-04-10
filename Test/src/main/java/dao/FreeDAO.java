@@ -34,4 +34,8 @@ public interface FreeDAO {
 	   
 	   void updateBoardLikeCountPlus(Integer freeNum) throws Exception;
 	   void updateBoardLikeCountMinus(Integer freeNum) throws Exception;
+	
+	   void deleteFreeComment(Integer commNum) throws Exception;
+
+	   
 }

@@ -123,7 +123,7 @@
     	overflow: hidden; 
     	border-radius: 10px;
     }
-    photo{
+    .photo{
     	/* width: 100%; height: 250px; */
     	display: inline-block;
     	overflow: hidden;
@@ -255,7 +255,7 @@ const handleImgInput = (e) => {
     
     <div class="lostImg">
     <a href="lostDetail?lostNum=${lost.lostNum}">
-    <img class="photo" src="../imageView?num=${lost.lostPhoto}">
+    <img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
     </a>
     </div>
     

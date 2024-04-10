@@ -18,4 +18,5 @@ public interface WalkingDAO {
 	void insertWalkComment(Comment comment) throws Exception;
 	
 	String selectWalkNick(String memId) throws Exception;
+	List<Walking> selectWalkListOnMain() throws Exception;
 }

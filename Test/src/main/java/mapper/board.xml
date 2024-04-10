@@ -109,7 +109,7 @@
 		]]>
 	</select>
 
-	<insert id="insertFreeComment" parameterType="dto.Comment">
+	<insert id="insertFreeComment" parameterType="dto.Comment" useGeneratedKeys="true" keyProperty="commNum">
 		<![CDATA[
 			insert into freeComment (commNick,freeNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())
@@ -151,5 +151,11 @@
 	<select id="CountFreeLike" resultType="Integer">
 			SELECT count(*) FROM freeboardlike where freeNum=#{boardNum}
 		</select>
+		
+	<delete id="deleteFreeComment" parameterType="Integer">
+		<![CDATA[
+			delete from freecomment where commNum=#{commNum}
+		]]>
+	</delete>
 		
 </mapper>

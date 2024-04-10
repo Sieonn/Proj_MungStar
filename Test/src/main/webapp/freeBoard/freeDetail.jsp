@@ -318,8 +318,10 @@
 <br>
 <div class = "BtnArray">
 	<button class = "yellowBtn" id="listBtn">목록</button>
+ 	<c:if test="${board.memId eq user.memId}">
  	<button type = "submit" class = "yellowBtn" id="modifyBtn">수정</button>
  	<button id="deleteBtn" class = "yellowBtn" type = "submit">삭제</button>
+ 	</c:if>
 <%-- 	
  	<button id="likeCount" class="likeButton" onclick="toggleLike(this)"></button>
 	<span class="likeCount">${board.freeLike}</span>
@@ -346,14 +348,14 @@
 	<c:choose>
 	<c:when test="${comment.commNick eq board.freeNick}">
 	<div class="writeComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent mycomm">${comment.commContent}</span>
 	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="memComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="memcommContent comm" >${comment.commContent}</span>
 	</div>
@@ -402,14 +404,14 @@ $('#commBtn').on("click",function(){
 			let comment=JSON.parse(result);
 			if(comment.memNick==='${board.freeNick}'){
 			let div=`<div class="writeComm">
-					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
 					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 					<span class="commContent mycomm">\${comment.commContent}</span>
 				</div>`
 				$('#comment_box').append(div);
 			} else{
 				let div=`<div class="memComm">
-						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
 						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 						<span class="commContent comm" >\${comment.commContent}</span>
 					</div>`
@@ -456,6 +458,29 @@ $(function(){
     })
  })
 
+ function commentDelete(delImage) {
+	console.log(delImage)
+	var writeDiv = delImage.parentNode;
+	console.log(delImage.getAttribute('id'))
+	if(delImage.getAttribute('id')!='${user.memNick}') return;
+	
+	if (confirm("댓글을 삭제하시겠습니까??") == true){    //확인
+	     $.ajax({
+	    	 url:'${path}/freeBoard/freeCommentDelete',
+	    	 type:'get',
+	    	 async:true,
+	    	 data:{commNum:delImage.dataset.num},
+	    	 success:function(result) {
+	    		 console.log(result)
+	    		 if(result=='true') {
+	    			 writeDiv.remove()
+	    		 }
+	    	 }
+	     })
+	 }else{   //취소
+	     return false;
+	 }	
+}
 </script>
 
 </body>

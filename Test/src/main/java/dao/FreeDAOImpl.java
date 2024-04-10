@@ -157,4 +157,10 @@ public class FreeDAOImpl implements FreeDAO {
 
 	}
 
+	@Override
+	public void deleteFreeComment(Integer commNum) throws Exception {
+		sqlSession.delete("mapper.board.deleteFreeComment",commNum);
+		sqlSession.commit();
+	}
+
 }

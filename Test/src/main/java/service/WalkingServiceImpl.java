@@ -115,5 +115,11 @@ public class WalkingServiceImpl implements WalkingService {
 		
 		return comment;
 	}
+
+	@Override
+	public List<Walking> walkListOnMain() throws Exception {
+		List<Walking> walkList=walkDAO.selectWalkListOnMain();
+		return walkList;
+	}
 	
 }

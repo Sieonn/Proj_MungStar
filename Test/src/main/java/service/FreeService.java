@@ -19,4 +19,5 @@ public interface FreeService {
 	boolean freeLike(String memId, Integer freeNum) throws Exception;
 	boolean togleFreeLike(String memId, Integer freeNum) throws Exception;
 	Integer selectFreeLikeCount(Integer likecount)throws Exception;
+	void freeCommentDelete(Integer commNum) throws Exception;
 }

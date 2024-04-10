@@ -26,9 +26,10 @@ public class LostCommentDelete extends HttpServlet {
 		try {
 			LostService lostService=new LostServiceImplement();
 			lostService.lostCommentDelete(commNum);
-			
+			response.getWriter().write("true");
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.getWriter().write("false");
 		}
 	}
 

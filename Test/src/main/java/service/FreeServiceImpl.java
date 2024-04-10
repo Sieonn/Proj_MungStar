@@ -231,5 +231,9 @@ public class FreeServiceImpl implements FreeService{
 	public Integer selectFreeLikeCount(Integer likecount) throws Exception {
 		return freeDAO.selectFreeLikeCount(likecount);
 	}
+	@Override
+	public void freeCommentDelete(Integer commNum) throws Exception {
+		freeDAO.deleteFreeComment(commNum);
+	}
 	
 }

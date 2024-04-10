@@ -81,7 +81,7 @@
 		]]>
 	</select>
 
-	<insert id="insertLostComment" parameterType="dto.Comment">
+	<insert id="insertLostComment" parameterType="dto.Comment" useGeneratedKeys="true" keyProperty="commNum">
 		<![CDATA[
 			insert into lostComment (commNick,lostNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())

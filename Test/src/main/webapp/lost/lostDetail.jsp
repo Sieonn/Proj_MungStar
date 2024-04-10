@@ -81,9 +81,11 @@
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
       }
-      .dog_Img{
+      .lostImg{
       	width: 100%; height: 265px;
-      	border-radius: 10px;
+      	overflow: hidden;
+      	      	border-radius: 10px;
+      	
       }
       .state{
       	color: green;
@@ -243,7 +245,9 @@
 				<div>${lost.lostEtc}</div>
 			</div>
 			<div class="img_box">
-				<img class="dog_Img" src="${path}/imageView?num=${lost.lostPhoto}">
+				<div class="lostImg">
+				<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
+				</div>
 				<div class="state">찾고있어요</div>
 			</div>
 		</div>
@@ -265,14 +269,14 @@
 	<c:choose>
 	<c:when test="${comment.commNick eq lostNick}">
 	<div class="writeComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent mycomm">${comment.commContent}</span>
 	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="memComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent comm" >${comment.commContent}</span>
 	</div>
@@ -302,6 +306,50 @@ for (var i = 0; i < chars.length-1; i++) {
 	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }
 
+$(function(){
+	$(".photo").load(function(e) {
+		var imageBox = document.querySelector(".lostImg");
+		const widthDiff = (this.clientWidth - imageBox.offsetWidth) / 2;
+    	const heightDiff = (this.clientHeight - imageBox.offsetHeight) / 2;
+    	
+    	console.log(widthDiff)
+    	this.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+	})
+})
+
+let imageBlob = null;
+
+const handleImgInput = (e) => {
+  const config = {
+    file: e.target.files[0],
+    maxSize: 200,
+  };
+  resizeImage(config)
+    .then((resizedImage) => {   
+    	resizedImage.toBlob( blob=> {
+    	      const url = window.URL.createObjectURL(blob);
+    	      const img = document.createElement("img");
+    	      img.setAttribute("src", url);
+    	      img.className = "profile-img";
+    	      img.style.display = "block";
+    	      img.onload = () => {
+    	        const widthDiff = (img.clientWidth - imgTag.offsetWidth) / 2;
+    	        const heightDiff = (img.clientHeight - imgTag.offsetHeight) / 2;
+
+    	        img.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+    	      };    	      
+    	      
+    	      imgTag.innerHTML = "";
+    	      imgTag.appendChild(img);
+    	      imageBlob = blob;
+    	      console.log(imageBlob)
+    	}, 'image/webp')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 $('#commBtn').on("click",function(){
 	$.ajax({
 		url:"lostCommentList",
@@ -311,17 +359,17 @@ $('#commBtn').on("click",function(){
 		success:function(result){
 			let comment=JSON.parse(result);
 			console.log(comment.memNick);
-			
+			console.log(comment.commNum);
 			if(comment.memNick==='${lostNick}'){
 			let div=`<div class="writeComm">
-					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
 					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 					<span class="commContent mycomm">\${comment.commContent}</span>
 				</div>`
 				$('#comment_box').append(div);
 			} else{
 				let div=`<div class="memComm">
-						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
 						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 						<span class="commContent comm" >\${comment.commContent}</span>
 					</div>`
@@ -341,5 +389,29 @@ $('#deleteBtn').click(function(){
 	     return false;
 	 }
 })
+
+function commentDelete(delImage) {
+	console.log(delImage)
+	var writeDiv = delImage.parentNode;
+	console.log(delImage.getAttribute('id'))
+	if(delImage.getAttribute('id')!='${user.memNick}') return;
+	
+	if (confirm("댓글을 삭제하시겠습니까??") == true){    //확인
+	     $.ajax({
+	    	 url:'${path}/lost/lostCommentDelete',
+	    	 type:'get',
+	    	 async:true,
+	    	 data:{commNum:delImage.dataset.num},
+	    	 success:function(result) {
+	    		 console.log(result)
+	    		 if(result=='true') {
+	    			 writeDiv.remove()
+	    		 }
+	    	 }
+	     })
+	 }else{   //취소
+	     return false;
+	 }	
+}
 </script>
 </html>
