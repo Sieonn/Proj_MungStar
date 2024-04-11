@@ -333,7 +333,7 @@ a:hover {
 
 
 		<div class="free">
-			<div class="free_b" style="">
+			<div class="free_b">
 				<div class="headline-container">
 					<span class="headline"> 자유게시판 </span> <span class="more"> <a
 						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
@@ -342,6 +342,31 @@ a:hover {
 				<div class="free_box">
 					<div class="freeBox_De">
 						<c:forEach items="${frees}" var="free">
+							<div style="margin-bottom: 5px;">
+								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
+									class="dogName"> <span style="font-size: 16px;"><span
+										style="color: #63C1D2;">[ ${free.freeTag} ]</span>
+										${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span></span><br />
+									<c:set var="shortContent"
+										value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
+									<span style="font-size: 12px; color: gray;"><c:out
+											value="${shortContent}" /></span>
+								</a>
+								<hr>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+						<div class="free_b">
+				<div class="headline-container">
+					<span class="headline"> 자유게시판 </span> <span class="more"> <a
+						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
+				</div>
+				<div class="header-line"></div>
+				<div class="free_box">
+					<div class="freeBox_De">
+						<c:forEach items="${freess}" var="free">
 							<div style="margin-bottom: 5px;">
 								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
 									class="dogName"> <span style="font-size: 16px;"><span
@@ -384,6 +409,8 @@ a:hover {
 				</div>
 			</c:forEach>
 			</div>
+			
+			
 			<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />

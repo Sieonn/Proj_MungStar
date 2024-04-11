@@ -112,12 +112,7 @@
 	
 	<select id="selectFreeListOnMain" resultType="dto.FBoard">
 		<![CDATA[
-			SELECT * FROM freeboard ORDER BY freeNum DESC LIMIT 5;
-		]]>
-	</select>
-	<select id="selectFreeListOnMainLike" resultType="dto.FBoard">
-		<![CDATA[
-			SELECT * FROM freeboard ORDER BY freeLike DESC LIMIT 5;
+			SELECT * FROM freeboard ORDER BY freeNum DESC LIMIT 6;
 		]]>
 	</select>
 
