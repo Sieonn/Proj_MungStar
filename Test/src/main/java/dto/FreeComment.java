@@ -1,25 +1,29 @@
 package dto;
 
-public class Comment {
+public class FreeComment {
 	private Integer commNum;
 	private String commNick;
-	private Integer boardNum;
+	private Integer freeNum;
 	private String commContent;
 	private String commDate;
 	private String commBlind;
-	public Comment() {
+	
+	public FreeComment() {
 		super();
 	}
-	public Comment(Integer commNum, String commNick, Integer boardNum, String commContent, String commDate,
+	
+	public FreeComment(Integer commNum, String commNick, Integer freeNum, String commContent, String commDate,
 			String commBlind) {
 		super();
 		this.commNum = commNum;
 		this.commNick = commNick;
-		this.boardNum = boardNum;
+		this.freeNum = freeNum;
 		this.commContent = commContent;
 		this.commDate = commDate;
 		this.commBlind = commBlind;
 	}
+
+
 	public Integer getCommNum() {
 		return commNum;
 	}
@@ -32,11 +36,11 @@ public class Comment {
 	public void setCommNick(String commNick) {
 		this.commNick = commNick;
 	}
-	public Integer getBoardNum() {
-		return boardNum;
+	public Integer getFreeNum() {
+		return freeNum;
 	}
-	public void setBoardNum(Integer boardNum) {
-		this.boardNum = boardNum;
+	public void setFreeNum(Integer freeNum) {
+		this.freeNum = freeNum;
 	}
 	public String getCommContent() {
 		return commContent;
@@ -55,11 +59,6 @@ public class Comment {
 	}
 	public void setCommBlind(String commBlind) {
 		this.commBlind = commBlind;
-	}
-	@Override
-	public String toString() {
-		return "Comment [commNum=" + commNum + ", commNick=" + commNick + ", boardNum=" + boardNum + ", commContent="
-				+ commContent + ", commDate=" + commDate + ", commBlind=" + commBlind + "]";
 	}
 	
 	

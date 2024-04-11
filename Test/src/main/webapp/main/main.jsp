@@ -298,7 +298,7 @@ a:hover {
 				onclick="location.href='${path}/freeBoard/freeboard';"
 				style="cursor: pointer;">자유게시판</div>
 			<div class="menu" onclick="location.href='${path}/lost/lostBoard';"
-				style="cursor: pointer;">미멍보호소</div>
+				style="cursor: pointer;">찾습니다</div>
 			<div class="menu" onclick="location.href='${path}/temp/tempBoard';"
 				style="cursor: pointer;">임시보호</div>
 		</div>
@@ -343,6 +343,7 @@ a:hover {
 										class="dogName"> <span style="font-size: 16px;"> <span
 											style="color: #63C1D2;">[ ${free.freeTag} ]</span>
 											${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
+<<<<<<< HEAD
 									</span><br /> <c:set var="contentWithoutTags"
 											value="${fn:replace(free.freeContent, '<[^>]*>', '')}" /> <c:set
 											var="shortContent"
@@ -350,12 +351,15 @@ a:hover {
 										style="font-size: 12px; color: gray;"> <c:out
 												value="${shortContent}" escapeXml="true" />
 									</span> 
+=======
+									</span><br /> <c:set var="shortContent"
+											value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
+										<div style="font-size: 12px; color: gray;">
+											<c:out value="${shortContent}" />
+										</div>
+>>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
 									</a>
 								</div>
-								<c:if test="${loop.index % 2 == 1}">
-									<div class="w-100"></div>
-									<!-- 매 두 개의 항목이 출력될 때마다 줄 바꿈 -->
-								</c:if>
 							</c:forEach>
 						</div>
 						<hr>
