@@ -332,6 +332,7 @@
             <img src="../image/하트(핑).png" width="40px" height="40px" style="margin_top :5px" id="like"/>
          </c:when>
          <c:otherwise>
+         
             <img src="../image/하트(회)수정.png" width="40px" height="40px" style="margin_top :5px" id="like"/>
          </c:otherwise>
       </c:choose>
@@ -409,6 +410,7 @@ $('#commBtn').on("click",function(){
 					<span class="commContent mycomm">\${comment.commContent}</span>
 				</div>`
 				$('#comment_box').append(div);
+			$('#comment').val('');
 			} else{
 				let div=`<div class="memComm">
 						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
@@ -416,7 +418,10 @@ $('#commBtn').on("click",function(){
 						<span class="commContent comm" >\${comment.commContent}</span>
 					</div>`
 					$('#comment_box').append(div);
+				$('#comment').val('');
 			}
+//			$('#comment_box').append(div);
+			
 		},
 		error:function(err){
 			alert("댓글입력 오류입니다.")
@@ -447,7 +452,6 @@ $(function(){
           success:function(result){
              if(result=='true'){
                 $('#like').attr("src","../image/하트(핑).png")
-                
                 $("#likecount").text(+$("#likecount").text()+1)
              } else{
                 $('#like').attr("src","../image/하트(회)수정.png")

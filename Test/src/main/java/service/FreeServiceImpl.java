@@ -216,7 +216,6 @@ public class FreeServiceImpl implements FreeService{
 	   @Override
 	   public boolean togleFreeLike(String memId, Integer freeNum) throws Exception {
 	      boolean isBoardLike = freeLike(memId, freeNum);
-	      System.out.println(isBoardLike);
 	      if(isBoardLike) {
 	    	  freeDAO.deleteFreeLike(memId, freeNum);
 	    	  freeDAO.updateBoardLikeCountMinus(freeNum);
