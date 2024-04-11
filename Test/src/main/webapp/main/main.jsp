@@ -172,13 +172,17 @@ body, html {
 /* .free_b {
 	width: 100%; /* .free_b를 반씩 차지하도록 설정 */
 box-sizing
+
+
 :
+
  
+
 border-box
+
+
 ; /* padding, border를 요소의 크기에 포함 */
 /* 좌우 여백 추가 */
-
-
 }
 * /
 
@@ -203,7 +207,7 @@ border-box
 }
 
 .archive {
-	display : flex;
+	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
 	justify-content: space-between;
@@ -356,33 +360,31 @@ a:hover {
 			</div>
 		</div>
 
-	</div>
+		<div class="headline-container">
+			<span class="headline"> 임시보호해요 </span> <span class="more"> <a
+				href='${path}/temp/tempBoard' style="font-size: 12px">더보기</a>
+			</span>
+		</div>
+		<div class="header-line"></div>
+		<div class="archive">
+			<c:forEach items="${temps}" var="temp">
+				<div class="photo">
+					<div class="inner_photo">
+						<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
+						<div class="inner_title">
+							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+								class="dogName">${temp.tempName}</a>
+						</div>
 
-
-	<div class="headline-container">
-		<span class="headline"> 임시보호해요 </span> <span class="more"> <a
-			href='${path}/temp/tempBoard' style="font-size: 12px">더보기</a>
-		</span>
-	</div>
-	<div class="header-line"></div>
-	<div class="archive">
-		<c:forEach items="${temps}" var="temp">
-			<div class="photo">
-				<div class="inner_photo">
-					<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
-					<div class="inner_title">
-						<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
-							class="dogName">${temp.tempName}</a>
-					</div>
-
-					<div class="inner_text">
-						<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
-							class="address">${temp.tempAddress}</a>
+						<div class="inner_text">
+							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+								class="address">${temp.tempAddress}</a>
+						</div>
 					</div>
 				</div>
+			</c:forEach>
 			</div>
-		</c:forEach>
-		<!-- <div class="photo">
+			<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
 					<div class="inner_title">영희</div>
@@ -421,32 +423,32 @@ a:hover {
 					<div class="inner_text">가산디지털단지</div>
 				</div>
 			</div> -->
-	</div>
 
-	<div class="headline-container">
-		<span class="headline"> 미멍보호소 </span> <span class="more"> <a
-			href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
-	</div>
-	<div class="header-line"></div>
-	<div class="archive">
-		<c:forEach items="${losts}" var="lost">
-			<div class="photo">
-				<div class="inner_photo">
-					<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
-					<div class="inner_title">
-						<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-							class="dogName">${lost.lostName}</a>
-					</div>
 
-					<div class="inner_text">
-						<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-							class="address">${lost.lostAddress}</a>
-					</div>
-				</div>
+			<div class="headline-container">
+				<span class="headline"> 미멍보호소 </span> <span class="more"> <a
+					href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
 			</div>
-		</c:forEach>
+			<div class="header-line"></div>
+			<div class="archive">
+				<c:forEach items="${losts}" var="lost">
+					<div class="photo">
+						<div class="inner_photo">
+							<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
+							<div class="inner_title">
+								<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+									class="dogName">${lost.lostName}</a>
+							</div>
 
-		<!-- <div class="photo">
+							<div class="inner_text">
+								<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+									class="address">${lost.lostAddress}</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+
+				<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
 					<div class="inner_title">영희</div>
@@ -485,10 +487,10 @@ a:hover {
 					<div class="inner_text">가산디지털단지</div>
 				</div>
 			</div> -->
+			</div>
+			<div class="footer"></div>
+		</div>
 	</div>
-	<div class="footer"></div>
-	</div>
-
 	<script>
       let currentSlide = 0;
       const slides = document.querySelectorAll(".img");
