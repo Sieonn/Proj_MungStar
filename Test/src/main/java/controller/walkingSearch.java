@@ -42,10 +42,6 @@ public class walkingSearch extends HttpServlet {
 		try {
 			WalkingService walkingService = new WalkingServiceImpl();
 			List<Walking> walkings = walkingService.searchWalking(request);
-//			Gson gson = new Gson();
-//			String walkings = gson.toJson(walking);
-//			response.getWriter().write(walkings);
-//			System.out.println(walkings);
 			request.setAttribute("searchText", searchText);
 			request.setAttribute("walkings",walkings);
 			request.getRequestDispatcher("walkingSearch.jsp").forward(request, response);

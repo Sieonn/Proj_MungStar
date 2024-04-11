@@ -132,6 +132,29 @@ width: 90px;
 
   </style>
 <style>
+.searchBar{
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
+width:1280px;
+}
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
  @font-face {
         font-family: "JalnanGothic";
         src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
@@ -387,6 +410,28 @@ top:50px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
+<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+
+				$.ajax({
+				url:'walkingSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					console.log(result);
+					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 <div class="container1">
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
@@ -422,7 +467,9 @@ window.onload=function(){
 		     
 		}
 		mapmaker();
-	
+		function convertBooleanToNumber(booleanValue) {
+	        return booleanValue ? 1 : 0;
+	    };
 		
 			walking = [];
 			 markers = [];
@@ -438,31 +485,44 @@ window.onload=function(){
 					 imageOption = {offset: new kakao.maps.Point(27, 69)};
 				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 				    
-				  
+				    
 				   
 					for(var i=0; i<walkings.length;i++){				
-				lats=walkings[i].walkLat;
+				
+						walking = walkings[i];
+						
+						console.log(walking.walkBlind);
+						lats=walkings[i].walkLat;
 				longs=walkings[i].walkLong;
 				
 				
 
 				 positions =  {title:walkings[i].walkNum,
 					latlng: new kakao.maps.LatLng(lats,longs)};	
+				 
+				
+				
+				 walkBlinds = walkings[i].walkBlind;
+				 console.log(walkBlinds)
+				 
 				   markers[i] = new kakao.maps.Marker({
 					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
 					    image: markerImage, // 마커이미지 설정 
 					    title: positions.title,
-					    walkBlind: walkings[i].walkBlind // 데이터 저장
+					    isAvailable: convertBooleanToNumber(walkings[i].walkBlind)
 					});
-				 
-				  markers[i].setMap(map);
-				
-				
-				  
+				   
+					 
+				   console.log(markers[i].isAvailable);
+					 if(walkBlinds == false){
+						 markers[i].setMap(map)
+					 } else if(walkBlinds == true){
+						 markers[i].setMap(null);
+					 }
+					 			
+					}
 					
-
-				
-					} 
+					
 					
 			
 					
@@ -471,13 +531,14 @@ window.onload=function(){
 						  ) {
 					 console.log(marker);
 					 console.log(marker.getTitle());
-					 
 					 num = marker.getTitle();
 					 
 					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
 					  
 					 
 				});
+						
+				
 
 						$("#walkModifyForm").on("click",function(){
 							 window.location.href="http://localhost:8080/test/walking/walkingModifyForm?walkNum="+num;	
@@ -582,7 +643,7 @@ window.onload=function(){
 <br><br>
 <div class="walkBtn">
 <c:if test="${user eq null }">
-		<a id="walkListLogout" href="walkingList">LIST</a>
+		<a id="walkListLogout" href="walkingList" style=" position:relative; right:80px;">LIST</a>
 		</c:if>
 		
 					<c:if test="${user ne Empty }">
@@ -603,9 +664,17 @@ window.onload=function(){
 		window.location.assign(url);
 	})
 		</script>
-		<button  onclick="showConfirmation()" id="walkingDelete">DELETE</button>
+		<a href="walkingDelete?walkNum=${walking.walkNum }" id="walkingDelete">DELETE</a>
+		
 		<script>
-	    function showConfirmation() {
+		$('#walkingDelete').on("click",function(){
+			 if (confirm("게시물을 삭제하시겠습니까?") == true){    //확인
+			     window.location.href="walkingDelete?walkNum=${walking.walkNum}"
+			 }else{   //취소
+			     return false;
+			 }
+		})
+	   <!-- function showConfirmation() {
 	    	var result = confirm("삭제하시겠습니까?");
 	    	if(result){
 				$.ajax({
@@ -624,7 +693,7 @@ window.onload=function(){
 			
 			};
 	    }
-		
+		--> 
 		</script>
 		</c:if>		
 		</c:if>
@@ -657,10 +726,13 @@ window.onload=function(){
 	</c:choose>
 	</c:forEach>     
 	</div>
+	    <c:if test="${user ne null }">
     <div class="inputDiv">
+
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
 		<button class="commBtn" id="commBtn" style="z-index:9999;">등록</button>
 	</div>
+			</c:if>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $('#commBtn').on("click",function(){

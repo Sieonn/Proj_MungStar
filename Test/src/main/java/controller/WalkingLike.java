@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import service.BoardLikeServiceImpl;
-import service.BoardLikeService;
+import service.WalkingLikeService;
+import service.WalkingLikeServiceImpl;
 
 @WebServlet("/walking/walkinglike")
 public class WalkingLike extends HttpServlet {

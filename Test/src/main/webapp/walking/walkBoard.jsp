@@ -17,29 +17,6 @@
 <script src="http://code.jquery.com/jquery-Latest.min.js"></script>
 
 <style>
-.searchBar{
-position:relative;
-left:40px;
-top:75px;
-margin: 0 auto;
-width:1280px;
-}
-   .searchInput{
-		padding-bottom: 8px; padding-top: 8px;
-    	background-color: #F6F6F6;
-    	border-radius: 5px;
-  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
-  		border: none;
-        font-family: "JalnanGothic";
-    }
-    .searchBtn{
-		padding-bottom: 8px; padding-top: 8px;    
-    	background-color: #0155B7;
-    	border-radius: 5px;
-    	color: white;
-    	border: none;
-        font-family: "JalnanGothic";
-    }
 @font-face {
 	font-family: "JalnanGothic";
 	src:
@@ -102,18 +79,6 @@ a {
 	width: 70px;
 	height: 20px;
 	border: 0;
-	border-radius: 30px;
-	background-color: #FED74B;
-	color: white;
-	text-align: center;
-	box-shadow: 0 3px 1px gray;
-}
-
-#walkListLogout{
-width: 90px;
-	height: 20px;
-	border: 0;
-	margin-left:30px;
 	border-radius: 30px;
 	background-color: #FED74B;
 	color: white;
@@ -225,28 +190,6 @@ left:70px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 	<jsp:include page="/main/header.jsp" />
-	<div class="searchBar">
-    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
-			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
-			<script>
-			$("#searchBtn").on("click",function(){
-				searchText = document.getElementById("comment searchText").value;
-
-				$.ajax({
-				url:'walkingSearch',
-				type:'GET',
-				async:true,
-				data:{searchText:searchText},
-				success:function(result){
-					console.log(result);
-					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
-					
-				}
-				}) 
-				
-			})
-			</script>
-			</div>
 	<div class="container">
 		<div class="walkMap" id="walkMap">
 			<div id="walkMapBarOpen" style="display: none;">
@@ -343,43 +286,16 @@ else{
 }
 })
 </script>
-<div id="usersAddress" data-value="${user.memAddress1 }"></div>
-<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services"></script>
-<script>
-usersAddress = document.getElementById("usersAddress").getAttribute("data-value");
-
-function geocodeAddress(address) {
-    var geocoder = new kakao.maps.services.Geocoder();
-
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(address, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            // 좌표를 이용하여 지도 이동
-            map.setCenter(coords);
-            
-            // 마커 표시
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
-        }
-    });
-}
-
-</script>
-<div id="map"></div>
-<script type="text/javascript"
+			<div id="map"></div>
+			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 			<script>
 $(document).ready(function(){
-
-
-	
+		
+	function mapmaker(){
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
-		    center: new kakao.maps.LatLng(37.583933,127.019813), // 지도의 중심좌표
+		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
 		    level: 4 // 지도의 확대 레벨
 		};
 
@@ -395,60 +311,17 @@ $(document).ready(function(){
 		 zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		     
-	
+		} //mapmaker end
 		
-
+		mapmaker();
 		
-		
-		if(usersAddress != null){
-			
-			// 로그인한 사람의 주소
-			function geocodeAddress(address) {
-	            var geocoder = new kakao.maps.services.Geocoder();
-
-	            // 주소로 좌표를 검색합니다
-	            geocoder.addressSearch(address, function(result, status) {
-	                if (status === kakao.maps.services.Status.OK) {
-	                     coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	                    lat = result[0].y;
-	                    lng = result[0].x;
-	                    map.setCenter(coords);
-	                }
-	            });
-	        }
-			
-			geocodeAddress(usersAddress);
-			
-			
-			
-			
-		} else{
-			// 현재 위치받아오기
-			function getCurrentLocation() {
-			    // HTML5의 Geolocation API를 사용하여 현재 위치를 받아옵니다.
-			    navigator.geolocation.getCurrentPosition(
-			        function(position) {
-			            // 현재 위치의 위도와 경도를 받아옵니다.
-			            var lat = position.coords.latitude;
-			            var lng = position.coords.longitude;
-			            
-			            // 받아온 현재 위치를 지도의 중심으로 설정합니다.
-			            var currentPosition = new kakao.maps.LatLng(lat, lng);
-			            map.setCenter(currentPosition);
-			        },
-			        function(error) {
-			            // 위치 정보를 받아오지 못할 경우의 처리
-			            console.error('Error getting geolocation:', error);
-			        }
-			    );
-			}
-		}
-	
+		function convertBooleanToNumber(booleanValue) {
+	        return booleanValue ? 1 : 0;
+	    };
 		
 		
 		window.onload=function(){
-			
-			
+
 			walking = [];
 			 markers = [];
 			$.ajax({
@@ -461,55 +334,74 @@ $(document).ready(function(){
 					imageSrc = '${path}/image/mark1.png'; 
 					imageSize = new kakao.maps.Size(36, 40), 
 					 imageOption = {offset: new kakao.maps.Point(27, 69)};
+					
 				    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 				    
-				  
+				    function changeMarkerImage() {
+					    // 새로운 이미지로 마커 이미지 객체를 생성합니다.
+					     newMarkerImage = new kakao.maps.MarkerImage(
+					        '${path}/image/mark2.png',
+					        new kakao.maps.Size(36, 40) // 새로운 이미지 크기
+					    );
+					}
 				   
 					for(var i=0; i<walkings.length;i++){	
-						
+						walking = walkings[i];
 				lats=walkings[i].walkLat;
 				longs=walkings[i].walkLong;
-				
-				
 
 				 positions =  {title:walkings[i].walkNum,
-					latlng: new kakao.maps.LatLng(lats,longs)};	
+					latlng: new kakao.maps.LatLng(lats,longs),
+					};	
+				 
+				 walkBlinds = walkings[i].walkBlind;
+				 console.log(walkBlinds)
+				 
 				   markers[i] = new kakao.maps.Marker({
 					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
 					    image: markerImage, // 마커이미지 설정 
-					    title: positions.title,
-					    walkBlind: walkings[i].walkBlind // 데이터 저장
-					});
+					    isAvailable: convertBooleanToNumber(walkings[i].walkBlind),
+					    title: positions.title
+					});		
 				 
-				  markers[i].setMap(map);
-
+				 console.log(markers[i].isAvailable);
+				 if(walkBlinds == false){
+					 markers[i].setMap(map)
+				 } else if(walkBlinds == true){
+					 markers[i].setMap(null);
+				 }
+				 
+				 
 					} 
 					
-			
+	
 					
-					for (const marker of markers) {					
+				
+					
+					for (const marker of markers) {
+						
 						kakao.maps.event.addListener(marker, "click", function(
 						  ) {
-					 
+					 console.log(marker);
+					 console.log(marker.getTitle());
+					 console.log(marker.walkBlind);
 					 num = marker.getTitle();
-					 
-					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
-					  console.log(marker);
-						 console.log(marker.getTitle());
-						
+					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;	 
 				});
-					}
+					} // end
+				
 					
 					
+			
+					 
+				}
+					})
 					
-			} //for end
 		
 			
-	})
-		}
+	}
 		
 })
-
 
 </script>
 			<div id="leftDiv">
@@ -520,17 +412,20 @@ $(document).ready(function(){
 		<br>
 		<br>
 		<div class="walkBtn">
-		<c:choose>
-		<c:when test="${user ne null }">
-					<a href="walkingList" id="walkList">LIST</a>
-			<a id="walkWriteForm"
-				href="walkWriteForm">WRITE</a>
-				</c:when>
-				<c:otherwise>
-					<a href="walkingList" id="walkListLogout">LIST</a>
-				</c:otherwise>
-		</c:choose>
-
+<c:if test="${user eq null }">
+		<a id="walkListLogout" href="walkingList" style=" position:relative; right:80px;">LIST</a>
+		</c:if>
+		
+					<c:if test="${user ne Empty }">
+					<a id="walkList" href="walkingList">LIST</a>
+		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
+		<script>
+		$("#walkWriteForm").on("click",function(){
+			window.location.href="http://localhost:8080/MoongStar/walking/walkWriteForm";	
+		})
+		</script>
+		
+		</c:if>
 		</div>
 	</div>
 </body>

@@ -15,6 +15,29 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+.searchBar{
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
+width:1280px;
+}
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
 body,html{
 margin:0 auto;
 padding:0;
@@ -194,6 +217,28 @@ height:40px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
+<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+
+				$.ajax({
+				url:'walkingSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					console.log(result);
+					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 <div class="container">
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
@@ -245,7 +290,11 @@ window.onload=function(){
 					for(var i=0; i<walkings.length;i++){				
 				lats=walkings[i].walkLat;
 				longs=walkings[i].walkLong;
-
+				
+				 walkBlinds = walkings[i].walkBlind;
+				 console.log(walkBlinds)
+				 
+				 
 				 positions =  {title:walkings[i].walkNum,
 					latlng: new kakao.maps.LatLng(lats,longs)};	
 				   markers[i] = new kakao.maps.Marker({
@@ -254,7 +303,12 @@ window.onload=function(){
 					    title: positions.title
 					});
 				 
-				  markers[i].setMap(map);
+				   console.log(markers[i].isAvailable);
+					 if(walkBlinds == false){
+						 markers[i].setMap(map)
+					 } else if(walkBlinds == true){
+						 markers[i].setMap(null);
+					 }
 				
 				
 				  
@@ -317,7 +371,7 @@ window.onload=function(){
 					<c:forEach var="walking" items="${walkings}">
            <tr>
 						<td id="walkLike">${walking.walkLike }</td>
-						<td id="walkName">${walking.walkName }</td>
+						<td id="walkName"><a href="walkingDetail?walkNum=${walking.walkNum }">${walking.walkName }</a></td>
 						<td id="walkAddress3"><a href="walkingDetail?walkNum=${walking.walkNum }">${walking.walkAddress3 }</a></td>
 						</tr>
         </c:forEach>			
