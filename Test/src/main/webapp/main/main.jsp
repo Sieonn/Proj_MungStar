@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
-<c:set var="path" value = "${pageContext.request.contextPath}"/>		
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -244,6 +245,17 @@ a:hover {
 	color: black;
 	font-weight: 700;
 }
+
+.freeBox_De {
+	padding: 0 30px;
+}
+.freeBox_De a:hover {
+    /* hover 효과 제거 */
+    pointer-events: none; /* 링크 클릭 이벤트 비활성화 */
+    cursor: pointer; /* 마우스 커서를 기본 값으로 변경 */
+    /* 그 외 다른 스타일 적용 가능 */
+    	font-weight: 500;
+}
 </style>
 </head>
 <body>
@@ -264,9 +276,8 @@ a:hover {
 		</div>
 		<div class="dots-container">
 			<span class="dot active"
-				onclick="currentSlide = 0; showSlide(currentSlide);"></span>
-			<span class="dot"
-				onclick="currentSlide = 1; showSlide(currentSlide);"></span>
+				onclick="currentSlide = 0; showSlide(currentSlide);"></span> <span
+				class="dot" onclick="currentSlide = 1; showSlide(currentSlide);"></span>
 			<span class="dot"
 				onclick="currentSlide = 2; showSlide(currentSlide);"></span>
 		</div>
@@ -281,31 +292,29 @@ a:hover {
 			<div class="menu"
 				onclick="location.href='${path}/freeBoard/freeboard';"
 				style="cursor: pointer;">자유게시판</div>
-			<div class="menu"
-				onclick="location.href='${path}/lost/lostBoard';"
+			<div class="menu" onclick="location.href='${path}/lost/lostBoard';"
 				style="cursor: pointer;">미멍보호소</div>
-			<div class="menu"
-				onclick="location.href='${path}/temp/tempBoard';"
+			<div class="menu" onclick="location.href='${path}/temp/tempBoard';"
 				style="cursor: pointer;">임시보호</div>
 		</div>
 
 		<div class="place">
-			<div class="text_h">이번주말 함께하개?</div>
+			<div class="text_h">오늘은 어디로 걷개?</div>
 			<div class="text_h"
 				style="margin-top: 10px; font-size: 18px; font-family: 'Pretendard-Regular'; font-weight: bold; color: #7b7b7b; line-height: 1.13;">
-				따뜻한 봄이왔어요~🌸</div>
+				새로운 산책로 어디있을까?🌸</div>
 			<span class="more"> <a href="${path}/walking/walkBoard"
 				style="font-size: 12px; margin-right: 60px;">더보기</a></span>
 		</div>
 		<div class="loc">
 			<c:forEach items="${walks}" var="walk">
 				<div class="plac">
-					<a href="${path}/walking/walkingDetail?walkNum=${walk.walkNum}"><img src="${path}/image/loc_1.jpg" alt="Image 1" /></a>
+					<a href="${path}/walking/walkingDetail?walkNum=${walk.walkNum}"><img
+						src="${path}/image/loc_1.jpg" alt="Image 1" /></a>
 					<div class="text">
-						${walk.walkName}<br/>
-					<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
-						${walk.walkAddress3}
-					</div>
+						${walk.walkName}<br />
+						<div style="font-size: 14px; font-family: 'Pretendard-Regular'">
+							${walk.walkAddress3}</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -317,35 +326,45 @@ a:hover {
 						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
 				</div>
 				<div class="free_box">
-					<c:forEach items="${frees}" var="free">
-					<div>
-						<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"  class="dogName">${free.freeSub}</a>
+					<div class="freeBox_De">
+						<c:forEach items="${frees}" var="free">
+							<div style="margin-bottom: 5px;">
+								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
+									class="dogName"> <span style="font-size: 16px;">${free.freeTag}
+										&nbsp;&nbsp;&nbsp;
+										${free.freeSub}&nbsp;&nbsp;&nbsp;${free.freeWriteDate}</span><br />
+									<c:set var="shortContent"
+										value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
+									<span style="font-size: 12px; color: gray; margin-left:57px;"><c:out value="${shortContent}" /></span>
+								</a>
+							</div>
+						</c:forEach>
 					</div>
-					</c:forEach> 
 				</div>
 			</div>
 		</div>
 
 		<div class="headline-container">
-			<span class="headline"> 임시보호해요 </span> <span class="more">
-			<a href='${path}/temp/tempBoard'
-				style="font-size: 12px">더보기</a>
+			<span class="headline"> 임시보호해요 </span> <span class="more"> <a
+				href='${path}/temp/tempBoard' style="font-size: 12px">더보기</a>
 			</span>
 		</div>
 		<div class="header-line"></div>
 		<div class="archive">
 			<c:forEach items="${temps}" var="temp">
 				<div class="photo">
-				<div class="inner_photo">
-					<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">					
-					<div class="inner_title">
-						<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}" class="dogName">${temp.tempName}</a>
-					</div>
+					<div class="inner_photo">
+						<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
+						<div class="inner_title">
+							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+								class="dogName">${temp.tempName}</a>
+						</div>
 
-					<div class="inner_text">
-        				<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}" class="address">${temp.tempAddress}</a>
+						<div class="inner_text">
+							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+								class="address">${temp.tempAddress}</a>
+						</div>
 					</div>
-				</div>
 				</div>
 			</c:forEach>
 			<!-- <div class="photo">
@@ -397,19 +416,21 @@ a:hover {
 		<div class="archive">
 			<c:forEach items="${losts}" var="lost">
 				<div class="photo">
-				<div class="inner_photo">
-					<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">					
-					<div class="inner_title">
-						<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}" class="dogName">${lost.lostName}</a>
-					</div>
+					<div class="inner_photo">
+						<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
+						<div class="inner_title">
+							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+								class="dogName">${lost.lostName}</a>
+						</div>
 
-					<div class="inner_text">
-        				<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}" class="address">${lost.lostAddress}</a>
+						<div class="inner_text">
+							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+								class="address">${lost.lostAddress}</a>
+						</div>
 					</div>
-				</div>
 				</div>
 			</c:forEach>
-			
+
 			<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
