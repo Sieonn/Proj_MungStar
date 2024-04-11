@@ -218,11 +218,11 @@ public class FreeServiceImpl implements FreeService{
 		List<FBoard> freeList=freeDAO.selectFreeListOnMain();
 		return freeList;
 	}
-	@Override
-	public List<FBoard> freeListOnMainLike() throws Exception {
-		List<FBoard> freeList=freeDAO.selectFreeListOnMainLike();
-		return freeList;
-	}
+//	@Override
+//	public List<FBoard> freeListOnMainLike() throws Exception {
+//		List<FBoard> freeList=freeDAO.selectFreeListOnMainLike();
+//		return freeList;
+//	}
 	@Override
 	   public boolean freeLike(String memId, Integer freeNum) throws Exception {
 	      Integer num = freeDAO.selectFreeLike(memId, freeNum);

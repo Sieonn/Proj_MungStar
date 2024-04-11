@@ -23,7 +23,7 @@ public interface FreeDAO {
 	   List<FBoard> selectBoardListByTag(Integer row, String freeTag) throws Exception;
 	   List<FBoard> selectBoardListByTagAndSearch(Integer row, String freeTag,String searchText) throws Exception;
 	   List<FBoard> selectFreeListOnMain() throws Exception;
-	   List<FBoard> selectFreeListOnMainLike() throws Exception;
+//	   List<FBoard> selectFreeListOnMainLike() throws Exception;
 	   
 	   List<Comment> selectFreeComment(Integer freeNum) throws Exception;
 	   void insertFreeComment(Comment comment) throws Exception;
