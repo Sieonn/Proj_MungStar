@@ -17,7 +17,7 @@
 		margin: 50px auto;
 		width: 1280px;
     	padding-left: 20px; padding-right: 20px;
-        font-size: 34px;
+        font-size: 33px;
         font-family: "JalnanGothic";
       }
       .content_container{
@@ -64,8 +64,22 @@
       }
       .dogname_box{
       	color: black;
-      	font-size: 30px;
-      	font-weight: bold;
+      	font-size: 40px;
+      	font-weight: bolder;
+      }
+      .address{
+      	margin-top:10px;
+      	font-size: 20px;
+      }
+      .chars{
+      	margin: 2px 0;
+      	font-size: 17px;
+      }
+      .protectDate{
+      	font-size: 17px;
+      }
+      .etc{
+      	font-size: 17px;
       }
       .contents{
       	font-size: 20px; color: #7E7E7E;
@@ -240,14 +254,14 @@
 		<div class="content_box2">
 			<div class="write_box">
 				<div class="dogname_box">${temp.tempName}</div>
-				<div><img src="${path}/image/place.png" style="">${temp.tempAddress}</div>
+				<div class="address"><img style="margin-bottom: 5px;" src="${path}/image/place.png" style="">${temp.tempAddress}</div>
 				<div id="char_box">
 				<div class="contents">특징</div>
 				</div>
 				<div class="contents">임시보호기간</div>
-				<div>${temp.tempWriteDate} ~ ${temp.protectDate}</div>
+				<div class="protectDate">${temp.tempWriteDate} ~ ${temp.protectDate}</div>
 				<div class="contents">기타사항</div>
-				<div>${temp.tempEtc}</div>
+				<div class="etc">${temp.tempEtc}</div>
 			</div>
 			<div class="img_box">
 				<div class="tempImg" >
@@ -319,7 +333,8 @@ console.log(chars[0]);
 
 for (var i = 0; i < chars.length-1; i++) {
 	const newItem = document.createElement('div'); // 새로운 div 요소 생성
-	newItem.textContent = '▶ '+ chars[i]; // 버튼 텍스트 설정
+	newItem.className="chars";
+	newItem.textContent = '🐶 '+ chars[i]; // 버튼 텍스트 설정
 	charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
 }
 

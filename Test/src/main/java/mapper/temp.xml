@@ -12,7 +12,7 @@
     			AND tempCgory = #{tempCgory}
   			</if>
    			<if test="searchText != null">
-    			AND tempAddress like '%${searchText}%'
+    			AND (tempAddress like '%${searchText}%' or tempName like '%${searchText}%')
   			</if>
    		</where>
   		order by tempNum desc
@@ -27,7 +27,7 @@
     			AND tempCgory = #{tempCgory}
   			</if>
    			<if test="searchText != null">
-    			AND tempAddress like '%${searchText}%'
+    			AND (tempAddress like '%${searchText}%' or tempName like '%${searchText}%')
   			</if>
   		</where>
 	</select>

@@ -70,6 +70,7 @@
     	color: white;
     	border: none;
         font-family: "JalnanGothic";
+		cursor: pointer;
     }
     .writeBtn{
 		padding-bottom: 8px; padding-top: 8px;
@@ -78,7 +79,7 @@
     	border-radius: 5px;
     	border: none;
         font-family: "JalnanGothic";
-
+		cursor: pointer;
     }
     .album_container{
     	margin: 50px auto;
@@ -99,13 +100,16 @@
     } */
     .album{
 		margin: 17.5px 23.8px;
-      	width: 258px; height: 305px;
+      	width: 258px; height: 313px;
       	padding: 10px; 
       	display: inline-block;
       	border: 2px solid black;
       	border-color: darkgrey;
-      	border-radius: 10px;
+      	border-radius: 30px;
     }
+    .album:hover {
+		transform: scale(1.1);
+	}
     .column2{
     	margin-left: 9.090%; margin-right: 9.090%;
       	width: 300px;
@@ -127,7 +131,7 @@
     .tempImg {
     	width: 100%; height: 258px;
     	overflow: hidden; 
-    	border-radius: 10px;
+    	border-radius: 20px;
     }
     
     .photo{
@@ -137,12 +141,15 @@
     }
     .boardContainer{
     	padding-left: 5px;
+    	margin-top: 7px;
     	margin-bottom: 10px;
     }
     .dogName{
     	height: 45px;
     	font-size: 22px;
     	overflow: hidden;
+    	font-weight: bold;
+    	margin-left: 3px;
     }
     .address{
     	display: inline-block;
@@ -150,11 +157,13 @@
     	overflow: hidden;
     	text-overflow: ellipsis;
     	white-space: nowrap;
+    	margin-top: 3px;
+    	margin-left: 7px;
     }
     .state{
-    	font-size: 28px;
+    	font-size: 23px;
     	float : right;
-    	margin-top: 13px;
+    	margin-right:7px;
     }
     .pageContainer{
     	display: flex;
