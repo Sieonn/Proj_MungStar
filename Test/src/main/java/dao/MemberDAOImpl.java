@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.File;
 import dto.Member;
 import util.MybatisSqlSessionFactory;
 
@@ -53,6 +54,22 @@ public class MemberDAOImpl implements MemberDAO{
 		param.put("memId", memId);
 		param.put("memPw", memPw);
 		sqlSession.update("mapper.member.updatePw", param);
+		sqlSession.commit();
+	}
+
+	@Override
+	public void insertFile(File file) throws Exception {
+		sqlSession.insert("mapper.file.insertFile",file);
+		sqlSession.commit();		
+	}
+
+	@Override
+	public void updateMemberProfile(String memId, Integer fileNum) throws Exception {
+		Map<String,Object> param = new HashMap<>();
+		param.put("memId", memId);
+		param.put("fileNum",fileNum);
+		System.out.println(param);
+		sqlSession.update("mapper.member.updateMemberProfile",param);
 		sqlSession.commit();
 	}
 }

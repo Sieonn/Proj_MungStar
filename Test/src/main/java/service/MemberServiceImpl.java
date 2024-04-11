@@ -1,13 +1,13 @@
 package service;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.DogDAO;
 import dao.DogDAOImpl;
@@ -107,5 +107,29 @@ public class MemberServiceImpl implements MemberService {
 	public void updatePw(String memId, String memPw) throws Exception {
 	    // 여기서 필요한 유효성 검사 등을 수행할 수 있습니다.
 	    memberDao.updatePw(memId, memPw);
+	}
+
+	@Override
+	public void memberProfileUpdate(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("user");
+		String memId=member.getMemId();
+		
+		String uploadPath = request.getServletContext().getRealPath("upload");
+		int size = 10 * 1024 * 1024;
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
+				new DefaultFileRenamePolicy());
+		
+		dto.File uploadFile = new dto.File();
+		uploadFile.setDirectory(uploadPath);
+		uploadFile.setName(multi.getOriginalFileName(uploadPath));
+		uploadFile.setSize(multi.getFile("file").length());
+		uploadFile.setContenttype(multi.getContentType("file"));
+		memberDao.insertFile(uploadFile);
+		
+		java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(), uploadFile.getNum() + ""));
+		memberDao.updateMemberProfile(memId, uploadFile.getNum());
+		member.setMemProfile(uploadFile.getNum());
 	}
 }

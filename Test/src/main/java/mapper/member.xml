@@ -39,4 +39,12 @@
 		WHERE memId = #{memId}
 		    ]]>
 	</update>
+	
+	<update id="updateMemberProfile" parameterType="Map">
+	    <![CDATA[
+		UPDATE member
+		SET memProfile = #{fileNum}
+		WHERE memId = #{memId}
+		    ]]>
+	</update>
 </mapper>

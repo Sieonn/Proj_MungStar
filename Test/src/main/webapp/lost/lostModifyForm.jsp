@@ -63,8 +63,8 @@ body,
       }
       .dogname_box{
       	color: black;
-      	font-size: 30px;
-      	font-weight: bold;
+      	font-size: 40px;
+      	font-weight: bolder;
       	border: none;
      	outline: none;
       }
@@ -75,10 +75,15 @@ body,
       	width: 90%;
       	border: none;
      	outline: none;
+     	margin-top:10px;
+      	font-size: 20px;
       }
-      .char{
+      .deleteButton{
+      	background: white;
+      	border: none;
+      	cursor: pointer;
+      }
       
-      }
       .item{
       	padding: 2px 0 2px 0;
       	outline: none;
@@ -88,8 +93,11 @@ body,
       	outline: none;
       	border: none;
       	border-bottom: 1px solid #BDBDBD;
+      	margin: 2px 0;
+      	font-size: 17px;
       }
       .dateInput{
+      	font-size: 17px;
       	color: #BDBDBD;
       	outline: none;
       	border: none;
@@ -101,7 +109,7 @@ body,
       	resize: none;
       	outline: none;
       	border: 0;
-      	font-size: 16px;
+      	font-size: 17px;
       }
       .hidden {
    		display: none;
@@ -112,18 +120,25 @@ body,
       	margin-bottom:10px; margin-top: 10px;
       	padding-bottom: 3px;
       }
-      .img_box{
+      .lostImg{
       	display: inline-block;
-/*       	background-color: yellow;
- */      	width: 25%; height: 328.7px;
+     	width: 25%; height: 328.7px;
  		padding: 10px;
       	float: right;
       	border: 1px solid #7E7E7E;
       	border-radius: 10px;
+      	overflow: hidden;
+      }
+      .img_box{
+      	display: inline-block;
+     	width: 100%; height:264px;
+      	float: right;
+      	border-radius: 10px;
+      	overflow: hidden;
       }
       .fileImg{
       	display: inline-block;
-      	width: 100%; height: 80%;
+      	width: 100%; height: 264px;
     	cursor: pointer;
     	background-color: #f9f9f9;
     	border: 1px solid #ccc;
@@ -175,12 +190,12 @@ body,
 <script>
 	$(function(){
 		$('#lostModify').submit(function(){
-			alert("submit")
 			var chars='';
 			$('input[class=charInput]').map(function(){
 				chars +=$(this).val()+'@';
 			});
 			$("#lostChar").val(chars);
+			alert("게시물이 수정되었습니다");
 			/* console.log($('#dogName').val());
 			console.log($('#address').val());
 			console.log(chars);
@@ -209,7 +224,7 @@ body,
 <form action="lostModify" enctype="multipart/form-data" method="post" id="lostModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="lostChar" id="lostChar"/>
-<input type="text" name="lostNum" value="${lost.lostNum}"/>
+<input type="hidden" name="lostNum" value="${lost.lostNum}"/>
 <div class="content_container">
 	<div class="content_box">
 		<div class="content_box2">
@@ -243,9 +258,11 @@ body,
 				<textarea id="etc" class="etc" placeholder="기타사항 작성란입니다" name="lostEtc" required="required">${lost.lostEtc}</textarea>
 				
 			</div>
+			<div class="lostImg">
 			<div class="img_box">
-				<img class="fileImg" id="preview" src="../imageView?num=${lost.lostPhoto }">
+				<img class="fileImg" id="preview" src="${path}/imageView?num=${lost.lostPhoto }">
 				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+			</div>
 			</div>
 		</div>
 	</div>
@@ -270,11 +287,12 @@ for (var i = 0; i < chars.length-1; i++) {
 	const newItem = document.createElement('div'); // 새로운 div 요소 생성
     
     if(i==0){
-    	newItem.textContent = '▶ ';
+    	newItem.textContent = '🐶 ';
     } else{
     	// 삭제 버튼 추가
         const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-        deleteButton.textContent = '-'; // 버튼 텍스트 설정
+        deleteButton.className="deleteButton";
+        deleteButton.textContent = '⛔'; // 버튼 텍스트 설정
         deleteButton.onclick = function() {
             removeItem(newItem);
         };
@@ -309,7 +327,8 @@ function addNewItem() {
     
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-    deleteButton.textContent = '-'; // 버튼 텍스트 설정
+    deleteButton.className="deleteButton";
+    deleteButton.textContent = '⛔'; // 버튼 텍스트 설정
     deleteButton.onclick = function() {
         removeItem(newItem);
     };
@@ -360,7 +379,7 @@ fileInput.onchange=function(e){
 			
 		reader.readAsDataURL(file);
 	} else{
-		preview.src="../image/addFile.png";
+		preview.src="${path}/image/addFile.png";
 	}
 }
 

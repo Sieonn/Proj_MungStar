@@ -445,6 +445,7 @@ async function submit() {
     let result = await response.json();
     console.log(result.res);
     if(result.res=="true") {
+		alert("게시물이 등록되었습니다");
     	document.location.href="/MoongStar/lost/lostBoard";
     } else {
     	alert("등록 실패");

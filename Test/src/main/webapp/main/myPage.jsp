@@ -67,15 +67,28 @@ body, html {
 	box-sizing: border-box;
 	background-color: #f0f0f0;
 	box-shadow: 0 5px 5px rgb(179, 179, 179);
+	overflow: hidden;
 }
 
-.inner_profile img {
-	width: 200px;
-	height: 200px;
+.img_box {
+      	display: inline-block;
+     	width: 100%; height:200px;
 	border-radius: 50%;
-	box-shadow: 0 -3px 10px rgb(94, 94, 94);
+	background-color: #f0f0f0;
+	box-shadow: 0 -3px 10px rgb(94, 94, 94); 
+	overflow: hidden;
 }
-
+.img_box img {
+   	display: inline-block;
+    /* width: 100%; height: 264px; */
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 200px;
+    text-align: center;
+    color: #A3A3A3;
+}
 .gender {
 	display: flex;
 	align-items: center;
@@ -293,14 +306,14 @@ a:hover {
 		})
 	})
 	
-	async function submit() {
+/* 	async function submit() {
 		let formData = new FormData();
 
     	formData.append("file", imageBlob, "image.webp");
     	let response = await fetch('/MoongStar/temp/tempWrite', {
       		method: 'POST',
       		body: formData
-    });
+    }); */
 </script>
 
 </head>
@@ -312,8 +325,17 @@ a:hover {
 		
 			<div class="wel-Img">
 				<div class="inner_profile">
-					<img class="btn-open-modal" id="preview" src="${path}/imageView?num=${member.memProfile}"> 
-					<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+					<div class="img_box">
+<%-- 					<c:choose>
+						<c:when test="${member.memProfile eq null}">
+							<img class="btn-open-modal" id="preview" src="${path}/image/addFile.png">
+						</c:when>
+						<c:otherwise>
+ --%>							<img class="btn-open-modal" id="preview" src="${path}/imageView?num=${user.memProfile}">
+<%-- 						</c:otherwise>
+					</c:choose> 
+ --%>					<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+					</div>
 				</div>
 			</div> 
 
@@ -438,41 +460,111 @@ a:hover {
 	</div>
 </body>
 <script>
+	let imageBox=document.querySelector(".img_box");
 	let preview = document.querySelector("#preview");
 	let fileInput = document.querySelector("#fileInput");
-	preview.onclick = function() {
+	preview.onload = () => {
+		const widthDiff = (preview.clientWidth - imageBox.offsetWidth) / 2;
+    	const heightDiff = (preview.clientHeight - imageBox.offsetHeight) / 2;
+		console.log(widthDiff)
+		console.log(heightDiff)
+    	preview.style.transform = "translate("+ -widthDiff + "px,"+ -heightDiff +"px)";
+	};  
+	
+	imageBox.onclick = function() {
 		fileInput.click();
 	}
+	const resizeImage = (settings) => {
+		const file = settings.file;
+		const maxSize = settings.maxSize;
+		const reader = new FileReader();
+		const image = new Image();
+		const canvas = document.createElement("canvas");
 
+		const resize = () => {
+			let width = image.width;
+		    let height = image.height;
+		    if (width > height) {
+		        if (width > maxSize) {
+		        	height *= maxSize / width;
+		        	width = maxSize;
+		      	}
+		    } else {
+		        if (height > maxSize) {
+		        	width *= maxSize / height;
+		        	height = maxSize;
+		        }
+		    }
+		    canvas.width = width;
+		    canvas.height = height;
+		    canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+		 	return canvas
+		};
+
+		return new Promise((ok, no) => {
+			if (!file) {
+		      return;
+		    }
+		    if (!file.type.match(/image.*/)) {
+		      no(new Error("Not an image"));
+		      return;
+		    }
+		    reader.onload = (readerEvent) => {
+		      image.onload = () => {
+		        return ok(resize());
+		      };
+		      image.src = readerEvent.target.result;
+		    };
+		    reader.readAsDataURL(file);
+		});
+	};
+	let imageBlob = null;
 	fileInput.onchange = function(e) {
 		let file = e.target.files[0];
-		if (file) {
-			let reader = new FileReader();
-
-			reader.onload = function(data) {
-				console.log(data);
-				preview.src = data.target.result;
-				/* preview.width= 250;
-				preview.height= 250; */
-			}
-
-			reader.readAsDataURL(file);
-		} else {
-			preview.src = "${path}/image/addFile.png";
-		}
+		const config = {
+				file: e.target.files[0],
+				maxSize: 330,
+			};
+			resizeImage(config)
+				.then((resizedImage) => {
+				    resizedImage.toBlob( blob=> {
+						const url = window.URL.createObjectURL(blob);
+						/* const img = document.createElement("img"); */
+						preview.setAttribute("src", url);
+						preview.className = "profile-img";
+						preview.style.display = "block";
+					    	      
+						imageBox.innerHTML = "";
+						imageBox.appendChild(preview);
+						imageBlob = blob;
+						console.log(imageBlob)
+						submit();
+					}, 'image/webp')
+				})
+				.catch((err) => {
+					console.log(err);
+				});	 
 	}
 	
-	
+	async function submit() {
+		let formData = new FormData();
+	    formData.append("file", imageBlob, "image.webp");
+	    let response = await fetch('${path}/memberProfileUpdate', {
+	      method: 'POST',
+	      body: formData
+	    });
+
+	    // 전송이 잘 되었다는 응답이 오고 이미지 사이즈가 얼럿창에 출력됩니다.
+	    let result = await response.json();
+	    console.log(result.res);
+	    if(result.res=="true") {
+			console.log("사진등록");
+	    } else {
+	    	console.log("사진등록 실패");
+	    }
+	  }	
 	
 </script>
 
-<script>
-$.ajax({
-	url:'myWalkList',
-	type='get'
-})
-
-
-</script>
 
 </html>

@@ -244,7 +244,7 @@ body,
 			</div>
 			<div class="tempImg">
 			<div class="img_box">
-				<img class="fileImg" id="preview" src="../image/addFile.png">
+				<img class="fileImg" id="preview" src="${path}/image/addFile.png">
 				<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
 			</div>
 			</div>
@@ -315,7 +315,7 @@ function addNewItem() {
     newItem.appendChild(itemText); // input 요소를 항목에 추가
 
     charBox.appendChild(newItem); // 부모 요소에 새로운 항목 추가
-    itemText.focus()
+    itemText.focus()	
 }
 
 function removeItem(item) {
@@ -434,6 +434,7 @@ async function submit() {
     let result = await response.json();
     console.log(result.res);
     if(result.res=="true") {
+		alert("게시물이 등록되었습니다");
     	document.location.href="/MoongStar/temp/tempBoard";
     } else {
     	alert("등록 실패");

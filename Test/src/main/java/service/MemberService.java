@@ -1,10 +1,8 @@
 package service;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
 
 public interface MemberService {
 	void login(HttpServletRequest request) throws Exception;
@@ -15,5 +13,6 @@ public interface MemberService {
 	String findId(String memNick, String memPhone) throws Exception;
 	String findpw(String memId, String memEmail) throws Exception;
 	void updatePw(String memId, String memPw) throws Exception;
+	void memberProfileUpdate(HttpServletRequest request) throws Exception;
 	}
 

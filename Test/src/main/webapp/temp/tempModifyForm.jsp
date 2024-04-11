@@ -63,8 +63,8 @@ body,
       }
       .dogname_box{
       	color: black;
-      	font-size: 30px;
-      	font-weight: bold;
+      	font-size: 40px;
+      	font-weight: bolder;
       	border: none;
      	outline: none;
       }
@@ -75,9 +75,13 @@ body,
       	width: 90%;
       	border: none;
      	outline: none;
+     	margin-top:10px;
+      	font-size: 20px;
       }
-      .char{
-      
+      .deleteButton{
+      	background: white;
+      	border: none;
+      	cursor: pointer;
       }
       .item{
       	padding: 2px 0 2px 0;
@@ -88,8 +92,11 @@ body,
       	outline: none;
       	border: none;
       	border-bottom: 1px solid #BDBDBD;
+      	margin: 2px 0;
+      	font-size: 17px;
       }
       .dateInput{
+      	font-size: 17px;
       	color: #BDBDBD;
       	outline: none;
       	border: none;
@@ -101,7 +108,8 @@ body,
       	resize: none;
       	outline: none;
       	border: 0;
-      	font-size: 16px;
+      	font-size-adjust: 17px;
+      	font-size: 17px;
       }
       .hidden {
    		display: none;
@@ -182,12 +190,13 @@ body,
 <script>
 	$(function(){
 		$('#tempModify').submit(function(){
-			alert("submit")
+			
 			var chars='';
 			$('input[class=charInput]').map(function(){
 				chars +=$(this).val()+'@';
 			});
 			$("#tempChar").val(chars);
+			alert("게시물이 수정되었습니다");
 			/* console.log($('#dogName').val());
 			console.log($('#address').val());
 			console.log(chars);
@@ -282,11 +291,12 @@ for (var i = 0; i < chars.length-1; i++) {
 	const newItem = document.createElement('div'); // 새로운 div 요소 생성
     
     if(i==0){
-    	newItem.textContent = '▶ ';
+    	newItem.textContent = '🐶 ';
     } else{
     	// 삭제 버튼 추가
         const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-        deleteButton.textContent = '-'; // 버튼 텍스트 설정
+        deleteButton.className="deleteButton";
+        deleteButton.textContent = '⛔'; // 버튼 텍스트 설정
         deleteButton.onclick = function() {
             removeItem(newItem);
         };
@@ -321,7 +331,8 @@ function addNewItem() {
     
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-    deleteButton.textContent = '-'; // 버튼 텍스트 설정
+    deleteButton.className="deleteButton";
+    deleteButton.textContent = '⛔'; // 버튼 텍스트 설정
     deleteButton.onclick = function() {
         removeItem(newItem);
     };
@@ -372,7 +383,7 @@ fileInput.onchange=function(e){
 			
 		reader.readAsDataURL(file);
 	} else{
-		preview.src="../image/addFile.png";
+		preview.src="${path}/image/addFile.png";
 	}
 }
 
