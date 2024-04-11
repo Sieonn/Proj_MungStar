@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멍뭉별 임시보호소 게시판</title>
+<title>멍뭉별 임시보호 게시판</title>
 <style>
 @font-face {
 	font-family: "JalnanGothic";
@@ -289,12 +289,12 @@ const handleImgInput = (e) => {
 	<c:set var="path" value="${pageContext.request.contextPath}" />
 	<jsp:include page="/main/header.jsp" />
 	<div class="temp_container" style="">
-		<div class="text">임시보호소</div>
+		<div class="text">임시보호</div>
 		<div class="right_container" style="float: right; display: grid;">
 			<select class="category" id="category" name="category" size="1">
-				<option value="">주인을 찾고있어요 / 주인을 찾았어요</option>
-				<option value="finding">주인을 찾고있어요</option>
-				<option value="finded">주인을 찾았어요</option>
+				<option value="">주인이 필요해요 / 주인이 생겼어요</option>
+				<option value="finding">주인이 필요해요</option>
+				<option value="finded">주인이 생겼어요</option>
 			</select>
 			<div style="display: flex;">
 				<form action="" style="display: flex; margin: 0;">

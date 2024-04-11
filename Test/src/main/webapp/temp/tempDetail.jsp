@@ -315,7 +315,7 @@ body, html {
 	<c:set var="path" value="${pageContext.request.contextPath}" />
 	<jsp:include page="/main/header.jsp" />
 
-	<div class="text">임시보호소</div>
+	<div class="text">임시보호</div>
 
 	<div class="content_container">
 		<div class="content_box">
@@ -340,14 +340,11 @@ body, html {
 						<div class="tempImg">
 							<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
 						</div>
-						<c:choose>
-							<c:when test="${temp.tempCgory eq 'fingding'}">
-								<div class="state">주인이 필요해요</div>
-							</c:when>
-							<c:otherwise>
-								<div class="state">주인이 생겼어요</div>
-							</c:otherwise>
-						</c:choose>
+						
+						<c:if test="${temp.tempCgory eq 'finded'}">
+							<div class="state">주인이 생겼어요</div>
+						</c:if>
+							
 					</div>
 			</div>
 		</div>
@@ -393,11 +390,13 @@ body, html {
 				</c:choose>
 			</c:forEach>
 		</div>
+		<c:if test="${user ne null }">
 		<div class="inputDiv">
 			<input type="text" class="inputComment" id="comment" name="text"
 				placeholder="댓글" />
 			<button class="commBtn" id="commBtn">등록</button>
 		</div>
+		</c:if>
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

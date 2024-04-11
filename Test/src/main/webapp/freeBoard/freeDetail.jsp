@@ -387,10 +387,12 @@ body, html {
 	</c:choose>
 	</c:forEach>     
 	</div>
+	<c:if test="${user ne null }">
     <div class="inputDiv" style="overflow: auto;">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
 		<button class="commBtn" id="commBtn">등록</button>
 	</div>
+	</c:if>
 </div>
 
 <div class="footer"></div>

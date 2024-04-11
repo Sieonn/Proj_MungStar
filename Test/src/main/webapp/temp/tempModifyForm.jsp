@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멍뭉별 임시보호소 게시글 작성</title>
+<title>멍뭉별 임시보호 게시글 작성</title>
 <style>
 body,
     html {
@@ -221,7 +221,7 @@ body,
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <jsp:include page="/main/header.jsp"/>
-<div class="text">임시보호소</div>
+<div class="text">임시보호</div>
 <form action="tempModify" enctype="multipart/form-data" method="post" id="tempModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="tempChar" id="tempChar"/>
@@ -234,12 +234,12 @@ body,
 					<select class="category" id="category" name="tempCgory" size="1" >
 						<c:choose>
 							<c:when test="${temp.tempCgory eq 'finding'}">
-								<option value="finding" selected>주인을 찾고있어요</option>
-								<option value="finded">주인을 찾았어요</option>	
+								<option value="finding" selected>주인이 필요해요</option>
+								<option value="finded">주인이 생겼어요</option>	
 							</c:when>
 							<c:otherwise>
-								<option value="finding">주인을 찾고있어요</option>
-								<option value="finded" selected>주인을 찾았어요</option>
+								<option value="finding">주인이 필요해요</option>
+								<option value="finded" selected>주인이 생겼어요</option>
 							</c:otherwise>
 						</c:choose>
 					</select>

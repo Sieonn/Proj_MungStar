@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멍뭉별 미아보호소 게시글 작성</title>
+<title>멍뭉별 찾습니다 게시글 작성</title>
 <style>
 body,
     html {
@@ -220,7 +220,7 @@ body,
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <jsp:include page="/main/header.jsp"/>
-<div class="text">미아보호소</div>
+<div class="text">찾습니다</div>
 <form action="lostModify" enctype="multipart/form-data" method="post" id="lostModify" 
 	onkeypress="if(event.keyCode === 13) {return false;}">
 <input type="hidden" name="lostChar" id="lostChar"/>
@@ -233,12 +233,12 @@ body,
 					<select class="category" id="category" name="lostCgory" size="1" >
 						<c:choose>
 							<c:when test="${lost.lostCgory eq 'finding'}">
-								<option value="finding" selected>주인을 찾고있어요</option>
-								<option value="finded">주인을 찾았어요</option>	
+								<option value="finding" selected>찾습니다</option>
+								<option value="finded">찾았어요</option>	
 							</c:when>
 							<c:otherwise>
-								<option value="finding">주인을 찾고있어요</option>
-								<option value="finded" selected>주인을 찾았어요</option>
+								<option value="finding">찾습니다</option>
+								<option value="finded" selected>찾았어요</option>
 							</c:otherwise>
 						</c:choose>
 					</select>

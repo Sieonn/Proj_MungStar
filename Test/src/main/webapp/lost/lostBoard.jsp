@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멍뭉별 미아보호소 게시판</title>
+<title>멍뭉별 찾습니다 게시판</title>
 <style>
 @font-face {
 	font-family: "JalnanGothic";
@@ -285,15 +285,15 @@ const handleImgInput = (e) => {
 	<c:set var="path" value="${pageContext.request.contextPath}" />
 	<jsp:include page="/main/header.jsp" />
 	<div class="temp_container">
-		<div class="text">미아보호소</div>
+		<div class="text">찾습니다</div>
 		<div class="right_container" style="float: right;">
 			<select class="category" id="category" name="category" size="1">
-				<option value="">잃어버렸어요 / 발견했어요</option>
-				<option value="finding">잃어버렸어요</option>
-				<option value="finded">발견했어요</option>
+				<option value="">찾습니다 / 찾았어요</option>
+				<option value="finding">찾습니다</option>
+				<option value="finded">찾았어요</option>
 			</select>
 			<div>
-				<form action="" style="display: inline-block";>
+				<form action="" style="display: inline-block;">
 					<input type="text" class="searchInput" id="comment"
 						name="searchText" placeholder="검색" />
 					<button class="searchBtn" type="submit" class="Btn">검색</button>
