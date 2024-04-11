@@ -358,14 +358,33 @@ a:hover {
 					<div class="actTitle">내 활동</div>
 					<div class="petInfo">
 						<div style="margin: 5% 7%">
-							<div class="act-btn" style="display: flex">
+							<c:forEach items="${myFrees}" var="free">
+							<div>
+								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}">${free.freeSub}</a>
+							</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				<div class="actGrid">
+					<div class="actTitle">내 활동</div>
+					<div class="petInfo">
+						<div style="margin: 5% 7%">
+							<c:forEach items="${myFreeComments}" var="comment">
+							<div>
+								<a href="${path}/freeBoard/boarddetail?freeNum=${comment.freeNum}">${comment.commContent}</a>
+							</div>
+							</c:forEach>
+							
+							
+							<!-- <div class="act-btn" style="display: flex">
 								<button class="actBtn" value="walk">산책로 추천</button>
 								<button class="actBtn" id="" value="free">자유게시판</button>
 							</div>
 							<div class="act-btn" style="display: flex">
 								<button value="temp" id="" class="actBtn">임시 보호소</button>
 								<button value="lost" id="" class="actBtn">미멍 보호소</button>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>

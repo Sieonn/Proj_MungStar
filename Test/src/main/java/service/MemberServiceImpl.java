@@ -14,6 +14,8 @@ import dao.DogDAOImpl;
 import dao.MemberDAO;
 import dao.MemberDAOImpl;
 import dto.Dog;
+import dto.FBoard;
+import dto.FreeComment;
 import dto.Member;
 
 public class MemberServiceImpl implements MemberService {
@@ -82,7 +84,13 @@ public class MemberServiceImpl implements MemberService {
 		Member member = (Member) request.getSession().getAttribute("user");
 		if (member == null)
 			throw new Exception("로그인 하세요");
+		List<FBoard> myFreeList=memberDao.selectMyFreeList(member.getMemId());
+		List<FreeComment> myFreeCommentList=memberDao.selectMyFreeCommentList(member.getMemNick());
 		List<Dog> dogs = dogDao.selectDog(member.getMemId());
+		System.out.println(myFreeList);
+		System.out.println(myFreeCommentList);
+		request.setAttribute("myFrees", myFreeList);
+		request.setAttribute("myFreeComments", myFreeCommentList);
 		request.setAttribute("dogs", dogs);
 	}
 

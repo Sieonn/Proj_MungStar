@@ -1,6 +1,10 @@
 package dao;
 
+import java.util.List;
+
+import dto.FBoard;
 import dto.File;
+import dto.FreeComment;
 import dto.Member;
 
 public interface MemberDAO {
@@ -12,4 +16,7 @@ public interface MemberDAO {
 	void updatePw(String memId, String memPw) throws Exception;
 	void insertFile(File file) throws Exception;
 	void updateMemberProfile(String memId, Integer num) throws Exception;
+	List<FBoard> selectMyFreeList(String memId) throws Exception;
+	List<FreeComment> selectMyFreeCommentList(String commNick) throws Exception;
+	
 }

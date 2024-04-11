@@ -138,8 +138,8 @@ a:visited {
 					<a href="${path}/walking/walkBoard">산책로</a> <a
 						href="${path}/hospital/hospitalBoard">24시 동물병원</a> <a
 						href="${path}/freeBoard/freeboard">자유게시판</a> <a
-						href="${path}/lost/lostBoard">미멍보호소</a> <a
-						href="${path}/temp/tempBoard">임시 보호해요</a>
+						href="${path}/lost/lostBoard">찾습니다</a> <a
+						href="${path}/temp/tempBoard">임시보호</a>
 				</div>
 			</c:otherwise>
 		</c:choose>

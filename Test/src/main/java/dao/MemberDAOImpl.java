@@ -1,11 +1,14 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dto.FBoard;
 import dto.File;
+import dto.FreeComment;
 import dto.Member;
 import util.MybatisSqlSessionFactory;
 
@@ -71,5 +74,15 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println(param);
 		sqlSession.update("mapper.member.updateMemberProfile",param);
 		sqlSession.commit();
+	}
+
+	@Override
+	public List<FBoard> selectMyFreeList(String memId) throws Exception {
+		return sqlSession.selectList("mapper.member.selectMyFreeList",memId);
+	}
+
+	@Override
+	public List<FreeComment> selectMyFreeCommentList(String commNick) throws Exception {
+		return sqlSession.selectList("mapper.member.selectMyFreeCommentList",commNick);
 	}
 }

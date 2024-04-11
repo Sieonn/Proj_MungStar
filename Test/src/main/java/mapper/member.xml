@@ -47,4 +47,18 @@
 		WHERE memId = #{memId}
 		    ]]>
 	</update>
+	
+	<select id="selectMyFreeList" parameterType="String"
+		resultType="dto.FBoard">
+		<![CDATA[
+			select * from freeboard where memId=#{memId} and freeHidden is false order by freeNum desc limit 5
+		]]>
+	</select>
+	
+	<select id="selectMyFreeCommentList" parameterType="String"
+		resultType="dto.FreeComment" >
+		<![CDATA[
+			select * from freecomment where commNick=#{commNick} and commBlind is null order by commNum desc limit 5
+		]]>
+	</select>
 </mapper>
