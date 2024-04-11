@@ -32,8 +32,6 @@
    			select count(*) from freeboard where freeTag=#{freeTag}
    		]]>
 	</select>
-<<<<<<< HEAD
-
 	<select id="selectBoardListByTagAndSearch" parameterType="Map"
 		resultType="dto.FBoard">
 		SELECT * FROM freeboard
@@ -48,8 +46,7 @@
 		</where>
 		order by freeNum desc
 		limit #{row}, 12
-=======
-	
+	</select>
 	<select id="selectBoardListByTagAndSearch" parameterType="Map" resultType="dto.FBoard">
   		SELECT * FROM freeboard
   			<where>
@@ -63,9 +60,9 @@
    			</where>
   		order by freeNum desc
    		limit #{row}, 12
->>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
+
 	</select>
-<<<<<<< HEAD
+
 
 	<select id="selectBoardCountByTagAndSearch" parameterType="Map"
 		resultType="Integer">
@@ -79,7 +76,7 @@
 				AND freeSub like '%${searchText}%'
 			</if>
 		</where>
-=======
+</select>
 	
 	<select id="selectBoardCountByTagAndSearch" parameterType="Map" resultType="Integer">
   		SELECT count(*) FROM freeboard
@@ -92,7 +89,7 @@
     			AND (freeSub like '%${searchText}%' or freeNick like '%${searchText}%' )
   				</if>
   			</where>
->>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
+
 	</select>
 
 	<update id="updateBoardViewCount" parameterType="Integer">
