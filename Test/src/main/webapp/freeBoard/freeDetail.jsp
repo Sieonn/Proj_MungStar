@@ -403,6 +403,7 @@ $('#commBtn').on("click",function(){
 		data:{commContent:$('#comment').val(), freeNum:'${board.freeNum}'},
 		success:function(result){
 			let comment=JSON.parse(result);
+			let div = '';
 			if(comment.memNick==='${board.freeNick}'){
 			let div=`<div class="writeComm">
 					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
@@ -420,8 +421,9 @@ $('#commBtn').on("click",function(){
 					$('#comment_box').append(div);
 				$('#comment').val('');
 			}
-//			$('#comment_box').append(div);
-			
+//			$('#comment_box').append(div);	
+			// 스크롤을 가장 하단으로 이동
+            $('#comment_box').scrollTop($('#comment_box')[0].scrollHeight);
 		},
 		error:function(err){
 			alert("댓글입력 오류입니다.")
