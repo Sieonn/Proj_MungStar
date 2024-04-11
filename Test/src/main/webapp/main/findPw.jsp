@@ -153,6 +153,7 @@ placeholder {
 	color: white;
 	border: none;
 	height: 40px;
+	padding: 0 5px;
 }
 
 .form-control2:focus {
@@ -191,7 +192,7 @@ placeholder {
 			}
 
 			$.ajax({
-				url : '${path}/findpw', // 아이디 찾기 처리를 하는 서블릿 주소
+				url : 'findpw', // 아이디 찾기 처리를 하는 서블릿 주소
 				type : 'post',
 				async : true,
 				data : {
@@ -307,14 +308,14 @@ placeholder {
 					</div>
 					<div class="findP">
 						<label class="lname">이메일</label> <input type="text" id="memEmail"
-							name="memEmail" class="form-control2" placeholder="이메일을 입력해주세요."
+							name="memEmail" class="form-control" placeholder="이메일을 입력해주세요." style="border-radius: 3px 0 0 3px;"
 							required /> <input type="button" value="인증번호 받기"
 							id="checkedemail" name="checkedemail" />
 					</div>
 					<div class="findP">
 						<div style="display: flex; margin-left: 70px;">
-							<input class="form-control2" id="authcode" type="email"
-								placeholder="인증번호를 입력하세요" style="width: 157px;" /> <input
+							<input class="form-control" id="authcode" type="email"
+								placeholder="인증번호를 입력하세요" style="width: 157px; border-radius: 3px 0 0 3px;" /> <input
 								type="button" value="확인" id="checkauth" name="checkauth" />
 						</div>
 					</div>

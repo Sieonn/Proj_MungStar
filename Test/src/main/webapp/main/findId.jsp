@@ -135,7 +135,7 @@ placeholder {
 
 			// AJAX를 통해 서버로 닉네임과 전화번호 값을 전달하여 아이디를 찾음
 			$.ajax({
-				url : '${path}/findid', // 아이디 찾기 처리를 하는 서블릿 주소
+				url : 'findid', // 아이디 찾기 처리를 하는 서블릿 주소
 				type : 'post',
 				async : true,
 				data : {

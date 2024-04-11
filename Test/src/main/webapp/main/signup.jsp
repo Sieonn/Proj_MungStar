@@ -427,7 +427,7 @@ $(function() {
         var memPw = $(this).val();
         
         var pwRegex = /^[a-z0-9]+$/;
-        if (!pwRegex.test(memId)) {
+        if (!pwRegex.test(memPw)) {
             $('#pwMsg').text("영어 소문자와 숫자로만 이루어져야 합니다.");
              $('#pwMsg').css('color', 'red');
             return;
@@ -451,7 +451,8 @@ $(function() {
         
         if (memPw !== PwCheck) {
             $('#pwCMsg').text("비밀번호가 일치하지 않습니다.");
-            $('#pwMsg').css('color', 'red');
+            $('#pwCMsg').css('color', 'red');
+ 
         } else {
             $('#pwCMsg').text("비밀번호가 일치합니다.");
             $('#pwCMsg').css('color', 'green');
