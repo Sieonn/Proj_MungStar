@@ -124,7 +124,7 @@
 	
 	<select id="selectFreeListOnMain" resultType="dto.FBoard">
 		<![CDATA[
-			SELECT * FROM freeboard ORDER BY freeNum DESC LIMIT 5;
+			SELECT * FROM freeboard where freeHidden is false ORDER BY freeNum DESC LIMIT 5;
 		]]>
 	</select>
 

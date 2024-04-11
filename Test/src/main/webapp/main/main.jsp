@@ -294,7 +294,7 @@ a:hover {
 			<div class="text_h"
 				style="margin-top: 10px; font-size: 18px; font-family: 'Pretendard-Regular'; font-weight: bold; color: #7b7b7b; line-height: 1.13;">
 				따뜻한 봄이왔어요~🌸</div>
-			<span class="more"> <a href="#"
+			<span class="more"> <a href="${path}/walking/walkBoard"
 				style="font-size: 12px; margin-right: 60px;">더보기</a></span>
 		</div>
 		<div class="loc">
