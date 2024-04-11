@@ -116,7 +116,7 @@
 	
 	<select id="selectFreeComment" parameterType="Integer" resultType="dto.Comment">
 		<![CDATA[
-			select * from freeComment where boardNum=#{freeNum}
+			select * from freeComment where freeNum=#{freeNum}
 		]]>
 	</select>
 
