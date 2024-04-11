@@ -393,16 +393,21 @@ window.onload=function(){
 <div class="walkBtn">
 		<c:choose>
 		<c:when test="${user ne null }">
-					<a href="walkingList" id="walkList">LIST</a>
+					<a href="walkBoard" id="walkList">HOME</a>
 			<a id="walkWriteForm"
 				href="walkWriteForm">WRITE</a>
 				</c:when>
 				<c:otherwise>
-					<a href="walkingList" id="walkListLogout">LIST</a>
+					<a href="walkBoard" id="walkListLogout">HOME</a>
 				</c:otherwise>
 		</c:choose>
 
 		</div>
 		</div>
+		<script>
+		$("#walkWriteForm").on("click",function(){
+			window.location.href="http://localhost:8080/MoongStar/walking/walkWriteForm";	
+		})
+		</script>
 </body>
 </html>
