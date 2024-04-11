@@ -244,6 +244,7 @@
   		border-width: 4px;
   		border-radius: 20px;
   		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  		overflow:auto;
   	}
   	.inputComment{
   		display: inline-block;
@@ -254,6 +255,8 @@
   		border-style: none;
   		outline: none;
   		font-size: 15px;
+  		resize: vertical;
+  		overflow:auto;
   	}
   	
   	
@@ -365,7 +368,7 @@
 	</c:choose>
 	</c:forEach>     
 	</div>
-    <div class="inputDiv">
+    <div class="inputDiv" style="overflow: auto;">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
 		<button class="commBtn" id="commBtn">등록</button>
 	</div>
@@ -431,6 +434,7 @@ $('#commBtn').on("click",function(){
 		}	
 	})
 })
+
   </script>
   <script type="text/javascript">
 //수정 페이지로 이동하는 함수

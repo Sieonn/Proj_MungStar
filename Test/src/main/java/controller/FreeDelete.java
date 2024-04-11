@@ -45,7 +45,11 @@ public class FreeDelete extends HttpServlet {
 		 HttpSession session = request.getSession(false);
 		 if (session != null && session.getAttribute("user") != null) {
 			 try {
-				 String memNick = (String) session.getAttribute("user");
+//				 String memNick = (String)session.getAttribute("user");
+				 // 세션에서 사용자 객체 가져오기
+			        dto.Member user = (dto.Member) session.getAttribute("user");
+			        // 사용자 객체에서 닉네임 가져오기
+			      String memNick = user.getMemNick();
 				 FreeService freeService=new FreeServiceImpl();
 				 FBoard board = freeService.freeDetail(freeNum);
 	            if (board != null && board.getFreeNick().equals(memNick)) {
