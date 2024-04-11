@@ -112,10 +112,6 @@ public class FreeDAOImpl implements FreeDAO {
 	public List<FBoard> selectFreeListOnMain() throws Exception {
 		return sqlSession.selectList("mapper.board.selectFreeListOnMain");
 	}
-	@Override
-	public List<FBoard> selectFreeListOnMainLike() throws Exception {
-		return sqlSession.selectList("mapper.board.selectFreeListOnMainLike");
-	}
 	
 	@Override
 	public void insertFreeLike(String memId, Integer freeNum) throws Exception {
