@@ -52,7 +52,6 @@ body, html {
 #btn-Yes {
 	background-color: #0155b7;
 	border: none;
-	margin-top: 10px;
 }
 
 .form-signin .form-control {
@@ -112,8 +111,8 @@ a:hover {
 }
 
 .check {
-	margin-bottom: 10px;
-	font-size: 18px;
+	margin-top: 20px;
+	font-size: 16px;
 	font-family: "JalnanGothic";
 	text-align: center;
 }
@@ -122,6 +121,114 @@ placeholder {
 	font-size: 10px;
 }
 </style>
+<script>
+function regist() {
+        var memId = '<%= request.getAttribute("memId") %>';
+        var memPw = $('#memPw').val();
+
+        // Ajax를 사용하여 서블릿으로 데이터 전송
+        $.ajax({
+            type: 'POST',
+            url: 'repw', // 해당 서블릿의 URL
+            data: {
+                memId: memId,
+                memPw: memPw
+            },
+            success: function(response) {
+                // 서블릿 처리 후의 응답에 따른 작업 수행
+                if (response === 'success') {
+                    alert('비밀번호가 성공적으로 변경되었습니다.')
+					document.location.href='login';
+                    // 성공 시 리다이렉트 등의 작업 수행
+                } else {
+                    alert('비밀번호 변경에 실패하였습니다.');
+                    // 실패 시 적절한 에러 처리
+                }
+            },
+            error: function() {
+                alert('서버와의 통신 중 오류가 발생했습니다.');
+            }
+        });
+    }
+    $(function() {
+        $('#memPw').on('input', function() {
+            var memPw = $(this).val();
+            
+            var pwRegex = /^[a-z0-9]+$/;
+            if (!pwRegex.test(memPw)) {
+                $('#check').text("영어 소문자와 숫자로만 이루어져야 합니다.");
+                 $('#check').css('color', 'red');
+                return;
+            }
+            // 길이 검사
+            if (memPw.length < 8 || memPw.length > 20) {
+                $('#check').text("8자 이상 입력해주세요.");
+                $('#check').css('color', 'red');
+                return;
+            } 
+            // 모든 조건을 만족할 경우 유효성 검사 메시지 제거
+            $('#check').text("");
+        });
+    });
+
+    $(function() {
+        $('#pwCheck').on('input', function() {
+        	var memPw = $('#memPw').val();
+            var pwCheck = $(this).val();
+            
+            if (memPw !== pwCheck) {
+                $('#check').text("비밀번호가 일치하지 않습니다.");
+                $('#check').css('color', 'red');
+            } else {
+                $('#check').text("비밀번호가 일치합니다.");
+                $('#check').css('color', 'green');
+            }
+        });
+    });
+    function regist() {
+        var memPw = $('#memPw').val();
+        var pwCheck = $('#pwCheck').val();
+        
+        // 유효성 검사
+        var pwRegex = /^[a-z0-9]+$/;
+        if (!pwRegex.test(memPw)) {
+            alert("비밀번호는 영어 소문자와 숫자로만 이루어져야 합니다.");
+            return;
+        }
+        if (memPw.length < 8 || memPw.length > 20) {
+            alert("비밀번호는 8자 이상 20자 이하로 입력해주세요.");
+            return;
+        }
+        if (memPw !== pwCheck) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+        
+        // Ajax를 사용하여 서블릿으로 데이터 전송
+        $.ajax({
+            type: 'POST',
+            url: 'repw', // 해당 서블릿의 URL
+            data: {
+                memId: '<%= request.getAttribute("memId") %>',
+                memPw: memPw
+            },
+            success: function(response) {
+                // 서블릿 처리 후의 응답에 따른 작업 수행
+                if (response === 'success') {
+                    alert('비밀번호가 성공적으로 변경되었습니다.')
+                    document.location.href = 'login';
+                    // 성공 시 리다이렉트 등의 작업 수행
+                } else {
+                    alert('비밀번호 변경에 실패하였습니다.');
+                    // 실패 시 적절한 에러 처리
+                }
+            },
+            error: function() {
+                alert('서버와의 통신 중 오류가 발생했습니다.');
+            }
+        });
+    }
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -131,7 +238,7 @@ placeholder {
 				<h2 class="card-title" style="color: #0155b7"></h2>
 			</div>
 			<div class="card-body">
-				<form action="resetPw" class="form-signin" method="POST">
+				<form action="repw" class="form-signin" method="POST">
 					<p class="text2"
 						style="font-family: 'JalnanGothic'; font-size: 24px">비밀번호 재설정 - <%= request.getAttribute("memId") %>님</p>
 					
@@ -139,10 +246,9 @@ placeholder {
 					<input
 						type="password" name="memPw" id="memPw" class="form-control"
 						placeholder="비밀번호" required /><br /> <input type="password"
-						name="pw2" id="pw2" class="form-control" placeholder="비밀번호 재확인"
+						name="pwCheck" id="pwCheck" class="form-control" placeholder="비밀번호 재확인"
 						required />
-					<p class="check" id="check2"></p>
-					<br />
+					   <p class="check" id="check"></p>
 					<button type="button" id="btn-Yes" onclick="regist()"
 						class="btn btn-lg btn-primary btn-block">비밀번호 재설정</button>
 				</form>
@@ -152,79 +258,6 @@ placeholder {
 					href="${path}/signup">회원가입</a>
 			</div>
 		</div>
-
-		<script>
-			var check2 = "${findpw_checkt}";
-			if (check2 !== "") {
-				alert(check2);
-			}
-
-			// 비밀번호 정규식
-			var pwJ = /^[a-z0-9]{6,20}$/;
-			var memPw = false;
-			var pwc2 = false;
-
-			$("#pw").focusout(function() {
-				if ($('#memPw').val() === "") {
-					$('#check').text('비밀번호를 입력해주세요.');
-					$('#check').css('color', 'red');
-				} else if (!pwJ.test($(this).val())) {
-					$('#check').text('6~20자의 영문 소문자, 숫자만 사용가능합니다');
-					$('#check').css('color', 'red');
-				} else {
-					pwc2 = true;
-					$('#check').hide();
-				}
-			});
-
-			$("#pw2").focusout(function() {
-				if ($('#pw2').val() === "") {
-					$('#check').text('필수 정보입니다.')
-					$('#check').css('color', 'red')
-				} else
-					$('#check').hide()
-			});
-
-			$("#pw2").keyup(function() {
-
-				if ($(this).val() !== $("#pw").val()) {
-					$("#check2").html("비밀번호가 다릅니다");
-					$("#check2").css("color", 'red');
-					pwc = false;
-
-				} else {
-					$("#check2").html("비밀번호가 일치합니다");
-					$("#check2").css("color", 'blue');
-					pwc = true;
-				}
-			});
-
-			$("#pw").keyup(function() {
-
-				if ($(this).val() !== $("#pw2").val()) {
-					$("#check2").html("비밀번호가 다릅니다");
-					$("#check2").css("color", 'red');
-					pwc = false;
-
-				} else {
-					$("#check2").html("비밀번호가 일치합니다");
-					$("#check2").css("color", 'blue');
-					pwc = true;
-				}
-			});
-
-			function regist() {
-				if (pwc2 === false) {
-					alert('비밀번호는 6~20자의 영문 소문자, 숫자만 사용가능합니다');
-				} else if (pwc === false) {
-					alert('비밀번호를 다시 확인해주세요');
-				} else {
-					$('form').submit();
-				}
-		<%session.invalidate();%>
-			
-			};
-		</script>
 	</div>
 </body>
 </html>

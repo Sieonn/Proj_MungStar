@@ -68,7 +68,24 @@ body, html {
 }
 
 .form-control {
-	flex: 1;	
+	flex: 1;
+	margin-left: 10px;
+	height: 40px;
+}
+
+.form-control2 {
+	display: block;
+	width: 100%;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	border-radius: 3px 0 0 3px;
+	flex: 1;
 	margin-left: 10px;
 	height: 40px;
 }
@@ -81,6 +98,7 @@ body, html {
 .card-body {
 	width: 400px;
 	padding: 30px;
+	margin-top: 10px;
 }
 
 button, input {
@@ -89,7 +107,7 @@ button, input {
 
 .links {
 	text-align: center;
-	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 a {
@@ -113,11 +131,12 @@ a:hover {
 
 .findP {
 	display: flex;
+	margin-bottom: 15px;
 }
 
 .check {
-	margin-bottom: 10px;
-	font-size: 18px;
+	margin-top: 20px;
+	font-size: 16px;
 	font-family: "JalnanGothic";
 	text-align: center;
 }
@@ -125,130 +144,150 @@ a:hover {
 placeholder {
 	font-size: 10px;
 }
+
+.findP input[type="button"] {
+	border-radius: 0 3px 3px 0;
+	font-weight: 500;
+	font-size: 13px;
+	background-color: #0155b7;
+	color: white;
+	border: none;
+	height: 40px;
+}
+
+.form-control2:focus {
+	border-bottom: 1px solid #80bdff;
+	color: #495057;
+	background-color: #fff;
+	outline: 0;
+/* 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25); */
+}
 </style>
 <script>
+	$(function() {
+		// 이메일 인증 버튼 비활성화
+		$("#checkedemail").prop("disabled", true);
+		$("#checkauth").prop("disabled", true);
+		$('#authcode').prop('readonly', true);
+		// memId 입력란 이벤트
+		$("#memId").on("input", function() {
+			checkMemberInfo(); // 회원 정보 확인 함수 호출
+		});
 
+		// memEmail 입력란 이벤트
+		$("#memEmail").on("input", function() {
+			checkMemberInfo(); // 회원 정보 확인 함수 호출
+		});
 
-$(function() {
-	// 이메일 인증 버튼 비활성화
-	$("#checkedemail").prop("disabled", true);
-	$("#checkauth").prop("disabled", true);
-    $('#authcode').prop('readonly', true);
-	// memId 입력란 이벤트
-	$("#memId").on("input", function() {
-		checkMemberInfo(); // 회원 정보 확인 함수 호출
-	});
-	
-	// memEmail 입력란 이벤트
-	$("#memEmail").on("input", function() {
-		checkMemberInfo(); // 회원 정보 확인 함수 호출
-	});
-	
-	// 회원 정보 확인 함수
-	function checkMemberInfo() {
-		var memId = $("#memId").val();
-		var memEmail = $("#memEmail").val();
+		// 회원 정보 확인 함수
+		function checkMemberInfo() {
+			var memId = $("#memId").val();
+			var memEmail = $("#memEmail").val();
 
-		// 입력값이 빈 문자열인 경우 확인하지 않음
-		if (memId === "" || memEmail === "") {
-			$("#check").text(""); // 메시지 초기화
-			return; // 함수 종료
-		}
+			// 입력값이 빈 문자열인 경우 확인하지 않음
+			if (memId === "" || memEmail === "") {
+				$("#check").text(""); // 메시지 초기화
+				return; // 함수 종료
+			}
 
-		$.ajax({
-			url : '${path}/findpw', // 아이디 찾기 처리를 하는 서블릿 주소
-			type : 'post',
-			async : true,
-			data : {
-				memId : memId,
-				memEmail : memEmail
-			},
-			success : function(result) {
-				if (result == "") {
-					// DB에서 일치하는 아이디를 찾지 못한 경우
-					$("#check").text("일치하는 항목이 없습니다.");
-					$("#check").css("color", "red");
-					$("#checkedemail").prop("disabled", true); // 이메일 인증 버튼 비활성화
-					$("#checkauth").prop("disabled", true); // 이메일 인증 버튼 비활성화
-				} else {
-					// DB에서 일치하는 아이디를 찾은 경우
-					$("#check").text("회원정보가 일치합니다.");
-					$("#check").css("color", "green");
-					$("#checkedemail").prop("disabled", false); // 이메일 인증 버튼 활성화
+			$.ajax({
+				url : '${path}/findpw', // 아이디 찾기 처리를 하는 서블릿 주소
+				type : 'post',
+				async : true,
+				data : {
+					memId : memId,
+					memEmail : memEmail
+				},
+				success : function(result) {
+					if (result == "") {
+						// DB에서 일치하는 아이디를 찾지 못한 경우
+						$("#check").text("일치하는 항목이 없습니다.");
+						$("#check").css("color", "red");
+						$("#checkedemail").prop("disabled", true); // 이메일 인증 버튼 비활성화
+						$("#checkauth").prop("disabled", true); // 이메일 인증 버튼 비활성화
+					} else {
+						// DB에서 일치하는 아이디를 찾은 경우
+						$("#check").text("회원정보가 일치합니다.");
+						$("#check").css("color", "green");
+						$("#checkedemail").prop("disabled", false); // 이메일 인증 버튼 활성화
+					}
+				},
+				error : function() {
+					alert("아이디를 찾는 중에 오류가 발생했습니다.");
 				}
-			},
-			error : function() {
-				alert("아이디를 찾는 중에 오류가 발생했습니다.");
+			});
+		}
+		$(function() {
+			$("#checkedemail").click(function(e) {
+				e.preventDefault();
+				var email = $('input[name=memEmail]').val();
+				$.ajax({
+					url : 'joinauth',
+					type : 'post',
+					async : true,
+					data : {
+						memEmail : email
+					},
+					success : function(result) {
+						alert(result);
+						$("#checkauth").prop("disabled", false);
+						$('#authcode').val('');
+						$('#authcode').prop('readonly', false);
+						$("#check").text("인증을 진행해주세요.");
+					}
+				});
+			});
+			//메일체크
+			$("#checkauth").click(function(e) {
+				e.preventDefault();
+				var authcode = $("#authcode").val();
+				$.ajax({
+					url : 'checkauth',
+					type : 'post',
+					data : {
+						authcode : authcode
+					},
+					success : function(result) {
+						if (result == 'true') {
+							$('#authcode').val('인증번호가 일치합니다.');
+							$('#authcode').prop('readonly', true);
+							$('#authcode').css({
+								'color' : 'green', // 폰트 색상 변경
+								'font-size' : '12px', // 폰트 크기 변경
+								'background-color' : 'light-dark'
+							});
+							$("#check").text("비밀번호 재설정이 가능합니다.");
+						} else {
+							$('#authcode').val('인증번호가 일치하지 않습니다.');
+							$('#authcode').css({
+								'color' : 'red', // 폰트 색상 변경
+								'font-size' : '12px', // 폰트 크기 변경
+							});
+						}
+					}
+				})
+			});
+		});
+		// 제출 버튼 클릭 시 이벤트
+		$("#btn-Yes").click(function(e) {
+			e.preventDefault();
+			if ($("#check").text() === "비밀번호 재설정이 가능합니다.") {
+				var memId = $("#memId").val();
+				var encodedMemId = encodeURIComponent(memId); // memId 값을 인코딩
+
+				// 인코딩된 memId 값을 포함하여 URL로 이동
+				window.location.href = '${path}/repw?memId=' + encodedMemId;
+			} else {
+				if ($("#memId").val() === "") {
+					alert("아이디를 입력해주세요.")
+				} else if ($("#memEmail").val() === "") {
+					alert("이메일을 입력해주세요.")
+				} else if ($("#authcode").val() === "") {
+					alert("이메일인증을 진행해주세요.")
+				}
 			}
 		});
-	}
-	$(function() {
-		   $("#checkedemail").click(function(e) {
-		      e.preventDefault();
-			      var email = $('input[name=memEmail]').val();
-		      $.ajax({
-		         url:'joinauth',
-		         type:'post',
-		         async:true,
-		         data:{memEmail:email},
-		         success:function(result) {
-		            alert(result);
-					$("#checkauth").prop("disabled", false); 
-		          	$('#authcode').val('');
-		            $('#authcode').prop('readonly', false);
-		            $("#check").text("인증을 진행해주세요.");
-		         }
-		      }); 
-		   });
-		   //메일체크
-		   $("#checkauth").click(function(e) {
-		      e.preventDefault();
-		      var authcode = $("#authcode").val();
-		      $.ajax({
-		         url:'checkauth',
-		         type:'post',
-		         data:{authcode:authcode},
-		         success:function(result) {
-		            if (result == 'true'){
-		            	$('#authcode').val('인증번호가 일치합니다.');
-		            	  $('#authcode').prop('readonly', true);
-		            	  $('#authcode').css({
-		            		    'color': 'green', // 폰트 색상 변경
-		            		    'font-size': '12px', // 폰트 크기 변경
-		            		    'background-color': 'light-dark'
-		            		});
-		            	  	$("#check").text("비밀번호 재설정이 가능합니다.");
-		            } else {
-		            	$('#authcode').val('인증번호가 일치하지 않습니다.');
-		            	 $('#authcode').css({
-		            		    'color': 'red', // 폰트 색상 변경
-		            		    'font-size': '12px', // 폰트 크기 변경
-		            		});
-		            }
-		         }
-		      })
-		   });
-		});
-	// 제출 버튼 클릭 시 이벤트
-	$("#btn-Yes").click(function(e) {
-	    e.preventDefault();
-	    if ($("#check").text() === "비밀번호 재설정이 가능합니다.") {
-	        var memId = $("#memId").val();
-	        var encodedMemId = encodeURIComponent(memId); // memId 값을 인코딩
-	        
-	        // 인코딩된 memId 값을 포함하여 URL로 이동
-	        window.location.href = '${path}/repw?memId=' + encodedMemId;
-	    } else {
-	        if($("#memId").val() ===  ""){
-	            alert("아이디를 입력해주세요.")
-	        } else if ($("#memEmail").val() === "" ) {
-	            alert("이메일을 입력해주세요.")
-	        } else if ($("#authcode").val() === "" ) {
-	            alert("이메일인증을 진행해주세요.")
-	        }
-	    }
 	});
-});
 </script>
 </head>
 
@@ -256,9 +295,6 @@ $(function() {
 	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="card" style="width: 25rem;">
-			<div class="card-title">
-				<h2 class="card-title" style="color: #0155b7"></h2>
-			</div>
 			<div class="card-body">
 				<form action="findpw" class="form-signin" method="POST">
 					<p class="text2"
@@ -269,32 +305,28 @@ $(function() {
 							name="memId" class="form-control" placeholder="아이디를 입력해주세요."
 							required autofocus />
 					</div>
-					<br />
 					<div class="findP">
-						<label class="lname">이메일</label> 
-						<input type="text" id="memEmail"
-							name="memEmail" class="form-control" placeholder="이메일을 입력해주세요."
+						<label class="lname">이메일</label> <input type="text" id="memEmail"
+							name="memEmail" class="form-control2" placeholder="이메일을 입력해주세요."
 							required /> <input type="button" value="인증번호 받기"
 							id="checkedemail" name="checkedemail" />
 					</div>
 					<div class="findP">
-					<div style="display: flex; margin: 10px 0 10px 70px;" >
-									<input class="form-control" id="authcode" type="email"
-										placeholder="인증번호를 입력하세요"  style="width:157px;"/> <input type="button" value="확인"
-										id="checkauth" name="checkauth" />
-								</div>
+						<div style="display: flex; margin-left: 70px;">
+							<input class="form-control2" id="authcode" type="email"
+								placeholder="인증번호를 입력하세요" style="width: 157px;" /> <input
+								type="button" value="확인" id="checkauth" name="checkauth" />
+						</div>
 					</div>
-					<br />
 					<div class="check" id="check"></div>
 					<button id="btn-Yes" class="btn btn-lg btn-primary btn-block"
 						type="submit" style="font-weight: 900">비 밀 번 호 재 설 정</button>
 
 				</form>
-			</div>
-			<div class="links">
-				<a href="${path}/findid">아이디 찾기</a> | <a href="${path}/login">로그인</a>
-				| <a href="${path}/signup">회원가입</a>
-
+				<div class="links">
+					<a href="${path}/findid">아이디 찾기</a> | <a href="${path}/login">로그인</a>
+					| <a href="${path}/signup">회원가입</a>
+				</div>
 			</div>
 		</div>
 	</div>

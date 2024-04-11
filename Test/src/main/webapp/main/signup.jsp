@@ -281,8 +281,8 @@ function findAddr() {
     }).open();
 }
 </script>
-<script>
-/* $(function(){
+<!-- <script>
+$(function(){
 		$('#doubleId').click(function(e) {
 			e.preventDefault();
 			$.ajax({
@@ -305,8 +305,8 @@ function findAddr() {
 			
 		})
 });
- */
-/* $(function(){
+ 
+$(function(){
 		$('#doubleNick').click(function(e) {
 			e.preventDefault();
 			$.ajax({
@@ -326,14 +326,15 @@ function findAddr() {
 				}
 			})
 		})
-}); */
+}); 
 
-</script>
+</script> -->
 <script>
 $(function() {
 	   $("#checkedemail").click(function(e) {
 	      e.preventDefault();
-		      var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
+		      var email = $('input[name=Email]').val()+'@'+$('#domain').val();
+		      $('input[name=memEmail]').val(email);
 	      $.ajax({
 	         url:'joinauth',
 	         type:'post',
@@ -424,6 +425,13 @@ $(function() {
 $(function() {
     $('#memPw').on('input', function() {
         var memPw = $(this).val();
+        
+        var pwRegex = /^[a-z0-9]+$/;
+        if (!pwRegex.test(memId)) {
+            $('#pwMsg').text("영어 소문자와 숫자로만 이루어져야 합니다.");
+             $('#pwMsg').css('color', 'red');
+            return;
+        }
         // 길이 검사
         if (memPw.length < 8 || memPw.length > 20) {
             $('#pwMsg').text("8자 이상 입력해주세요.");
@@ -527,8 +535,6 @@ $(function() {
             alert("닉네임 중복조회를 해주세요.");
         }
     });
-	  var email = $('input[name=memEmail]').val()+'@'+$('#domain').val();
-	  $('input[name=memEmail]').val(email);
 });
 </script>
 </head>
@@ -594,7 +600,7 @@ $(function() {
 						<div class="inner-title">이메일</div>
 						<div class="inner-input2" style="flex: 1">
 							<div class="inner-input">
-								<input type="text" name="memEmail" id="memEmail" /> <span>&nbsp;
+								<input type="text" name="Email" id="Email" /> <span>&nbsp;
 									@ </span> <input class="box" id="domain" type="text" /> <select
 									class="box" id="domain-list">
 									<option value="type">직접 입력</option>
@@ -614,6 +620,7 @@ $(function() {
 								</div>
 							</div>
 						</div>
+						    <input type="hidden" id="memEmail" name="memEmail" value="">
 					</div>
 					<script>
           // 도메인 직접 입력 or domain option 선택
@@ -668,8 +675,8 @@ $(function() {
 				</div>
 				<div class="centerForm">
 					<span class="agree-check" style="display: flex; font-size: 12px">
-						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox" id="agreeCheckbox"
-						style="width: 30px" />
+						이용약관 개인정보 수집 및 이용, 마케팅 활용 선택에 모두 동의합니다. <input type="checkbox"
+						id="agreeCheckbox" style="width: 30px" />
 					</span>
 				</div>
 				<!-- 6. 가입하기 버튼 -->

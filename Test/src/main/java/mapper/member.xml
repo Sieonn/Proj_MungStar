@@ -32,7 +32,11 @@
         SELECT memPw FROM member WHERE memId = #{memId} AND memEmail = #{memEmail}
     ]]>
 	</select>
-	<update id="reInsertPw"  parameterType="dto.Member">
-		update member where memPw=#{memPw}
+	<update id="updatePw" parameterType="Map">
+	    <![CDATA[
+		UPDATE member
+		SET memPw = #{memPw}
+		WHERE memId = #{memId}
+		    ]]>
 	</update>
 </mapper>

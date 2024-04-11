@@ -37,11 +37,13 @@ public class FindPw extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		System.out.println(request.getParameter("memId"));
 		System.out.println(request.getParameter("memEmail"));
+		System.out.println(request.getParameter("memPw"));
         JSONObject jsonRes = new JSONObject();
 		try {
 			MemberService memberService = new MemberServiceImpl();
 			String findpw = memberService.findpw(request.getParameter("memId"), request.getParameter("memEmail"));
 			response.getWriter().write(findpw);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getWriter().write("");

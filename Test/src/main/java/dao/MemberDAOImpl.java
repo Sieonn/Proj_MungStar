@@ -46,4 +46,13 @@ public class MemberDAOImpl implements MemberDAO{
 		
 		  return sqlSession.selectOne("mapper.member.selectFindPw", param);
 	}
+
+	@Override
+	public void updatePw(String memId, String memPw) throws Exception {
+		Map<String, String> param = new HashMap<>();
+		param.put("memId", memId);
+		param.put("memPw", memPw);
+		sqlSession.update("mapper.member.updatePw", param);
+		sqlSession.commit();
+	}
 }

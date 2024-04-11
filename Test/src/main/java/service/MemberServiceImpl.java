@@ -2,6 +2,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -98,6 +99,13 @@ public class MemberServiceImpl implements MemberService {
 		String memPw = memberDao.selectFindPw(memId, memEmail);
 		if (memPw == null)
 			return "";
+		System.out.println(memPw);
 		return memPw;
 	}
+
+	@Override
+	public void updatePw(String memId, String memPw) throws Exception {
+	    // 여기서 필요한 유효성 검사 등을 수행할 수 있습니다.
+	    memberDao.updatePw(memId, memPw);
 	}
+}

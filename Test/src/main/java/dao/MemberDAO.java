@@ -8,4 +8,5 @@ public interface MemberDAO {
 	Member selectMemberN(String memNick) throws Exception;
 	String selectFindId(String memNick, String memPhone) throws Exception;
 	String selectFindPw(String memId, String memEmail) throws Exception;
+	void updatePw(String memId, String memPw) throws Exception;
 }

@@ -80,6 +80,7 @@ body, html {
 .card-body {
 	width: 400px;
 	padding: 30px;
+	margin-top:10px;
 }
 
 button, input {
@@ -88,7 +89,7 @@ button, input {
 
 .links {
 	text-align: center;
-	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 a {
@@ -112,11 +113,11 @@ a:hover {
 
 .findname, .findtel {
 	display: flex;
+	margin-bottom: 15px;
 }
 
 .check {
-	margin-bottom: 10px;
-	font-size: 18px;
+	font-size: 16px;
 	font-family: "JalnanGothic";
 	text-align: center;
 }
@@ -167,9 +168,6 @@ placeholder {
 	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="card" style="width: 25rem;">
-			<div class="card-title">
-				<h2 class="card-title" style="color: #0155b7"></h2>
-			</div>
 			<div class="card-body">
 				<form action="findId" class="form-signin" method="POST">
 					<p class="text2"
@@ -180,22 +178,20 @@ placeholder {
 							name="memNick" class="form-control" placeholder="닉네임을 입력해주세요."
 							required autofocus />
 					</div>
-					<br />
 					<div class="findtel">
 						<label class="lname">전화번호</label> <input type="tel" id="memPhone"
 							name="memPhone" class="form-control" placeholder="전화번호를 입력해주세요."
 							required />
 					</div>
-					<br />
 					<div class="check" id="check"></div>
 					<button id="btn-Yes" class="btn btn-lg btn-primary btn-block"
 						type="submit" style="font-weight: 900">아 이 디 찾 기</button>
 
 				</form>
-			</div>
-			<div class="links">
-				<a href="${path}/findpw">비밀번호 찾기</a> | <a href="${path}/login">로그인</a>
-				| <a href="${path}/signup">회원가입</a>
+				<div class="links">
+					<a href="${path}/findpw">비밀번호 찾기</a> | <a href="${path}/login">로그인</a>
+					| <a href="${path}/signup">회원가입</a>
+				</div>
 			</div>
 		</div>
 	</div>
