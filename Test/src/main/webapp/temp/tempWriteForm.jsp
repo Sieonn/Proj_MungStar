@@ -62,8 +62,8 @@ body,
       }
       .dogname_box{
       	color: black;
-      	font-size: 30px;
-      	font-weight: bold;
+      	font-size: 40px;
+      	font-weight: bolder;
       	border: none;
      	outline: none;
       }
@@ -74,9 +74,13 @@ body,
       	width: 90%;
       	border: none;
      	outline: none;
+     	margin-top:10px;
+      	font-size: 20px;
       }
-      .char{
-      
+      .deleteButton{
+      	background: white;
+      	border: none;
+      	cursor: pointer;
       }
       .item{
       	padding: 2px 0 2px 0;
@@ -87,8 +91,11 @@ body,
       	outline: none;
       	border: none;
       	border-bottom: 1px solid #BDBDBD;
+      	margin: 2px 0;
+      	font-size: 17px;
       }
       .dateInput{
+      	font-size: 17px;
       	color: #BDBDBD;
       	outline: none;
       	border: none;
@@ -100,7 +107,7 @@ body,
       	resize: none;
       	outline: none;
       	border: 0;
-      	font-size: 16px;
+      	font-size: 17px;
       }
       .hidden {
    		display: none;
@@ -225,7 +232,7 @@ body,
 				
 				<div class="char_box" id="char_box">
 					<div class="item">
-					▶ <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
+					🐶 <input id="char" class="charInput" type="text" placeholder="강아지 특징을 써주세요">
 					</div></div>
 				
 				<div class="contents">임시보호기간</div>
@@ -282,7 +289,8 @@ function addNewItem() {
     
     // 삭제 버튼 추가
     const deleteButton = document.createElement('button'); // 새로운 button 요소 생성
-    deleteButton.textContent = '-'; // 버튼 텍스트 설정
+    deleteButton.className="deleteButton";
+    deleteButton.textContent = '⛔'; // 버튼 텍스트 설정
     deleteButton.onclick = function() {
         removeItem(newItem);
     };

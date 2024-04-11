@@ -12,7 +12,7 @@
     			AND lostCgory = #{lostCgory}
   			</if>
    			<if test="searchText != null">
-    			AND lostAddress like '%${searchText}%'
+    			AND (lostAddress like '%${searchText}%' or lostName like '%${searchText}%')
   			</if>
    		</where>
   		order by lostNum desc
@@ -27,7 +27,7 @@
     			AND lostCgory = #{lostCgory}
   			</if>
    			<if test="searchText != null">
-    			AND lostAddress like '%${searchText}%'
+    			AND (lostAddress like '%${searchText}%' or lostName like '%${searchText}%')
   			</if>
   		</where>
 	</select>
