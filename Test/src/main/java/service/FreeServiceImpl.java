@@ -41,11 +41,23 @@ public class FreeServiceImpl implements FreeService{
 			uploadFile.setDirectory(uploadPath);
 			uploadFile.setContenttype(multi.getContentType("file"));
 			uploadFile.setSize(multi.getFile("file").length());
+			// File 테이블에 파일 정보 삽입
 			freeDAO.insertFile(uploadFile);
+			
+//	        // 파일을 Base64로 인코딩하여 문자열로 저장
+//	        InputStream fileContent = multi.getFile("file").getInputStream();
+//	        byte[] bytes = fileContent.readAllBytes();
+//	        String base64Image = Base64.getEncoder().encodeToString(bytes);
+//	        // Board 객체에 인코딩된 이미지 데이터 설정
+//	        board.setBase64Image(base64Image);
+//	        // File 테이블에 파일 정보 삽입
+//	        freeDAO.insertFile(uploadFile);
+	        
 	        //2-2. 저장된 파일번호로 업로드한 파일의 변경
 	        java.io.File file=new java.io.File(uploadPath,multi.getFilesystemName("file"));
 	        file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));			
-			board.setFreePhoto(uploadFile.getNum());
+	        // Board 객체에 파일번호 설정
+	        board.setFreePhoto(uploadFile.getNum());
 		}
 		
 	    //3. 파라미터에서 파일 이외의 정보 가져와 Board 객체에 담아 Board 테이블에 삽입
@@ -55,7 +67,7 @@ public class FreeServiceImpl implements FreeService{
 	    Member member = (Member)request.getSession().getAttribute("user");
 	    board.setFreeNick(member.getMemNick());
 	    board.setMemId(member.getMemId());
-	    System.out.println(board);
+	    // 게시글 데이터 DB에 삽입
 	    freeDAO.insertBoard(board);
 	    
 	    return board.getFreeNum();

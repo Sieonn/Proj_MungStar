@@ -43,22 +43,38 @@ public class FreeDetail extends HttpServlet {
 		HttpSession session=request.getSession();
 		Member member=(Member)session.getAttribute("user");
 	    Integer freeNum = Integer.parseInt(request.getParameter("freeNum"));
-	    
+	    if (member != null) {
+	    	try {
+	    		FreeService freeService = new FreeServiceImpl();
+		        FBoard board = (FBoard) freeService.freeDetail(freeNum);
+		        List<Comment> comments=freeService.freeCommentList(freeNum);
+		        Boolean isLike = freeService.freeLike(member.getMemId(),freeNum);
+		        request.setAttribute("board", board);
+		        request.setAttribute("comments", comments);
+		        request.setAttribute("isLike", isLike);
+		        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
+	    	
+	    	} catch (Exception e) {
+	    		 e.printStackTrace();
+	 	        request.setAttribute("err", "게시글 조회 실패");
+	 	        request.getRequestDispatcher("error.jsp").forward(request, response);
+	 	        return; // 예외 처리 후에는 더 이상 진행하지 않도록 메서드를 종료합니다.
+	    	}
+	    		
+	    } else {
 	    try {
 	        FreeService freeService = new FreeServiceImpl();
 	        FBoard board = (FBoard) freeService.freeDetail(freeNum);
 	        List<Comment> comments=freeService.freeCommentList(freeNum);
-	        Boolean isLike = freeService.freeLike(member.getMemId(),freeNum);
 	        request.setAttribute("board", board);
 	        request.setAttribute("comments", comments);
-	        request.setAttribute("isLike", isLike);
 	        request.getRequestDispatcher("freeDetail.jsp").forward(request, response);
 	    } catch (Exception e) {
-	        e.printStackTrace();
-	        request.setAttribute("err", "게시글 조회 실패");
-	        request.getRequestDispatcher("error.jsp").forward(request, response);
-	        return; // 예외 처리 후에는 더 이상 진행하지 않도록 메서드를 종료합니다.
+	    	request.setAttribute("err", "로그인이 필요한 서비스입니다.");
+    		request.getRequestDispatcher("error.jsp").forward(request, response);
+    		return;
 	    }
+	  }
 
 	}
 

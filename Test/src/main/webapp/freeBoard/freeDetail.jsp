@@ -193,7 +193,7 @@
       	border-radius: 10px;
     }
   	.writeComm{
-  		width: 70%;
+  		width: 60%;
   		margin: 5px 0 5px 0; 
   		float: right;
   		padding: 5px;
@@ -209,8 +209,9 @@
   		padding-top: 5px; padding-bottom: 5px;
   		padding-left: 10px; padding-right: 7px;
   		background-color: #FED74B;
+  		overflow:auto;
   		border-radius: 7px;
-  		text-align: right;
+  		text-align: left;
 		font-size: 15px;
   	}
   	.memcommContent{
@@ -243,6 +244,7 @@
   		border-width: 4px;
   		border-radius: 20px;
   		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  		overflow:auto;
   	}
   	.inputComment{
   		display: inline-block;
@@ -253,6 +255,8 @@
   		border-style: none;
   		outline: none;
   		font-size: 15px;
+  		resize: vertical;
+  		overflow:auto;
   	}
   	
   	
@@ -351,20 +355,20 @@
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
-		<span class="commContent mycomm">${comment.commContent}</span>
+		<span class="commContent mycomm"style="float: left;" >${comment.commContent}</span>
 	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="memComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
-		<span class="memcommContent comm" >${comment.commContent}</span>
+		<span class="memcommContent comm" style="float: left;" >${comment.commContent}</span>
 	</div>
 	</c:otherwise>
 	</c:choose>
 	</c:forEach>     
 	</div>
-    <div class="inputDiv">
+    <div class="inputDiv" style="overflow: auto;">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
 		<button class="commBtn" id="commBtn">등록</button>
 	</div>
@@ -430,6 +434,7 @@ $('#commBtn').on("click",function(){
 		}	
 	})
 })
+
   </script>
   <script type="text/javascript">
 //수정 페이지로 이동하는 함수
