@@ -313,7 +313,7 @@
 	<div class="ContentBackground scroll-box">
 		<div class = "context">${board.freeContent}</div>
 		<c:if test="${board.freePhoto ne null}">
-			<img src="${path}/imageView?num=${board.freePhoto}" width="100%"/>
+			<img src="${path}/imageView?num=${board.freePhoto}" width="auto"/>
 		</c:if>
 	</div>
 	<div class="tag-input" style="color: lightgray;">${board.freeTag}</div>

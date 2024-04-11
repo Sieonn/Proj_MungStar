@@ -128,7 +128,17 @@ width: 90px;
   		outline: none;
   		font-size: 15px;
   	}
-  	
+  	#hosListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
   	
   	.commBtn{
   		margin:10px;
@@ -600,7 +610,11 @@ window.onload=function(){
 
 
 </div>
+		<div class="hosBtn">
+				<a href="hospitalBoard" id="hosListLogout">HOME</a>
+		</div>
 </div>
+
 </div>
 <br><br>
 			<div class="ememem" style="display:flex; top:700px; height:30px; width:1280px; ">

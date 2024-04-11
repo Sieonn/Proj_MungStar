@@ -17,6 +17,17 @@
 <script src="http://code.jquery.com/jquery-Latest.min.js"></script>
 
 <style>
+#walkList, #walkWriteForm{
+width:70px;
+height:20px;
+border: 0;
+border-radius: 30px;
+background-color:#FED74B;
+color:white;
+text-align:center;
+box-shadow: 0 3px 1px gray;
+}
+
 #walkListLogout{
 width: 90px;
 	height: 20px;
@@ -84,17 +95,6 @@ a {
 	position: relative;
 	width: 580px;
 	float: right;
-}
-
-#walkList, #walkWriteForm {
-	width: 70px;
-	height: 20px;
-	border: 0;
-	border-radius: 30px;
-	background-color: #FED74B;
-	color: white;
-	text-align: center;
-	box-shadow: 0 3px 1px gray;
 }
 
 .walkBtn {
@@ -504,22 +504,25 @@ $(document).ready(function(){
 		</div>
 		<br>
 		<br>
-		<div class="walkBtn">
-<c:if test="${user eq null }">
-		<a id="walkListLogout" href="walkingList">LIST</a>
-		</c:if>
-		
-					<c:if test="${user ne Empty }">
-					<a id="walkList" href="walkingList">LIST</a>
-		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
-		<script>
+<div class="walkBtn">
+		<c:choose>
+		<c:when test="${user ne null }">
+					<a href="walkBoard" id="walkList">HOME</a>
+			<a id="walkWriteForm"
+				href="walkWriteForm">WRITE</a>
+				</c:when>
+				<c:otherwise>
+					<a href="walkBoard" id="walkListLogout">HOME</a>
+				</c:otherwise>
+		</c:choose>
+
+		</div>
+	</div>
+	<script>
 		$("#walkWriteForm").on("click",function(){
 			window.location.href="http://localhost:8080/MoongStar/walking/walkWriteForm";	
 		})
 		</script>
 		
-		</c:if>
-		</div>
-	</div>
 </body>
 </html>

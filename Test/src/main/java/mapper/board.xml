@@ -123,19 +123,20 @@
 		]]>
 	</insert>
 	
-	<update id="updateFreeLike" parameterType="Map">
+	<delete id="deleteFreeLike" parameterType="Map">
 		<![CDATA[
-			update freeLike 
-			set LikeOrnot = false
-			where memId = #{memId} and freeNum = #{freeNum}
+			delete from freeboardlike where memId=#{memId} and freeNum=#{freeNum}
 		]]>
-	</update>
+	</delete>
+	
+	<select id="selectFreeLike" parameterType="Map" resultType="Integer">
+		<![CDATA[
+			select num from freeboardlike where memId=#{memId} and freeNum=#{freeNum}
+		]]>
+	</select>
 	
 	<select id="CountFreeLike" resultType="Integer">
-			SELECT count(*) FROM freeLike
-			<where>
-				freeNum=#{boardNum}
-        		AND likeOrnot = true
-  			</where>
+			SELECT count(*) FROM freeboardlike where freeNum=#{boardNum}
 		</select>
+		
 </mapper>

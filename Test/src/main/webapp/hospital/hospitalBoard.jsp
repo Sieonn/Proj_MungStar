@@ -264,7 +264,7 @@ $(document).ready(function(){
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
-		    level: 4 // 지도의 확대 레벨
+		    level: 8 // 지도의 확대 레벨
 		};
 
 		map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -400,7 +400,7 @@ function memLoc(){
 		<br>
 		<br>
 		<div class="hosBtn">
-			<a href="hospitalList" id="hosListLogout">LIST</a> 
+				<a href="hospitalBoard" id="hosListLogout">HOME</a>
 		</div>
 	</div>
 	
