@@ -11,28 +11,42 @@ import javax.servlet.http.HttpServletResponse;
 import service.WalkingService;
 import service.WalkingServiceImpl;
 
+/**
+ * Servlet implementation class FreeDelete
+ */
 @WebServlet("/walking/walkingDelete")
 public class WalkingDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public WalkingDelete() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Integer walkNum = Integer.parseInt(request.getParameter("walkNum"));
 		try {
-			WalkingService walkingService = new WalkingServiceImpl();
+			WalkingService walkingService=new WalkingServiceImpl();
 			walkingService.walkingDelete(walkNum);
 			response.sendRedirect("walkBoard");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
