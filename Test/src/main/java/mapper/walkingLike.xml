@@ -14,10 +14,9 @@
 		delete from walkingLike where memId =#{memId} and walkNum=#{walkNum} 
 		]]>
 	</delete>
-	
-	<select id="seleteWalkingLike" parameterType = "java.util.Map" resultType ="Integer">
-		<![CDATA[
-		selete num from walkingLike where memId =#{memId} and walkNum=#{walkNum} 
-		]]>
-	</select>
+
+	<select id="getLikeCount" parameterType="java.util.Map" resultType="Integer">
+    SELECT COUNT(*) FROM walkingLike
+    WHERE memId = #{memId} AND walkNum = #{walkNum}
+</select>
 </mapper>
