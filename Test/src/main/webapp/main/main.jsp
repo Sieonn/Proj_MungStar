@@ -167,19 +167,25 @@ body, html {
 .free {
 	gap: 20px;
 	display: flex;
-	margin: 3% 0;
 }
 
-.free_b {
+/* .free_b {
 	width: 100%; /* .free_b를 반씩 차지하도록 설정 */
-	box-sizing: border-box; /* padding, border를 요소의 크기에 포함 */
-	/* 좌우 여백 추가 */
+box-sizing
+:
+ 
+border-box
+; /* padding, border를 요소의 크기에 포함 */
+/* 좌우 여백 추가 */
+
+
 }
+* /
 
 .free_box {
-	width: 100%;
-	height: 128px;
-	background-color: #f0f0f0;
+	width: 1280px;
+	height: 300px;
+	margin-top: 10px;
 }
 
 .headline-container {
@@ -197,7 +203,7 @@ body, html {
 }
 
 .archive {
-	display: flex;
+	display : flex;
 	flex-wrap: wrap;
 	gap: 10px;
 	justify-content: space-between;
@@ -247,14 +253,15 @@ a:hover {
 }
 
 .freeBox_De {
-	padding: 0 30px;
+	height: 100%;
 }
+
 .freeBox_De a:hover {
-    /* hover 효과 제거 */
-    pointer-events: none; /* 링크 클릭 이벤트 비활성화 */
-    cursor: pointer; /* 마우스 커서를 기본 값으로 변경 */
-    /* 그 외 다른 스타일 적용 가능 */
-    	font-weight: 500;
+	/* hover 효과 제거 */
+	pointer-events: none; /* 링크 클릭 이벤트 비활성화 */
+	cursor: pointer; /* 마우스 커서를 기본 값으로 변경 */
+	/* 그 외 다른 스타일 적용 가능 */
+	font-weight: 500;
 }
 </style>
 </head>
@@ -319,24 +326,29 @@ a:hover {
 				</div>
 			</c:forEach>
 		</div>
+
+
 		<div class="free">
-			<div class="free_b">
+			<div class="free_b" style="">
 				<div class="headline-container">
 					<span class="headline"> 자유게시판 </span> <span class="more"> <a
 						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
 				</div>
+				<div class="header-line"></div>
 				<div class="free_box">
 					<div class="freeBox_De">
 						<c:forEach items="${frees}" var="free">
 							<div style="margin-bottom: 5px;">
 								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
-									class="dogName"> <span style="font-size: 16px;">${free.freeTag}
-										&nbsp;&nbsp;&nbsp;
-										${free.freeSub}&nbsp;&nbsp;&nbsp;${free.freeWriteDate}</span><br />
+									class="dogName"> <span style="font-size: 16px;"><span
+										style="color: #63C1D2;">[ ${free.freeTag} ]</span>
+										${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span></span><br />
 									<c:set var="shortContent"
 										value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
-									<span style="font-size: 12px; color: gray; margin-left:57px;"><c:out value="${shortContent}" /></span>
+									<span style="font-size: 12px; color: gray;"><c:out
+											value="${shortContent}" /></span>
 								</a>
+								<hr>
 							</div>
 						</c:forEach>
 					</div>
@@ -344,30 +356,33 @@ a:hover {
 			</div>
 		</div>
 
-		<div class="headline-container">
-			<span class="headline"> 임시보호해요 </span> <span class="more"> <a
-				href='${path}/temp/tempBoard' style="font-size: 12px">더보기</a>
-			</span>
-		</div>
-		<div class="header-line"></div>
-		<div class="archive">
-			<c:forEach items="${temps}" var="temp">
-				<div class="photo">
-					<div class="inner_photo">
-						<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
-						<div class="inner_title">
-							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
-								class="dogName">${temp.tempName}</a>
-						</div>
+	</div>
 
-						<div class="inner_text">
-							<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
-								class="address">${temp.tempAddress}</a>
-						</div>
+
+	<div class="headline-container">
+		<span class="headline"> 임시보호해요 </span> <span class="more"> <a
+			href='${path}/temp/tempBoard' style="font-size: 12px">더보기</a>
+		</span>
+	</div>
+	<div class="header-line"></div>
+	<div class="archive">
+		<c:forEach items="${temps}" var="temp">
+			<div class="photo">
+				<div class="inner_photo">
+					<img class="photo" src="${path}/imageView?num=${temp.tempPhoto}">
+					<div class="inner_title">
+						<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+							class="dogName">${temp.tempName}</a>
+					</div>
+
+					<div class="inner_text">
+						<a href="${path}/temp/tempDetail?tempNum=${temp.tempNum}"
+							class="address">${temp.tempAddress}</a>
 					</div>
 				</div>
-			</c:forEach>
-			<!-- <div class="photo">
+			</div>
+		</c:forEach>
+		<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
 					<div class="inner_title">영희</div>
@@ -406,32 +421,32 @@ a:hover {
 					<div class="inner_text">가산디지털단지</div>
 				</div>
 			</div> -->
-		</div>
+	</div>
 
-		<div class="headline-container">
-			<span class="headline"> 미멍보호소 </span> <span class="more"> <a
-				href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
-		</div>
-		<div class="header-line"></div>
-		<div class="archive">
-			<c:forEach items="${losts}" var="lost">
-				<div class="photo">
-					<div class="inner_photo">
-						<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
-						<div class="inner_title">
-							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-								class="dogName">${lost.lostName}</a>
-						</div>
+	<div class="headline-container">
+		<span class="headline"> 미멍보호소 </span> <span class="more"> <a
+			href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
+	</div>
+	<div class="header-line"></div>
+	<div class="archive">
+		<c:forEach items="${losts}" var="lost">
+			<div class="photo">
+				<div class="inner_photo">
+					<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
+					<div class="inner_title">
+						<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+							class="dogName">${lost.lostName}</a>
+					</div>
 
-						<div class="inner_text">
-							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-								class="address">${lost.lostAddress}</a>
-						</div>
+					<div class="inner_text">
+						<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+							class="address">${lost.lostAddress}</a>
 					</div>
 				</div>
-			</c:forEach>
+			</div>
+		</c:forEach>
 
-			<!-- <div class="photo">
+		<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
 					<div class="inner_title">영희</div>
@@ -470,8 +485,8 @@ a:hover {
 					<div class="inner_text">가산디지털단지</div>
 				</div>
 			</div> -->
-		</div>
-		<div class="footer"></div>
+	</div>
+	<div class="footer"></div>
 	</div>
 
 	<script>
