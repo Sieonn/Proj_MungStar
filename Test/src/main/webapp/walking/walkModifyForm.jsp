@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Insert title here</title>
+<title>${walking.walkName } 수정</title>
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <style>
 body,html{
@@ -186,10 +186,15 @@ width: 500px;
 }
 
 #walkAddress3 input{
+width:500px;
+
 position:relative;
 text-align:center;
 }
-
+#walkAddress3{
+margin-top:5px;
+width:470px;
+}
 #exitBtn {
 	position: relative;
 	float: right;
@@ -251,6 +256,7 @@ box-shadow: 0 2px 1px gray;
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
 <div class="container1">
+<div id="usersAddress" data-value="${user.memAddress1 }"></div>
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
 <div id="map"></div>
@@ -259,24 +265,35 @@ box-shadow: 0 2px 1px gray;
 <script>
 
 window.onload=function(){
-	 mapContainer = document.getElementById('map'), 
-	mapOption = { 
-	    center: new kakao.maps.LatLng(37.54699, 127.09598), 
-	    level: 3
-	};
-	 imageSrc = '${path}/image/mark1.png',   
-	imageSize = new kakao.maps.Size(36, 40), 
-	imageOption = {offset: new kakao.maps.Point(27, 69)};
+	walkAddress3 = document.getElementById("walkAddress3").getAttribute("value");
+	console.log(walkAddress3);
+	console.log(${walking.walkLat});
+	function mapMaker(){
+		 mapContainer = document.getElementById('map'), 
+			mapOption = { 
+			    center: new kakao.maps.LatLng(${walking.walkLong},${walking.walkLat}), 
+			 draggable: false, 
+			 zoomable: false,
+			    level: 1
+			};
+			 imageSrc = '${path}/image/mark1.png',   
+			imageSize = new kakao.maps.Size(66, 70), 
+			imageOption = {offset: new kakao.maps.Point(27, 69)};
 
-	 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
+			 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+			markerPosition = new kakao.maps.LatLng(${walking.walkLong},${walking.walkLat});
 
 
-	var marker = new kakao.maps.Marker({
-	position: markerPosition, 
-	image: markerImage
-	});
-	var map = new kakao.maps.Map(mapContainer, mapOption);
+			var marker = new kakao.maps.Marker({
+			position: markerPosition, 
+			image: markerImage
+			});
+			var map = new kakao.maps.Map(mapContainer, mapOption);
+			marker.setMap(map);
+		
+	}
+	mapMaker();
+
 	
 }
  
@@ -314,27 +331,18 @@ window.onload=function(){
 	              geocoder.addressSearch(addr,function(result,status){
 		           	   if(status === kakao.maps.services.Status.OK){
 		           		   
-		           		  var walkLat = document.getElementById('walkLat');
+		           		  walkLat = document.getElementById('walkLat');
 		           		  walkLat.value=result[0].y;
-		           		  var walkLong = document.getElementById('walkLong');
+		           		  walkLong = document.getElementById('walkLong');
 		           		  walkLong.value=result[0].x;
 		           		  console.log(result[0]);
 			                    
-			                  
-	      	  
-	           
-	             
-
 
 	          } 
 	              })
 	          }
 	      
 	      }).open();
-		   
-
-      
-	     
 	  }
 
 	
@@ -366,10 +374,6 @@ window.onload=function(){
 								<br>
 						</div>
 						</div>
-
-						<div class="walkType">
-									<input id="walkAddress" type="hidden" onclick="daumPostcode()" value="주소 찾기">
-							</div>
 					</div>
 					<div id="walkMidEmpty"></div>
 					<div class="walkReason">

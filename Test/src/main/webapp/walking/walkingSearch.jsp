@@ -325,7 +325,7 @@ window.onload=function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
 					 
 				});
 					}
