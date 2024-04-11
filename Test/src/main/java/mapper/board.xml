@@ -168,11 +168,6 @@
 			SELECT * FROM freeboard where freeHidden is false ORDER BY freeNum DESC LIMIT 6;
 		]]>
 	</select>
-	<select id="selectFreeListOnMain2" resultType="dto.FBoard">
-		<![CDATA[
-		SELECT * FROM freeboard WHERE freeHidden = false ORDER BY freeLike DESC LIMIT 6;
-		]]>
-	</select>
 
 	<insert id="insertFreeLike" parameterType="Map">
 		<![CDATA[
