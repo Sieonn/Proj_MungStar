@@ -343,7 +343,6 @@ a:hover {
 										class="dogName"> <span style="font-size: 16px;"> <span
 											style="color: #63C1D2;">[ ${free.freeTag} ]</span>
 											${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
-<<<<<<< HEAD
 									</span><br /> <c:set var="contentWithoutTags"
 											value="${fn:replace(free.freeContent, '<[^>]*>', '')}" /> <c:set
 											var="shortContent"
@@ -351,13 +350,6 @@ a:hover {
 										style="font-size: 12px; color: gray;"> <c:out
 												value="${shortContent}" escapeXml="true" />
 									</span> 
-=======
-									</span><br /> <c:set var="shortContent"
-											value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
-										<div style="font-size: 12px; color: gray;">
-											<c:out value="${shortContent}" />
-										</div>
->>>>>>> branch 'master' of https://github.com/HONGHAJOON/moongstar.git
 									</a>
 								</div>
 							</c:forEach>
