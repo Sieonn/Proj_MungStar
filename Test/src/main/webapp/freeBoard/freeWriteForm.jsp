@@ -217,7 +217,7 @@
 	<form id="freeWrite" method="post" enctype="multipart/form-data" action="${path}/freeBoard/freeWriteForm">
 <div class = "freeContainer">
 	<div id = "freeCategory">
-		<h2 style="margin-bottom: 5px;">자유게시판</h2>
+		<h2 style="margin-bottom: 5px; font-family: JalnanGothic;">자유게시판</h2>
 		<h4 style = "font-weight: lighter; margin-top: 0;">게시물작성</h4>
 	</div>
 <div class="writeContainer">

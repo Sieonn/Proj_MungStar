@@ -23,12 +23,18 @@
 		]]>
 	</select>
 
-	<insert id="insertHosComment" parameterType="dto.Comment">
+	<insert id="insertHosComment" parameterType="dto.Comment" useGeneratedKeys="true" keyProperty="commNum">
 		<![CDATA[
 			insert into hospitalComment (commNick,hosNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())
 		]]>
 	</insert>
+	
+	<delete id="deleteHospitalComment" parameterType="Integer">
+		<![CDATA[
+			delete from hospitalcomment where commNum=#{commNum}
+		]]>
+	</delete>
 	
 	<select id="selectHosNick" parameterType="String"
 		resultType="String">

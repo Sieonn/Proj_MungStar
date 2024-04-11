@@ -14,5 +14,6 @@ public interface HospitalDAO {
 	void insertHosComment(Comment comment) throws Exception;
 	
 	String selectHosNick(String memId) throws Exception;
+	void deleteHospitalComment(Integer commNum) throws Exception;
 	
 }
