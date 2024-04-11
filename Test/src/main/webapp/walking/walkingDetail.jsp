@@ -575,43 +575,38 @@ window.onload=function(){
 						<div class="walkSubject">
 							${walking.walkName }
 							<div id="walkLike">
-							<b>${walking.walkLike }</b><br>
-	<c:choose>
-							<c:when test="${like eq 'true' }">
-					
-					<img src="${path }/image/none.png" style="width:45px;">
-					<img id="like" src="${path }/image/like.png" width="45px"/>
-		</c:when>
-		<c:otherwise>
-		<img id="like" src="${path }/image/none.png" width="45px"/>
-		<script>
-		
-		</script>
-		</c:otherwise>
-		</c:choose>
-
-					<script>
+							 <span id="likeCount">${walking.walkLike}</span><br>
+							<c:choose>
+							<c:when test="${walking.walkLike == 0 }">
+							<button id="likeButton" style="border-width:0; background-color:transparent;"><img id="like" src="${path }/image/none.png" style="width:45px;"></button>
+							</c:when>
+							<c:otherwise>
+							<button id="likeButton" style="border-width:0; background-color:transparent;"><img id="like" src="${path }/image/like.png" width="45px"/></button>
+							</c:otherwise>
+							</c:choose>
 					<script type="text/javascript">
-					$(function(){
-					$('#like').click(function(){
-						$.ajax({
-							url:'walkLike',
-							type:'post',
-							async:true,
-							data:{like:JSON.stringify({memId:"${user.memId }",walkNum:"${walking.walkNum }"})},
-							success:function(result){
-								if(result=='true'){
-								$('#like').attr("src","image?num=like.png")
-								
-							} else {
-								$('#like').attr("src","image?num=none.png")}
-							},
-							error:function(result){
-								
-							}
-						})
-					})	
-					})
+					
+				        $('#likeButton').on("click",function(){
+				            $.ajax({
+				                url:'walkingLike',
+				                type:'POST',
+				                async:true,
+				                data:{like:JSON.stringify({memId:"${user.memId}", walkNum:"${walking.walkNum}"})},
+				                success:function(result){
+				                    console.log(result);
+				                    if(result === 'liked'){
+				                        var likeCount = parseInt($('#likeCount').text());
+				                        $('#likeCount').text(likeCount + 1);
+				                        $('#unlike').attr('src', '${path}/image/like.png');
+				                    } else if (result === 'unliked') {
+				                        var likeCount = parseInt($('#likeCount').text());
+				                        $('#likeCount').text(likeCount - 1);
+				                        $('#unlike').attr('src', '${path}/image/none.png');
+				                    }
+				                }
+				            })
+				        });
+				
 
 					</script>
 				</div>
@@ -643,11 +638,11 @@ window.onload=function(){
 <br><br>
 <div class="walkBtn">
 <c:if test="${user eq null }">
-		<a id="walkListLogout" href="walkingList" style=" position:relative; right:80px;">LIST</a>
+		
 		</c:if>
 		
 					<c:if test="${user ne Empty }">
-					<a id="walkList" href="walkingList">LIST</a>
+					<a id="walkList" href="walkBoard">HOME</a>
 		<a id="walkWriteForm" href="walkWriteForm">WRITE</a>
 		<script>
 		$("#walkWriteForm").on("click",function(){
