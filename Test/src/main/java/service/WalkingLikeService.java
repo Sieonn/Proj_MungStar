@@ -1,6 +1,7 @@
-package service;
-
+package service; 
 public interface WalkingLikeService {
-	boolean walkingLike(String memId, Integer walkNum) throws Exception;
-	boolean togleWalkingLike(String memId, Integer walkNum) throws Exception;
+	void walkingLike(String memId, Integer walkNum) throws Exception;
+	void walkingUnlike(String memId, Integer walkNum) throws Exception;
+	int getLikeCount(String memId, Integer walkNum) throws Exception;
+	
 }
