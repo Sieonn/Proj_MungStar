@@ -15,6 +15,29 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Pretendard-Regular";
+	src:
+		url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+}
 .searchBar{
 position:relative;
 left:40px;
@@ -23,12 +46,13 @@ margin: 0 auto;
 width:1280px;
 }
    .searchInput{
+   padding-left:13px;
 		padding-bottom: 8px; padding-top: 8px;
     	background-color: #F6F6F6;
     	border-radius: 5px;
   		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
   		border: none;
-        font-family: "JalnanGothic";
+  		
     }
     .searchBtn{
 		padding-bottom: 8px; padding-top: 8px;    
@@ -36,12 +60,8 @@ width:1280px;
     	border-radius: 5px;
     	color: white;
     	border: none;
-        font-family: "JalnanGothic";
+
     }
-body,html{
-margin:0 auto;
-padding:0;
-}
 .container{
 margin: 0 auto;
 width:1280px;}

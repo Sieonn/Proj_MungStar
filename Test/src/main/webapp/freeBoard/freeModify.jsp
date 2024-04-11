@@ -10,11 +10,30 @@
 
 
 <style type="text/css">
-      body,html {
-        margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+    @font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Pretendard-Regular";
+	src:
+		url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+	height: 100%;
+}
 	.pageContainer {
 		width: 100%;
 	}

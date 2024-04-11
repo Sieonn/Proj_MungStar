@@ -208,7 +208,7 @@ border-box
 
 .photo {
 	width: calc(( 100% - 80px)/5);
-	height: 280px;
+	height: 270px;
 	border-radius: 10px;
 	background-color: #ffffff;
 	border: 1px solid #969090;
@@ -216,9 +216,10 @@ border-box
 
 .inner_photo {
 	width: 100%;
-	height: 240px;
+	height: 210px;
 	padding: 10px;
 	box-sizing: border-box;
+	border-radius: 10px;
 }
 
 .inner_photo img {
@@ -228,7 +229,7 @@ border-box
 }
 
 .inner_title {
-	margin-top: 7px;
+	margin: 7px 0 0 5px;
 	font-weight: 700;
 	font-size: 16px;
 }
@@ -236,6 +237,7 @@ border-box
 .inner_text {
 	margin-top: 5px;
 	font-size: 12px;
+	margin-left: 5px;
 }
 
 a:link {
@@ -341,11 +343,13 @@ a:hover {
 										class="dogName"> <span style="font-size: 16px;"> <span
 											style="color: #63C1D2;">[ ${free.freeTag} ]</span>
 											${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
-									</span><br /> <c:set var="shortContent"
-											value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
-										<span style="font-size: 12px; color: gray;"> <c:out
-												value="${shortContent}" />
-									</span>
+									</span><br /> <c:set var="contentWithoutTags"
+											value="${fn:replace(free.freeContent, '<[^>]*>', '')}" /> <c:set
+											var="shortContent"
+											value="${fn:substring(free.freeContent, 0, 20)}" /> <span
+										style="font-size: 12px; color: gray;"> <c:out
+												value="${shortContent}" escapeXml="true" />
+									</span> 
 									</a>
 								</div>
 								<c:if test="${loop.index % 2 == 1}">
@@ -385,48 +389,6 @@ a:hover {
 			</c:forEach>
 		</div>
 
-
-		<!-- <div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp1.jpg" />
-					<div class="inner_title">영희</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp2.jpg" />
-					<div class="inner_title">철수</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp3.jpg" />
-					<div class="inner_title">뽀삐</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp4.jpg" />
-					<div class="inner_title">쪼롱</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp5.jpg" />
-					<div class="inner_title">초코</div>
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div> -->
-
-
 		<div class="headline-container">
 			<span class="headline"> 미멍보호소 </span> <span class="more"> <a
 				href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
@@ -450,49 +412,10 @@ a:hover {
 				</div>
 			</c:forEach>
 
-			<!-- <div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp1.jpg" />
-					<div class="inner_title">영희</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp2.jpg" />
-					<div class="inner_title">철수</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp3.jpg" />
-					<div class="inner_title">뽀삐</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp4.jpg" />
-					<div class="inner_title">쪼롱</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp5.jpg" />
-					<div class="inner_title">초코</div>
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div> -->
 		</div>
 		<div class="footer"></div>
 	</div>
-	</div>
+
 	<script>
       let currentSlide = 0;
       const slides = document.querySelectorAll(".img");

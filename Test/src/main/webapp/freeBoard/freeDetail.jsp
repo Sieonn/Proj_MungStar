@@ -8,11 +8,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <style type="text/css">
- 	 body,html {
-        margin: 0;
-        padding: 0;
-        font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
-      }
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Pretendard-Regular";
+	src:
+		url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: "Pretendard-Regular", sans-serif; /* 전체 글꼴 변경 */
+}
  	.pageContainer {
 		width: 100%;
 	}
@@ -44,7 +62,7 @@
   		background-color: #ffffff;
   		width: 1160px;
   		margin-top: 5px;
-		padding: 10px;
+		padding: 20px;
   		margin: 10px auto;
   		border-radius: 20px;
   	 }
@@ -125,6 +143,7 @@
   	.footer {
   		height: 200px;
   	}
+  	
 </style>
 <style>
   /* 스크롤 가능한 상자 스타일 */

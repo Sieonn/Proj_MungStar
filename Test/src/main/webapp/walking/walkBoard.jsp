@@ -199,20 +199,21 @@ margin: 0 auto;
 width:1280px;
 }
    .searchInput{
-		padding-bottom: 8px; padding-top: 8px;
+		padding: 8px 15px;
     	background-color: #F6F6F6;
     	border-radius: 5px;
   		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
   		border: none;
-        font-family: "JalnanGothic";
+/*         font-family: "JalnanGothic"; */
     }
     .searchBtn{
-		padding-bottom: 8px; padding-top: 8px;    
+		padding: 7px 15px;
     	background-color: #0155B7;
     	border-radius: 5px;
     	color: white;
     	border: none;
-        font-family: "JalnanGothic";
+/*         font-family: "JalnanGothic"; */
+font-weight: 700;
     }
 
 </style>
