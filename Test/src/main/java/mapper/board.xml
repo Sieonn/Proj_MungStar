@@ -29,6 +29,17 @@
    			select count(*) from freeboard where freeTag=#{freeTag}
    		]]>
 	</select>
+	<select id="selectBoardListByLike" parameterType="Map" resultType="dto.FBoard">
+		<![CDATA[
+			select * from freeboard where freeLike=#{freeLike} order by freeNum desc
+   			limit #{row}, 12
+		]]>
+	</select>
+	<select id="selectBoardCountByLike" resultType="Integer">
+   		<![CDATA[
+   			select count(*) from freeboard where freeLike=#{freeLike}
+   		]]>
+	</select>
 	
 	<select id="selectBoardListByTagAndSearch" parameterType="Map" resultType="dto.FBoard">
   		SELECT * FROM freeboard
@@ -38,7 +49,7 @@
     			AND freeTag = #{freeTag}
   				</if>
    				<if test="searchText != null">
-    			AND freeSub like '%${searchText}%'
+    			AND (freeSub like '%${searchText}%' or freeNick like '%${searchText}%' )
   				</if>
    			</where>
   		order by freeNum desc
@@ -53,7 +64,7 @@
     			AND freeTag = #{freeTag}
   				</if>
    				<if test="searchText != null">
-    			AND freeSub like '%${searchText}%'
+    			AND (freeSub like '%${searchText}%' or freeNick like '%${searchText}%' )
   				</if>
   			</where>
 	</select>
@@ -65,6 +76,18 @@
    </update>
 	
 	
+	<update id="updateBoardLikeCountPlus" parameterType="Integer">
+      <![CDATA[
+      update freeboard set freeLike = freeLike+1 where freeNum=#{freeNum}
+      ]]>
+   </update>
+   	
+	<update id="updateBoardLikeCountMinus" parameterType="Integer">
+      <![CDATA[
+      update freeboard set freeLike = freeLike-1 where freeNum=#{freeNum}
+      ]]>
+   </update>
+
 	<insert id="insertBoard" parameterType="dto.FBoard" useGeneratedKeys="true" keyProperty="freeNum">
 		<![CDATA[
 			insert into freeboard (memId,freeNick,freeSub,freeContent,freePhoto,freeTag,freeWriteDate)
@@ -97,7 +120,7 @@
 		]]>
 	</select>
 
-	<insert id="insertFreeComment" parameterType="dto.Comment">
+	<insert id="insertFreeComment" parameterType="dto.Comment" useGeneratedKeys="true" keyProperty="commNum">
 		<![CDATA[
 			insert into freeComment (commNick,freeNum,commContent,commDate)
 			values (#{commNick},#{boardNum},#{commContent},curdate())
@@ -112,14 +135,14 @@
 	
 	<select id="selectFreeListOnMain" resultType="dto.FBoard">
 		<![CDATA[
-			SELECT * FROM freeboard ORDER BY freeNum DESC LIMIT 6;
+			SELECT * FROM freeboard where freeHidden is false ORDER BY freeNum DESC LIMIT 5;
 		]]>
 	</select>
 
 	<insert id="insertFreeLike" parameterType="Map">
 		<![CDATA[
-			insert into freeLike (memId,freeNum,likeOrnot)
-			values (#{memId},#{boardNum},true)
+			insert into freeboardlike (memId,freeNum)
+			values (#{memId},#{freeNum})
 		]]>
 	</insert>
 	
@@ -135,8 +158,15 @@
 		]]>
 	</select>
 	
+	
 	<select id="CountFreeLike" resultType="Integer">
 			SELECT count(*) FROM freeboardlike where freeNum=#{boardNum}
 		</select>
+		
+	<delete id="deleteFreeComment" parameterType="Integer">
+		<![CDATA[
+			delete from freecomment where commNum=#{commNum}
+		]]>
+	</delete>
 		
 </mapper>
