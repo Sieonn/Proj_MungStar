@@ -14,6 +14,29 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&autoload=true&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <style type="text/css">
+ .searchBar{
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
+width:1280px;
+}
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
 #walkListLogout{
 z-index:9998;
 width: 90px;
@@ -372,6 +395,29 @@ box-shadow: 0 2px 1px gray;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
+<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+
+				$.ajax({
+				url:'hospitalSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					console.log(result);
+					window.location.href="http://localhost:8080/MoongStar/hospital/hospitalSearch?searchText="+searchText;
+					
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 <div class="container1">
 <div class="hosMap" id="hosMap">
 <div id="hosMapBar"></div>
@@ -567,14 +613,14 @@ window.onload=function(){
 	<c:choose>
 	<c:when test="${comment.commNick eq hosNick}">
 	<div class="writeComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent mycomm">${comment.commContent}</span>
 	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="memComm">
-		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
+		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
 		<span class="commContent comm" >${comment.commContent}</span>
 	</div>
@@ -582,10 +628,12 @@ window.onload=function(){
 	</c:choose>
 	</c:forEach>     
 	</div>
+	<c:if test="${user ne null }">
     <div class="inputDiv">
     	<input type="text" class="inputComment" id="comment" name="text" placeholder="댓글"/>
 		<button class="commBtn" id="commBtn" style="z-index:9999;">등록</button>
 	</div>
+	</c:if>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $('#commBtn').on("click",function(){
@@ -600,14 +648,14 @@ $('#commBtn').on("click",function(){
 			
 			if(comment.memNick==='${hosNick}'){
 			let div=`<div class="writeComm">
-					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
+					<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm">
 					<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 					<span class="commContent mycomm">\${comment.commContent}</span>
 				</div>`
 				$('#comment_box').append(div);
 			} else{
 				let div=`<div class="memComm">
-						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id=\${comment.memNick} data-num=\${comment.commNum} onclick="commentDelete(this)">
+						<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm">
 						<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;\${comment.memNick}&nbsp;&nbsp;</span>
 						<span class="commContent comm" >\${comment.commContent}</span>
 					</div>`
@@ -625,29 +673,6 @@ $('#commBtn').on("click",function(){
 	})
 })
 
-function commentDelete(delImage) {
-	console.log(delImage)
-	var writeDiv = delImage.parentNode;
-	console.log(delImage.getAttribute('id'))
-	if(delImage.getAttribute('id')!='${user.memNick}') return;
-	
-	if (confirm("댓글을 삭제하시겠습니까??") == true){    //확인
-	     $.ajax({
-	    	 url:'${path}/hospital/hosCommentDelete',
-	    	 type:'get',
-	    	 async:true,
-	    	 data:{commNum:delImage.dataset.num},
-	    	 success:function(result) {
-	    		 console.log(result)
-	    		 if(result=='true') {
-	    			 writeDiv.remove()
-	    		 }
-	    	 }
-	     })
-	 }else{   //취소
-	     return false;
-	 }	
-}
 
 </script>
 </div>

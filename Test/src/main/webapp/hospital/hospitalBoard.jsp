@@ -251,13 +251,15 @@ left:70px;
 	<div class="container">
 		<div class="hosMap" id="hosMap">
 			<div id="hosMapBar"></div>
+			<div id="usersAddress" data-value="${user.memAddress1 }"></div>
 			<div id="map"></div>
-					
+								<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services"></script>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 			<script>
 $(document).ready(function(){
-		
+	usersAddress = document.getElementById("usersAddress").getAttribute("data-value");
 	function mapmaker(){
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
@@ -279,7 +281,45 @@ $(document).ready(function(){
 		     
 		}
 		mapmaker();
-	
+		
+function memLoc(){
+			
+			if(usersAddress != null){
+				
+				// 로그인한 사람의 주소
+				function geocodeAddress(address) {
+		            geocoder = new kakao.maps.services.Geocoder();
+
+		            // 주소로 좌표를 검색합니다
+		            geocoder.addressSearch(address, function(result, status) {
+		                if (status === kakao.maps.services.Status.OK) {
+		                     coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		                    lat = result[0].y;
+		                    lng = result[0].x;
+		                    map.setCenter(new kakao.maps.LatLng(lat,lng));
+		                }
+		            });
+		        }
+				
+				geocodeAddress(usersAddress);
+				
+			} else{
+				// 비회원 주소
+				function navigatorAddress(){
+					// 현재 위치 받아오기
+			        if (navigator.geolocation) {
+			            navigator.geolocation.getCurrentPosition(function(position) {
+			               lat = position.coords.latitude; // 위도
+			              lng = position.coords.longitude; // 경도	
+			              map.setCenter(new kakao.maps.LatLng(lat,lng));
+			            })}}
+				navigatorAddress();
+				
+				
+			}
+			
+		}
+		     memLoc();
 		
 		window.onload=function(){
 

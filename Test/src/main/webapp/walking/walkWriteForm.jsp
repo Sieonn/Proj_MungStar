@@ -8,119 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&autoload=true&libraries=services"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-
-window.onload=function(){
-	 mapContainer = document.getElementById('map'), 
-	mapOption = { 
-	    center: new kakao.maps.LatLng(37.54699, 127.09598), 
-	    level: 3
-	};
-	 imageSrc = '${path}/image/mark1.png',   
-	imageSize = new kakao.maps.Size(36, 40), 
-	imageOption = {offset: new kakao.maps.Point(27, 69)};
-
-	 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
-
-
-	 marker = new kakao.maps.Marker({
-	position: markerPosition, 
-	image: markerImage
-	});
-	 
-	 
-	 map = new kakao.maps.Map(mapContainer, mapOption);
-	 
-	 mapTypeControl = new kakao.maps.MapTypeControl();
-
-		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-		 zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-	
-}
-
-
-	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	function daumPostcode() {
-		
-	  	var addr;
-	      new daum.Postcode({
-	          oncomplete: function(data) {
-	        	  var geocoder = new kakao.maps.services.Geocoder();
-	              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-	              // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-	              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	              var roadAddr = data.roadAddress; // 도로명 주소 변수
-	             	var jibunAddr = data.jibunAddress;
-	         
-	              
-	           
-	              
-	           
-	              
-	              //사용자가 선택한 주소 타입에 따라 해당 주소값을 가져온다
-	              if(data.userSelectedType === 'R'){addr = data.roadAddress;
-	              console.log(addr);}
-	              else{
-	              	addr = data.roadAddress;
-	              }
-	              	 
-	              
-	              
-	              document.getElementById("walkAddress3").value = addr;
-	              document.getElementById("detailAddress").focus();
-	              geocoder.addressSearch(addr,function(result,status){
-		           	   if(status === kakao.maps.services.Status.OK){
-		           		   
-		           		   walkLat = document.getElementById('walkLat');
-		           		  walkLat.value=result[0].y;
-		           		 walkLong = document.getElementById('walkLong');
-		           		  walkLong.value=result[0].x;
-		           		  console.log(result[0]);
-			                    
-			                  if(walkLat != null && walkLong != null){
-			                	  map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
-			                	  imageSrc = '${path}/image/tempmark.jpg',   
-			                		imageSize = new kakao.maps.Size(36, 40), 
-			                		imageOption = {offset: new kakao.maps.Point(27, 69)};
-
-			                		 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-			                		markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
-
-
-			                		 marker = new kakao.maps.Marker({
-			                		position: new kakao.maps.LatLng(result[0].y, result[0].x), 
-			                		image: markerImage
-			                		});
-			                  }
-	      	
-	           
-	             
-
-
-	          } 
-	              })
-	          }
-	      
-	      }).open();
-		   
-	
-	
-	      
-	     
-	  }
-
-	
-   
-</script>
 <style>
 body,html{
 margin:0 auto;
@@ -363,10 +250,169 @@ box-shadow: 0 2px 1px gray;
 <c:when test="${user ne null }">
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
+<div id="usersAddress" data-value="${user.memAddress1 }"></div>
 <div class="container1">
 <div class="walkMap" id="walkMap">
 <div id="walkMapBar"></div>
 <div id="map"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&autoload=true&libraries=services"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+window.onload=function(){
+	usersAddress = document.getElementById("usersAddress").getAttribute("data-value");
+	function mapMaker(){
+		
+		 mapContainer = document.getElementById('map'), 
+			mapOption = { 
+			    center: new kakao.maps.LatLng(37.54699, 127.09598), 
+			    level: 1
+			};
+			 imageSrc = '${path}/image/mark1.png',   
+			imageSize = new kakao.maps.Size(36, 40), 
+			imageOption = {offset: new kakao.maps.Point(27, 69)};
+
+			 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+			markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
+
+
+			 marker = new kakao.maps.Marker({
+			position: markerPosition, 
+			image: markerImage
+			});
+			 
+			 
+			 map = new kakao.maps.Map(mapContainer, mapOption);
+			 
+			 mapTypeControl = new kakao.maps.MapTypeControl();
+
+				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+				// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+				 zoomControl = new kakao.maps.ZoomControl();
+				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	}
+
+	mapMaker();
+	
+	function memLoc(){
+		
+		if(usersAddress != null){
+			
+			// 로그인한 사람의 주소
+			function geocodeAddress(address) {
+	            geocoder = new kakao.maps.services.Geocoder();
+
+	            // 주소로 좌표를 검색합니다
+	            geocoder.addressSearch(address, function(result, status) {
+	                if (status === kakao.maps.services.Status.OK) {
+	                     coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	                    lat = result[0].y;
+	                    lng = result[0].x;
+	                    map.setCenter(new kakao.maps.LatLng(lat,lng));
+	                }
+	            });
+	        }
+			
+			geocodeAddress(usersAddress);
+			
+		} else{
+			// 비회원 주소
+			function navigatorAddress(){
+				// 현재 위치 받아오기
+		        if (navigator.geolocation) {
+		            navigator.geolocation.getCurrentPosition(function(position) {
+		               lat = position.coords.latitude; // 위도
+		              lng = position.coords.longitude; // 경도	
+		              map.setCenter(new kakao.maps.LatLng(lat,lng));
+		            })}}
+			navigatorAddress();
+			
+			
+		}
+		
+	}
+	     memLoc();
+
+}
+
+
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function daumPostcode() {
+		
+	  	var addr;
+	      new daum.Postcode({
+	          oncomplete: function(data) {
+	        	  var geocoder = new kakao.maps.services.Geocoder();
+	              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	              // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	              var roadAddr = data.roadAddress; // 도로명 주소 변수
+	             	var jibunAddr = data.jibunAddress;
+	         
+	              
+	           
+	              
+	           
+	              
+	              //사용자가 선택한 주소 타입에 따라 해당 주소값을 가져온다
+	              if(data.userSelectedType === 'R'){addr = data.roadAddress;
+	              console.log(addr);}
+	              else{
+	              	addr = data.roadAddress;
+	              }
+	              	 
+	              
+	              
+	              document.getElementById("walkAddress3").value = addr;
+	              document.getElementById("detailAddress").focus();
+	              geocoder.addressSearch(addr,function(result,status){
+		           	   if(status === kakao.maps.services.Status.OK){
+		           		   
+		           		   walkLat = document.getElementById('walkLat');
+		           		  walkLat.value=result[0].y;
+		           		 walkLong = document.getElementById('walkLong');
+		           		  walkLong.value=result[0].x;
+		           		  console.log(result[0]);
+			                    
+			                  if(walkLat != null && walkLong != null){
+			                	  map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
+			                	  imageSrc = '${path}/image/tempmark.jpg',   
+			                		imageSize = new kakao.maps.Size(36, 40), 
+			                		imageOption = {offset: new kakao.maps.Point(27, 69)};
+
+			                		 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+			                		markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); 
+
+
+			                		 marker = new kakao.maps.Marker({
+			                		position: new kakao.maps.LatLng(result[0].y, result[0].x), 
+			                		image: markerImage
+			                		});
+			                  }
+	      	
+	           
+	             
+
+
+	          } 
+	              })
+	          }
+	      
+	      }).open();
+		   
+	
+	
+	      
+	     
+	  }
+
+	
+   
+</script>
 <div id="leftDiv">
 		<div class="backWalkDetail">
 			<a href="walkBoard"id="exitBtn">

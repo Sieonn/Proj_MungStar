@@ -221,18 +221,19 @@ height:40px;
     		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
 			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
 			<script>
+			
 			$("#searchBtn").on("click",function(){
-				searchText = document.getElementById("comment searchText").value;
-
+				searchText = document.getElementById("comment searchText").value;				
 				$.ajax({
 				url:'walkingSearch',
 				type:'GET',
 				async:true,
 				data:{searchText:searchText},
 				success:function(result){
-					console.log(result);
+					console.log(place);
 					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
-					
+					searchText = searchText;
+					console.log(searchText);
 				}
 				}) 
 				
@@ -245,14 +246,18 @@ height:40px;
 <div id="map"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 <script>
+
 window.onload=function(){
-	function mapmaker(){
-		console.log(typeof wlat);
+
+
+	function mapmaker(){		
+		wkLat = ${walkings[0].walkLat};
+		wkLong = ${walkings[0].walkLong};
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 			
-		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
-		    level: 4 // 지도의 확대 레벨
+		    center: new kakao.maps.LatLng(wkLong, wkLat), // 지도의 중심좌표
+		    level: 11 // 지도의 확대 레벨
 		};
 
 		map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -292,9 +297,6 @@ window.onload=function(){
 				longs=walkings[i].walkLong;
 				
 				 walkBlinds = walkings[i].walkBlind;
-				 console.log(walkBlinds)
-				 
-				 
 				 positions =  {title:walkings[i].walkNum,
 					latlng: new kakao.maps.LatLng(lats,longs)};	
 				   markers[i] = new kakao.maps.Marker({
@@ -302,8 +304,6 @@ window.onload=function(){
 					    image: markerImage, // 마커이미지 설정 
 					    title: positions.title
 					});
-				 
-				   console.log(markers[i].isAvailable);
 					 if(walkBlinds == false){
 						 markers[i].setMap(map)
 					 } else if(walkBlinds == true){
@@ -325,7 +325,7 @@ window.onload=function(){
 					 console.log(marker);
 					 console.log(marker.getTitle());
 					 num = marker.getTitle();
-					  window.location.href="http://localhost:8080/moongstar/walking/walkingDetail?walkNum="+num;
+					  window.location.href="http://localhost:8080/MoongStar/walking/walkingDetail?walkNum="+num;
 					 
 				});
 					}

@@ -4,7 +4,7 @@
 <%@ page import="dto.Walking" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.*" %>
-
+<% String searchTextResult = (String)request.getAttribute("searchText"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,29 @@
 <script src="https://code.jquery.com/jquery-Latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+.searchBar{
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
+width:1280px;
+}
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
 body,html{
 margin:0 auto;
 padding:0;
@@ -57,16 +80,16 @@ margin-left:40px;
 top:60px;
 }
 
-
-#hosList{
-width:70px;
-height:20px;
-border: 0;
-border-radius: 30px;
-background-color:#FED74B;
-color:white;
-text-align:center;
-box-shadow: 0 3px 1px gray;
+#hosListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
 }
 
 .hosBtn{
@@ -202,6 +225,28 @@ height:40px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 <jsp:include page="/main/header.jsp"/>
+<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+
+				$.ajax({
+				url:'hospitalSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					console.log(result);
+					window.location.href="http://localhost:8080/MoongStar/hospital/hospitalSearch?searchText="+searchText;
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 <div class="container">
 <div class="hosMap" id="hosMap">
 <div id="hosMapBar"></div>
@@ -210,12 +255,16 @@ height:40px;
 <script>
 window.onload=function(){
 	function mapmaker(){
+		hsLat = ${hospitals[0].hosLat};
+		hsLong = ${hospitals[0].hosLong};
+		searchTextResult = "<%= searchTextResult %>";
+		console.log(searchTextResult);
 		console.log(typeof wlat);
 		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 			
-		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
-		    level: 4 // 지도의 확대 레벨
+		    center: new kakao.maps.LatLng(hsLong, hsLat), // 지도의 중심좌표
+		    level: 10 // 지도의 확대 레벨
 		};
 
 		map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -304,7 +353,7 @@ window.onload=function(){
 <div id="leftDiv">
 	<div class="backHosDetail">
 		<div id="exitBtn">
-			<a href="hosBoard">X</a>
+			<a href="hospitalBoard">X</a>
 		</div>
 		<div class="frontHosDetail">
 			<div class="hosDetail">
@@ -344,9 +393,8 @@ window.onload=function(){
 </div>
 
 <br><br>
-<div class="hosBtn">
-		<a href="hospitalList" id="hosList">LIST</a>
-	
+		<div class="hosBtn">
+			<a href="hospitalList" id="hosListLogout">LIST</a> 
 		</div>
 		</div>
 </body>

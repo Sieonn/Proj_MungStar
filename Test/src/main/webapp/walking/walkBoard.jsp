@@ -17,6 +17,17 @@
 <script src="http://code.jquery.com/jquery-Latest.min.js"></script>
 
 <style>
+#walkListLogout{
+width: 90px;
+	height: 20px;
+	border: 0;
+	margin-left:30px;
+	border-radius: 30px;
+	background-color: #FED74B;
+	color: white;
+	text-align: center;
+	box-shadow: 0 3px 1px gray;
+}
 @font-face {
 	font-family: "JalnanGothic";
 	src:
@@ -180,7 +191,29 @@ left:100px;}
 position:relative;
 top:30px;
 left:70px;
+}.searchBar{
+position:relative;
+left:40px;
+top:75px;
+margin: 0 auto;
+width:1280px;
 }
+   .searchInput{
+		padding-bottom: 8px; padding-top: 8px;
+    	background-color: #F6F6F6;
+    	border-radius: 5px;
+  		box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.2);
+  		border: none;
+        font-family: "JalnanGothic";
+    }
+    .searchBtn{
+		padding-bottom: 8px; padding-top: 8px;    
+    	background-color: #0155B7;
+    	border-radius: 5px;
+    	color: white;
+    	border: none;
+        font-family: "JalnanGothic";
+    }
 
 </style>
 <script
@@ -190,6 +223,28 @@ left:70px;
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
 	<jsp:include page="/main/header.jsp" />
+		<div class="searchBar">
+    		<input type="text" class="searchInput" id="comment searchText" name="searchText" placeholder="검색"/>
+			<button id="searchBtn" class="searchBtn Btn" type="submit">검색</button>
+			<script>
+			
+			$("#searchBtn").on("click",function(){
+				searchText = document.getElementById("comment searchText").value;
+			
+				$.ajax({
+				url:'walkingSearch',
+				type:'GET',
+				async:true,
+				data:{searchText:searchText},
+				success:function(result){
+					window.location.href="http://localhost:8080/MoongStar/walking/walkingSearch?searchText="+searchText;
+					
+				}
+				}) 
+				
+			})
+			</script>
+			</div>
 	<div class="container">
 		<div class="walkMap" id="walkMap">
 			<div id="walkMapBarOpen" style="display: none;">
@@ -286,14 +341,17 @@ else{
 }
 })
 </script>
+<div id="usersAddress" data-value="${user.memAddress1 }"></div>
 			<div id="map"></div>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services"></script>
+			<script>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e8e9a2d83662cba453e26f8150a7147&libraries=services?autoload=true"></script>
 			<script>
 $(document).ready(function(){
-		
-	function mapmaker(){
-		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	usersAddress = document.getElementById("usersAddress").getAttribute("data-value");
+		function mapMaker(){mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 		    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
 		    level: 4 // 지도의 확대 레벨
@@ -309,11 +367,48 @@ $(document).ready(function(){
 
 		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 		 zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		     
-		} //mapmaker end
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);}
+		mapMaker();
 		
-		mapmaker();
+		function memLoc(){
+			
+			if(usersAddress != null){
+				
+				// 로그인한 사람의 주소
+				function geocodeAddress(address) {
+		            geocoder = new kakao.maps.services.Geocoder();
+
+		            // 주소로 좌표를 검색합니다
+		            geocoder.addressSearch(address, function(result, status) {
+		                if (status === kakao.maps.services.Status.OK) {
+		                     coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		                    lat = result[0].y;
+		                    lng = result[0].x;
+		                    map.setCenter(new kakao.maps.LatLng(lat,lng));
+		                }
+		            });
+		        }
+				
+				geocodeAddress(usersAddress);
+				
+			} else{
+				// 비회원 주소
+				function navigatorAddress(){
+					// 현재 위치 받아오기
+			        if (navigator.geolocation) {
+			            navigator.geolocation.getCurrentPosition(function(position) {
+			               lat = position.coords.latitude; // 위도
+			              lng = position.coords.longitude; // 경도	
+			              map.setCenter(new kakao.maps.LatLng(lat,lng));
+			            })}}
+				navigatorAddress();
+				
+				
+			}
+			
+		}
+		     memLoc();
+	
 		
 		function convertBooleanToNumber(booleanValue) {
 	        return booleanValue ? 1 : 0;
@@ -321,6 +416,7 @@ $(document).ready(function(){
 		
 		
 		window.onload=function(){
+			 
 
 			walking = [];
 			 markers = [];
@@ -355,7 +451,6 @@ $(document).ready(function(){
 					};	
 				 
 				 walkBlinds = walkings[i].walkBlind;
-				 console.log(walkBlinds)
 				 
 				   markers[i] = new kakao.maps.Marker({
 					    position: new kakao.maps.LatLng(positions.latlng.La,positions.latlng.Ma),
@@ -363,8 +458,6 @@ $(document).ready(function(){
 					    isAvailable: convertBooleanToNumber(walkings[i].walkBlind),
 					    title: positions.title
 					});		
-				 
-				 console.log(markers[i].isAvailable);
 				 if(walkBlinds == false){
 					 markers[i].setMap(map)
 				 } else if(walkBlinds == true){
@@ -413,7 +506,7 @@ $(document).ready(function(){
 		<br>
 		<div class="walkBtn">
 <c:if test="${user eq null }">
-		<a id="walkListLogout" href="walkingList" style=" position:relative; right:80px;">LIST</a>
+		<a id="walkListLogout" href="walkingList">LIST</a>
 		</c:if>
 		
 					<c:if test="${user ne Empty }">
