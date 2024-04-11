@@ -37,7 +37,6 @@ public class FindPw extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		System.out.println(request.getParameter("memId"));
 		System.out.println(request.getParameter("memEmail"));
-		System.out.println(request.getParameter("memPw"));
         JSONObject jsonRes = new JSONObject();
 		try {
 			MemberService memberService = new MemberServiceImpl();

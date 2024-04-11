@@ -52,6 +52,7 @@ body, html {
 #btn-Yes {
 	background-color: #0155b7;
 	border: none;
+	margin-top: 10px;
 }
 
 .form-signin .form-control {
@@ -64,7 +65,7 @@ body, html {
 }
 
 .form-control {
-	flex: 1;	
+	flex: 1;
 	height: 40px;
 }
 
@@ -76,6 +77,7 @@ body, html {
 .card-body {
 	width: 400px;
 	padding: 30px;
+	margin-top: 10px;
 }
 
 button, input {
@@ -84,7 +86,7 @@ button, input {
 
 .links {
 	text-align: center;
-	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 a {
@@ -108,6 +110,7 @@ a:hover {
 
 .findP {
 	display: flex;
+	margin-bottom: 15px;
 }
 
 .check {
@@ -123,7 +126,7 @@ placeholder {
 </style>
 <script>
 function regist() {
-        var memId = '<%= request.getAttribute("memId") %>';
+        var memId = '<%=request.getAttribute("memId")%>';
         var memPw = $('#memPw').val();
 
         // Ajax를 사용하여 서블릿으로 데이터 전송
@@ -209,7 +212,7 @@ function regist() {
             type: 'POST',
             url: 'repw', // 해당 서블릿의 URL
             data: {
-                memId: '<%= request.getAttribute("memId") %>',
+                memId: '<%=request.getAttribute("memId")%>',
                 memPw: memPw
             },
             success: function(response) {
@@ -234,28 +237,28 @@ function regist() {
 	<%@ include file="header.jsp"%>
 	<div class="content">
 		<div class="card" style="width: 25rem">
-		<div class="card-title">
-				<h2 class="card-title" style="color: #0155b7"></h2>
-			</div>
 			<div class="card-body">
 				<form action="repw" class="form-signin" method="POST">
 					<p class="text2"
-						style="font-family: 'JalnanGothic'; font-size: 24px">비밀번호 재설정 - <%= request.getAttribute("memId") %>님</p>
-					
-					<input type="hidden" name="memId" value="<%= request.getAttribute("memId") %>" /> 
-					<input
+						style="font-family: 'JalnanGothic'; font-size: 24px">
+						비밀번호 재설정 -
+						<%=request.getAttribute("memId")%>님
+					</p>
+
+					<input type="hidden" name="memId"
+						value="<%=request.getAttribute("memId")%>" /> <input
 						type="password" name="memPw" id="memPw" class="form-control"
 						placeholder="비밀번호" required /><br /> <input type="password"
-						name="pwCheck" id="pwCheck" class="form-control" placeholder="비밀번호 재확인"
-						required />
-					   <p class="check" id="check"></p>
+						name="pwCheck" id="pwCheck" class="form-control"
+						placeholder="비밀번호 재확인" required />
+					<p class="check" id="check"></p>
 					<button type="button" id="btn-Yes" onclick="regist()"
 						class="btn btn-lg btn-primary btn-block">비밀번호 재설정</button>
 				</form>
-			</div>
-			<div class="links">
-				<a href="${path}/findid">아이디 찾기</a> | <a href="${path}/login">로그인</a> | <a
-					href="${path}/signup">회원가입</a>
+				<div class="links">
+					<a href="${path}/findid">아이디 찾기</a> | <a href="${path}/login">로그인</a>
+					| <a href="${path}/signup">회원가입</a>
+				</div>
 			</div>
 		</div>
 	</div>

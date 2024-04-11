@@ -156,15 +156,17 @@ placeholder {
 	padding: 0 5px;
 }
 
-.form-control2:focus {
-	border-bottom: 1px solid #80bdff;
+.form-control:focus {
 	color: #495057;
 	background-color: #fff;
 	outline: 0;
-/* 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25); */
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 }
 </style>
 <script>
+	$(document).on('focus', '[readonly]', function(e) {
+		$(this).blur();
+	});
 	$(function() {
 		// 이메일 인증 버튼 비활성화
 		$("#checkedemail").prop("disabled", true);
@@ -308,14 +310,16 @@ placeholder {
 					</div>
 					<div class="findP">
 						<label class="lname">이메일</label> <input type="text" id="memEmail"
-							name="memEmail" class="form-control" placeholder="이메일을 입력해주세요." style="border-radius: 3px 0 0 3px;"
-							required /> <input type="button" value="인증번호 받기"
-							id="checkedemail" name="checkedemail" />
+							name="memEmail" class="form-control" placeholder="이메일을 입력해주세요."
+							style="border-radius: 3px 0 0 3px;" required /> <input
+							type="button" value="인증번호 받기" id="checkedemail"
+							name="checkedemail" />
 					</div>
 					<div class="findP">
 						<div style="display: flex; margin-left: 70px;">
 							<input class="form-control" id="authcode" type="email"
-								placeholder="인증번호를 입력하세요" style="width: 157px; border-radius: 3px 0 0 3px;" /> <input
+								placeholder="인증번호를 입력하세요"
+								style="width: 157px; border-radius: 3px 0 0 3px;" /> <input
 								type="button" value="확인" id="checkauth" name="checkauth" />
 						</div>
 					</div>
