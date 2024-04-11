@@ -72,4 +72,9 @@ public class HospitalServiceImpl implements HospitalService {
 		return comment;
 	}
 
+	@Override
+	public void hospitalCommentDelete(Integer commNum) throws Exception {
+		hosDAO.deleteHospitalComment(commNum);
+	}
+
 }

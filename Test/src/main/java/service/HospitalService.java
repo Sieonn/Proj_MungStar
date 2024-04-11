@@ -15,4 +15,5 @@ public interface HospitalService {
 		String getHosNick(String memId) throws Exception;
 		List<Hospital> searchHospital(HttpServletRequest request) throws Exception;
 		Comment addHosComment(HttpServletRequest request) throws Exception;
+		void hospitalCommentDelete(Integer commNum) throws Exception;
 }

@@ -48,4 +48,9 @@ public class HospitalDAOImpl implements HospitalDAO {
 		param.put("searchText", searchText);
 		return sqlSession.selectList("mapper.hospital.searchHospital",param);
 	}
+	@Override
+	public void deleteHospitalComment(Integer commNum) throws Exception {
+		sqlSession.delete("mapper.hospital.deleteHospitalComment",commNum);
+		sqlSession.commit();
+	}
 }
