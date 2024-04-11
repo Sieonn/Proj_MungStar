@@ -70,7 +70,7 @@
 	
 	<select id="selectWalkListOnMain" resultType="dto.Walking">
 		<![CDATA[
-			SELECT * FROM walking where walkBlind is null ORDER BY walkNum DESC LIMIT 4;
+			SELECT * FROM walking where walkBlind is false ORDER BY walkNum DESC LIMIT 4;
 		]]>
 	</select>
 	
