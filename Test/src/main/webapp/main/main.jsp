@@ -165,27 +165,19 @@ body, html {
 }
 
 .free {
+	widht: 1280px;
 	gap: 20px;
 	display: flex;
+	gap: 20px;
 }
 
-/* .free_b {
-	width: 100%; /* .free_b를 반씩 차지하도록 설정 */
-box-sizing
-
-
-:
-
- 
-
+.free_b {
+	width: 1280px;; /* .free_b를 반씩 차지하도록 설정 */
+}
+/*box-sizing
 border-box
-
-
 ; /* padding, border를 요소의 크기에 포함 */
 /* 좌우 여백 추가 */
-}
-* /
-
 .free_box {
 	width: 1280px;
 	height: 300px;
@@ -332,54 +324,37 @@ a:hover {
 		</div>
 
 
-		<div class="free">
+		<div class="free" style="display: flex;">
 			<div class="free_b">
 				<div class="headline-container">
-					<span class="headline"> 자유게시판 </span> <span class="more"> <a
-						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
+					<span class="headline">최신글</span> <span class="more"> <a
+						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a>
+					</span>
 				</div>
 				<div class="header-line"></div>
 				<div class="free_box">
-					<div class="freeBox_De">
-						<c:forEach items="${frees}" var="free">
-							<div style="margin-bottom: 5px;">
-								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
-									class="dogName"> <span style="font-size: 16px;"><span
-										style="color: #63C1D2;">[ ${free.freeTag} ]</span>
-										${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span></span><br />
-									<c:set var="shortContent"
-										value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
-									<span style="font-size: 12px; color: gray;"><c:out
-											value="${shortContent}" /></span>
-								</a>
-								<hr>
-							</div>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-						<div class="free_b">
-				<div class="headline-container">
-					<span class="headline"> 자유게시판 </span> <span class="more"> <a
-						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a></span>
-				</div>
-				<div class="header-line"></div>
-				<div class="free_box">
-					<div class="freeBox_De">
-						<c:forEach items="${freess}" var="free">
-							<div style="margin-bottom: 5px;">
-								<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
-									class="dogName"> <span style="font-size: 16px;"><span
-										style="color: #63C1D2;">[ ${free.freeTag} ]</span>
-										${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span></span><br />
-									<c:set var="shortContent"
-										value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
-									<span style="font-size: 12px; color: gray;"><c:out
-											value="${shortContent}" /></span>
-								</a>
-								<hr>
-							</div>
-						</c:forEach>
+					<div class="freeBox_De" style="margin: 0 20px;">
+						<div class="row" style="margin-bottom: 10px;">
+							<c:forEach items="${frees}" var="free" varStatus="loop">
+								<div class="col-md-6" style="margin-bottom: 5px;">
+									<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
+										class="dogName"> <span style="font-size: 16px;"> <span
+											style="color: #63C1D2;">[ ${free.freeTag} ]</span>
+											${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
+									</span><br /> <c:set var="shortContent"
+											value="${fn:substring(fn:replace(free.freeContent, '&nbsp;', ''), 0, 20)}" />
+										<span style="font-size: 12px; color: gray;"> <c:out
+												value="${shortContent}" />
+									</span>
+									</a>
+								</div>
+								<c:if test="${loop.index % 2 == 1}">
+									<div class="w-100"></div>
+									<!-- 매 두 개의 항목이 출력될 때마다 줄 바꿈 -->
+								</c:if>
+							</c:forEach>
+						</div>
+						<hr>
 					</div>
 				</div>
 			</div>
@@ -408,9 +383,73 @@ a:hover {
 					</div>
 				</div>
 			</c:forEach>
+		</div>
+
+
+		<!-- <div class="photo">
+				<div class="inner_photo">
+					<img src="../image/temp1.jpg" />
+					<div class="inner_title">영희</div>
+
+					<div class="inner_text">가산디지털단지</div>
+				</div>
 			</div>
-			
-			
+			<div class="photo">
+				<div class="inner_photo">
+					<img src="../image/temp2.jpg" />
+					<div class="inner_title">철수</div>
+
+					<div class="inner_text">가산디지털단지</div>
+				</div>
+			</div>
+			<div class="photo">
+				<div class="inner_photo">
+					<img src="../image/temp3.jpg" />
+					<div class="inner_title">뽀삐</div>
+
+					<div class="inner_text">가산디지털단지</div>
+				</div>
+			</div>
+			<div class="photo">
+				<div class="inner_photo">
+					<img src="../image/temp4.jpg" />
+					<div class="inner_title">쪼롱</div>
+
+					<div class="inner_text">가산디지털단지</div>
+				</div>
+			</div>
+			<div class="photo">
+				<div class="inner_photo">
+					<img src="../image/temp5.jpg" />
+					<div class="inner_title">초코</div>
+					<div class="inner_text">가산디지털단지</div>
+				</div>
+			</div> -->
+
+
+		<div class="headline-container">
+			<span class="headline"> 미멍보호소 </span> <span class="more"> <a
+				href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
+		</div>
+		<div class="header-line"></div>
+		<div class="archive">
+			<c:forEach items="${losts}" var="lost">
+				<div class="photo">
+					<div class="inner_photo">
+						<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
+						<div class="inner_title">
+							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+								class="dogName">${lost.lostName}</a>
+						</div>
+
+						<div class="inner_text">
+							<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
+								class="address">${lost.lostAddress}</a>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+
 			<!-- <div class="photo">
 				<div class="inner_photo">
 					<img src="../image/temp1.jpg" />
@@ -450,73 +489,9 @@ a:hover {
 					<div class="inner_text">가산디지털단지</div>
 				</div>
 			</div> -->
-
-
-			<div class="headline-container">
-				<span class="headline"> 미멍보호소 </span> <span class="more"> <a
-					href="${path}/lost/lostBoard" style="font-size: 12px">더보기</a></span>
-			</div>
-			<div class="header-line"></div>
-			<div class="archive">
-				<c:forEach items="${losts}" var="lost">
-					<div class="photo">
-						<div class="inner_photo">
-							<img class="photo" src="${path}/imageView?num=${lost.lostPhoto}">
-							<div class="inner_title">
-								<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-									class="dogName">${lost.lostName}</a>
-							</div>
-
-							<div class="inner_text">
-								<a href="${path}/lost/lostDetail?lostNum=${lost.lostNum}"
-									class="address">${lost.lostAddress}</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-
-				<!-- <div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp1.jpg" />
-					<div class="inner_title">영희</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp2.jpg" />
-					<div class="inner_title">철수</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp3.jpg" />
-					<div class="inner_title">뽀삐</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp4.jpg" />
-					<div class="inner_title">쪼롱</div>
-
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div>
-			<div class="photo">
-				<div class="inner_photo">
-					<img src="../image/temp5.jpg" />
-					<div class="inner_title">초코</div>
-					<div class="inner_text">가산디지털단지</div>
-				</div>
-			</div> -->
-			</div>
-			<div class="footer"></div>
 		</div>
+		<div class="footer"></div>
+	</div>
 	</div>
 	<script>
       let currentSlide = 0;

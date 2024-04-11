@@ -71,24 +71,27 @@ body, html {
 }
 
 .img_box {
-      	display: inline-block;
-     	width: 100%; height:200px;
+	display: inline-block;
+	width: 100%;
+	height: 200px;
 	border-radius: 50%;
 	background-color: #f0f0f0;
-	box-shadow: 0 -3px 10px rgb(94, 94, 94); 
+	box-shadow: 0 -3px 10px rgb(94, 94, 94);
 	overflow: hidden;
 }
+
 .img_box img {
-   	display: inline-block;
-    /* width: 100%; height: 264px; */
-    cursor: pointer;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 200px;
-    text-align: center;
-    color: #A3A3A3;
+	display: inline-block;
+	/* width: 100%; height: 264px; */
+	cursor: pointer;
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 200px;
+	text-align: center;
+	color: #A3A3A3;
 }
+
 .gender {
 	display: flex;
 	align-items: center;
@@ -277,7 +280,6 @@ a:hover {
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
 }
-
 </style>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -322,22 +324,17 @@ a:hover {
 	<div class="container">
 		<!-- 인삿말 -->
 		<div class="mypage-container">
-		
+
 			<div class="wel-Img">
 				<div class="inner_profile">
 					<div class="img_box">
-<%-- 					<c:choose>
-						<c:when test="${member.memProfile eq null}">
-							<img class="btn-open-modal" id="preview" src="${path}/image/addFile.png">
-						</c:when>
-						<c:otherwise>
- --%>							<img class="btn-open-modal" id="preview" src="${path}/imageView?num=${user.memProfile}">
-<%-- 						</c:otherwise>
-					</c:choose> 
- --%>					<input type="file" id="fileInput" class="fileInput" name="file" accept="image/*">
+						<img class="btn-open-modal" id="preview"
+							src="${path}/imageView?num=${user.memProfile}"> --%> <input
+							type="file" id="fileInput" class="fileInput" name="file"
+							accept="image/*">
 					</div>
 				</div>
-			</div> 
+			</div>
 
 			<div class="wel-txt">
 				<div class="hello">
@@ -355,7 +352,7 @@ a:hover {
 		<!-- 내 활동 -->
 
 		<div class="mypage-container2">
-					<div class="myactive"
+			<div class="myactive"
 				style="width: 100%; height: 100%; padding: 0 5%">
 				<div class="actGrid">
 					<div class="actTitle">내 활동</div>
@@ -374,7 +371,7 @@ a:hover {
 				</div>
 			</div>
 			<div class="myactive"
-				style="width: 100%; padding: 0 5%;border-left: 2px solid rgb(199, 199, 199);">
+				style="width: 100%; padding: 0 5%; border-left: 2px solid rgb(199, 199, 199);">
 				<div class="actGrid">
 					<div class="actTitle">개인 정보</div>
 					<div class="petInfo" style="text-align: center">

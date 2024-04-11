@@ -89,8 +89,8 @@ img {
 }
 
 .user-info img {
-	height: 100%;
-	border-radius: 100%;
+/* 	height: 100%; */
+	border-radius: 50%;
 }
 
 /* 하단 선 스타일 */
@@ -151,8 +151,7 @@ a:visited {
 							height="50px" />
 					</c:when>
 					<c:otherwise>
-						<img src="${path}/image/프로필01.jpg" alt="Profile" width="50px"
-							height="50px" />
+						<img src="${path}/imageView?num=${user.memProfile}" alt="Profile" width="50px" height="50px;" />
 					</c:otherwise>
 				</c:choose>
 
