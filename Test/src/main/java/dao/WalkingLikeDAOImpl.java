@@ -9,7 +9,13 @@ import util.MybatisSqlSessionFactory;
 
 public class WalkingLikeDAOImpl implements WalkingLikeDAO {
 	SqlSession sqlSession = MybatisSqlSessionFactory.getSqlSessionFactory().openSession();
-
+	
+public int getLikeCount(String memId, Integer walkNum) throws Exception{
+	 Map<String, Object> param = new HashMap<>();
+	    param.put("memId", memId);
+	    param.put("walkNum", walkNum);
+	    return sqlSession.selectOne("mapper.walkingLike.getLikeCount", param);
+}
 	@Override
 	public void insertWalkingLike(String memId, Integer walkNum) throws Exception {
 		Map<String,Object> param = new HashMap<>();
@@ -30,12 +36,5 @@ public class WalkingLikeDAOImpl implements WalkingLikeDAO {
 		
 	}
 
-	@Override
-	public Integer selectWalkingLike(String memId, Integer walkNum) throws Exception {
-		Map<String,Object> param = new HashMap<>();
-		param.put("memId", memId);
-		param.put("walkNum", walkNum);
-		return sqlSession.selectOne("mapper.walkingLike.insertWalkingLike",param);
-	}
 
 }
