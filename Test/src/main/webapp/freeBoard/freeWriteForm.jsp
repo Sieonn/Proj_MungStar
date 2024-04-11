@@ -292,13 +292,15 @@ function handleFiles(event) {
     var file = event.target.files[0];
     var content = document.getElementById('imagePreview'); // 이미지가 추가될 위치를 변경
 
+        
     if (file) {
         var reader = new FileReader();
         reader.onload = function(event) {
             var imgElement = document.createElement('img');
             imgElement.src = event.target.result;
-            imgElement.style.width = '100%';
+            imgElement.style.maxWidth = '100%';
             content.appendChild(imgElement); // 이미지 추가
+
         };
         reader.readAsDataURL(file);
     }

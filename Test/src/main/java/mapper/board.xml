@@ -38,7 +38,7 @@
     			AND freeTag = #{freeTag}
   				</if>
    				<if test="searchText != null">
-    			AND freeSub like '%${searchText}%'
+    			AND (freeSub like '%${searchText}%' or freeNick like '%${searchText}%' )
   				</if>
    			</where>
   		order by freeNum desc
@@ -53,7 +53,7 @@
     			AND freeTag = #{freeTag}
   				</if>
    				<if test="searchText != null">
-    			AND freeSub like '%${searchText}%'
+    			AND (freeSub like '%${searchText}%' or freeNick like '%${searchText}%' )
   				</if>
   			</where>
 	</select>

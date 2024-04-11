@@ -193,7 +193,7 @@
       	border-radius: 10px;
     }
   	.writeComm{
-  		width: 70%;
+  		width: 60%;
   		margin: 5px 0 5px 0; 
   		float: right;
   		padding: 5px;
@@ -209,8 +209,9 @@
   		padding-top: 5px; padding-bottom: 5px;
   		padding-left: 10px; padding-right: 7px;
   		background-color: #FED74B;
+  		overflow:auto;
   		border-radius: 7px;
-  		text-align: right;
+  		text-align: left;
 		font-size: 15px;
   	}
   	.memcommContent{
@@ -351,14 +352,14 @@
 	<div class="writeComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img mycomm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname mycomm"><img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
-		<span class="commContent mycomm">${comment.commContent}</span>
+		<span class="commContent mycomm"style="float: left;" >${comment.commContent}</span>
 	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="memComm">
 		<img src="${path}/image/delete.png" style="width:18px; height:18px" class="delete_img comm" id="${comment.commNick}" data-num="${comment.commNum}" onclick="commentDelete(this)">
 		<span class="commNickname comm">&nbsp;&nbsp;<img src="${path}/image/logo.png" style="width:15px; height:15px">&nbsp;${comment.commNick}&nbsp;&nbsp;</span>
-		<span class="memcommContent comm" >${comment.commContent}</span>
+		<span class="memcommContent comm" style="float: left;" >${comment.commContent}</span>
 	</div>
 	</c:otherwise>
 	</c:choose>
