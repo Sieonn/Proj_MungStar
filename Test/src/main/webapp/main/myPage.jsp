@@ -367,7 +367,7 @@ a:hover {
 					</div>
 				</div>
 				<div class="actGrid">
-					<div class="actTitle">내 활동</div>
+					<div class="actTitle">내 댓글</div>
 					<div class="petInfo">
 						<div style="margin: 5% 7%">
 							<c:forEach items="${myFreeComments}" var="comment">
