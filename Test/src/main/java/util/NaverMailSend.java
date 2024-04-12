@@ -51,7 +51,7 @@ public final class NaverMailSend {
          message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
          // 메일제목 설정
-         message.setSubject("ReturnUs :: 인증번호 발송 메일입니다.");
+         message.setSubject("멍뭉별 :: 인증번호 발송 메일입니다.");
 
          // 메일 내용 설정
          message.setText("인증번호는 [ "+authenCode+" ] 입니다.");
