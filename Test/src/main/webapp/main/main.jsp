@@ -195,7 +195,6 @@ border-box
 .headline-container {
 	display: grid;
 	padding: 20px;
-	color: white;
 }
 
 .more {
@@ -350,7 +349,7 @@ a:hover {
 				<div class="free_box">
 					<div class="headline-container"
 						style="display: flex; justify-content: center; flex: 1;">
-						<span class="headline" style="justify-content: center;">최신글</span>
+						<span class="headline" style="justify-content: center;	color: white;">최신글</span>
 					</div>
 					<div class="freeBox_De">
 						<div class="row" style="margin-bottom: 10px;">
