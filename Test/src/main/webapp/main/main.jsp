@@ -131,11 +131,13 @@ body, html {
 	width: 277px; /* plac의 고정 너비 */
 	height: 270px; /* plac의 고정 높이 */
 	border-radius: 10px;
-	background-color: #e9eff6;
+	background-color: #053cc8;
 	text-align: center;
 	font-weight: 500;
 	overflow: hidden;
 	position: relative;
+	color:white;
+	box-shadow: 0 0 0 1px gray;
 }
 
 .plac img {
