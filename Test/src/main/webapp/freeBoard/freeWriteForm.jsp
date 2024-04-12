@@ -21,17 +21,19 @@
 		margin : 0 auto;
  	}
  	#freeCategory{
- 		width :1000px;
- 		margin : 0 auto;	
+ 		width :1280px;
+ 		margin: 10px 0;	
+ 		font-size: 22px;
+        font-family: "JalnanGothic";	
   	}
   	.writeContainer {
-  		width :1000px;
+  		width :1200px;
  		margin : 0 auto;
  		
   	}
   	.writeTitle{
   		background-color: #f5f5f5;
-  		width: 1000px;
+  		width: 1200px;
   		padding: 10px;
   		margin-bottom: 10px;
   		border-radius: 15px;
@@ -44,8 +46,8 @@
     }
   	.content {
         background-color: #f5f5f5;
-        width: 1000px; 
-        height: 520px; 
+        width: 1200px; 
+        height: 560px; 
         padding: 10px;
         margin: 10px auto;
         border-radius: 20px;
@@ -222,8 +224,8 @@
 	<form id="freeWrite" method="post" action="${path}/freeBoard/freeWriteForm">
 <div class = "freeContainer">
 	<div id = "freeCategory">
-		<h2 style="margin-bottom: 5px;">자유게시판</h2>
-		<h4 style = "font-weight: lighter; margin-top: 0;">게시물작성</h4>
+		<h2 style="margin-bottom: 5px; font-weight: lighter; ">자유게시판</h2>
+		<h4 style = "font-family: Pretendard-Regular; margin-top: -5px;">게시물작성</h4>
 	</div>
 <div class="writeContainer">
     <input class="writeTitle" id="freeSub" name="freeSub" type="text" placeholder="  제목  "  required="required"/>
@@ -254,7 +256,7 @@
 					        reader.onload = function(event) {
 					            var imgElement = document.createElement('img');
 					            imgElement.src = event.target.result;
-					            imgElement.style.width = '100%';
+					            imgElement.style.width = 'auto';
 								$("#editor").append(imgElement);
 					        };
 					        reader.readAsDataURL(file);						
@@ -285,11 +287,11 @@
         <div class="scroll-box">
             
             <input type="hidden" id="freeContent" name="freeContent"/> 
-            <div id="editor" class="text-area" contenteditable="true" style="overflow: scroll; width: 100%;">
+            <div id="editor" class="text-area" contenteditable="true" style="overflow: hidden; width: 100%;">
 
             </div>
         </div>
-        <input type="text" class="tag-input" id="freeTag" name="freeTag" placeholder="#태그를 입력하세요 (쉼표로 구분)">
+        <input type="text" class="tag-input" id="tag" name="freeTag" placeholder="#태그를 입력하세요">
     </div>
 </div>
 	<br>
