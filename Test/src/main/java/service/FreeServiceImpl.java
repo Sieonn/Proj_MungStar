@@ -25,45 +25,9 @@ public class FreeServiceImpl implements FreeService{
 	@Override
 	public Integer freeWrite(HttpServletRequest request) throws Exception {
 		FBoard board = new FBoard();
-		
-		//업로드 경로 & 파일크기
-		String uploadPath = request.getServletContext().getRealPath("upload");
-		int size = 10*1024*1024;
-		
-		//파일 업로드
-		MultipartRequest multi = new MultipartRequest(request,uploadPath,size,"utf-8",new DefaultFileRenamePolicy());
-		
-	    //2. 업로드 파일이 있을경우
-		if(multi.getFile("file")!=null) {
-			//2-1. 파일정보를 uploadFile 객체에 담아 file 테이블에 삽입
-			File uploadFile = new File();
-			uploadFile.setName(multi.getOriginalFileName("file"));
-			uploadFile.setDirectory(uploadPath);
-			uploadFile.setContenttype(multi.getContentType("file"));
-			uploadFile.setSize(multi.getFile("file").length());
-			// File 테이블에 파일 정보 삽입
-			freeDAO.insertFile(uploadFile);
-			
-//	        // 파일을 Base64로 인코딩하여 문자열로 저장
-//	        InputStream fileContent = multi.getFile("file").getInputStream();
-//	        byte[] bytes = fileContent.readAllBytes();
-//	        String base64Image = Base64.getEncoder().encodeToString(bytes);
-//	        // Board 객체에 인코딩된 이미지 데이터 설정
-//	        board.setBase64Image(base64Image);
-//	        // File 테이블에 파일 정보 삽입
-//	        freeDAO.insertFile(uploadFile);
-	        
-	        //2-2. 저장된 파일번호로 업로드한 파일의 변경
-	        java.io.File file=new java.io.File(uploadPath,multi.getFilesystemName("file"));
-	        file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));			
-	        // Board 객체에 파일번호 설정
-	        board.setFreePhoto(uploadFile.getNum());
-		}
-		
-	    //3. 파라미터에서 파일 이외의 정보 가져와 Board 객체에 담아 Board 테이블에 삽입
-	    board.setFreeSub(multi.getParameter("freeSub"));
-	    board.setFreeContent(multi.getParameter("freeContent"));
-	    board.setFreeTag(multi.getParameter("freeTag"));
+	    board.setFreeSub(request.getParameter("freeSub"));
+	    board.setFreeContent(request.getParameter("freeContent"));
+	    board.setFreeTag(request.getParameter("freeTag"));
 	    Member member = (Member)request.getSession().getAttribute("user");
 	    board.setFreeNick(member.getMemNick());
 	    board.setMemId(member.getMemId());
@@ -75,34 +39,6 @@ public class FreeServiceImpl implements FreeService{
 
 	@Override
 	public void freeListByPage(HttpServletRequest request) throws Exception {
-		//1. 페이지를 가져오고 없으면 페이지번호를 1로 한다.
-//	    String paramPage = request.getParameter("page");
-//	    Integer page = 1;
-//	    if (paramPage != null) {
-//	        page = Integer.parseInt(paramPage);
-//	    }
-//
-//	    //2. PageInfo 계산하여 설정하기
-//	    int boardCount = freeDAO.selectBoardCount();
-//	    int maxPage = (int) Math.ceil((double) boardCount / 10);
-//	    int startPage = (page - 1) / 10 * 10 + 1; //페이지 10을 고려하여 page-1을 한다.
-//	    int endPage = startPage + 10 - 1;
-//	    if (endPage > maxPage) endPage = maxPage;
-//
-//	    PageInfo pageInfo = new PageInfo();
-//	    pageInfo.setCurPage(page);
-//	    pageInfo.setAllPage(maxPage);
-//	    pageInfo.setStartPage(startPage);
-//	    pageInfo.setEndPage(endPage);
-//
-//	    //3. 해당 페이지에 해당하는 게시판 글 목록 조회
-//	    int row = (page - 1) * 10;
-//	    List<FBoard> boardList = freeDAO.selectBoardList(row);
-//	
-//	    //5. 응답으로 보내기 위해 request 영역에 담는다
-//	    request.setAttribute("freeBoard", boardList);
-//	    request.setAttribute("pageInfo", pageInfo);
-
 		// 요청 파라미터에서 페이지 번호를 가져옵니다.
 		String paramPage = request.getParameter("page");
 		Integer page = 1;

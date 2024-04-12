@@ -7,14 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-@font-face {
+/* @font-face {
 	font-family: "JalnanGothic";
 	src:
 		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
 		format("woff");
 	font-weight: normal;
 	font-style: normal;
-}
+} */
 
 @font-face {
 	font-family: "Pretendard-Regular";
@@ -176,7 +176,7 @@ select {
 	<div class="pageContainer">
 		<div class="freeContainer">
 			<div id="freeCategory">
-				<h2 style="margin-bottom: 5px; font-weight: lighter;">자유게시판</h2>
+				<h2 style="margin-bottom: 5px; 	font-family: JalnanGothic; font-weight: lighter;">자유게시판</h2>
 
 				<div class="searchContainer">
 					<form action="" method="get" style="display: inline-block;">

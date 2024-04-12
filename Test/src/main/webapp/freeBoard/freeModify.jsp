@@ -10,14 +10,14 @@
 
 
 <style type="text/css">
-    @font-face {
+/*     @font-face {
 	font-family: "JalnanGothic";
 	src:
 		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
 		format("woff");
 	font-weight: normal;
 	font-style: normal;
-}
+} */
 
 @font-face {
 	font-family: "Pretendard-Regular";
@@ -42,18 +42,20 @@ body, html {
 		margin: 0 auto; 
  	}
  	#freeCategory{
- 		width :1000px;
- 		margin : 0 auto;	
+ 		width :1280px;
+ 		margin: 10px 0;	
+ 		font-size: 22px;	
+ 		font-family: "JalnanGothic";
   	}
   	.writeContainer {
-  		width :1000px;
+  		width :1280px;
  		margin: 0 auto; /* 중앙 정렬을 위해 수정 */
  		
   	}
   	
   	 .writeTitle{
   		background-color: #f5f5f5;
-  		width: 985px;
+  		width: 1260px;
   		padding: 10px;
   		margin-bottom: 10px;
   		border-radius: 15px;
@@ -67,7 +69,7 @@ body, html {
     }
   	.content {
         background-color: #f5f5f5;
-        width: 985px; 
+        width: 1260px; 
         height: 520px; 
         padding: 10px;
         margin: 10px auto;
@@ -233,7 +235,7 @@ body, html {
   		padding-top: 30px; padding-bottom:30px;
       	background-color: #f5f5f5;
       	border-radius: 20px;
-  		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  		box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1)
   	}
   	.comment_box{
   		background-color: white;
@@ -355,7 +357,7 @@ body, html {
 	<form action="${path}/freeBoard/freemodify" method="post" enctype="multipart/form-data">
 	<div class="freeContainer">
 		<div id="freeCategory">
-			<h2 style="margin-bottom: 5px;">자유게시판</h2>
+			<h2 style="margin-bottom: 5px; font-weight: lighter;">자유게시판</h2>
 			<br><br>
 		</div>
 	</div>
