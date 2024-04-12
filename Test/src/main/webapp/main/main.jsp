@@ -103,7 +103,7 @@ body, html {
 }
 
 .menu:hover {
-	background-color: #fed74b;
+	background-color: #fdc600;
 	font-weight: 700;
 	color: #ffffff;
 }
@@ -117,7 +117,7 @@ body, html {
 	font-size: 40px;
 	font-family: "JalnanGothic";
 	text-align: center;
-	color: #0155b7;
+	color: #053cc8;
 }
 
 .loc {
@@ -185,7 +185,7 @@ border-box
 	height: 300px;
 	border: none;
 	border-radius: 10px;
-	background-color: #0155b7;
+	background-color: #fdc600;/* #053cc8; */
 /* 	box-shadow: 0 3px 0 #c5c5c5; */
 	marin: 0;
 	display: flex;
@@ -334,7 +334,7 @@ a:hover {
 			<c:forEach items="${walks}" var="walk">
 				<div class="plac">
 					<a href="${path}/walking/walkingDetail?walkNum=${walk.walkNum}"><img
-						src="${path}/image/loc_1.jpg" alt="Image 1" /></a>
+						src="${path}/image/loc_${walk.walkNum}.png" alt="Image 1" /></a>
 					<div class="text">
 						${walk.walkName}<br />
 						<div style="font-size: 14px; font-family: 'Pretendard-Regular'">

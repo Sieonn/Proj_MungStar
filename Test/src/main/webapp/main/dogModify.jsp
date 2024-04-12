@@ -109,7 +109,7 @@ input:focus {
 	font-weight: 500;
 	font-size: 12px;
 	letter-spacing: 2px;
-	background-color: #0155b7;
+	background-color: #053cc8;
 	color: white;
 	border: none;
 	margin-left: 5px;
@@ -124,7 +124,7 @@ input:focus {
 	font-weight: bold;
 	font-size: 13px;
 	letter-spacing: 2px;
-	background-color: #0155b7;
+	background-color: #053cc8;
 	color: white;
 	border: none;
 	margin-left: 5px;
@@ -134,7 +134,7 @@ input:focus {
 	margin-left: 3px;
 	width: auto;
 	border-radius: 3px;
-	background-color: #0155b7;
+	background-color: #053cc8;
 	color: white;
 	border: none;
 	font-size: 12px;
@@ -148,7 +148,7 @@ input::placeholder {
 .container>h2 {
 	font-family: "JalnanGothic";
 	font-size: 24px;
-	color: #0155b7;
+	color: #053cc8;
 	margin-bottom: 20px;
 	font-size: 48px;
 	font-weight: 900;
@@ -203,7 +203,7 @@ input::placeholder {
 }
 
 .gender input[type="radio"]:checked+label {
-	background-color: #0155b7;
+	background-color: #053cc8;
 	color: #fff;
 }
 
@@ -333,12 +333,12 @@ a:hover {
 					</div>
 					<div class="field">
 						<div class="inner-title">반려견 사진</div>
-							<div class="img_box" style="margin: 10px;">
-								<img class="fileImg" id="preview"
-									src="${path}/imageView?num=${dog.dogProfile }"> <input
-									type="file" id="fileInput" class="fileInput" name="file"
-									accept="image/*">
-							</div>
+						<div class="img_box" style="margin: 10px;">
+							<img class="fileImg" id="preview"
+								src="${path}/imageView?num=${dog.dogProfile }"> <input
+								type="file" id="fileInput" class="fileInput" name="file"
+								accept="image/*">
+						</div>
 					</div>
 				</div>
 			</form>
@@ -372,7 +372,7 @@ a:hover {
 
 			reader.readAsDataURL(file);
 		} else {
-			preview.src = "${path}/image/addFile.png";
+			preview.src = "${path}/image/blue.png";
 		}
 	}
 </script>
