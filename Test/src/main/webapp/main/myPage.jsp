@@ -362,7 +362,7 @@ a:hover {
 							<c:forEach items="${myFrees}" var="free">
 								<div style="margin-bottom: 10px;">
 									<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"><span style="color: #053cc8">${free.freeTag}</span>
-										<c:set var="shortContent" value="${fn:substring(free.freeSub, 0, 30)}" /> 
+										<c:set var="shortContent" value="${fn:substring(free.freeSub, 0, 25)}" /> 
 												<span style="font-size: 16px;"> <c:out value="${shortContent}" escapeXml="true" />      <span style="font-size: 12px; color: #D3D3D3">${free.freeWriteDate}</span> </a>
 								</div>
 							</c:forEach>
