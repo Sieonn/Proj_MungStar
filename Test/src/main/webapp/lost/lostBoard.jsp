@@ -82,7 +82,7 @@ body, html {
 
 .searchBtn {
 	padding: 6px;
-	background-color: #0155B7;
+	background-color: /* #0155B7; */ #053cc8;
 	border-radius: 0 5px 5px 0;
 	color: white;
 	border: none;
@@ -96,7 +96,7 @@ body, html {
 	padding: 6px;
 	padding-left: 10px;
 	padding-right: 10px;
-	background-color: #F6F6F6;
+	background-color: #fdc600;
 	border-radius: 5px;
 	border: none;
 /* 	font-family: "JalnanGothic"; */
