@@ -174,7 +174,7 @@ body, html {
 .free_b {
 	width: 1280px; /* .free_b를 반씩 차지하도록 설정 */
 	display: flex;
-	margin: 0 100px 0 100px;
+	margin: 70px 100px 30px 100px;
 }
 /*box-sizing
 border-box
