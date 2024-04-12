@@ -195,6 +195,7 @@ border-box
 .headline-container {
 	display: grid;
 	padding: 20px;
+	margin-top:40px;
 }
 
 .more {
@@ -205,8 +206,8 @@ border-box
 
 .headline {
 	font-family: "JalnanGothic";
-	font-size: 24px;
-	padding-left: 10px;
+	font-size: 28px;
+/* 	padding-left: 10px; */
 }
 
 .archive {
@@ -386,6 +387,7 @@ a:hover {
 				</span>
 			</div>
 		</div>
+		<br>
 
 		<div class="headline-container">
 			<span class="headline"> 임시보호해요 </span> <span class="more"> <a
