@@ -172,16 +172,18 @@ body, html {
 }
 
 .free_b {
-	width: 1280px;; /* .free_b를 반씩 차지하도록 설정 */
+	width: 1280px; /* .free_b를 반씩 차지하도록 설정 */
+	justify-content: center;
 }
 /*box-sizing
 border-box
 ; /* padding, border를 요소의 크기에 포함 */
 /* 좌우 여백 추가 */
 .free_box {
-	width: 1280px;
 	height: 300px;
 	margin-top: 10px;
+	border: 1px solid black;
+	padding: 20px 50px;
 }
 
 .headline-container {
@@ -327,16 +329,18 @@ a:hover {
 
 
 		<div class="free" style="display: flex;">
-			<div class="free_b">
-				<div class="headline-container">
-					<span class="headline">최신글</span> <span class="more"> <a
-						href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a>
-					</span>
-				</div>
-				<div class="header-line"></div>
-				<div class="free_box">
+			<div class="free_b" style="display: flex;">
+				<div class="free_box" style="display:flex;">
+					<div class="headline-container"
+						style="display: flex; justify-content: center;">
+						<span class="headline">최신글</span>
+					</div>
+					<div class="header-line"></div>
 					<div class="freeBox_De" style="margin: 0 20px;">
 						<div class="row" style="margin-bottom: 10px;">
+							<div class="more">
+								<a href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a>
+							</div>
 							<c:forEach items="${frees}" var="free" varStatus="loop">
 								<div class="col-md-6" style="margin-bottom: 5px;">
 									<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
@@ -349,12 +353,11 @@ a:hover {
 											value="${fn:substring(free.freeContent, 0, 20)}" /> <span
 										style="font-size: 12px; color: gray;"> <c:out
 												value="${shortContent}" escapeXml="true" />
-									</span> 
+									</span>
 									</a>
 								</div>
 							</c:forEach>
 						</div>
-						<hr>
 					</div>
 				</div>
 			</div>
