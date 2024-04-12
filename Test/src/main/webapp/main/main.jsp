@@ -173,31 +173,41 @@ body, html {
 
 .free_b {
 	width: 1280px; /* .free_b를 반씩 차지하도록 설정 */
-	justify-content: center;
+	display: flex;
+	margin: 0 100px 0 100px;
 }
 /*box-sizing
 border-box
 ; /* padding, border를 요소의 크기에 포함 */
 /* 좌우 여백 추가 */
 .free_box {
+	width: 700px;
 	height: 300px;
-	margin-top: 10px;
-	border: 1px solid black;
-	padding: 20px 50px;
+	border: none;
+	border-radius: 10px;
+	background-color: #0155b7;
+/* 	box-shadow: 0 3px 0 #c5c5c5; */
+	marin: 0;
+	display: flex;
+	width: 700px;
 }
 
 .headline-container {
 	display: grid;
-	margin-top: 40px;
+	padding: 20px;
+	color: white;
 }
 
 .more {
 	text-align: right;
+	background-color: white;
+	border: none;
 }
 
 .headline {
 	font-family: "JalnanGothic";
 	font-size: 24px;
+	padding-left: 10px;
 }
 
 .archive {
@@ -254,6 +264,9 @@ a:hover {
 
 .freeBox_De {
 	height: 100%;
+	background-color: white;
+/* 	margin: 0 15px; */
+	padding: 0 30px 0 20px;
 }
 
 .freeBox_De a:hover {
@@ -262,6 +275,10 @@ a:hover {
 	cursor: pointer; /* 마우스 커서를 기본 값으로 변경 */
 	/* 그 외 다른 스타일 적용 가능 */
 	font-weight: 500;
+}
+.imgg img{
+	hight:100%;
+	border-radius: 0 10px 10px 0;
 }
 </style>
 </head>
@@ -329,37 +346,45 @@ a:hover {
 
 
 		<div class="free" style="display: flex;">
-			<div class="free_b" style="display: flex;">
-				<div class="free_box" style="display:flex;">
+			<div class="free_b">
+				<div class="free_box">
 					<div class="headline-container"
-						style="display: flex; justify-content: center;">
-						<span class="headline">최신글</span>
+						style="display: flex; justify-content: center; flex: 1;">
+						<span class="headline" style="justify-content: center;">최신글</span>
 					</div>
-					<div class="header-line"></div>
-					<div class="freeBox_De" style="margin: 0 20px;">
+					<div class="freeBox_De">
 						<div class="row" style="margin-bottom: 10px;">
 							<div class="more">
 								<a href="${path}/freeBoard/freeboard" style="font-size: 12px">더보기</a>
 							</div>
-							<c:forEach items="${frees}" var="free" varStatus="loop">
-								<div class="col-md-6" style="margin-bottom: 5px;">
-									<a href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
-										class="dogName"> <span style="font-size: 16px;"> <span
-											style="color: #63C1D2;">[ ${free.freeTag} ]</span>
-											${free.freeSub} <span style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
-									</span><br /> <c:set var="contentWithoutTags"
-											value="${fn:replace(free.freeContent, '<[^>]*>', '')}" /> <c:set
-											var="shortContent"
-											value="${fn:substring(free.freeContent, 0, 20)}" /> <span
-										style="font-size: 12px; color: gray;"> <c:out
-												value="${shortContent}" escapeXml="true" />
-									</span>
-									</a>
-								</div>
-							</c:forEach>
+							<div style="background-color: white;">
+								<c:forEach items="${frees}" var="free" varStatus="loop">
+									<div class="col-md-6" style="margin-bottom: 5px;">
+										<a
+											href="${path}/freeBoard/boarddetail?freeNum=${free.freeNum}"
+											class="dogName"> <span style="font-size: 16px;"> <span
+												style="color: #63C1D2;">[ ${free.freeTag} ]</span> <c:set
+													var="shortContent"
+													value="${fn:substring(free.freeSub, 0, 15)}" /> <c:out
+													value="${shortContent}" escapeXml="true" /> <span
+												style="font-size: 14px; color: gray;">${free.freeWriteDate}</span>
+										</span><br /> <c:set var="contentWithoutTags"
+												value="${fn:replace(free.freeContent, '<[^>]*>', '')}" /> <c:set
+												var="shortContent"
+												value="${fn:substring(free.freeContent, 0, 20)}" /> <span
+											style="font-size: 12px; color: gray;"> <c:out
+													value="${shortContent}" escapeXml="true" />
+										</span>
+										</a>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
+				<span class="imgg" style="margin-left:10px; border-radius: 10px;"> <img
+					src="${path}/image/mainDog.jpg" alt="이미지 1" style="height: 300px;" />
+				</span>
 			</div>
 		</div>
 
