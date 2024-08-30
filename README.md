@@ -19,9 +19,10 @@
   ![image-20240819143457481](https://github.com/user-attachments/assets/2893c827-3456-46b7-9675-44ce6a11113f)
 
 - 회원가입
- ![image-20240819143826121](https://github.com/user-attachments/assets/6f288d65-cf85-45e7-aa3d-d85e122ce1d6)
+    ![image-20240819142312238](https://github.com/user-attachments/assets/0445f112-6fa5-4738-81e1-f17e38dea754)
+
 - 마이페이지
-  ![image-20240819142312238](https://github.com/user-attachments/assets/0445f112-6fa5-4738-81e1-f17e38dea754)
+ ![image-20240819143826121](https://github.com/user-attachments/assets/6f288d65-cf85-45e7-aa3d-d85e122ce1d6)
 ----
 
 
