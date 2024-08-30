@@ -12,16 +12,16 @@
 ---
 ## 화면 구성
 - Main
-  ![image-20240819143944992.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b10a4228-bf8c-4a5f-8ea8-e6bfbc9420a1/4a613fcb-1c10-46e5-8a5d-e60d1e3879cb/image-20240819143944992.png)
+  ![image-20240819143944992](https://github.com/user-attachments/assets/ac27a9a8-628c-4714-8586-fdb93ed034b8)
+
 최신글을 기준으로 업데이트 됩니다.
 - 로그인
-  ![image-20240819143457481.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b10a4228-bf8c-4a5f-8ea8-e6bfbc9420a1/8fc92521-2794-4d05-afbe-fad9b72cd6d4/image-20240819143457481.png)
+  ![image-20240819143457481](https://github.com/user-attachments/assets/2893c827-3456-46b7-9675-44ce6a11113f)
 
 - 회원가입
-  ![image-20240819142312238.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b10a4228-bf8c-4a5f-8ea8-e6bfbc9420a1/f457d6f3-ab56-4fac-acb8-7de278ac8f68/image-20240819142312238.png)
+ ![image-20240819143826121](https://github.com/user-attachments/assets/6f288d65-cf85-45e7-aa3d-d85e122ce1d6)
 - 마이페이지
-  ![image-20240819143826121.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b10a4228-bf8c-4a5f-8ea8-e6bfbc9420a1/5c60ac22-f5e4-443c-a113-2b095af5507b/image-20240819143826121.png)
-
+  ![image-20240819142312238](https://github.com/user-attachments/assets/0445f112-6fa5-4738-81e1-f17e38dea754)
 ----
 
 
